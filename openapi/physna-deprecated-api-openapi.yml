@@ -1,0 +1,864 @@
+openapi: 3.0.0
+info:
+  title: Physna Public ClientCredentials Deprecated API
+  version: 2.0.1
+  contact:
+    name: Support
+    email: support@physna.com
+servers:
+- url: /v2
+tags:
+- name: Deprecated
+paths:
+  /properties:
+    get:
+      operationId: GetProperties
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PropertyListResponse'
+      tags:
+      - Deprecated
+      deprecated: true
+      security:
+      - okta:
+        - Administrators
+        - Authors
+      parameters:
+      - in: query
+        name: ids
+        required: false
+        schema:
+          type: array
+          items:
+            type: number
+            format: double
+      - in: header
+        name: X-PHYSNA-TENANTID
+        required: false
+        schema:
+          type: string
+    post:
+      operationId: CreateProperty
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SinglePropertyResponse'
+      tags:
+      - Deprecated
+      deprecated: true
+      security:
+      - okta:
+        - Administrators
+        - Authors
+      parameters:
+      - in: header
+        name: X-PHYSNA-TENANTID
+        required: false
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                propertyName:
+                  type: string
+              required:
+              - propertyName
+              type: object
+    delete:
+      operationId: DeleteProperty
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeletedPropertyResponse'
+      tags:
+      - Deprecated
+      deprecated: true
+      security:
+      - okta:
+        - Administrators
+        - Authors
+      parameters:
+      - in: header
+        name: X-PHYSNA-TENANTID
+        required: false
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                id:
+                  type: number
+                  format: double
+              required:
+              - id
+              type: object
+  /properties/{id}:
+    get:
+      operationId: GetProperty
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SinglePropertyResponse'
+        '404':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      tags:
+      - Deprecated
+      deprecated: true
+      security:
+      - okta:
+        - Administrators
+        - Authors
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          format: double
+          type: number
+      - in: header
+        name: X-PHYSNA-TENANTID
+        required: false
+        schema:
+          type: string
+  /models/{id}/part-to-part-matches:
+    get:
+      operationId: GetPartToPartMatches
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PartToPartMatchResponse'
+      tags:
+      - Deprecated
+      deprecated: true
+      security:
+      - okta:
+        - Administrators
+        - Authors
+        - Viewers
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: threshold
+        required: false
+        schema:
+          format: float
+          type: number
+          minimum: 0
+          maximum: 1
+      - in: query
+        name: perPage
+        required: false
+        schema:
+          default: 20
+          format: int32
+          type: integer
+          minimum: 1
+          maximum: 100
+      - in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          format: int32
+          type: integer
+          minimum: 1
+      - description: A lucene query that describes the filter. Available fields to filter include folderId, metadata.id, and metadata.value
+        in: query
+        name: filters
+        required: false
+        schema:
+          type: string
+        example: folderId:12 AND metadata.id:100 AND metadata.value:'Brass'
+      - in: header
+        name: X-PHYSNA-TENANTID
+        required: false
+        schema:
+          type: string
+  /models/{id}/part-in-part-matches:
+    get:
+      operationId: GetPartInPartMatches
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PartInPartMatchResponse'
+      tags:
+      - Deprecated
+      deprecated: true
+      security:
+      - okta:
+        - Administrators
+        - Authors
+        - Viewers
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: threshold
+        required: false
+        schema:
+          format: float
+          type: number
+          minimum: 0
+          maximum: 1
+      - in: query
+        name: perPage
+        required: false
+        schema:
+          default: 20
+          format: int32
+          type: integer
+          minimum: 1
+          maximum: 100
+      - in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          format: int32
+          type: integer
+          minimum: 1
+      - description: A lucene query that describes the filter. Available fields to filter include folderId, metadata.id, and metadata.value
+        in: query
+        name: filters
+        required: false
+        schema:
+          type: string
+        example: folderId:12 AND metadata.id:100 AND metadata.value:'Brass'
+      - in: header
+        name: X-PHYSNA-TENANTID
+        required: false
+        schema:
+          type: string
+  /models/{id}/geo-related-matches:
+    get:
+      operationId: GetGeoRelatedMatches
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeoRelatedMatchResponse'
+      summary: IN DEVELOPMENT
+      tags:
+      - Deprecated
+      deprecated: true
+      security:
+      - okta:
+        - Administrators
+        - Authors
+        - Viewers
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: threshold
+        required: false
+        schema:
+          format: float
+          type: number
+          minimum: 0
+          maximum: 1
+      - in: query
+        name: perPage
+        required: false
+        schema:
+          default: 20
+          format: int32
+          type: integer
+          minimum: 1
+          maximum: 100
+      - in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          format: int32
+          type: integer
+          minimum: 1
+      - description: A lucene query that describes the filter. Available fields to filter include folderId, metadata.id, and metadata.value
+        in: query
+        name: filters
+        required: false
+        schema:
+          type: string
+        example: folderId:12 AND metadata.id:100 AND metadata.value:'Brass'
+      - in: header
+        name: X-PHYSNA-TENANTID
+        required: false
+        schema:
+          type: string
+  /models/{id}/properties:
+    get:
+      operationId: ModelProperties
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ModelPropertiesResponse'
+      tags:
+      - Deprecated
+      deprecated: true
+      security:
+      - okta:
+        - Administrators
+        - Authors
+        - Viewers
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - in: header
+        name: X-PHYSNA-TENANTID
+        required: false
+        schema:
+          type: string
+  /models/{id}/properties/{propertyId}:
+    put:
+      operationId: UpsertModelProperty
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ModelProperty'
+      tags:
+      - Deprecated
+      deprecated: true
+      security:
+      - okta:
+        - Administrators
+        - Authors
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: propertyId
+        required: true
+        schema:
+          format: double
+          type: number
+      - in: header
+        name: X-PHYSNA-TENANTID
+        required: false
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                value:
+                  type: string
+              required:
+              - value
+              type: object
+    delete:
+      operationId: DeleteModelProperty
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                type: boolean
+      tags:
+      - Deprecated
+      deprecated: true
+      security:
+      - okta:
+        - Administrators
+        - Authors
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: propertyId
+        required: true
+        schema:
+          format: double
+          type: number
+      - in: header
+        name: X-PHYSNA-TENANTID
+        required: false
+        schema:
+          type: string
+  /model-properties:
+    get:
+      operationId: ModelPropertiesList
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ModelPropertiesListResponse'
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      tags:
+      - Deprecated
+      deprecated: true
+      security:
+      - okta:
+        - Administrators
+        - Authors
+        - Viewers
+      parameters:
+      - in: query
+        name: ids
+        required: true
+        schema:
+          type: array
+          items:
+            type: string
+      - in: header
+        name: X-PHYSNA-TENANTID
+        required: false
+        schema:
+          type: string
+components:
+  schemas:
+    PartToPartMatch:
+      description: Searching for models that match the model under search
+      properties:
+        matchedModel:
+          $ref: '#/components/schemas/Model'
+        matchPercentage:
+          type: number
+          format: double
+      required:
+      - matchedModel
+      - matchPercentage
+      type: object
+      additionalProperties: false
+    ModelPropertiesResponse:
+      properties:
+        modelProperties:
+          items:
+            $ref: '#/components/schemas/ModelProperty'
+          type: array
+      required:
+      - modelProperties
+      type: object
+      additionalProperties: false
+    Label:
+      properties:
+        displayName:
+          type: string
+        source:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        rejected:
+          type: boolean
+      required:
+      - displayName
+      - source
+      - createdAt
+      type: object
+      additionalProperties: false
+    PropertyListResponse:
+      properties:
+        properties:
+          items:
+            $ref: '#/components/schemas/Property'
+          type: array
+      required:
+      - properties
+      type: object
+      additionalProperties: false
+    PartInPartMatchResponse:
+      properties:
+        matches:
+          items:
+            $ref: '#/components/schemas/PartInPartMatch'
+          type: array
+        pageData:
+          $ref: '#/components/schemas/PageData'
+        filterData:
+          $ref: '#/components/schemas/FilterData'
+      required:
+      - matches
+      - pageData
+      - filterData
+      type: object
+      additionalProperties: false
+    PageData:
+      properties:
+        total:
+          type: integer
+          format: int32
+        perPage:
+          type: integer
+          format: int32
+        currentPage:
+          type: integer
+          format: int32
+        lastPage:
+          type: integer
+          format: int32
+        startIndex:
+          type: integer
+          format: int32
+        endIndex:
+          type: integer
+          format: int32
+      required:
+      - total
+      - perPage
+      - currentPage
+      - lastPage
+      - startIndex
+      - endIndex
+      type: object
+      additionalProperties: false
+    ModelGeometry:
+      description: Model geometry of ingested model, including the model's bounding box lengths, it's surface area, and volume.
+      properties:
+        obbMinLength:
+          type: number
+          format: double
+        obbMidLength:
+          type: number
+          format: double
+        obbMaxLength:
+          type: number
+          format: double
+        surfaceArea:
+          type: number
+          format: double
+        modelVolume:
+          type: number
+          format: double
+      required:
+      - obbMinLength
+      - obbMidLength
+      - obbMaxLength
+      - surfaceArea
+      - modelVolume
+      type: object
+      additionalProperties: false
+    GeoRelatedMatch:
+      description: Searching for models that are broadly similar to the model under search
+      properties:
+        matchedModel:
+          $ref: '#/components/schemas/Model'
+        matchPercentage:
+          type: number
+          format: double
+      required:
+      - matchedModel
+      - matchPercentage
+      type: object
+      additionalProperties: false
+    FilterData:
+      properties:
+        folders:
+          items:
+            $ref: '#/components/schemas/FolderFilterData'
+          type: array
+        properties:
+          items:
+            $ref: '#/components/schemas/PropertyFilterData'
+          type: array
+      required:
+      - folders
+      - properties
+      type: object
+      additionalProperties: false
+      deprecated: true
+    Property:
+      properties:
+        id:
+          type: number
+          format: double
+        name:
+          type: string
+      required:
+      - id
+      - name
+      type: object
+      additionalProperties: false
+    PartToPartMatchResponse:
+      properties:
+        matches:
+          items:
+            $ref: '#/components/schemas/PartToPartMatch'
+          type: array
+        pageData:
+          $ref: '#/components/schemas/PageData'
+        filterData:
+          $ref: '#/components/schemas/FilterData'
+      required:
+      - matches
+      - pageData
+      - filterData
+      type: object
+      additionalProperties: false
+    FolderFilterData:
+      properties:
+        id:
+          type: number
+          format: double
+        name:
+          type: string
+      required:
+      - id
+      - name
+      type: object
+      additionalProperties: false
+    Model:
+      properties:
+        createdAt:
+          type: string
+        deletedAt:
+          type: string
+        fileName:
+          type: string
+        fileType:
+          type: string
+        folderId:
+          type: number
+          format: double
+        id:
+          type: string
+        isAssembly:
+          type: boolean
+        name:
+          type: string
+        ownerId:
+          type: string
+        state:
+          type: string
+        thumbnail:
+          type: string
+        units:
+          type: string
+        collections:
+          items:
+            $ref: '#/components/schemas/Pick_Collection.id-or-name_'
+          type: array
+        labels:
+          items:
+            $ref: '#/components/schemas/Label'
+          type: array
+        geometry:
+          $ref: '#/components/schemas/ModelGeometry'
+      required:
+      - createdAt
+      - fileName
+      - fileType
+      - folderId
+      - id
+      - isAssembly
+      - name
+      - ownerId
+      - state
+      - units
+      type: object
+      additionalProperties: false
+    ErrorResponse:
+      properties:
+        error:
+          properties:
+            message:
+              type: string
+          required:
+          - message
+          type: object
+      required:
+      - error
+      type: object
+      additionalProperties: false
+    GeoRelatedMatchResponse:
+      properties:
+        matches:
+          items:
+            $ref: '#/components/schemas/GeoRelatedMatch'
+          type: array
+        pageData:
+          $ref: '#/components/schemas/PageData'
+        filterData:
+          $ref: '#/components/schemas/FilterData'
+      required:
+      - matches
+      - pageData
+      - filterData
+      type: object
+      additionalProperties: false
+    PropertyFilterData:
+      properties:
+        id:
+          type: number
+          format: double
+        name:
+          type: string
+        values:
+          items:
+            type: string
+          type: array
+      required:
+      - id
+      - name
+      - values
+      type: object
+      additionalProperties: false
+    ModelProperty:
+      properties:
+        modelId:
+          type: string
+        propertyId:
+          type: number
+          format: double
+        name:
+          type: string
+          nullable: true
+        value:
+          type: string
+      required:
+      - modelId
+      - propertyId
+      - name
+      - value
+      type: object
+      additionalProperties: false
+    SinglePropertyResponse:
+      properties:
+        property:
+          $ref: '#/components/schemas/Property'
+      required:
+      - property
+      type: object
+      additionalProperties: false
+    Pick_Collection.id-or-name_:
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+      required:
+      - id
+      type: object
+      description: From T, pick a set of properties whose keys are in the union K
+    DeletedPropertyResponse:
+      properties:
+        deleted:
+          type: boolean
+      required:
+      - deleted
+      type: object
+      additionalProperties: false
+    PartInPartMatch:
+      description: 'Searching for models that contain the model under search
+
+
+        Model is the model being searched on, and MatchedModel is the result'
+      properties:
+        matchedModel:
+          $ref: '#/components/schemas/Model'
+        commonFacetCount:
+          type: number
+          format: double
+        modelFacetCount:
+          type: number
+          format: double
+        matchedModelFacetCount:
+          type: number
+          format: double
+        forwardMatchPercentage:
+          type: number
+          format: double
+          description: The amount of the Model that exists inside the MatchedModel
+        reverseMatchPercentage:
+          type: number
+          format: double
+          description: The amount of the MatchedModel that exists inside the Model
+      required:
+      - matchedModel
+      - commonFacetCount
+      - modelFacetCount
+      - matchedModelFacetCount
+      - forwardMatchPercentage
+      - reverseMatchPercentage
+      type: object
+      additionalProperties: false
+    ModelPropertiesListResponse:
+      properties:
+        modelProperties:
+          items:
+            $ref: '#/components/schemas/ModelProperty'
+          type: array
+      required:
+      - modelProperties
+      type: object
+      additionalProperties: false
+  securitySchemes:
+    okta:
+      type: oauth2
+      flows:
+        authorizationCode:
+          tokenUrl: https://physna.okta.com/oauth2/default/v1/token
+          authorizationUrl: https://physna.okta.com/oauth2/default/v1/authorize
+          scopes:
+            openid: ''
+            tenant: ''
+            roles: ''
+externalDocs:
+  description: Public Api Guide
+  url: https://physna.github.io/public-api-guide/

@@ -1,0 +1,1608 @@
+openapi: 3.0.0
+info:
+  title: Physna Public ClientCredentials Models API
+  version: 2.0.1
+  contact:
+    name: Support
+    email: support@physna.com
+servers:
+- url: /v2
+tags:
+- name: Models
+paths:
+  /models:
+    get:
+      operationId: GetModels
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ModelListResponse'
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      tags:
+      - Models
+      security:
+      - okta:
+        - Administrators
+        - Authors
+        - Viewers
+      parameters:
+      - description: A general string used to search and filter on all available models.
+        in: query
+        name: search
+        required: false
+        schema:
+          default: ''
+          type: string
+      - description: The `folderIds` property has been deprecated. Please use the `filter` property instead.
+        in: query
+        name: folderIds
+        required: false
+        schema:
+          type: array
+          items:
+            type: number
+            format: double
+      - description: A [`FilterExpression`](#model-FilterExpression). See the [API Reference](https://physna.github.io/public-api-guide/api-reference/filter-expressions) for more details.
+        in: query
+        name: filter
+        required: false
+        schema:
+          $ref: '#/components/schemas/FilterExpression'
+      - description: An [`OrderExpression`](#model-OrderExpression). See the [API Reference](https://physna.github.io/public-api-guide/api-reference/order-expressions) for more details. If no order is provided the results are returned in order of relevancy.
+        in: query
+        name: order
+        required: false
+        schema:
+          $ref: '#/components/schemas/OrderExpression'
+      - description: The number of items to return per page.
+        in: query
+        name: perPage
+        required: false
+        schema:
+          default: 20
+          format: int32
+          type: integer
+          minimum: 1
+        example: '20'
+      - description: A 1 based page number used in conjunction with `perPage`.
+        in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          format: int32
+          type: integer
+          minimum: 1
+        example: '1'
+      - in: header
+        name: X-PHYSNA-TENANTID
+        required: false
+        schema:
+          type: string
+    delete:
+      operationId: DeleteModels
+      responses:
+        '204':
+          description: No content
+      description: Bulk delete models. Bulk delete is permanent and cannot be undone.
+      tags:
+      - Models
+      security:
+      - okta:
+        - Administrators
+        - Authors
+      parameters:
+      - description: A list of modelIds to be deleted
+        in: query
+        name: ids
+        required: true
+        schema:
+          type: array
+          items:
+            type: string
+      - in: header
+        name: X-PHYSNA-TENANTID
+        required: false
+        schema:
+          type: string
+    post:
+      operationId: CreateModels
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateModelsResponse'
+      description: 'Create Records for models and receive the needed signed uploadUrl to upload the model files and initiate ingestion.
+
+
+        Current Limitations:
+
+        -  Filetypes Supported: ''.3ds'', ''.asm'', ''.catpart'', ''.catproduct'', ''.glb'', ''.iges'', ''.igs'', ''.obj'', ''.par'', ''.prt'', ''.sldasm'', ''.sldprt'', ''.stl'', ''.step'', ''.stp'', ''.x_b'', ''.x_t'',
+
+        -  Versioned Creo files are also supported. For example `part.prt.1` or `assembly.asm.2`.
+
+        -  Maximum 100 Models can be created at once.
+
+        -  The `folderName` used in the `filePath` must be the `name` of a `Folder` that already exists.
+
+        -  Each `filePath` must be unique for each model.
+
+        -  `filePath` can not exceed 1024 bytes (this is roughly 1024 characters, unless unicode characters are included, which consume more bytes)
+
+        -  `filePath` can not contain any of the following characters: `[''\n'', ''\r'', ''*'', '':'', ''"'', ''<'', ''>'', ''|'', ''#'', ''['', '']'', ''?'', ''\\''];
+
+        -  No duplicates of a model can be created within the same folder.
+
+
+        Assemblies can be created just like any other supported file, but all required subparts must be uploaded to the same folder (preferably beforehand to avoid unnecessary automatic reprocessing).
+
+
+        The model file can be uploaded via a `PUT` request to the <upload url> including the file and the supplied headers.
+
+
+        Example using `curl` command:
+
+
+        ```
+
+        curl -X PUT --upload-file file.stl -H ''<header1-name>: <header1-value>'' -H ''<header2-name>: <header2-value>'' <upload-url>
+
+        ```
+
+
+        After completing the upload, the model will be processed behind the scenes and be ready to match once it is in the `finished` state.'
+      tags:
+      - Models
+      security:
+      - okta:
+        - Administrators
+        - Authors
+      parameters:
+      - description: If set to true, any folders that do not exist will be created. If set to false, any folders that do not exist will cause an error.
+        in: query
+        name: createMissingFolders
+        required: false
+        schema:
+          default: false
+          type: boolean
+      - description: Optional name of a collection the uploaded models will be added to. If the collection does not exist, it will be created.
+        in: query
+        name: collection
+        required: false
+        schema:
+          type: string
+      - in: header
+        name: X-PHYSNA-TENANTID
+        required: false
+        schema:
+          type: string
+      requestBody:
+        description: A list of models to create
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                models:
+                  items:
+                    $ref: '#/components/schemas/CreateModelRequest'
+                  type: array
+              required:
+              - models
+              type: object
+              description: A list of models to create
+  /models/match-report:
+    get:
+      operationId: GetMatchReport
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MatchReport'
+      summary: IN DEVELOPMENT
+      tags:
+      - Models
+      security:
+      - okta:
+        - Administrators
+        - Authors
+        - Viewers
+      parameters:
+      - description: A float number that is the minimum percentage a match must be to be returned as a counted match.
+        in: query
+        name: threshold
+        required: true
+        schema:
+          $ref: '#/components/schemas/MatchReportThreshold'
+      - description: A list of folder ids to filter the matches and counts by.
+        in: query
+        name: folderIds
+        required: false
+        schema:
+          type: array
+          items:
+            type: number
+            format: double
+      - description: A 1 based page number used in conjunction with `perPage`.
+        in: query
+        name: page
+        required: false
+        schema:
+          format: int32
+          type: integer
+          minimum: 1
+        example: '1'
+      - description: The number of items to return per page.
+        in: query
+        name: perPage
+        required: false
+        schema:
+          format: int32
+          type: integer
+          minimum: 1
+        example: '20'
+      - in: header
+        name: X-PHYSNA-TENANTID
+        required: false
+        schema:
+          type: string
+  /models/grouped-match-report:
+    get:
+      operationId: GetGroupedMatchReport
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MatchReportGroups'
+      summary: IN DEVELOPMENT
+      tags:
+      - Models
+      security:
+      - okta:
+        - Administrators
+        - Authors
+        - Viewers
+      parameters:
+      - description: A float number that is the minimum percentage a match must be to be returned as a counted match.
+        in: query
+        name: threshold
+        required: true
+        schema:
+          $ref: '#/components/schemas/MatchReportThreshold'
+      - description: A list of folder ids to filter the matches and counts by.
+        in: query
+        name: folderIds
+        required: false
+        schema:
+          type: array
+          items:
+            type: number
+            format: double
+      - in: header
+        name: X-PHYSNA-TENANTID
+        required: false
+        schema:
+          type: string
+  /models/state-report:
+    get:
+      operationId: GetModelStateReport
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetModelStateReportResponse'
+      tags:
+      - Models
+      security:
+      - okta:
+        - Administrators
+        - Authors
+        - Viewers
+      parameters:
+      - description: An optional list of folder ids to filter the model states to.
+        in: query
+        name: folderIds
+        required: false
+        schema:
+          type: array
+          items:
+            type: number
+            format: double
+      - in: header
+        name: X-PHYSNA-TENANTID
+        required: false
+        schema:
+          type: string
+  /models/reprocess:
+    post:
+      operationId: ReprocessModels
+      responses:
+        '202':
+          description: Accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReprocessModelsResponse'
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      description: Bulk reprocess models.
+      tags:
+      - Models
+      security:
+      - okta:
+        - Administrators
+        - Authors
+      parameters:
+      - description: A [`FilterExpression`](#model-FilterExpression). See the [API Reference](https://physna.github.io/public-api-guide/api-reference/filter-expressions) for more details.
+        in: query
+        name: filter
+        required: true
+        schema:
+          $ref: '#/components/schemas/FilterExpression'
+      - in: header
+        name: X-PHYSNA-TENANTID
+        required: false
+        schema:
+          type: string
+  /models/{id}/reprocess:
+    post:
+      operationId: ReprocessModel
+      responses:
+        '202':
+          description: Accepted
+        '404':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      description: Reprocess model.
+      tags:
+      - Models
+      security:
+      - okta:
+        - Administrators
+        - Authors
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - in: header
+        name: X-PHYSNA-TENANTID
+        required: false
+        schema:
+          type: string
+  /models/{id}:
+    get:
+      operationId: GetModel
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SingleModelResponse'
+        '404':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      tags:
+      - Models
+      security:
+      - okta:
+        - Administrators
+        - Authors
+        - Viewers
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - in: header
+        name: X-PHYSNA-TENANTID
+        required: false
+        schema:
+          type: string
+    delete:
+      operationId: DeleteModel
+      responses:
+        '204':
+          description: No content
+      description: Delete a model. Deleting a model is permanent and cannot be undone.
+      tags:
+      - Models
+      security:
+      - okta:
+        - Administrators
+        - Authors
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - in: header
+        name: X-PHYSNA-TENANTID
+        required: false
+        schema:
+          type: string
+  /models/{id}/matches:
+    get:
+      operationId: GetModelMatches
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetModelMatchesResponse'
+      tags:
+      - Models
+      security:
+      - okta:
+        - Administrators
+        - Authors
+        - Viewers
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - description: A float number (0-1) that is the minimum percentage a match must be to be returned.
+        in: query
+        name: threshold
+        required: false
+        schema:
+          format: float
+          type: number
+          minimum: 0
+          maximum: 1
+      - description: A [`FilterExpression`](#model-FilterExpression). See the [API Reference](https://physna.github.io/public-api-guide/api-reference/filter-expressions) for more details.
+        in: query
+        name: filter
+        required: false
+        schema:
+          $ref: '#/components/schemas/FilterExpression'
+      - description: A 1 based page number used in conjunction with `perPage`.
+        in: query
+        name: page
+        required: false
+        schema:
+          format: int32
+          type: integer
+        example: '1'
+      - description: The number of items to return per page.
+        in: query
+        name: perPage
+        required: false
+        schema:
+          format: int32
+          type: integer
+        example: '20'
+      - in: header
+        name: X-PHYSNA-TENANTID
+        required: false
+        schema:
+          type: string
+  /models/{id}/part-matches:
+    get:
+      operationId: GetPartMatches
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetPartMatchesResponse'
+      tags:
+      - Models
+      security:
+      - okta:
+        - Administrators
+        - Authors
+        - Viewers
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - description: A float number (0-1) that is the minimum percentage a match must be to be returned.
+        in: query
+        name: threshold
+        required: false
+        schema:
+          format: float
+          type: number
+          minimum: 0
+          maximum: 1
+      - description: A [`FilterExpression`](#model-FilterExpression). See the [API Reference](https://physna.github.io/public-api-guide/api-reference/filter-expressions) for more details.
+        in: query
+        name: filter
+        required: false
+        schema:
+          $ref: '#/components/schemas/FilterExpression'
+      - description: A 1 based page number used in conjunction with `perPage`.
+        in: query
+        name: page
+        required: false
+        schema:
+          format: int32
+          type: integer
+        example: '1'
+      - description: The number of items to return per page.
+        in: query
+        name: perPage
+        required: false
+        schema:
+          format: int32
+          type: integer
+        example: '20'
+      - in: header
+        name: X-PHYSNA-TENANTID
+        required: false
+        schema:
+          type: string
+  /models/{id}/scan-matches:
+    get:
+      operationId: GetScanMatches
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetScanMatchesResponse'
+      tags:
+      - Models
+      security:
+      - okta:
+        - Administrators
+        - Authors
+        - Viewers
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - description: A float number (0-1) that is the minimum percentage a match must be to be returned.
+        in: query
+        name: threshold
+        required: false
+        schema:
+          format: float
+          type: number
+          minimum: 0
+          maximum: 1
+      - description: A [`FilterExpression`](#model-FilterExpression). See the [API Reference](https://physna.github.io/public-api-guide/api-reference/filter-expressions) for more details.
+        in: query
+        name: filter
+        required: false
+        schema:
+          $ref: '#/components/schemas/FilterExpression'
+      - description: A 1 based page number used in conjunction with `perPage`.
+        in: query
+        name: page
+        required: false
+        schema:
+          format: int32
+          type: integer
+        example: '1'
+      - description: The number of items to return per page.
+        in: query
+        name: perPage
+        required: false
+        schema:
+          format: int32
+          type: integer
+        example: '20'
+      - in: header
+        name: X-PHYSNA-TENANTID
+        required: false
+        schema:
+          type: string
+  /models/{id}/visual-matches:
+    get:
+      operationId: GetVisualMatches
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetVisualMatchesResponse'
+      tags:
+      - Models
+      security:
+      - okta:
+        - Administrators
+        - Authors
+        - Viewers
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - description: A float number (0-1) that is the minimum percentage a match must be to be returned.
+        in: query
+        name: threshold
+        required: false
+        schema:
+          format: float
+          type: number
+          minimum: 0
+          maximum: 1
+      - description: A [`FilterExpression`](#model-FilterExpression). See the [API Reference](https://physna.github.io/public-api-guide/api-reference/filter-expressions) for more details.
+        in: query
+        name: filter
+        required: false
+        schema:
+          $ref: '#/components/schemas/FilterExpression'
+      - description: A 1 based page number used in conjunction with `perPage`.
+        in: query
+        name: page
+        required: false
+        schema:
+          format: int32
+          type: integer
+        example: '1'
+      - description: The number of items to return per page.
+        in: query
+        name: perPage
+        required: false
+        schema:
+          format: int32
+          type: integer
+        example: '20'
+      - in: header
+        name: X-PHYSNA-TENANTID
+        required: false
+        schema:
+          type: string
+  /models/{id}/source-file:
+    get:
+      operationId: GetSourceFile
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SourceFileResponse'
+      tags:
+      - Models
+      security:
+      - okta:
+        - Administrators
+        - Authors
+        - Viewers
+      parameters:
+      - description: A processed model id
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - in: header
+        name: X-PHYSNA-TENANTID
+        required: false
+        schema:
+          type: string
+  /models/{id}/viewer-file:
+    get:
+      operationId: GetViewerFile
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ViewerFileResponse'
+      tags:
+      - Models
+      security:
+      - okta:
+        - Administrators
+        - Authors
+        - Viewers
+      parameters:
+      - description: A processed model id
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - in: header
+        name: X-PHYSNA-TENANTID
+        required: false
+        schema:
+          type: string
+  /models/{id}/metadata:
+    get:
+      operationId: GetMetadata
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetadataResponse'
+      tags:
+      - Models
+      security:
+      - okta:
+        - Administrators
+        - Authors
+        - Viewers
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - description: A [`FilterExpression`](#model-FilterExpression). See the [API Reference](https://physna.github.io/public-api-guide/api-reference/filter-expressions) for more details.
+        in: query
+        name: filter
+        required: false
+        schema:
+          $ref: '#/components/schemas/FilterExpression'
+      - description: An [`OrderExpression`](#model-OrderExpression). See the [API Reference](https://physna.github.io/public-api-guide/api-reference/order-expressions) for more details.
+        in: query
+        name: order
+        required: false
+        schema:
+          $ref: '#/components/schemas/OrderExpression'
+      - description: A 1 based page number used in conjunction with `perPage`.
+        in: query
+        name: page
+        required: false
+        schema:
+          format: int32
+          type: integer
+        example: '1'
+      - description: The number of items to return per page.
+        in: query
+        name: perPage
+        required: false
+        schema:
+          format: int32
+          type: integer
+        example: '20'
+      - in: header
+        name: X-PHYSNA-TENANTID
+        required: false
+        schema:
+          type: string
+  /models/{id}/metadata/{metadataKeyId}:
+    put:
+      operationId: UpsertMetadata
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SingleMetadataResponse'
+      tags:
+      - Models
+      security:
+      - okta:
+        - Administrators
+        - Authors
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: metadataKeyId
+        required: true
+        schema:
+          format: double
+          type: number
+      - in: header
+        name: X-PHYSNA-TENANTID
+        required: false
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                value:
+                  type: string
+              required:
+              - value
+              type: object
+  /models/{id}/assembly-tree:
+    get:
+      operationId: GetAssemblyTreeForModel
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AssemblyTree'
+        '404':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      tags:
+      - Models
+      security:
+      - okta:
+        - Administrators
+        - Authors
+        - Viewers
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - in: header
+        name: X-PHYSNA-TENANTID
+        required: false
+        schema:
+          type: string
+components:
+  schemas:
+    MetadataFilterData:
+      properties:
+        metadataKeyId:
+          type: number
+          format: double
+        name:
+          type: string
+        values:
+          items:
+            type: string
+          type: array
+      required:
+      - metadataKeyId
+      - name
+      - values
+      type: object
+      additionalProperties: false
+    AssemblyPart:
+      properties:
+        type:
+          type: string
+          enum:
+          - assemblyPart
+          nullable: false
+        modelId:
+          type: string
+        occurrences:
+          type: number
+          format: double
+      required:
+      - type
+      - modelId
+      - occurrences
+      type: object
+      additionalProperties: false
+    MatchReportGroups:
+      properties:
+        groups:
+          items:
+            $ref: '#/components/schemas/MatchReportGroup'
+          type: array
+      required:
+      - groups
+      type: object
+      additionalProperties: false
+    Pick_Folder.id-or-name_:
+      properties:
+        id:
+          type: number
+          format: double
+        name:
+          type: string
+      required:
+      - id
+      - name
+      type: object
+      description: From T, pick a set of properties whose keys are in the union K
+    AddToCollectionResponseBody:
+      $ref: '#/components/schemas/CreateCollectionResponseBody'
+    Label:
+      properties:
+        displayName:
+          type: string
+        source:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        rejected:
+          type: boolean
+      required:
+      - displayName
+      - source
+      - createdAt
+      type: object
+      additionalProperties: false
+    GetPartMatchesResponse:
+      properties:
+        matches:
+          items:
+            $ref: '#/components/schemas/PartMatch'
+          type: array
+        pageData:
+          $ref: '#/components/schemas/PageData'
+        filterData:
+          $ref: '#/components/schemas/MatchFilterData'
+      required:
+      - matches
+      - pageData
+      - filterData
+      type: object
+      additionalProperties: false
+    GetModelStateReportResponse:
+      properties:
+        states:
+          $ref: '#/components/schemas/ModelStateReport'
+      required:
+      - states
+      type: object
+      additionalProperties: false
+    AssemblyTree:
+      properties:
+        type:
+          type: string
+          enum:
+          - assemblyTree
+          nullable: false
+        modelId:
+          type: string
+        children:
+          items:
+            anyOf:
+            - $ref: '#/components/schemas/AssemblyPart'
+            - $ref: '#/components/schemas/SubAssembly'
+          type: array
+      required:
+      - type
+      - modelId
+      - children
+      type: object
+      additionalProperties: false
+    MetadataResponse:
+      properties:
+        pageData:
+          $ref: '#/components/schemas/PageData'
+        metadata:
+          items:
+            $ref: '#/components/schemas/Metadata'
+          type: array
+      required:
+      - pageData
+      - metadata
+      type: object
+      additionalProperties: false
+    ModelMatch:
+      properties:
+        matchPercentage:
+          type: number
+          format: double
+        matchedModel:
+          $ref: '#/components/schemas/ModelWithMetadata'
+      required:
+      - matchPercentage
+      - matchedModel
+      type: object
+      additionalProperties: false
+    MatchFilterData:
+      properties:
+        folders:
+          items:
+            $ref: '#/components/schemas/Pick_Folder.id-or-name_'
+          type: array
+        metadata:
+          items:
+            $ref: '#/components/schemas/MetadataFilterData'
+          type: array
+        createdAt:
+          items:
+            type: string
+          type: array
+        isAssembly:
+          items:
+            type: boolean
+          type: array
+        fileType:
+          items:
+            type: string
+          type: array
+        units:
+          items:
+            type: string
+          type: array
+        collections:
+          $ref: '#/components/schemas/CollectionFilterData'
+      required:
+      - folders
+      - metadata
+      - createdAt
+      - isAssembly
+      - fileType
+      - units
+      - collections
+      type: object
+      additionalProperties: false
+    OrderExpression:
+      type: string
+      description: 'A string in the form `[-]<OrderProperty>[,OrderProperties]`.
+
+
+        See the [API Reference](https://physna.github.io/public-api-guide/api-reference/order-expressions) for more details.
+
+
+
+        Example:
+
+        ```
+
+        -id,name
+
+        ```'
+    ScanMatch:
+      properties:
+        matchedModel:
+          $ref: '#/components/schemas/ModelWithMetadata'
+        matchPercentage:
+          type: number
+          format: double
+      required:
+      - matchedModel
+      - matchPercentage
+      type: object
+      additionalProperties: false
+    CreateModelRequest:
+      properties:
+        filePath:
+          type: string
+        name:
+          type: string
+        metadata:
+          items:
+            $ref: '#/components/schemas/CreateModelMetadata'
+          type: array
+      required:
+      - filePath
+      type: object
+      additionalProperties: false
+    GetModelMatchesResponse:
+      properties:
+        matches:
+          items:
+            $ref: '#/components/schemas/ModelMatch'
+          type: array
+        pageData:
+          $ref: '#/components/schemas/PageData'
+        filterData:
+          $ref: '#/components/schemas/MatchFilterData'
+      required:
+      - matches
+      - pageData
+      - filterData
+      type: object
+      additionalProperties: false
+    GetVisualMatchesResponse:
+      properties:
+        matches:
+          items:
+            $ref: '#/components/schemas/VisualMatch'
+          type: array
+        pageData:
+          $ref: '#/components/schemas/PageData'
+        filterData:
+          $ref: '#/components/schemas/MatchFilterData'
+      required:
+      - matches
+      - pageData
+      - filterData
+      type: object
+      additionalProperties: false
+    CreateModelMetadata:
+      properties:
+        metadataKeyId:
+          type: number
+          format: double
+        value:
+          type: string
+      required:
+      - metadataKeyId
+      - value
+      type: object
+      additionalProperties: false
+    PartMatch:
+      properties:
+        matchedModel:
+          $ref: '#/components/schemas/ModelWithMetadata'
+        commonFacetCount:
+          type: number
+          format: double
+        modelFacetCount:
+          type: number
+          format: double
+        matchedModelFacetCount:
+          type: number
+          format: double
+        forwardMatchPercentage:
+          type: number
+          format: double
+          description: The amount of the Model that exists inside the MatchedModel
+        reverseMatchPercentage:
+          type: number
+          format: double
+          description: The amount of the MatchedModel that exists inside the Model
+      required:
+      - matchedModel
+      - commonFacetCount
+      - modelFacetCount
+      - matchedModelFacetCount
+      - forwardMatchPercentage
+      - reverseMatchPercentage
+      type: object
+      additionalProperties: false
+    SourceFileResponse:
+      properties:
+        sourceFile:
+          type: string
+      required:
+      - sourceFile
+      type: object
+      additionalProperties: false
+    ReprocessModelsResponse:
+      properties:
+        affected:
+          type: number
+          format: double
+      required:
+      - affected
+      type: object
+      additionalProperties: false
+    CreateCollectionResponseBody:
+      properties:
+        collectionId:
+          type: string
+        affected:
+          type: number
+          format: double
+      required:
+      - collectionId
+      - affected
+      type: object
+      additionalProperties: false
+    PageData:
+      properties:
+        total:
+          type: integer
+          format: int32
+        perPage:
+          type: integer
+          format: int32
+        currentPage:
+          type: integer
+          format: int32
+        lastPage:
+          type: integer
+          format: int32
+        startIndex:
+          type: integer
+          format: int32
+        endIndex:
+          type: integer
+          format: int32
+      required:
+      - total
+      - perPage
+      - currentPage
+      - lastPage
+      - startIndex
+      - endIndex
+      type: object
+      additionalProperties: false
+    SingleModelResponse:
+      properties:
+        model:
+          $ref: '#/components/schemas/ModelWithMetadata'
+      required:
+      - model
+      type: object
+      additionalProperties: false
+    MatchReportThreshold:
+      type: number
+      enum:
+      - 0.8
+      - 0.9
+      - 0.95
+      - 0.99
+    MatchReportGroup:
+      properties:
+        modelIds:
+          items:
+            type: string
+          type: array
+        exampleModels:
+          items:
+            $ref: '#/components/schemas/ModelWithMetadata'
+          type: array
+      required:
+      - modelIds
+      - exampleModels
+      type: object
+      additionalProperties: false
+    ModelListResponse:
+      properties:
+        models:
+          items:
+            $ref: '#/components/schemas/ModelWithMetadata'
+          type: array
+        pageData:
+          $ref: '#/components/schemas/PageData'
+      required:
+      - models
+      - pageData
+      type: object
+      additionalProperties: false
+    FilterExpression:
+      type: string
+      description: 'A string in the form `<FilterProperty>(<FilterOperator>(<FilterValue>))[,FilterExpressions]`.
+
+
+        See the [API Reference](https://physna.github.io/public-api-guide/api-reference/filter-expressions) for more details.
+
+
+        Example:
+
+        ```
+
+        id(between(1,1000)),createdAt(not(lt(''2022-01-01T00:00:00.000Z'')))
+
+        ```'
+    MatchReport:
+      properties:
+        results:
+          items:
+            $ref: '#/components/schemas/MatchReportItem'
+          type: array
+        total:
+          type: number
+          format: double
+      required:
+      - results
+      - total
+      type: object
+      additionalProperties: false
+    GetScanMatchesResponse:
+      properties:
+        matches:
+          items:
+            $ref: '#/components/schemas/ScanMatch'
+          type: array
+        pageData:
+          $ref: '#/components/schemas/PageData'
+        filterData:
+          $ref: '#/components/schemas/MatchFilterData'
+      required:
+      - matches
+      - pageData
+      - filterData
+      type: object
+      additionalProperties: false
+    ModelGeometry:
+      description: Model geometry of ingested model, including the model's bounding box lengths, it's surface area, and volume.
+      properties:
+        obbMinLength:
+          type: number
+          format: double
+        obbMidLength:
+          type: number
+          format: double
+        obbMaxLength:
+          type: number
+          format: double
+        surfaceArea:
+          type: number
+          format: double
+        modelVolume:
+          type: number
+          format: double
+      required:
+      - obbMinLength
+      - obbMidLength
+      - obbMaxLength
+      - surfaceArea
+      - modelVolume
+      type: object
+      additionalProperties: false
+    CreateModelsResponse:
+      properties:
+        models:
+          items:
+            properties:
+              uploadInfo:
+                $ref: '#/components/schemas/UploadUrlInfo'
+              model:
+                $ref: '#/components/schemas/ModelWithMetadata'
+            required:
+            - uploadInfo
+            - model
+            type: object
+          type: array
+        collection:
+          anyOf:
+          - $ref: '#/components/schemas/CreateCollectionResponseBody'
+          - $ref: '#/components/schemas/AddToCollectionResponseBody'
+      required:
+      - models
+      type: object
+      additionalProperties: false
+    ModelWithMetadata:
+      properties:
+        createdAt:
+          type: string
+        deletedAt:
+          type: string
+        fileName:
+          type: string
+        fileType:
+          type: string
+        folderId:
+          type: number
+          format: double
+        id:
+          type: string
+        isAssembly:
+          type: boolean
+        name:
+          type: string
+        ownerId:
+          type: string
+        state:
+          type: string
+        thumbnail:
+          type: string
+        units:
+          type: string
+        collections:
+          items:
+            $ref: '#/components/schemas/Pick_Collection.id-or-name_'
+          type: array
+        labels:
+          items:
+            $ref: '#/components/schemas/Label'
+          type: array
+        geometry:
+          $ref: '#/components/schemas/ModelGeometry'
+        metadata:
+          items:
+            $ref: '#/components/schemas/Metadata'
+          type: array
+      required:
+      - createdAt
+      - fileName
+      - fileType
+      - folderId
+      - id
+      - isAssembly
+      - name
+      - ownerId
+      - state
+      - units
+      - metadata
+      type: object
+      additionalProperties: false
+    CollectionFilterData:
+      properties:
+        names:
+          items:
+            type: string
+          type: array
+        tags:
+          items:
+            type: string
+          type: array
+        metadata:
+          items:
+            $ref: '#/components/schemas/MetadataFilterData'
+          type: array
+      required:
+      - names
+      - tags
+      - metadata
+      type: object
+      additionalProperties: false
+    MatchReportItem:
+      properties:
+        model:
+          $ref: '#/components/schemas/ModelWithMetadata'
+        matchCount:
+          type: number
+          format: double
+      required:
+      - model
+      - matchCount
+      type: object
+      additionalProperties: false
+    VisualMatch:
+      properties:
+        matchedModel:
+          $ref: '#/components/schemas/ModelWithMetadata'
+      required:
+      - matchedModel
+      type: object
+      additionalProperties: false
+    SubAssembly:
+      properties:
+        type:
+          type: string
+          enum:
+          - subAssembly
+          nullable: false
+        modelId:
+          type: string
+        children:
+          items:
+            anyOf:
+            - $ref: '#/components/schemas/AssemblyPart'
+            - $ref: '#/components/schemas/SubAssembly'
+          type: array
+        occurrences:
+          type: number
+          format: double
+      required:
+      - type
+      - modelId
+      - children
+      - occurrences
+      type: object
+      additionalProperties: false
+    SingleMetadataResponse:
+      properties:
+        metadata:
+          $ref: '#/components/schemas/Metadata'
+      required:
+      - metadata
+      type: object
+      additionalProperties: false
+    ErrorResponse:
+      properties:
+        error:
+          properties:
+            message:
+              type: string
+          required:
+          - message
+          type: object
+      required:
+      - error
+      type: object
+      additionalProperties: false
+    ModelStateReport:
+      properties: {}
+      type: object
+      additionalProperties:
+        type: number
+        format: double
+    UploadUrlInfo:
+      properties:
+        uploadUrl:
+          type: string
+        headers:
+          properties: {}
+          additionalProperties:
+            type: string
+          type: object
+        fileSizeRequirements:
+          properties:
+            maxSizeInBytes:
+              type: number
+              format: double
+            minSizeInBytes:
+              type: number
+              format: double
+          required:
+          - maxSizeInBytes
+          - minSizeInBytes
+          type: object
+      required:
+      - uploadUrl
+      - headers
+      - fileSizeRequirements
+      type: object
+      additionalProperties: false
+    Pick_Collection.id-or-name_:
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+      required:
+      - id
+      type: object
+      description: From T, pick a set of properties whose keys are in the union K
+    ViewerFileResponse:
+      properties:
+        viewerFile:
+          type: string
+      required:
+      - viewerFile
+      type: object
+      additionalProperties: false
+    Metadata:
+      properties:
+        modelId:
+          type: string
+        metadataKeyId:
+          type: number
+          format: double
+        name:
+          type: string
+          nullable: true
+        value:
+          type: string
+      required:
+      - modelId
+      - metadataKeyId
+      - name
+      - value
+      type: object
+      additionalProperties: false
+  securitySchemes:
+    okta:
+      type: oauth2
+      flows:
+        authorizationCode:
+          tokenUrl: https://physna.okta.com/oauth2/default/v1/token
+          authorizationUrl: https://physna.okta.com/oauth2/default/v1/authorize
+          scopes:
+            openid: ''
+            tenant: ''
+            roles: ''
+externalDocs:
+  description: Public Api Guide
+  url: https://physna.github.io/public-api-guide/

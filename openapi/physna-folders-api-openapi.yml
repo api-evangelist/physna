@@ -1,0 +1,590 @@
+openapi: 3.0.0
+info:
+  title: Physna Public ClientCredentials Folders API
+  version: 2.0.1
+  contact:
+    name: Support
+    email: support@physna.com
+servers:
+- url: /v2
+tags:
+- name: Folders
+paths:
+  /folders:
+    get:
+      operationId: GetFolders
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FolderListResponse'
+      tags:
+      - Folders
+      security:
+      - okta:
+        - Administrators
+        - Authors
+        - Viewers
+      parameters:
+      - description: The `ids` property has been deprecated. Please use the `filter` property instead.
+        in: query
+        name: ids
+        required: false
+        schema:
+          type: array
+          items:
+            type: number
+            format: double
+        deprecated: true
+      - description: A [`FilterExpression`](#model-FilterExpression). See the [API Reference](https://physna.github.io/public-api-guide/api-reference/filter-expressions) for more details.
+        in: query
+        name: filter
+        required: false
+        schema:
+          $ref: '#/components/schemas/FilterExpression'
+      - description: An [`OrderExpression`](#model-OrderExpression). See the [API Reference](https://physna.github.io/public-api-guide/api-reference/order-expressions) for more details.
+        in: query
+        name: order
+        required: false
+        schema:
+          $ref: '#/components/schemas/OrderExpression'
+      - description: A 1 based page number used in conjunction with `perPage`.
+        in: query
+        name: page
+        required: false
+        schema:
+          format: int32
+          type: integer
+        example: '1'
+      - description: The number of items to return per page.
+        in: query
+        name: perPage
+        required: false
+        schema:
+          format: int32
+          type: integer
+        example: '20'
+      - in: header
+        name: X-PHYSNA-TENANTID
+        required: false
+        schema:
+          type: string
+    post:
+      operationId: PostFolder
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FolderCreateResponse'
+      tags:
+      - Folders
+      security:
+      - okta:
+        - Administrators
+        - Authors
+      parameters:
+      - description: 'The name of the Folder you wish to create.
+
+          - **Restrictions:**
+
+          - The name must not contain any of following characters: newline (`\n`), carriage return (`\r`), `"`, `#`, `*`, `/`, `:`, `<`, `>`, `?`, `[`, `\`, `]`, `|`
+
+          - The name must be unique (case-insensitive).
+
+          - The name must not be equal to any of the following: `''.well-known/acme-challenge/''`, `''.''`, `''..''`
+
+          - The name must be less than 100 characters in length.'
+        in: query
+        name: name
+        required: true
+        schema:
+          type: string
+      - description: (Optional) The description of the Folder you wish to create.
+        in: query
+        name: description
+        required: false
+        schema:
+          type: string
+      - description: (Optional) The id of a Parent Folder to properly nest the Folder you wish to create. If not provided, a folder will be created at the root level. Feature is currently UNAVAILABLE.
+        in: query
+        name: parentFolderId
+        required: false
+        schema:
+          format: double
+          type: number
+      - in: header
+        name: X-PHYSNA-TENANTID
+        required: false
+        schema:
+          type: string
+    delete:
+      operationId: DeleteFolders
+      responses:
+        '204':
+          description: No content
+      description: 'Bulk delete Folders. Folders must not have any models.
+
+        Bulk delete is permanent and cannot be undone.'
+      tags:
+      - Folders
+      security:
+      - okta:
+        - Administrators
+        - Authors
+      parameters:
+      - description: A list of the folderIds that you would like deleted
+        in: query
+        name: ids
+        required: true
+        schema:
+          type: array
+          items:
+            type: number
+            format: double
+      - in: header
+        name: X-PHYSNA-TENANTID
+        required: false
+        schema:
+          type: string
+  /folders/{id}:
+    get:
+      operationId: GetFolder
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FolderResponse'
+      tags:
+      - Folders
+      security:
+      - okta:
+        - Administrators
+        - Authors
+        - Viewers
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          format: double
+          type: number
+      - in: header
+        name: X-PHYSNA-TENANTID
+        required: false
+        schema:
+          type: string
+    patch:
+      operationId: PatchFolder
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FolderUpdateResponse'
+      tags:
+      - Folders
+      security:
+      - okta:
+        - Administrators
+        - Authors
+      parameters:
+      - description: The Id of the folder that you would like updated
+        in: path
+        name: id
+        required: true
+        schema:
+          format: double
+          type: number
+      - in: header
+        name: X-PHYSNA-TENANTID
+        required: false
+        schema:
+          type: string
+      requestBody:
+        description: A partial of the Folder object. The values that you would like applied to the matching folder.
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                description:
+                  type: string
+              type: object
+              description: A partial of the Folder object. The values that you would like applied to the matching folder.
+    delete:
+      operationId: DeleteFolder
+      responses:
+        '204':
+          description: No content
+      description: Folder must not have any models. Delete is permanent and cannot be undone.
+      tags:
+      - Folders
+      security:
+      - okta:
+        - Administrators
+        - Authors
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          format: double
+          type: number
+      - in: header
+        name: X-PHYSNA-TENANTID
+        required: false
+        schema:
+          type: string
+  /folders/{id}/contents:
+    get:
+      operationId: GetFolderContents
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FolderContentResponse'
+      tags:
+      - Folders
+      security:
+      - okta:
+        - Administrators
+        - Authors
+        - Viewers
+      parameters:
+      - description: The Id of the folder that you would like to get the contents of; includes folders and models.
+        in: path
+        name: id
+        required: true
+        schema:
+          format: double
+          type: number
+      - description: A 1 based page number used in conjunction with `perPage`.
+        in: query
+        name: page
+        required: false
+        schema:
+          format: int32
+          type: integer
+        example: '1'
+      - description: The number of items to return per page.
+        in: query
+        name: perPage
+        required: false
+        schema:
+          format: int32
+          type: integer
+        example: '20'
+      - description: An [`OrderExpression`](#model-OrderExpression). See the [API Reference](https://physna.github.io/public-api-guide/api-reference/order-expressions) for more details.
+        in: query
+        name: folderOrder
+        required: false
+        schema:
+          $ref: '#/components/schemas/OrderExpression'
+      - description: An [`OrderExpression`](#model-OrderExpression). See the [API Reference](https://physna.github.io/public-api-guide/api-reference/order-expressions) for more details.
+        in: query
+        name: modelOrder
+        required: false
+        schema:
+          $ref: '#/components/schemas/OrderExpression'
+      - in: header
+        name: X-PHYSNA-TENANTID
+        required: false
+        schema:
+          type: string
+components:
+  schemas:
+    ModelGeometry:
+      description: Model geometry of ingested model, including the model's bounding box lengths, it's surface area, and volume.
+      properties:
+        obbMinLength:
+          type: number
+          format: double
+        obbMidLength:
+          type: number
+          format: double
+        obbMaxLength:
+          type: number
+          format: double
+        surfaceArea:
+          type: number
+          format: double
+        modelVolume:
+          type: number
+          format: double
+      required:
+      - obbMinLength
+      - obbMidLength
+      - obbMaxLength
+      - surfaceArea
+      - modelVolume
+      type: object
+      additionalProperties: false
+    FolderListResponse:
+      properties:
+        pageData:
+          $ref: '#/components/schemas/PageData'
+        folders:
+          items:
+            $ref: '#/components/schemas/Folder'
+          type: array
+      required:
+      - pageData
+      - folders
+      type: object
+      additionalProperties: false
+    Folder:
+      properties:
+        id:
+          type: number
+          format: double
+        createdAt:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        parentFolderId:
+          type: number
+          format: double
+        children:
+          items:
+            type: number
+            format: double
+          type: array
+      required:
+      - id
+      - createdAt
+      - name
+      type: object
+      additionalProperties: false
+    Label:
+      properties:
+        displayName:
+          type: string
+        source:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        rejected:
+          type: boolean
+      required:
+      - displayName
+      - source
+      - createdAt
+      type: object
+      additionalProperties: false
+    FolderContentResponse:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/FolderContents'
+          type: array
+        page:
+          type: number
+          format: double
+        perPage:
+          type: number
+          format: double
+        total:
+          type: number
+          format: double
+      required:
+      - data
+      - page
+      - perPage
+      - total
+      type: object
+      additionalProperties: false
+    FolderUpdateResponse:
+      properties:
+        affected:
+          type: number
+          format: double
+      required:
+      - affected
+      type: object
+      additionalProperties: false
+    FolderContents:
+      anyOf:
+      - allOf:
+        - $ref: '#/components/schemas/Folder'
+        - properties:
+            type:
+              type: string
+              enum:
+              - folder
+              nullable: false
+          required:
+          - type
+          type: object
+      - allOf:
+        - $ref: '#/components/schemas/Model'
+        - properties:
+            type:
+              type: string
+              enum:
+              - model
+              nullable: false
+          required:
+          - type
+          type: object
+    Model:
+      properties:
+        createdAt:
+          type: string
+        deletedAt:
+          type: string
+        fileName:
+          type: string
+        fileType:
+          type: string
+        folderId:
+          type: number
+          format: double
+        id:
+          type: string
+        isAssembly:
+          type: boolean
+        name:
+          type: string
+        ownerId:
+          type: string
+        state:
+          type: string
+        thumbnail:
+          type: string
+        units:
+          type: string
+        collections:
+          items:
+            $ref: '#/components/schemas/Pick_Collection.id-or-name_'
+          type: array
+        labels:
+          items:
+            $ref: '#/components/schemas/Label'
+          type: array
+        geometry:
+          $ref: '#/components/schemas/ModelGeometry'
+      required:
+      - createdAt
+      - fileName
+      - fileType
+      - folderId
+      - id
+      - isAssembly
+      - name
+      - ownerId
+      - state
+      - units
+      type: object
+      additionalProperties: false
+    OrderExpression:
+      type: string
+      description: 'A string in the form `[-]<OrderProperty>[,OrderProperties]`.
+
+
+        See the [API Reference](https://physna.github.io/public-api-guide/api-reference/order-expressions) for more details.
+
+
+
+        Example:
+
+        ```
+
+        -id,name
+
+        ```'
+    Pick_Collection.id-or-name_:
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+      required:
+      - id
+      type: object
+      description: From T, pick a set of properties whose keys are in the union K
+    FolderResponse:
+      properties:
+        folder:
+          $ref: '#/components/schemas/Folder'
+      required:
+      - folder
+      type: object
+      additionalProperties: false
+    PageData:
+      properties:
+        total:
+          type: integer
+          format: int32
+        perPage:
+          type: integer
+          format: int32
+        currentPage:
+          type: integer
+          format: int32
+        lastPage:
+          type: integer
+          format: int32
+        startIndex:
+          type: integer
+          format: int32
+        endIndex:
+          type: integer
+          format: int32
+      required:
+      - total
+      - perPage
+      - currentPage
+      - lastPage
+      - startIndex
+      - endIndex
+      type: object
+      additionalProperties: false
+    FilterExpression:
+      type: string
+      description: 'A string in the form `<FilterProperty>(<FilterOperator>(<FilterValue>))[,FilterExpressions]`.
+
+
+        See the [API Reference](https://physna.github.io/public-api-guide/api-reference/filter-expressions) for more details.
+
+
+        Example:
+
+        ```
+
+        id(between(1,1000)),createdAt(not(lt(''2022-01-01T00:00:00.000Z'')))
+
+        ```'
+    FolderCreateResponse:
+      properties:
+        folder:
+          $ref: '#/components/schemas/Folder'
+      required:
+      - folder
+      type: object
+      additionalProperties: false
+  securitySchemes:
+    okta:
+      type: oauth2
+      flows:
+        authorizationCode:
+          tokenUrl: https://physna.okta.com/oauth2/default/v1/token
+          authorizationUrl: https://physna.okta.com/oauth2/default/v1/authorize
+          scopes:
+            openid: ''
+            tenant: ''
+            roles: ''
+externalDocs:
+  description: Public Api Guide
+  url: https://physna.github.io/public-api-guide/

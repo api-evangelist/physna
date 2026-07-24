@@ -1,0 +1,534 @@
+openapi: 3.0.0
+info:
+  title: Physna Public ClientCredentials Image Search API
+  version: 2.0.1
+  contact:
+    name: Support
+    email: support@physna.com
+servers:
+- url: /v2
+tags:
+- name: Image Search
+paths:
+  /images:
+    post:
+      operationId: GetSignedUploadUrlForImage
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UploadImageResponse'
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      description: "Creates signed upload information that can be used to upload the image.\nThis is meant for uploading images for image search via `/images/{id}/model-matches`.\n\nThe response will include the appropriate headers and upload URL that can be used to upload the image.\n\n```json\n{\n \"image\": {\n  \"id\": \"<imageId>\",\n  \"uploadUrl\": \"<upload-url>\",\n  \"headers\": {\n    \"<header1-name>\": \"<header1-value>\",\n    \"<header2-name>\": \"<header2-value>\",\n  }\n }\n}\n```\n\nThe image can be uploaded via a `PUT` request to the <upload url> including the file and the supplied headers.\n\nExample using curl command:\n\n```\ncurl -X PUT --upload-file file.png -H '<header1-name>: <header1-value>' -H '<header2-name>: <header2-value>' <upload-url>\n```\n\nImage files can be a max of 10 MB in size."
+      tags:
+      - Image Search
+      security:
+      - okta:
+        - Administrators
+        - Authors
+        - Viewers
+      parameters:
+      - in: header
+        name: X-PHYSNA-TENANTID
+        required: false
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                filename:
+                  type: string
+              required:
+              - filename
+              type: object
+  /images/model-matches:
+    get:
+      operationId: GetImageMatches
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetImageMatchesResponse'
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      description: '
+
+        We are continually improving image recognition capabilities. At current state, the following properties are advisable for good performance:
+
+        - Images with the object by itself.
+
+        - Images with a plain background.
+
+        - The color of the object usually does not affect detection outcomes.
+
+
+        **Examples of Images that Perform Well**
+
+
+        ![Images that perform well](assets/good_images.png)
+
+        - plain background
+
+        - object isolated on its own
+
+
+        **Examples of Images to Avoid**
+
+
+        ![Images to avoid](assets/bad_images.png)
+
+        - multiple objects
+
+        - cluttered or busy background'
+      tags:
+      - Image Search
+      security:
+      - okta:
+        - Administrators
+        - Authors
+        - Viewers
+      parameters:
+      - description: The path that gets returned from POST `/images` route; if more than one id is provided, the results will be combined into a single search
+        in: query
+        name: id
+        required: true
+        schema:
+          type: array
+          items:
+            type: string
+      - description: A general string used to search and filter on all matched models.
+        in: query
+        name: search
+        required: false
+        schema:
+          type: string
+      - description: A [`FilterExpression`](#model-FilterExpression). See the [API Reference](https://physna.github.io/public-api-guide/api-reference/filter-expressions) for more details.
+        in: query
+        name: filter
+        required: false
+        schema:
+          $ref: '#/components/schemas/FilterExpression'
+      - description: A 1 based page number used in conjunction with `perPage`.
+        in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          format: int32
+          type: integer
+          minimum: 1
+        example: '1'
+      - description: The number of items to return per page.
+        in: query
+        name: perPage
+        required: false
+        schema:
+          default: 20
+          format: int32
+          type: integer
+          minimum: 1
+          maximum: 100
+        example: '20'
+      - in: header
+        name: X-PHYSNA-TENANTID
+        required: false
+        schema:
+          type: string
+components:
+  schemas:
+    ModelGeometry:
+      description: Model geometry of ingested model, including the model's bounding box lengths, it's surface area, and volume.
+      properties:
+        obbMinLength:
+          type: number
+          format: double
+        obbMidLength:
+          type: number
+          format: double
+        obbMaxLength:
+          type: number
+          format: double
+        surfaceArea:
+          type: number
+          format: double
+        modelVolume:
+          type: number
+          format: double
+      required:
+      - obbMinLength
+      - obbMidLength
+      - obbMaxLength
+      - surfaceArea
+      - modelVolume
+      type: object
+      additionalProperties: false
+    MetadataFilterData:
+      properties:
+        metadataKeyId:
+          type: number
+          format: double
+        name:
+          type: string
+        values:
+          items:
+            type: string
+          type: array
+      required:
+      - metadataKeyId
+      - name
+      - values
+      type: object
+      additionalProperties: false
+    ErrorResponse:
+      properties:
+        error:
+          properties:
+            message:
+              type: string
+          required:
+          - message
+          type: object
+      required:
+      - error
+      type: object
+      additionalProperties: false
+    Pick_Folder.id-or-name_:
+      properties:
+        id:
+          type: number
+          format: double
+        name:
+          type: string
+      required:
+      - id
+      - name
+      type: object
+      description: From T, pick a set of properties whose keys are in the union K
+    ModelWithMetadata:
+      properties:
+        createdAt:
+          type: string
+        deletedAt:
+          type: string
+        fileName:
+          type: string
+        fileType:
+          type: string
+        folderId:
+          type: number
+          format: double
+        id:
+          type: string
+        isAssembly:
+          type: boolean
+        name:
+          type: string
+        ownerId:
+          type: string
+        state:
+          type: string
+        thumbnail:
+          type: string
+        units:
+          type: string
+        collections:
+          items:
+            $ref: '#/components/schemas/Pick_Collection.id-or-name_'
+          type: array
+        labels:
+          items:
+            $ref: '#/components/schemas/Label'
+          type: array
+        geometry:
+          $ref: '#/components/schemas/ModelGeometry'
+        metadata:
+          items:
+            $ref: '#/components/schemas/Metadata'
+          type: array
+      required:
+      - createdAt
+      - fileName
+      - fileType
+      - folderId
+      - id
+      - isAssembly
+      - name
+      - ownerId
+      - state
+      - units
+      - metadata
+      type: object
+      additionalProperties: false
+    CollectionFilterData:
+      properties:
+        names:
+          items:
+            type: string
+          type: array
+        tags:
+          items:
+            type: string
+          type: array
+        metadata:
+          items:
+            $ref: '#/components/schemas/MetadataFilterData'
+          type: array
+      required:
+      - names
+      - tags
+      - metadata
+      type: object
+      additionalProperties: false
+    Label:
+      properties:
+        displayName:
+          type: string
+        source:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        rejected:
+          type: boolean
+      required:
+      - displayName
+      - source
+      - createdAt
+      type: object
+      additionalProperties: false
+    UploadUrlInfo:
+      properties:
+        uploadUrl:
+          type: string
+        headers:
+          properties: {}
+          additionalProperties:
+            type: string
+          type: object
+        fileSizeRequirements:
+          properties:
+            maxSizeInBytes:
+              type: number
+              format: double
+            minSizeInBytes:
+              type: number
+              format: double
+          required:
+          - maxSizeInBytes
+          - minSizeInBytes
+          type: object
+      required:
+      - uploadUrl
+      - headers
+      - fileSizeRequirements
+      type: object
+      additionalProperties: false
+    GetImageMatchesResponse:
+      properties:
+        matches:
+          items:
+            $ref: '#/components/schemas/ImageMatch'
+          type: array
+        pageData:
+          $ref: '#/components/schemas/PageData'
+        filterData:
+          $ref: '#/components/schemas/MatchFilterData'
+        image:
+          $ref: '#/components/schemas/SignedImage'
+          deprecated: true
+        images:
+          items:
+            $ref: '#/components/schemas/SignedImage'
+          type: array
+      required:
+      - matches
+      - pageData
+      - filterData
+      - image
+      - images
+      type: object
+      additionalProperties: false
+    MatchFilterData:
+      properties:
+        folders:
+          items:
+            $ref: '#/components/schemas/Pick_Folder.id-or-name_'
+          type: array
+        metadata:
+          items:
+            $ref: '#/components/schemas/MetadataFilterData'
+          type: array
+        createdAt:
+          items:
+            type: string
+          type: array
+        isAssembly:
+          items:
+            type: boolean
+          type: array
+        fileType:
+          items:
+            type: string
+          type: array
+        units:
+          items:
+            type: string
+          type: array
+        collections:
+          $ref: '#/components/schemas/CollectionFilterData'
+      required:
+      - folders
+      - metadata
+      - createdAt
+      - isAssembly
+      - fileType
+      - units
+      - collections
+      type: object
+      additionalProperties: false
+    PageData:
+      properties:
+        total:
+          type: integer
+          format: int32
+        perPage:
+          type: integer
+          format: int32
+        currentPage:
+          type: integer
+          format: int32
+        lastPage:
+          type: integer
+          format: int32
+        startIndex:
+          type: integer
+          format: int32
+        endIndex:
+          type: integer
+          format: int32
+      required:
+      - total
+      - perPage
+      - currentPage
+      - lastPage
+      - startIndex
+      - endIndex
+      type: object
+      additionalProperties: false
+    Pick_Collection.id-or-name_:
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+      required:
+      - id
+      type: object
+      description: From T, pick a set of properties whose keys are in the union K
+    ImageMatch:
+      description: Searching for models that match the given image
+      properties:
+        matchedModel:
+          $ref: '#/components/schemas/ModelWithMetadata'
+      required:
+      - matchedModel
+      type: object
+      additionalProperties: false
+    Metadata:
+      properties:
+        modelId:
+          type: string
+        metadataKeyId:
+          type: number
+          format: double
+        name:
+          type: string
+          nullable: true
+        value:
+          type: string
+      required:
+      - modelId
+      - metadataKeyId
+      - name
+      - value
+      type: object
+      additionalProperties: false
+    UploadImageInfo:
+      allOf:
+      - $ref: '#/components/schemas/UploadUrlInfo'
+      - properties:
+          id:
+            type: string
+        required:
+        - id
+        type: object
+    UploadImageResponse:
+      properties:
+        image:
+          $ref: '#/components/schemas/UploadImageInfo'
+      required:
+      - image
+      type: object
+      additionalProperties: false
+    FilterExpression:
+      type: string
+      description: 'A string in the form `<FilterProperty>(<FilterOperator>(<FilterValue>))[,FilterExpressions]`.
+
+
+        See the [API Reference](https://physna.github.io/public-api-guide/api-reference/filter-expressions) for more details.
+
+
+        Example:
+
+        ```
+
+        id(between(1,1000)),createdAt(not(lt(''2022-01-01T00:00:00.000Z'')))
+
+        ```'
+    SignedImage:
+      properties:
+        filename:
+          type: string
+        url:
+          type: string
+      required:
+      - filename
+      - url
+      type: object
+      additionalProperties: false
+  securitySchemes:
+    okta:
+      type: oauth2
+      flows:
+        authorizationCode:
+          tokenUrl: https://physna.okta.com/oauth2/default/v1/token
+          authorizationUrl: https://physna.okta.com/oauth2/default/v1/authorize
+          scopes:
+            openid: ''
+            tenant: ''
+            roles: ''
+externalDocs:
+  description: Public Api Guide
+  url: https://physna.github.io/public-api-guide/

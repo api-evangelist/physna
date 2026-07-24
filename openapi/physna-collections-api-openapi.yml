@@ -1,0 +1,1240 @@
+openapi: 3.0.0
+info:
+  title: Physna Public ClientCredentials Collections API
+  version: 2.0.1
+  contact:
+    name: Support
+    email: support@physna.com
+servers:
+- url: /v2
+tags:
+- name: Collections
+paths:
+  /collections:
+    post:
+      operationId: CreateCollection
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateCollectionResponseBody'
+        '503':
+          description: ''
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                required:
+                - message
+                type: object
+      description: 'Create a new collection with the given name and content based on the provided filter.
+
+
+        A collection is a group of models and/or assets that can be treated as a single entity.
+
+        However, it is a virtual grouping and does not affect the actual models or assets.'
+      summary: IN DEVELOPMENT
+      tags:
+      - Collections
+      security:
+      - okta:
+        - Administrators
+        - Authors
+        - Viewers
+      parameters:
+      - description: The filter to apply to the models and assets to add to the collection.
+        in: query
+        name: filter
+        required: true
+        schema:
+          $ref: '#/components/schemas/FilterExpression'
+      - in: header
+        name: X-PHYSNA-TENANTID
+        required: false
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                name:
+                  type: string
+              required:
+              - name
+              type: object
+    delete:
+      operationId: BulkDeleteCollection
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteCollectionsResponseBody'
+        '503':
+          description: ''
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                required:
+                - message
+                type: object
+      description: Delete many collections at once based on the provided collection IDs.
+      summary: IN DEVELOPMENT
+      tags:
+      - Collections
+      security:
+      - okta:
+        - Administrators
+        - Authors
+        - Viewers
+      parameters:
+      - description: The IDs of the collections to delete.
+        in: query
+        name: ids
+        required: true
+        schema:
+          type: array
+          items:
+            type: string
+      - in: header
+        name: X-PHYSNA-TENANTID
+        required: false
+        schema:
+          type: string
+    get:
+      operationId: GetCollectionsList
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetCollectionsListResponseBody'
+        '503':
+          description: ''
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                required:
+                - message
+                type: object
+      description: 'Get the list of collections.
+
+        The list is paginated and the default number of items per page is 20.'
+      summary: IN DEVELOPMENT
+      tags:
+      - Collections
+      security:
+      - okta:
+        - Administrators
+        - Authors
+        - Viewers
+      parameters:
+      - description: The number of items per page.
+        in: query
+        name: perPage
+        required: false
+        schema:
+          default: 20
+          format: double
+          type: number
+      - description: The page number.
+        in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          format: double
+          type: number
+      - description: The field to sort by - can be 'name' or 'createdAt'. Defaults to 'createdAt'.
+        in: query
+        name: sortField
+        required: false
+        schema:
+          default: createdAt
+          type: string
+      - description: The direction to sort by - can be 'asc' or 'desc'. Defaults to 'desc'.
+        in: query
+        name: sortDirection
+        required: false
+        schema:
+          default: desc
+          type: string
+      - in: query
+        name: tag
+        required: false
+        schema:
+          type: string
+      - in: header
+        name: X-PHYSNA-TENANTID
+        required: false
+        schema:
+          type: string
+  /collections/create:
+    post:
+      operationId: BulkCreateCollection
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BulkCreateCollectionResponseBody'
+        '503':
+          description: ''
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                required:
+                - message
+                type: object
+      description: 'Create many collections at once based on the provided folder IDs.
+
+        The name of each collection will be the same as the name of the folder.'
+      summary: IN DEVELOPMENT
+      tags:
+      - Collections
+      security:
+      - okta:
+        - Administrators
+        - Authors
+        - Viewers
+      parameters:
+      - in: header
+        name: X-PHYSNA-TENANTID
+        required: false
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                folderIds:
+                  items:
+                    type: number
+                    format: double
+                  type: array
+              required:
+              - folderIds
+              type: object
+  /collections/collection/{name}:
+    get:
+      operationId: GetCollectionByName
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetCollectionResponseBody'
+        '503':
+          description: ''
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                required:
+                - message
+                type: object
+      description: 'Get collection by Name.
+
+        The model/asset content is not included in the response.'
+      summary: IN DEVELOPMENT
+      tags:
+      - Collections
+      security:
+      - okta:
+        - Administrators
+        - Authors
+        - Viewers
+      parameters:
+      - description: The Name of the collection to get.
+        in: path
+        name: name
+        required: true
+        schema:
+          type: string
+      - in: header
+        name: X-PHYSNA-TENANTID
+        required: false
+        schema:
+          type: string
+  /collections/tags:
+    get:
+      operationId: GetCollectionTags
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetCollectionTagsResponseBody'
+        '503':
+          description: ''
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                required:
+                - message
+                type: object
+      description: Get the list of collection tags.
+      summary: IN DEVELOPMENT
+      tags:
+      - Collections
+      security:
+      - okta:
+        - Administrators
+        - Authors
+        - Viewers
+      parameters:
+      - in: header
+        name: X-PHYSNA-TENANTID
+        required: false
+        schema:
+          type: string
+  /collections/{id}/add:
+    post:
+      operationId: AddToCollection
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddToCollectionResponseBody'
+        '404':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '503':
+          description: ''
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                required:
+                - message
+                type: object
+      description: Add to an existing collection the content based on the provided filter.
+      summary: IN DEVELOPMENT
+      tags:
+      - Collections
+      security:
+      - okta:
+        - Administrators
+        - Authors
+        - Viewers
+      parameters:
+      - description: The ID of the collection to add to.
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - description: The filter to apply to the models and assets to add to the collection.
+        in: query
+        name: filter
+        required: true
+        schema:
+          $ref: '#/components/schemas/FilterExpression'
+      - in: header
+        name: X-PHYSNA-TENANTID
+        required: false
+        schema:
+          type: string
+  /collections/{id}/remove:
+    post:
+      operationId: RemoveFromCollection
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RemoveFromCollectionResponseBody'
+        '404':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '503':
+          description: ''
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                required:
+                - message
+                type: object
+      description: Remove from an existing collection the content based on the provided filter.
+      summary: IN DEVELOPMENT
+      tags:
+      - Collections
+      security:
+      - okta:
+        - Administrators
+        - Authors
+        - Viewers
+      parameters:
+      - description: The ID of the collection to remove from.
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - description: The filter to apply to the models and assets to remove from the collection.
+        in: query
+        name: filter
+        required: true
+        schema:
+          $ref: '#/components/schemas/FilterExpression'
+      - in: header
+        name: X-PHYSNA-TENANTID
+        required: false
+        schema:
+          type: string
+  /collections/{id}/content:
+    get:
+      operationId: GetCollectionContent
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetCollectionContentResponseBody'
+        '503':
+          description: ''
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                required:
+                - message
+                type: object
+      description: 'Get collection model/asset content by ID.
+
+        The content is paginated and the default number of items per page is 20.'
+      summary: IN DEVELOPMENT
+      tags:
+      - Collections
+      security:
+      - okta:
+        - Administrators
+        - Authors
+        - Viewers
+      parameters:
+      - description: The ID of the collection to get the content of.
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - description: The number of items per page.
+        in: query
+        name: perPage
+        required: false
+        schema:
+          default: 20
+          format: double
+          type: number
+      - description: The page number.
+        in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          format: double
+          type: number
+      - in: header
+        name: X-PHYSNA-TENANTID
+        required: false
+        schema:
+          type: string
+  /collections/{id}/reprocess:
+    post:
+      operationId: ReprocessCollection
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReprocessCollectionResponseBody'
+        '503':
+          description: ''
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                required:
+                - message
+                type: object
+      description: Reprocess the content of a collection.
+      summary: IN DEVELOPMENT
+      tags:
+      - Collections
+      security:
+      - okta:
+        - Administrators
+        - Authors
+        - Viewers
+      parameters:
+      - description: The ID of the collection to reprocess.
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - in: header
+        name: X-PHYSNA-TENANTID
+        required: false
+        schema:
+          type: string
+  /collections/{id}/name:
+    patch:
+      operationId: UpdateCollectionName
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateCollectionNameResponseBody'
+        '503':
+          description: ''
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                required:
+                - message
+                type: object
+      description: Update the name of a collection.
+      summary: IN DEVELOPMENT
+      tags:
+      - Collections
+      security:
+      - okta:
+        - Administrators
+        - Authors
+        - Viewers
+      parameters:
+      - description: The ID of the collection to update.
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - in: header
+        name: X-PHYSNA-TENANTID
+        required: false
+        schema:
+          type: string
+      requestBody:
+        description: The new name for the collection.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateCollectionNameRequestBody'
+              description: The new name for the collection.
+  /collections/{id}/tag:
+    patch:
+      operationId: UpdateCollectionTag
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateCollectionTagResponseBody'
+        '503':
+          description: ''
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                required:
+                - message
+                type: object
+      description: Update the tag of a collection.
+      summary: IN DEVELOPMENT
+      tags:
+      - Collections
+      security:
+      - okta:
+        - Administrators
+        - Authors
+        - Viewers
+      parameters:
+      - description: The ID of the collection to update.
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - in: header
+        name: X-PHYSNA-TENANTID
+        required: false
+        schema:
+          type: string
+      requestBody:
+        description: The new tag for the collection.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateCollectionTagRequestBody'
+              description: The new tag for the collection.
+  /collections/{id}/matches:
+    get:
+      operationId: GetCollectionMatches
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetCollectionMatchesResponseBody'
+        '503':
+          description: ''
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                required:
+                - message
+                type: object
+      tags:
+      - Collections
+      security:
+      - okta:
+        - Administrators
+        - Authors
+        - Viewers
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: perPage
+        required: false
+        schema:
+          default: 20
+          format: double
+          type: number
+      - in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          format: double
+          type: number
+      - in: query
+        name: filter
+        required: false
+        schema:
+          $ref: '#/components/schemas/FilterExpression'
+      - in: header
+        name: X-PHYSNA-TENANTID
+        required: false
+        schema:
+          type: string
+  /collections/{id}:
+    get:
+      operationId: GetCollections
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetCollectionResponseBody'
+        '503':
+          description: ''
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                required:
+                - message
+                type: object
+      description: 'Get collection by ID.
+
+        The model/asset content is not included in the response.'
+      summary: IN DEVELOPMENT
+      tags:
+      - Collections
+      security:
+      - okta:
+        - Administrators
+        - Authors
+        - Viewers
+      parameters:
+      - description: The ID of the collection to get.
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - in: header
+        name: X-PHYSNA-TENANTID
+        required: false
+        schema:
+          type: string
+    delete:
+      operationId: DeleteCollections
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteCollectionsResponseBody'
+        '503':
+          description: ''
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                required:
+                - message
+                type: object
+      description: 'Delete collection by ID.
+
+        The model/asset content is not deleted.'
+      summary: IN DEVELOPMENT
+      tags:
+      - Collections
+      security:
+      - okta:
+        - Administrators
+        - Authors
+        - Viewers
+      parameters:
+      - description: The ID of the collection to delete.
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - in: header
+        name: X-PHYSNA-TENANTID
+        required: false
+        schema:
+          type: string
+  /collections/{id}/metadata/{metadataKeyId}:
+    put:
+      operationId: UpsertCollectionMetadata
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SingleMetadataResponse'
+      tags:
+      - Collections
+      security:
+      - okta:
+        - Administrators
+        - Authors
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: metadataKeyId
+        required: true
+        schema:
+          format: double
+          type: number
+      - in: header
+        name: X-PHYSNA-TENANTID
+        required: false
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                value:
+                  type: string
+              required:
+              - value
+              type: object
+components:
+  schemas:
+    MetadataFilterData:
+      properties:
+        metadataKeyId:
+          type: number
+          format: double
+        name:
+          type: string
+        values:
+          items:
+            type: string
+          type: array
+      required:
+      - metadataKeyId
+      - name
+      - values
+      type: object
+      additionalProperties: false
+    ReprocessCollectionResponseBody:
+      properties:
+        affected:
+          type: number
+          format: double
+      required:
+      - affected
+      type: object
+      additionalProperties: false
+    GetCollectionsListResponseBody:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/CollectionWithMetadata'
+          type: array
+        page:
+          type: number
+          format: double
+        perPage:
+          type: number
+          format: double
+        total:
+          type: number
+          format: double
+      required:
+      - data
+      - page
+      - perPage
+      - total
+      type: object
+      additionalProperties: false
+    AddToCollectionResponseBody:
+      $ref: '#/components/schemas/CreateCollectionResponseBody'
+    Label:
+      properties:
+        displayName:
+          type: string
+        source:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        rejected:
+          type: boolean
+      required:
+      - displayName
+      - source
+      - createdAt
+      type: object
+      additionalProperties: false
+    RemoveFromCollectionResponseBody:
+      $ref: '#/components/schemas/CreateCollectionResponseBody'
+    GetCollectionMatchesResponseBody:
+      properties:
+        matches:
+          items:
+            $ref: '#/components/schemas/CollectionMatchResult'
+          type: array
+        filterData:
+          properties:
+            collections:
+              $ref: '#/components/schemas/CollectionFilterData'
+          required:
+          - collections
+          type: object
+        page:
+          type: number
+          format: double
+        perPage:
+          type: number
+          format: double
+        total:
+          type: number
+          format: double
+      required:
+      - matches
+      - filterData
+      - page
+      - perPage
+      - total
+      type: object
+      additionalProperties: false
+    BulkCreateCollectionResponseBody:
+      properties:
+        affected:
+          type: number
+          format: double
+      required:
+      - affected
+      type: object
+    UpdateCollectionTagResponseBody:
+      properties:
+        affected:
+          type: number
+          format: double
+      required:
+      - affected
+      type: object
+      additionalProperties: false
+    CreateCollectionResponseBody:
+      properties:
+        collectionId:
+          type: string
+        affected:
+          type: number
+          format: double
+      required:
+      - collectionId
+      - affected
+      type: object
+      additionalProperties: false
+    GetCollectionContentResponseBody:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/Model'
+          type: array
+        page:
+          type: number
+          format: double
+        perPage:
+          type: number
+          format: double
+        total:
+          type: number
+          format: double
+      required:
+      - data
+      - page
+      - perPage
+      - total
+      type: object
+      additionalProperties: false
+    UpdateCollectionNameResponseBody:
+      properties:
+        affected:
+          type: number
+          format: double
+      required:
+      - affected
+      type: object
+      additionalProperties: false
+    UpdateCollectionNameRequestBody:
+      properties:
+        newName:
+          type: string
+      required:
+      - newName
+      type: object
+      additionalProperties: false
+    FilterExpression:
+      type: string
+      description: 'A string in the form `<FilterProperty>(<FilterOperator>(<FilterValue>))[,FilterExpressions]`.
+
+
+        See the [API Reference](https://physna.github.io/public-api-guide/api-reference/filter-expressions) for more details.
+
+
+        Example:
+
+        ```
+
+        id(between(1,1000)),createdAt(not(lt(''2022-01-01T00:00:00.000Z'')))
+
+        ```'
+    CollectionWithMetadata:
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        createdAt:
+          type: string
+        thumbnails:
+          items:
+            type: string
+          type: array
+        tag:
+          type: string
+        metadata:
+          items:
+            $ref: '#/components/schemas/CollectionMetadata'
+          type: array
+      required:
+      - id
+      type: object
+      additionalProperties: false
+    ModelGeometry:
+      description: Model geometry of ingested model, including the model's bounding box lengths, it's surface area, and volume.
+      properties:
+        obbMinLength:
+          type: number
+          format: double
+        obbMidLength:
+          type: number
+          format: double
+        obbMaxLength:
+          type: number
+          format: double
+        surfaceArea:
+          type: number
+          format: double
+        modelVolume:
+          type: number
+          format: double
+      required:
+      - obbMinLength
+      - obbMidLength
+      - obbMaxLength
+      - surfaceArea
+      - modelVolume
+      type: object
+      additionalProperties: false
+    CollectionFilterData:
+      properties:
+        names:
+          items:
+            type: string
+          type: array
+        tags:
+          items:
+            type: string
+          type: array
+        metadata:
+          items:
+            $ref: '#/components/schemas/MetadataFilterData'
+          type: array
+      required:
+      - names
+      - tags
+      - metadata
+      type: object
+      additionalProperties: false
+    CollectionMetadata:
+      properties:
+        metadataKeyId:
+          type: number
+          format: double
+        collectionId:
+          type: string
+        name:
+          type: string
+        value:
+          type: string
+      required:
+      - metadataKeyId
+      - collectionId
+      - name
+      - value
+      type: object
+      additionalProperties: false
+    Model:
+      properties:
+        createdAt:
+          type: string
+        deletedAt:
+          type: string
+        fileName:
+          type: string
+        fileType:
+          type: string
+        folderId:
+          type: number
+          format: double
+        id:
+          type: string
+        isAssembly:
+          type: boolean
+        name:
+          type: string
+        ownerId:
+          type: string
+        state:
+          type: string
+        thumbnail:
+          type: string
+        units:
+          type: string
+        collections:
+          items:
+            $ref: '#/components/schemas/Pick_Collection.id-or-name_'
+          type: array
+        labels:
+          items:
+            $ref: '#/components/schemas/Label'
+          type: array
+        geometry:
+          $ref: '#/components/schemas/ModelGeometry'
+      required:
+      - createdAt
+      - fileName
+      - fileType
+      - folderId
+      - id
+      - isAssembly
+      - name
+      - ownerId
+      - state
+      - units
+      type: object
+      additionalProperties: false
+    GetCollectionTagsResponseBody:
+      properties:
+        tags:
+          items:
+            type: string
+          type: array
+      required:
+      - tags
+      type: object
+      additionalProperties: false
+    SingleMetadataResponse:
+      properties:
+        metadata:
+          $ref: '#/components/schemas/Metadata'
+      required:
+      - metadata
+      type: object
+      additionalProperties: false
+    GetCollectionResponseBody:
+      $ref: '#/components/schemas/CollectionWithMetadata'
+    DeleteCollectionsResponseBody:
+      properties:
+        affected:
+          type: number
+          format: double
+      required:
+      - affected
+      type: object
+      additionalProperties: false
+    ErrorResponse:
+      properties:
+        error:
+          properties:
+            message:
+              type: string
+          required:
+          - message
+          type: object
+      required:
+      - error
+      type: object
+      additionalProperties: false
+    CollectionMatchResult:
+      properties:
+        matchedCollection:
+          $ref: '#/components/schemas/CollectionWithMetadata'
+        matchScore:
+          type: number
+          format: double
+      required:
+      - matchedCollection
+      type: object
+      additionalProperties: false
+    UpdateCollectionTagRequestBody:
+      properties:
+        newTag:
+          type: string
+      required:
+      - newTag
+      type: object
+      additionalProperties: false
+    Pick_Collection.id-or-name_:
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+      required:
+      - id
+      type: object
+      description: From T, pick a set of properties whose keys are in the union K
+    Metadata:
+      properties:
+        modelId:
+          type: string
+        metadataKeyId:
+          type: number
+          format: double
+        name:
+          type: string
+          nullable: true
+        value:
+          type: string
+      required:
+      - modelId
+      - metadataKeyId
+      - name
+      - value
+      type: object
+      additionalProperties: false
+  securitySchemes:
+    okta:
+      type: oauth2
+      flows:
+        authorizationCode:
+          tokenUrl: https://physna.okta.com/oauth2/default/v1/token
+          authorizationUrl: https://physna.okta.com/oauth2/default/v1/authorize
+          scopes:
+            openid: ''
+            tenant: ''
+            roles: ''
+externalDocs:
+  description: Public Api Guide
+  url: https://physna.github.io/public-api-guide/
