@@ -1,0 +1,7348 @@
+{
+  "components": {
+    "examples": {},
+    "headers": {},
+    "parameters": {},
+    "requestBodies": {},
+    "responses": {},
+    "schemas": {
+      "UserStatus": {
+        "enum": [
+          "Suspended",
+          "Active"
+        ],
+        "type": "string"
+      },
+      "Role": {
+        "enum": [
+          "SA",
+          "Administrators",
+          "Authors",
+          "Viewers"
+        ],
+        "type": "string"
+      },
+      "CurrentUserResponse": {
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "externalId": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "department": {
+            "type": "string"
+          },
+          "acceptedLicenseAgreement": {
+            "type": "boolean"
+          },
+          "status": {
+            "$ref": "#/components/schemas/UserStatus"
+          },
+          "roles": {
+            "items": {
+              "$ref": "#/components/schemas/Role"
+            },
+            "type": "array"
+          },
+          "tenants": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "id",
+          "externalId",
+          "email",
+          "department",
+          "acceptedLicenseAgreement",
+          "status",
+          "roles",
+          "tenants"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "ErrorResponse": {
+        "properties": {
+          "error": {
+            "properties": {
+              "message": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "message"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "error"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "User": {
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "externalId": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "department": {
+            "type": "string"
+          },
+          "acceptedLicenseAgreement": {
+            "type": "boolean"
+          },
+          "status": {
+            "$ref": "#/components/schemas/UserStatus"
+          },
+          "roles": {
+            "items": {
+              "$ref": "#/components/schemas/Role"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "id",
+          "externalId",
+          "email",
+          "department",
+          "acceptedLicenseAgreement",
+          "status",
+          "roles"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "UserListResponse": {
+        "properties": {
+          "users": {
+            "items": {
+              "$ref": "#/components/schemas/User"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "users"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "UserResponse": {
+        "properties": {
+          "user": {
+            "$ref": "#/components/schemas/User"
+          }
+        },
+        "required": [
+          "user"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "Property": {
+        "properties": {
+          "id": {
+            "type": "number",
+            "format": "double"
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "name"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "PropertyListResponse": {
+        "properties": {
+          "properties": {
+            "items": {
+              "$ref": "#/components/schemas/Property"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "properties"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "SinglePropertyResponse": {
+        "properties": {
+          "property": {
+            "$ref": "#/components/schemas/Property"
+          }
+        },
+        "required": [
+          "property"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "DeletedPropertyResponse": {
+        "properties": {
+          "deleted": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "deleted"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "Metadata": {
+        "properties": {
+          "modelId": {
+            "type": "string"
+          },
+          "metadataKeyId": {
+            "type": "number",
+            "format": "double"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "value": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "modelId",
+          "metadataKeyId",
+          "name",
+          "value"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "Pick_Collection.id-or-name_": {
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ],
+        "type": "object",
+        "description": "From T, pick a set of properties whose keys are in the union K"
+      },
+      "Label": {
+        "properties": {
+          "displayName": {
+            "type": "string"
+          },
+          "source": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "rejected": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "displayName",
+          "source",
+          "createdAt"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "ModelGeometry": {
+        "description": "Model geometry of ingested model, including the model's bounding box lengths, it's surface area, and volume.",
+        "properties": {
+          "obbMinLength": {
+            "type": "number",
+            "format": "double"
+          },
+          "obbMidLength": {
+            "type": "number",
+            "format": "double"
+          },
+          "obbMaxLength": {
+            "type": "number",
+            "format": "double"
+          },
+          "surfaceArea": {
+            "type": "number",
+            "format": "double"
+          },
+          "modelVolume": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "required": [
+          "obbMinLength",
+          "obbMidLength",
+          "obbMaxLength",
+          "surfaceArea",
+          "modelVolume"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "ModelWithMetadata": {
+        "properties": {
+          "createdAt": {
+            "type": "string"
+          },
+          "deletedAt": {
+            "type": "string"
+          },
+          "fileName": {
+            "type": "string"
+          },
+          "fileType": {
+            "type": "string"
+          },
+          "folderId": {
+            "type": "number",
+            "format": "double"
+          },
+          "id": {
+            "type": "string"
+          },
+          "isAssembly": {
+            "type": "boolean"
+          },
+          "name": {
+            "type": "string"
+          },
+          "ownerId": {
+            "type": "string"
+          },
+          "state": {
+            "type": "string"
+          },
+          "thumbnail": {
+            "type": "string"
+          },
+          "units": {
+            "type": "string"
+          },
+          "collections": {
+            "items": {
+              "$ref": "#/components/schemas/Pick_Collection.id-or-name_"
+            },
+            "type": "array"
+          },
+          "labels": {
+            "items": {
+              "$ref": "#/components/schemas/Label"
+            },
+            "type": "array"
+          },
+          "geometry": {
+            "$ref": "#/components/schemas/ModelGeometry"
+          },
+          "metadata": {
+            "items": {
+              "$ref": "#/components/schemas/Metadata"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "createdAt",
+          "fileName",
+          "fileType",
+          "folderId",
+          "id",
+          "isAssembly",
+          "name",
+          "ownerId",
+          "state",
+          "units",
+          "metadata"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "PageData": {
+        "properties": {
+          "total": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "perPage": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "currentPage": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "lastPage": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "startIndex": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "endIndex": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "required": [
+          "total",
+          "perPage",
+          "currentPage",
+          "lastPage",
+          "startIndex",
+          "endIndex"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "ModelListResponse": {
+        "properties": {
+          "models": {
+            "items": {
+              "$ref": "#/components/schemas/ModelWithMetadata"
+            },
+            "type": "array"
+          },
+          "pageData": {
+            "$ref": "#/components/schemas/PageData"
+          }
+        },
+        "required": [
+          "models",
+          "pageData"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "FilterExpression": {
+        "type": "string",
+        "description": "A string in the form `<FilterProperty>(<FilterOperator>(<FilterValue>))[,FilterExpressions]`.\n\nSee the [API Reference](https://physna.github.io/public-api-guide/api-reference/filter-expressions) for more details.\n\nExample:\n```\nid(between(1,1000)),createdAt(not(lt('2022-01-01T00:00:00.000Z')))\n```"
+      },
+      "OrderExpression": {
+        "type": "string",
+        "description": "A string in the form `[-]<OrderProperty>[,OrderProperties]`.\n\nSee the [API Reference](https://physna.github.io/public-api-guide/api-reference/order-expressions) for more details.\n\n\nExample:\n```\n-id,name\n```"
+      },
+      "MatchReportItem": {
+        "properties": {
+          "model": {
+            "$ref": "#/components/schemas/ModelWithMetadata"
+          },
+          "matchCount": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "required": [
+          "model",
+          "matchCount"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "MatchReport": {
+        "properties": {
+          "results": {
+            "items": {
+              "$ref": "#/components/schemas/MatchReportItem"
+            },
+            "type": "array"
+          },
+          "total": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "required": [
+          "results",
+          "total"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "MatchReportThreshold": {
+        "type": "number",
+        "enum": [
+          0.8,
+          0.9,
+          0.95,
+          0.99
+        ]
+      },
+      "MatchReportGroup": {
+        "properties": {
+          "modelIds": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "exampleModels": {
+            "items": {
+              "$ref": "#/components/schemas/ModelWithMetadata"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "modelIds",
+          "exampleModels"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "MatchReportGroups": {
+        "properties": {
+          "groups": {
+            "items": {
+              "$ref": "#/components/schemas/MatchReportGroup"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "groups"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "ModelStateReport": {
+        "properties": {},
+        "type": "object",
+        "additionalProperties": {
+          "type": "number",
+          "format": "double"
+        }
+      },
+      "GetModelStateReportResponse": {
+        "properties": {
+          "states": {
+            "$ref": "#/components/schemas/ModelStateReport"
+          }
+        },
+        "required": [
+          "states"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "DeleteModelsResponse": {},
+      "ReprocessModelsResponse": {
+        "properties": {
+          "affected": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "required": [
+          "affected"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "SingleModelResponse": {
+        "properties": {
+          "model": {
+            "$ref": "#/components/schemas/ModelWithMetadata"
+          }
+        },
+        "required": [
+          "model"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "ModelMatch": {
+        "properties": {
+          "matchPercentage": {
+            "type": "number",
+            "format": "double"
+          },
+          "matchedModel": {
+            "$ref": "#/components/schemas/ModelWithMetadata"
+          }
+        },
+        "required": [
+          "matchPercentage",
+          "matchedModel"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "Pick_Folder.id-or-name_": {
+        "properties": {
+          "id": {
+            "type": "number",
+            "format": "double"
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "name"
+        ],
+        "type": "object",
+        "description": "From T, pick a set of properties whose keys are in the union K"
+      },
+      "MetadataFilterData": {
+        "properties": {
+          "metadataKeyId": {
+            "type": "number",
+            "format": "double"
+          },
+          "name": {
+            "type": "string"
+          },
+          "values": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "metadataKeyId",
+          "name",
+          "values"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "CollectionFilterData": {
+        "properties": {
+          "names": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "tags": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "metadata": {
+            "items": {
+              "$ref": "#/components/schemas/MetadataFilterData"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "names",
+          "tags",
+          "metadata"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "MatchFilterData": {
+        "properties": {
+          "folders": {
+            "items": {
+              "$ref": "#/components/schemas/Pick_Folder.id-or-name_"
+            },
+            "type": "array"
+          },
+          "metadata": {
+            "items": {
+              "$ref": "#/components/schemas/MetadataFilterData"
+            },
+            "type": "array"
+          },
+          "createdAt": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "isAssembly": {
+            "items": {
+              "type": "boolean"
+            },
+            "type": "array"
+          },
+          "fileType": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "units": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "collections": {
+            "$ref": "#/components/schemas/CollectionFilterData"
+          }
+        },
+        "required": [
+          "folders",
+          "metadata",
+          "createdAt",
+          "isAssembly",
+          "fileType",
+          "units",
+          "collections"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "GetModelMatchesResponse": {
+        "properties": {
+          "matches": {
+            "items": {
+              "$ref": "#/components/schemas/ModelMatch"
+            },
+            "type": "array"
+          },
+          "pageData": {
+            "$ref": "#/components/schemas/PageData"
+          },
+          "filterData": {
+            "$ref": "#/components/schemas/MatchFilterData"
+          }
+        },
+        "required": [
+          "matches",
+          "pageData",
+          "filterData"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "Model": {
+        "properties": {
+          "createdAt": {
+            "type": "string"
+          },
+          "deletedAt": {
+            "type": "string"
+          },
+          "fileName": {
+            "type": "string"
+          },
+          "fileType": {
+            "type": "string"
+          },
+          "folderId": {
+            "type": "number",
+            "format": "double"
+          },
+          "id": {
+            "type": "string"
+          },
+          "isAssembly": {
+            "type": "boolean"
+          },
+          "name": {
+            "type": "string"
+          },
+          "ownerId": {
+            "type": "string"
+          },
+          "state": {
+            "type": "string"
+          },
+          "thumbnail": {
+            "type": "string"
+          },
+          "units": {
+            "type": "string"
+          },
+          "collections": {
+            "items": {
+              "$ref": "#/components/schemas/Pick_Collection.id-or-name_"
+            },
+            "type": "array"
+          },
+          "labels": {
+            "items": {
+              "$ref": "#/components/schemas/Label"
+            },
+            "type": "array"
+          },
+          "geometry": {
+            "$ref": "#/components/schemas/ModelGeometry"
+          }
+        },
+        "required": [
+          "createdAt",
+          "fileName",
+          "fileType",
+          "folderId",
+          "id",
+          "isAssembly",
+          "name",
+          "ownerId",
+          "state",
+          "units"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "PartToPartMatch": {
+        "description": "Searching for models that match the model under search",
+        "properties": {
+          "matchedModel": {
+            "$ref": "#/components/schemas/Model"
+          },
+          "matchPercentage": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "required": [
+          "matchedModel",
+          "matchPercentage"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "FolderFilterData": {
+        "properties": {
+          "id": {
+            "type": "number",
+            "format": "double"
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "name"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "PropertyFilterData": {
+        "properties": {
+          "id": {
+            "type": "number",
+            "format": "double"
+          },
+          "name": {
+            "type": "string"
+          },
+          "values": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "values"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "FilterData": {
+        "properties": {
+          "folders": {
+            "items": {
+              "$ref": "#/components/schemas/FolderFilterData"
+            },
+            "type": "array"
+          },
+          "properties": {
+            "items": {
+              "$ref": "#/components/schemas/PropertyFilterData"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "folders",
+          "properties"
+        ],
+        "type": "object",
+        "additionalProperties": false,
+        "deprecated": true
+      },
+      "PartToPartMatchResponse": {
+        "properties": {
+          "matches": {
+            "items": {
+              "$ref": "#/components/schemas/PartToPartMatch"
+            },
+            "type": "array"
+          },
+          "pageData": {
+            "$ref": "#/components/schemas/PageData"
+          },
+          "filterData": {
+            "$ref": "#/components/schemas/FilterData"
+          }
+        },
+        "required": [
+          "matches",
+          "pageData",
+          "filterData"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "PartMatch": {
+        "properties": {
+          "matchedModel": {
+            "$ref": "#/components/schemas/ModelWithMetadata"
+          },
+          "commonFacetCount": {
+            "type": "number",
+            "format": "double"
+          },
+          "modelFacetCount": {
+            "type": "number",
+            "format": "double"
+          },
+          "matchedModelFacetCount": {
+            "type": "number",
+            "format": "double"
+          },
+          "forwardMatchPercentage": {
+            "type": "number",
+            "format": "double",
+            "description": "The amount of the Model that exists inside the MatchedModel"
+          },
+          "reverseMatchPercentage": {
+            "type": "number",
+            "format": "double",
+            "description": "The amount of the MatchedModel that exists inside the Model"
+          }
+        },
+        "required": [
+          "matchedModel",
+          "commonFacetCount",
+          "modelFacetCount",
+          "matchedModelFacetCount",
+          "forwardMatchPercentage",
+          "reverseMatchPercentage"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "GetPartMatchesResponse": {
+        "properties": {
+          "matches": {
+            "items": {
+              "$ref": "#/components/schemas/PartMatch"
+            },
+            "type": "array"
+          },
+          "pageData": {
+            "$ref": "#/components/schemas/PageData"
+          },
+          "filterData": {
+            "$ref": "#/components/schemas/MatchFilterData"
+          }
+        },
+        "required": [
+          "matches",
+          "pageData",
+          "filterData"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "PartInPartMatch": {
+        "description": "Searching for models that contain the model under search\n\nModel is the model being searched on, and MatchedModel is the result",
+        "properties": {
+          "matchedModel": {
+            "$ref": "#/components/schemas/Model"
+          },
+          "commonFacetCount": {
+            "type": "number",
+            "format": "double"
+          },
+          "modelFacetCount": {
+            "type": "number",
+            "format": "double"
+          },
+          "matchedModelFacetCount": {
+            "type": "number",
+            "format": "double"
+          },
+          "forwardMatchPercentage": {
+            "type": "number",
+            "format": "double",
+            "description": "The amount of the Model that exists inside the MatchedModel"
+          },
+          "reverseMatchPercentage": {
+            "type": "number",
+            "format": "double",
+            "description": "The amount of the MatchedModel that exists inside the Model"
+          }
+        },
+        "required": [
+          "matchedModel",
+          "commonFacetCount",
+          "modelFacetCount",
+          "matchedModelFacetCount",
+          "forwardMatchPercentage",
+          "reverseMatchPercentage"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "PartInPartMatchResponse": {
+        "properties": {
+          "matches": {
+            "items": {
+              "$ref": "#/components/schemas/PartInPartMatch"
+            },
+            "type": "array"
+          },
+          "pageData": {
+            "$ref": "#/components/schemas/PageData"
+          },
+          "filterData": {
+            "$ref": "#/components/schemas/FilterData"
+          }
+        },
+        "required": [
+          "matches",
+          "pageData",
+          "filterData"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "ScanMatch": {
+        "properties": {
+          "matchedModel": {
+            "$ref": "#/components/schemas/ModelWithMetadata"
+          },
+          "matchPercentage": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "required": [
+          "matchedModel",
+          "matchPercentage"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "GetScanMatchesResponse": {
+        "properties": {
+          "matches": {
+            "items": {
+              "$ref": "#/components/schemas/ScanMatch"
+            },
+            "type": "array"
+          },
+          "pageData": {
+            "$ref": "#/components/schemas/PageData"
+          },
+          "filterData": {
+            "$ref": "#/components/schemas/MatchFilterData"
+          }
+        },
+        "required": [
+          "matches",
+          "pageData",
+          "filterData"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "VisualMatch": {
+        "properties": {
+          "matchedModel": {
+            "$ref": "#/components/schemas/ModelWithMetadata"
+          }
+        },
+        "required": [
+          "matchedModel"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "GetVisualMatchesResponse": {
+        "properties": {
+          "matches": {
+            "items": {
+              "$ref": "#/components/schemas/VisualMatch"
+            },
+            "type": "array"
+          },
+          "pageData": {
+            "$ref": "#/components/schemas/PageData"
+          },
+          "filterData": {
+            "$ref": "#/components/schemas/MatchFilterData"
+          }
+        },
+        "required": [
+          "matches",
+          "pageData",
+          "filterData"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "GeoRelatedMatch": {
+        "description": "Searching for models that are broadly similar to the model under search",
+        "properties": {
+          "matchedModel": {
+            "$ref": "#/components/schemas/Model"
+          },
+          "matchPercentage": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "required": [
+          "matchedModel",
+          "matchPercentage"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "GeoRelatedMatchResponse": {
+        "properties": {
+          "matches": {
+            "items": {
+              "$ref": "#/components/schemas/GeoRelatedMatch"
+            },
+            "type": "array"
+          },
+          "pageData": {
+            "$ref": "#/components/schemas/PageData"
+          },
+          "filterData": {
+            "$ref": "#/components/schemas/FilterData"
+          }
+        },
+        "required": [
+          "matches",
+          "pageData",
+          "filterData"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "SourceFileResponse": {
+        "properties": {
+          "sourceFile": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "sourceFile"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "ViewerFileResponse": {
+        "properties": {
+          "viewerFile": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "viewerFile"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "ModelProperty": {
+        "properties": {
+          "modelId": {
+            "type": "string"
+          },
+          "propertyId": {
+            "type": "number",
+            "format": "double"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "value": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "modelId",
+          "propertyId",
+          "name",
+          "value"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "ModelPropertiesResponse": {
+        "properties": {
+          "modelProperties": {
+            "items": {
+              "$ref": "#/components/schemas/ModelProperty"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "modelProperties"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "MetadataResponse": {
+        "properties": {
+          "pageData": {
+            "$ref": "#/components/schemas/PageData"
+          },
+          "metadata": {
+            "items": {
+              "$ref": "#/components/schemas/Metadata"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "pageData",
+          "metadata"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "SingleMetadataResponse": {
+        "properties": {
+          "metadata": {
+            "$ref": "#/components/schemas/Metadata"
+          }
+        },
+        "required": [
+          "metadata"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "DeleteMetadataResponse": {
+        "properties": {
+          "deleted": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "deleted"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "AssemblyPart": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "assemblyPart"
+            ],
+            "nullable": false
+          },
+          "modelId": {
+            "type": "string"
+          },
+          "occurrences": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "required": [
+          "type",
+          "modelId",
+          "occurrences"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "SubAssembly": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "subAssembly"
+            ],
+            "nullable": false
+          },
+          "modelId": {
+            "type": "string"
+          },
+          "children": {
+            "items": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/AssemblyPart"
+                },
+                {
+                  "$ref": "#/components/schemas/SubAssembly"
+                }
+              ]
+            },
+            "type": "array"
+          },
+          "occurrences": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "required": [
+          "type",
+          "modelId",
+          "children",
+          "occurrences"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "AssemblyTree": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "assemblyTree"
+            ],
+            "nullable": false
+          },
+          "modelId": {
+            "type": "string"
+          },
+          "children": {
+            "items": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/AssemblyPart"
+                },
+                {
+                  "$ref": "#/components/schemas/SubAssembly"
+                }
+              ]
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "type",
+          "modelId",
+          "children"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "UploadUrlInfo": {
+        "properties": {
+          "uploadUrl": {
+            "type": "string"
+          },
+          "headers": {
+            "properties": {},
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object"
+          },
+          "fileSizeRequirements": {
+            "properties": {
+              "maxSizeInBytes": {
+                "type": "number",
+                "format": "double"
+              },
+              "minSizeInBytes": {
+                "type": "number",
+                "format": "double"
+              }
+            },
+            "required": [
+              "maxSizeInBytes",
+              "minSizeInBytes"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "uploadUrl",
+          "headers",
+          "fileSizeRequirements"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "CreateCollectionResponseBody": {
+        "properties": {
+          "collectionId": {
+            "type": "string"
+          },
+          "affected": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "required": [
+          "collectionId",
+          "affected"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "AddToCollectionResponseBody": {
+        "$ref": "#/components/schemas/CreateCollectionResponseBody"
+      },
+      "CreateModelsResponse": {
+        "properties": {
+          "models": {
+            "items": {
+              "properties": {
+                "uploadInfo": {
+                  "$ref": "#/components/schemas/UploadUrlInfo"
+                },
+                "model": {
+                  "$ref": "#/components/schemas/ModelWithMetadata"
+                }
+              },
+              "required": [
+                "uploadInfo",
+                "model"
+              ],
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "collection": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/CreateCollectionResponseBody"
+              },
+              {
+                "$ref": "#/components/schemas/AddToCollectionResponseBody"
+              }
+            ]
+          }
+        },
+        "required": [
+          "models"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "CreateModelMetadata": {
+        "properties": {
+          "metadataKeyId": {
+            "type": "number",
+            "format": "double"
+          },
+          "value": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "metadataKeyId",
+          "value"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "CreateModelRequest": {
+        "properties": {
+          "filePath": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "metadata": {
+            "items": {
+              "$ref": "#/components/schemas/CreateModelMetadata"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "filePath"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "ComparisonModel": {
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "bucket": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "bucket",
+          "name"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "TokenResponse": {
+        "properties": {
+          "token": {
+            "type": "string"
+          },
+          "comparisonServiceUri": {
+            "type": "string"
+          },
+          "modelA": {
+            "$ref": "#/components/schemas/ComparisonModel"
+          },
+          "modelB": {
+            "$ref": "#/components/schemas/ComparisonModel"
+          },
+          "tokenExpiresAt": {
+            "type": "string"
+          },
+          "tokenScope": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "token",
+          "comparisonServiceUri",
+          "modelA",
+          "modelB",
+          "tokenExpiresAt",
+          "tokenScope"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "LabelBatchResponse": {
+        "properties": {
+          "batchId": {
+            "type": "string"
+          },
+          "affected": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "required": [
+          "batchId",
+          "affected"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "Status": {
+        "properties": {
+          "modelId": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "modelId",
+          "status"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "LabelBatchStatusResponse": {
+        "properties": {
+          "batchId": {
+            "type": "string"
+          },
+          "status": {
+            "items": {
+              "$ref": "#/components/schemas/Status"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "batchId",
+          "status"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "LabelTaxonomyResponse": {
+        "properties": {
+          "taxonomy": {}
+        },
+        "required": [
+          "taxonomy"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "LabelTaxonomyRejectionResponse": {
+        "properties": {
+          "affected": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "required": [
+          "affected"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "LabelRejection": {
+        "properties": {
+          "modelId": {
+            "type": "string"
+          },
+          "rejected": {
+            "type": "boolean"
+          },
+          "label": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "modelId",
+          "rejected",
+          "label"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "ModelPropertiesListResponse": {
+        "properties": {
+          "modelProperties": {
+            "items": {
+              "$ref": "#/components/schemas/ModelProperty"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "modelProperties"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "MetadataKey": {
+        "properties": {
+          "id": {
+            "type": "number",
+            "format": "double"
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "name"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "MetadataKeyListResponse": {
+        "properties": {
+          "pageData": {
+            "$ref": "#/components/schemas/PageData"
+          },
+          "metadataKeys": {
+            "items": {
+              "$ref": "#/components/schemas/MetadataKey"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "pageData",
+          "metadataKeys"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "SingleMetadataKeyResponse": {
+        "properties": {
+          "metadataKey": {
+            "$ref": "#/components/schemas/MetadataKey"
+          }
+        },
+        "required": [
+          "metadataKey"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "PostMetadataKeyBody": {
+        "properties": {
+          "metadataKeyName": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "metadataKeyName"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "DeletedMetadataKeyResponse": {
+        "properties": {
+          "deleted": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "deleted"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "DeleteMetadataKeyBody": {
+        "properties": {
+          "id": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "required": [
+          "id"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "MetadataListResponse": {
+        "properties": {
+          "pageData": {
+            "$ref": "#/components/schemas/PageData"
+          },
+          "metadata": {
+            "items": {
+              "$ref": "#/components/schemas/Metadata"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "pageData",
+          "metadata"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "UploadImageInfo": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/UploadUrlInfo"
+          },
+          {
+            "properties": {
+              "id": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id"
+            ],
+            "type": "object"
+          }
+        ]
+      },
+      "UploadImageResponse": {
+        "properties": {
+          "image": {
+            "$ref": "#/components/schemas/UploadImageInfo"
+          }
+        },
+        "required": [
+          "image"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "ImageMatch": {
+        "description": "Searching for models that match the given image",
+        "properties": {
+          "matchedModel": {
+            "$ref": "#/components/schemas/ModelWithMetadata"
+          }
+        },
+        "required": [
+          "matchedModel"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "SignedImage": {
+        "properties": {
+          "filename": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "filename",
+          "url"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "GetImageMatchesResponse": {
+        "properties": {
+          "matches": {
+            "items": {
+              "$ref": "#/components/schemas/ImageMatch"
+            },
+            "type": "array"
+          },
+          "pageData": {
+            "$ref": "#/components/schemas/PageData"
+          },
+          "filterData": {
+            "$ref": "#/components/schemas/MatchFilterData"
+          },
+          "image": {
+            "$ref": "#/components/schemas/SignedImage",
+            "deprecated": true
+          },
+          "images": {
+            "items": {
+              "$ref": "#/components/schemas/SignedImage"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "matches",
+          "pageData",
+          "filterData",
+          "image",
+          "images"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "Folder": {
+        "properties": {
+          "id": {
+            "type": "number",
+            "format": "double"
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "parentFolderId": {
+            "type": "number",
+            "format": "double"
+          },
+          "children": {
+            "items": {
+              "type": "number",
+              "format": "double"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "id",
+          "createdAt",
+          "name"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "FolderListResponse": {
+        "properties": {
+          "pageData": {
+            "$ref": "#/components/schemas/PageData"
+          },
+          "folders": {
+            "items": {
+              "$ref": "#/components/schemas/Folder"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "pageData",
+          "folders"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "FolderResponse": {
+        "properties": {
+          "folder": {
+            "$ref": "#/components/schemas/Folder"
+          }
+        },
+        "required": [
+          "folder"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "FolderContents": {
+        "anyOf": [
+          {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Folder"
+              },
+              {
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "folder"
+                    ],
+                    "nullable": false
+                  }
+                },
+                "required": [
+                  "type"
+                ],
+                "type": "object"
+              }
+            ]
+          },
+          {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Model"
+              },
+              {
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "model"
+                    ],
+                    "nullable": false
+                  }
+                },
+                "required": [
+                  "type"
+                ],
+                "type": "object"
+              }
+            ]
+          }
+        ]
+      },
+      "FolderContentResponse": {
+        "properties": {
+          "data": {
+            "items": {
+              "$ref": "#/components/schemas/FolderContents"
+            },
+            "type": "array"
+          },
+          "page": {
+            "type": "number",
+            "format": "double"
+          },
+          "perPage": {
+            "type": "number",
+            "format": "double"
+          },
+          "total": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "required": [
+          "data",
+          "page",
+          "perPage",
+          "total"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "FolderCreateResponse": {
+        "properties": {
+          "folder": {
+            "$ref": "#/components/schemas/Folder"
+          }
+        },
+        "required": [
+          "folder"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "FolderUpdateResponse": {
+        "properties": {
+          "affected": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "required": [
+          "affected"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "BulkCreateCollectionResponseBody": {
+        "properties": {
+          "affected": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "required": [
+          "affected"
+        ],
+        "type": "object"
+      },
+      "DeleteCollectionsResponseBody": {
+        "properties": {
+          "affected": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "required": [
+          "affected"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "CollectionMetadata": {
+        "properties": {
+          "metadataKeyId": {
+            "type": "number",
+            "format": "double"
+          },
+          "collectionId": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "metadataKeyId",
+          "collectionId",
+          "name",
+          "value"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "CollectionWithMetadata": {
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "thumbnails": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "tag": {
+            "type": "string"
+          },
+          "metadata": {
+            "items": {
+              "$ref": "#/components/schemas/CollectionMetadata"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "id"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "GetCollectionsListResponseBody": {
+        "properties": {
+          "data": {
+            "items": {
+              "$ref": "#/components/schemas/CollectionWithMetadata"
+            },
+            "type": "array"
+          },
+          "page": {
+            "type": "number",
+            "format": "double"
+          },
+          "perPage": {
+            "type": "number",
+            "format": "double"
+          },
+          "total": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "required": [
+          "data",
+          "page",
+          "perPage",
+          "total"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "GetCollectionResponseBody": {
+        "$ref": "#/components/schemas/CollectionWithMetadata"
+      },
+      "GetCollectionTagsResponseBody": {
+        "properties": {
+          "tags": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "tags"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "RemoveFromCollectionResponseBody": {
+        "$ref": "#/components/schemas/CreateCollectionResponseBody"
+      },
+      "GetCollectionContentResponseBody": {
+        "properties": {
+          "data": {
+            "items": {
+              "$ref": "#/components/schemas/Model"
+            },
+            "type": "array"
+          },
+          "page": {
+            "type": "number",
+            "format": "double"
+          },
+          "perPage": {
+            "type": "number",
+            "format": "double"
+          },
+          "total": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "required": [
+          "data",
+          "page",
+          "perPage",
+          "total"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "ReprocessCollectionResponseBody": {
+        "properties": {
+          "affected": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "required": [
+          "affected"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "UpdateCollectionNameResponseBody": {
+        "properties": {
+          "affected": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "required": [
+          "affected"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "UpdateCollectionNameRequestBody": {
+        "properties": {
+          "newName": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "newName"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "UpdateCollectionTagResponseBody": {
+        "properties": {
+          "affected": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "required": [
+          "affected"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "UpdateCollectionTagRequestBody": {
+        "properties": {
+          "newTag": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "newTag"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "CollectionMatchResult": {
+        "properties": {
+          "matchedCollection": {
+            "$ref": "#/components/schemas/CollectionWithMetadata"
+          },
+          "matchScore": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "required": [
+          "matchedCollection"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "GetCollectionMatchesResponseBody": {
+        "properties": {
+          "matches": {
+            "items": {
+              "$ref": "#/components/schemas/CollectionMatchResult"
+            },
+            "type": "array"
+          },
+          "filterData": {
+            "properties": {
+              "collections": {
+                "$ref": "#/components/schemas/CollectionFilterData"
+              }
+            },
+            "required": [
+              "collections"
+            ],
+            "type": "object"
+          },
+          "page": {
+            "type": "number",
+            "format": "double"
+          },
+          "perPage": {
+            "type": "number",
+            "format": "double"
+          },
+          "total": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "required": [
+          "matches",
+          "filterData",
+          "page",
+          "perPage",
+          "total"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "MatchFeedbackType": {
+        "enum": [
+          "ExactMatch",
+          "FamilyMatch"
+        ],
+        "type": "string"
+      },
+      "MatchFeedbackRequestBody": {
+        "properties": {
+          "feedback": {
+            "type": "string"
+          },
+          "feedbackType": {
+            "$ref": "#/components/schemas/MatchFeedbackType"
+          }
+        },
+        "required": [
+          "feedback"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "ClientCredentials": {
+        "properties": {
+          "clientId": {
+            "type": "string"
+          },
+          "clientSecret": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "clientId",
+          "clientSecret"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "SingleClientCredentialsResponse": {
+        "properties": {
+          "clientCredentials": {
+            "$ref": "#/components/schemas/ClientCredentials"
+          }
+        },
+        "required": [
+          "clientCredentials"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "SingleClientCredentialsIDResponse": {
+        "properties": {
+          "clientId": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "clientId"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      }
+    },
+    "securitySchemes": {
+      "okta": {
+        "type": "oauth2",
+        "flows": {
+          "authorizationCode": {
+            "tokenUrl": "https://physna.okta.com/oauth2/default/v1/token",
+            "authorizationUrl": "https://physna.okta.com/oauth2/default/v1/authorize",
+            "scopes": {
+              "openid": "",
+              "tenant": "",
+              "roles": ""
+            }
+          }
+        }
+      }
+    }
+  },
+  "info": {
+    "title": "Physna Public API",
+    "version": "2.0.1",
+    "contact": {
+      "name": "Support",
+      "email": "support@physna.com"
+    }
+  },
+  "openapi": "3.0.0",
+  "paths": {
+    "/users/me": {
+      "get": {
+        "operationId": "GetMe",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CurrentUserResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Users"
+        ],
+        "security": [
+          {
+            "okta": [
+              "Administrators",
+              "Authors",
+              "Viewers"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "X-PHYSNA-TENANTID",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/users/me/accept-eula": {
+      "patch": {
+        "operationId": "AcceptLicenseAgreement",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CurrentUserResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Users"
+        ],
+        "security": [
+          {
+            "okta": [
+              "Administrators",
+              "Authors",
+              "Viewers"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "X-PHYSNA-TENANTID",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/users": {
+      "get": {
+        "operationId": "ListUsers",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserListResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Users"
+        ],
+        "security": [
+          {
+            "okta": [
+              "Administrators"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "X-PHYSNA-TENANTID",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "post": {
+        "operationId": "CreateUser",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Users"
+        ],
+        "security": [
+          {
+            "okta": [
+              "Administrators"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "X-PHYSNA-TENANTID",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "roles": {
+                    "items": {
+                      "$ref": "#/components/schemas/Role"
+                    },
+                    "type": "array"
+                  },
+                  "email": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "roles",
+                  "email"
+                ],
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/{id}": {
+      "get": {
+        "operationId": "GetUserById",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Users"
+        ],
+        "security": [
+          {
+            "okta": [
+              "Administrators"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-PHYSNA-TENANTID",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "DeleteUserById",
+        "responses": {
+          "204": {
+            "description": "No content"
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Users"
+        ],
+        "security": [
+          {
+            "okta": [
+              "Administrators"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-PHYSNA-TENANTID",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "patch": {
+        "operationId": "UpdateUserById",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Users"
+        ],
+        "security": [
+          {
+            "okta": [
+              "Administrators"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-PHYSNA-TENANTID",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "roles": {
+                    "items": {
+                      "$ref": "#/components/schemas/Role"
+                    },
+                    "type": "array"
+                  },
+                  "status": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "roles",
+                  "status",
+                  "email"
+                ],
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/properties": {
+      "get": {
+        "operationId": "GetProperties",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PropertyListResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Deprecated"
+        ],
+        "deprecated": true,
+        "security": [
+          {
+            "okta": [
+              "Administrators",
+              "Authors"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "ids",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "number",
+                "format": "double"
+              }
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-PHYSNA-TENANTID",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "post": {
+        "operationId": "CreateProperty",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SinglePropertyResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Deprecated"
+        ],
+        "deprecated": true,
+        "security": [
+          {
+            "okta": [
+              "Administrators",
+              "Authors"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "X-PHYSNA-TENANTID",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "propertyName": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "propertyName"
+                ],
+                "type": "object"
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "DeleteProperty",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeletedPropertyResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Deprecated"
+        ],
+        "deprecated": true,
+        "security": [
+          {
+            "okta": [
+              "Administrators",
+              "Authors"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "X-PHYSNA-TENANTID",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "id": {
+                    "type": "number",
+                    "format": "double"
+                  }
+                },
+                "required": [
+                  "id"
+                ],
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/properties/{id}": {
+      "get": {
+        "operationId": "GetProperty",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SinglePropertyResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Deprecated"
+        ],
+        "deprecated": true,
+        "security": [
+          {
+            "okta": [
+              "Administrators",
+              "Authors"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "format": "double",
+              "type": "number"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-PHYSNA-TENANTID",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/models": {
+      "get": {
+        "operationId": "GetModels",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ModelListResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Models"
+        ],
+        "security": [
+          {
+            "okta": [
+              "Administrators",
+              "Authors",
+              "Viewers"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "description": "A general string used to search and filter on all available models.",
+            "in": "query",
+            "name": "search",
+            "required": false,
+            "schema": {
+              "default": "",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The `folderIds` property has been deprecated. Please use the `filter` property instead.",
+            "in": "query",
+            "name": "folderIds",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "number",
+                "format": "double"
+              }
+            }
+          },
+          {
+            "description": "A [`FilterExpression`](#model-FilterExpression). See the [API Reference](https://physna.github.io/public-api-guide/api-reference/filter-expressions) for more details.",
+            "in": "query",
+            "name": "filter",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/FilterExpression"
+            }
+          },
+          {
+            "description": "An [`OrderExpression`](#model-OrderExpression). See the [API Reference](https://physna.github.io/public-api-guide/api-reference/order-expressions) for more details. If no order is provided the results are returned in order of relevancy.",
+            "in": "query",
+            "name": "order",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/OrderExpression"
+            }
+          },
+          {
+            "description": "The number of items to return per page.",
+            "in": "query",
+            "name": "perPage",
+            "required": false,
+            "schema": {
+              "default": 20,
+              "format": "int32",
+              "type": "integer",
+              "minimum": 1
+            },
+            "example": "20"
+          },
+          {
+            "description": "A 1 based page number used in conjunction with `perPage`.",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "default": 1,
+              "format": "int32",
+              "type": "integer",
+              "minimum": 1
+            },
+            "example": "1"
+          },
+          {
+            "in": "header",
+            "name": "X-PHYSNA-TENANTID",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "DeleteModels",
+        "responses": {
+          "204": {
+            "description": "No content"
+          }
+        },
+        "description": "Bulk delete models. Bulk delete is permanent and cannot be undone.",
+        "tags": [
+          "Models"
+        ],
+        "security": [
+          {
+            "okta": [
+              "Administrators",
+              "Authors"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "description": "A list of modelIds to be deleted",
+            "in": "query",
+            "name": "ids",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-PHYSNA-TENANTID",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "post": {
+        "operationId": "CreateModels",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateModelsResponse"
+                }
+              }
+            }
+          }
+        },
+        "description": "Create Records for models and receive the needed signed uploadUrl to upload the model files and initiate ingestion.\n\nCurrent Limitations:\n-  Filetypes Supported: '.3ds', '.asm', '.catpart', '.catproduct', '.glb', '.iges', '.igs', '.obj', '.par', '.prt', '.sldasm', '.sldprt', '.stl', '.step', '.stp', '.x_b', '.x_t',\n-  Versioned Creo files are also supported. For example `part.prt.1` or `assembly.asm.2`.\n-  Maximum 100 Models can be created at once.\n-  The `folderName` used in the `filePath` must be the `name` of a `Folder` that already exists.\n-  Each `filePath` must be unique for each model.\n-  `filePath` can not exceed 1024 bytes (this is roughly 1024 characters, unless unicode characters are included, which consume more bytes)\n-  `filePath` can not contain any of the following characters: `['\\n', '\\r', '*', ':', '\"', '<', '>', '|', '#', '[', ']', '?', '\\\\'];\n-  No duplicates of a model can be created within the same folder.\n\nAssemblies can be created just like any other supported file, but all required subparts must be uploaded to the same folder (preferably beforehand to avoid unnecessary automatic reprocessing).\n\nThe model file can be uploaded via a `PUT` request to the <upload url> including the file and the supplied headers.\n\nExample using `curl` command:\n\n```\ncurl -X PUT --upload-file file.stl -H '<header1-name>: <header1-value>' -H '<header2-name>: <header2-value>' <upload-url>\n```\n\nAfter completing the upload, the model will be processed behind the scenes and be ready to match once it is in the `finished` state.",
+        "tags": [
+          "Models"
+        ],
+        "security": [
+          {
+            "okta": [
+              "Administrators",
+              "Authors"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "description": "If set to true, any folders that do not exist will be created. If set to false, any folders that do not exist will cause an error.",
+            "in": "query",
+            "name": "createMissingFolders",
+            "required": false,
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "Optional name of a collection the uploaded models will be added to. If the collection does not exist, it will be created.",
+            "in": "query",
+            "name": "collection",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-PHYSNA-TENANTID",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "A list of models to create",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "models": {
+                    "items": {
+                      "$ref": "#/components/schemas/CreateModelRequest"
+                    },
+                    "type": "array"
+                  }
+                },
+                "required": [
+                  "models"
+                ],
+                "type": "object",
+                "description": "A list of models to create"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/models/match-report": {
+      "get": {
+        "operationId": "GetMatchReport",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MatchReport"
+                }
+              }
+            }
+          }
+        },
+        "summary": "IN DEVELOPMENT",
+        "tags": [
+          "Models"
+        ],
+        "security": [
+          {
+            "okta": [
+              "Administrators",
+              "Authors",
+              "Viewers"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "description": "A float number that is the minimum percentage a match must be to be returned as a counted match.",
+            "in": "query",
+            "name": "threshold",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/MatchReportThreshold"
+            }
+          },
+          {
+            "description": "A list of folder ids to filter the matches and counts by.",
+            "in": "query",
+            "name": "folderIds",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "number",
+                "format": "double"
+              }
+            }
+          },
+          {
+            "description": "A 1 based page number used in conjunction with `perPage`.",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "format": "int32",
+              "type": "integer",
+              "minimum": 1
+            },
+            "example": "1"
+          },
+          {
+            "description": "The number of items to return per page.",
+            "in": "query",
+            "name": "perPage",
+            "required": false,
+            "schema": {
+              "format": "int32",
+              "type": "integer",
+              "minimum": 1
+            },
+            "example": "20"
+          },
+          {
+            "in": "header",
+            "name": "X-PHYSNA-TENANTID",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/models/grouped-match-report": {
+      "get": {
+        "operationId": "GetGroupedMatchReport",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MatchReportGroups"
+                }
+              }
+            }
+          }
+        },
+        "summary": "IN DEVELOPMENT",
+        "tags": [
+          "Models"
+        ],
+        "security": [
+          {
+            "okta": [
+              "Administrators",
+              "Authors",
+              "Viewers"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "description": "A float number that is the minimum percentage a match must be to be returned as a counted match.",
+            "in": "query",
+            "name": "threshold",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/MatchReportThreshold"
+            }
+          },
+          {
+            "description": "A list of folder ids to filter the matches and counts by.",
+            "in": "query",
+            "name": "folderIds",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "number",
+                "format": "double"
+              }
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-PHYSNA-TENANTID",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/models/state-report": {
+      "get": {
+        "operationId": "GetModelStateReport",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetModelStateReportResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Models"
+        ],
+        "security": [
+          {
+            "okta": [
+              "Administrators",
+              "Authors",
+              "Viewers"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "description": "An optional list of folder ids to filter the model states to.",
+            "in": "query",
+            "name": "folderIds",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "number",
+                "format": "double"
+              }
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-PHYSNA-TENANTID",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/models/reprocess": {
+      "post": {
+        "operationId": "ReprocessModels",
+        "responses": {
+          "202": {
+            "description": "Accepted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReprocessModelsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "description": "Bulk reprocess models.",
+        "tags": [
+          "Models"
+        ],
+        "security": [
+          {
+            "okta": [
+              "Administrators",
+              "Authors"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "description": "A [`FilterExpression`](#model-FilterExpression). See the [API Reference](https://physna.github.io/public-api-guide/api-reference/filter-expressions) for more details.",
+            "in": "query",
+            "name": "filter",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/FilterExpression"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-PHYSNA-TENANTID",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/models/{id}/reprocess": {
+      "post": {
+        "operationId": "ReprocessModel",
+        "responses": {
+          "202": {
+            "description": "Accepted"
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "description": "Reprocess model.",
+        "tags": [
+          "Models"
+        ],
+        "security": [
+          {
+            "okta": [
+              "Administrators",
+              "Authors"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-PHYSNA-TENANTID",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/models/{id}": {
+      "get": {
+        "operationId": "GetModel",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SingleModelResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Models"
+        ],
+        "security": [
+          {
+            "okta": [
+              "Administrators",
+              "Authors",
+              "Viewers"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-PHYSNA-TENANTID",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "DeleteModel",
+        "responses": {
+          "204": {
+            "description": "No content"
+          }
+        },
+        "description": "Delete a model. Deleting a model is permanent and cannot be undone.",
+        "tags": [
+          "Models"
+        ],
+        "security": [
+          {
+            "okta": [
+              "Administrators",
+              "Authors"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-PHYSNA-TENANTID",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/models/{id}/matches": {
+      "get": {
+        "operationId": "GetModelMatches",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetModelMatchesResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Models"
+        ],
+        "security": [
+          {
+            "okta": [
+              "Administrators",
+              "Authors",
+              "Viewers"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "A float number (0-1) that is the minimum percentage a match must be to be returned.",
+            "in": "query",
+            "name": "threshold",
+            "required": false,
+            "schema": {
+              "format": "float",
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            }
+          },
+          {
+            "description": "A [`FilterExpression`](#model-FilterExpression). See the [API Reference](https://physna.github.io/public-api-guide/api-reference/filter-expressions) for more details.",
+            "in": "query",
+            "name": "filter",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/FilterExpression"
+            }
+          },
+          {
+            "description": "A 1 based page number used in conjunction with `perPage`.",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            },
+            "example": "1"
+          },
+          {
+            "description": "The number of items to return per page.",
+            "in": "query",
+            "name": "perPage",
+            "required": false,
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            },
+            "example": "20"
+          },
+          {
+            "in": "header",
+            "name": "X-PHYSNA-TENANTID",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/models/{id}/part-to-part-matches": {
+      "get": {
+        "operationId": "GetPartToPartMatches",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PartToPartMatchResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Deprecated"
+        ],
+        "deprecated": true,
+        "security": [
+          {
+            "okta": [
+              "Administrators",
+              "Authors",
+              "Viewers"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "threshold",
+            "required": false,
+            "schema": {
+              "format": "float",
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            }
+          },
+          {
+            "in": "query",
+            "name": "perPage",
+            "required": false,
+            "schema": {
+              "default": 20,
+              "format": "int32",
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100
+            }
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "default": 1,
+              "format": "int32",
+              "type": "integer",
+              "minimum": 1
+            }
+          },
+          {
+            "description": "A lucene query that describes the filter. Available fields to filter include folderId, metadata.id, and metadata.value",
+            "in": "query",
+            "name": "filters",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "folderId:12 AND metadata.id:100 AND metadata.value:'Brass'"
+          },
+          {
+            "in": "header",
+            "name": "X-PHYSNA-TENANTID",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/models/{id}/part-matches": {
+      "get": {
+        "operationId": "GetPartMatches",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetPartMatchesResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Models"
+        ],
+        "security": [
+          {
+            "okta": [
+              "Administrators",
+              "Authors",
+              "Viewers"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "A float number (0-1) that is the minimum percentage a match must be to be returned.",
+            "in": "query",
+            "name": "threshold",
+            "required": false,
+            "schema": {
+              "format": "float",
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            }
+          },
+          {
+            "description": "A [`FilterExpression`](#model-FilterExpression). See the [API Reference](https://physna.github.io/public-api-guide/api-reference/filter-expressions) for more details.",
+            "in": "query",
+            "name": "filter",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/FilterExpression"
+            }
+          },
+          {
+            "description": "A 1 based page number used in conjunction with `perPage`.",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            },
+            "example": "1"
+          },
+          {
+            "description": "The number of items to return per page.",
+            "in": "query",
+            "name": "perPage",
+            "required": false,
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            },
+            "example": "20"
+          },
+          {
+            "in": "header",
+            "name": "X-PHYSNA-TENANTID",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/models/{id}/part-in-part-matches": {
+      "get": {
+        "operationId": "GetPartInPartMatches",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PartInPartMatchResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Deprecated"
+        ],
+        "deprecated": true,
+        "security": [
+          {
+            "okta": [
+              "Administrators",
+              "Authors",
+              "Viewers"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "threshold",
+            "required": false,
+            "schema": {
+              "format": "float",
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            }
+          },
+          {
+            "in": "query",
+            "name": "perPage",
+            "required": false,
+            "schema": {
+              "default": 20,
+              "format": "int32",
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100
+            }
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "default": 1,
+              "format": "int32",
+              "type": "integer",
+              "minimum": 1
+            }
+          },
+          {
+            "description": "A lucene query that describes the filter. Available fields to filter include folderId, metadata.id, and metadata.value",
+            "in": "query",
+            "name": "filters",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "folderId:12 AND metadata.id:100 AND metadata.value:'Brass'"
+          },
+          {
+            "in": "header",
+            "name": "X-PHYSNA-TENANTID",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/models/{id}/scan-matches": {
+      "get": {
+        "operationId": "GetScanMatches",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetScanMatchesResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Models"
+        ],
+        "security": [
+          {
+            "okta": [
+              "Administrators",
+              "Authors",
+              "Viewers"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "A float number (0-1) that is the minimum percentage a match must be to be returned.",
+            "in": "query",
+            "name": "threshold",
+            "required": false,
+            "schema": {
+              "format": "float",
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            }
+          },
+          {
+            "description": "A [`FilterExpression`](#model-FilterExpression). See the [API Reference](https://physna.github.io/public-api-guide/api-reference/filter-expressions) for more details.",
+            "in": "query",
+            "name": "filter",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/FilterExpression"
+            }
+          },
+          {
+            "description": "A 1 based page number used in conjunction with `perPage`.",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            },
+            "example": "1"
+          },
+          {
+            "description": "The number of items to return per page.",
+            "in": "query",
+            "name": "perPage",
+            "required": false,
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            },
+            "example": "20"
+          },
+          {
+            "in": "header",
+            "name": "X-PHYSNA-TENANTID",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/models/{id}/visual-matches": {
+      "get": {
+        "operationId": "GetVisualMatches",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetVisualMatchesResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Models"
+        ],
+        "security": [
+          {
+            "okta": [
+              "Administrators",
+              "Authors",
+              "Viewers"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "A float number (0-1) that is the minimum percentage a match must be to be returned.",
+            "in": "query",
+            "name": "threshold",
+            "required": false,
+            "schema": {
+              "format": "float",
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            }
+          },
+          {
+            "description": "A [`FilterExpression`](#model-FilterExpression). See the [API Reference](https://physna.github.io/public-api-guide/api-reference/filter-expressions) for more details.",
+            "in": "query",
+            "name": "filter",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/FilterExpression"
+            }
+          },
+          {
+            "description": "A 1 based page number used in conjunction with `perPage`.",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            },
+            "example": "1"
+          },
+          {
+            "description": "The number of items to return per page.",
+            "in": "query",
+            "name": "perPage",
+            "required": false,
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            },
+            "example": "20"
+          },
+          {
+            "in": "header",
+            "name": "X-PHYSNA-TENANTID",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/models/{id}/geo-related-matches": {
+      "get": {
+        "operationId": "GetGeoRelatedMatches",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GeoRelatedMatchResponse"
+                }
+              }
+            }
+          }
+        },
+        "summary": "IN DEVELOPMENT",
+        "tags": [
+          "Deprecated"
+        ],
+        "deprecated": true,
+        "security": [
+          {
+            "okta": [
+              "Administrators",
+              "Authors",
+              "Viewers"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "threshold",
+            "required": false,
+            "schema": {
+              "format": "float",
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            }
+          },
+          {
+            "in": "query",
+            "name": "perPage",
+            "required": false,
+            "schema": {
+              "default": 20,
+              "format": "int32",
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100
+            }
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "default": 1,
+              "format": "int32",
+              "type": "integer",
+              "minimum": 1
+            }
+          },
+          {
+            "description": "A lucene query that describes the filter. Available fields to filter include folderId, metadata.id, and metadata.value",
+            "in": "query",
+            "name": "filters",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "folderId:12 AND metadata.id:100 AND metadata.value:'Brass'"
+          },
+          {
+            "in": "header",
+            "name": "X-PHYSNA-TENANTID",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/models/{id}/source-file": {
+      "get": {
+        "operationId": "GetSourceFile",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SourceFileResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Models"
+        ],
+        "security": [
+          {
+            "okta": [
+              "Administrators",
+              "Authors",
+              "Viewers"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "description": "A processed model id",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-PHYSNA-TENANTID",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/models/{id}/viewer-file": {
+      "get": {
+        "operationId": "GetViewerFile",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ViewerFileResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Models"
+        ],
+        "security": [
+          {
+            "okta": [
+              "Administrators",
+              "Authors",
+              "Viewers"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "description": "A processed model id",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-PHYSNA-TENANTID",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/models/{id}/properties": {
+      "get": {
+        "operationId": "ModelProperties",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ModelPropertiesResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Deprecated"
+        ],
+        "deprecated": true,
+        "security": [
+          {
+            "okta": [
+              "Administrators",
+              "Authors",
+              "Viewers"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-PHYSNA-TENANTID",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/models/{id}/properties/{propertyId}": {
+      "put": {
+        "operationId": "UpsertModelProperty",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ModelProperty"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Deprecated"
+        ],
+        "deprecated": true,
+        "security": [
+          {
+            "okta": [
+              "Administrators",
+              "Authors"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "propertyId",
+            "required": true,
+            "schema": {
+              "format": "double",
+              "type": "number"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-PHYSNA-TENANTID",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "value": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "value"
+                ],
+                "type": "object"
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "DeleteModelProperty",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Deprecated"
+        ],
+        "deprecated": true,
+        "security": [
+          {
+            "okta": [
+              "Administrators",
+              "Authors"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "propertyId",
+            "required": true,
+            "schema": {
+              "format": "double",
+              "type": "number"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-PHYSNA-TENANTID",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/models/{id}/metadata": {
+      "get": {
+        "operationId": "GetMetadata",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MetadataResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Models",
+          "Metadata"
+        ],
+        "security": [
+          {
+            "okta": [
+              "Administrators",
+              "Authors",
+              "Viewers"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "A [`FilterExpression`](#model-FilterExpression). See the [API Reference](https://physna.github.io/public-api-guide/api-reference/filter-expressions) for more details.",
+            "in": "query",
+            "name": "filter",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/FilterExpression"
+            }
+          },
+          {
+            "description": "An [`OrderExpression`](#model-OrderExpression). See the [API Reference](https://physna.github.io/public-api-guide/api-reference/order-expressions) for more details.",
+            "in": "query",
+            "name": "order",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/OrderExpression"
+            }
+          },
+          {
+            "description": "A 1 based page number used in conjunction with `perPage`.",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            },
+            "example": "1"
+          },
+          {
+            "description": "The number of items to return per page.",
+            "in": "query",
+            "name": "perPage",
+            "required": false,
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            },
+            "example": "20"
+          },
+          {
+            "in": "header",
+            "name": "X-PHYSNA-TENANTID",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/models/{id}/metadata/{metadataKeyId}": {
+      "put": {
+        "operationId": "UpsertMetadata",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SingleMetadataResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Models",
+          "Metadata"
+        ],
+        "security": [
+          {
+            "okta": [
+              "Administrators",
+              "Authors"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "metadataKeyId",
+            "required": true,
+            "schema": {
+              "format": "double",
+              "type": "number"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-PHYSNA-TENANTID",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "value": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "value"
+                ],
+                "type": "object"
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "DeleteMetadata",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteMetadataResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Metadata"
+        ],
+        "security": [
+          {
+            "okta": [
+              "Administrators",
+              "Authors"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "metadataKeyId",
+            "required": true,
+            "schema": {
+              "format": "double",
+              "type": "number"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-PHYSNA-TENANTID",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/models/{id}/assembly-tree": {
+      "get": {
+        "operationId": "GetAssemblyTreeForModel",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AssemblyTree"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Models"
+        ],
+        "security": [
+          {
+            "okta": [
+              "Administrators",
+              "Authors",
+              "Viewers"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-PHYSNA-TENANTID",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/model-properties": {
+      "get": {
+        "operationId": "ModelPropertiesList",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ModelPropertiesListResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Deprecated"
+        ],
+        "deprecated": true,
+        "security": [
+          {
+            "okta": [
+              "Administrators",
+              "Authors",
+              "Viewers"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "ids",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-PHYSNA-TENANTID",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/metadata-keys": {
+      "get": {
+        "operationId": "GetMetadataKeys",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MetadataKeyListResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Metadata"
+        ],
+        "security": [
+          {
+            "okta": [
+              "Administrators",
+              "Authors"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "description": "The `ids` property has been deprecated. Please use the `filter` property instead.",
+            "in": "query",
+            "name": "ids",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "number",
+                "format": "double"
+              }
+            },
+            "deprecated": true
+          },
+          {
+            "description": "A `FilterExpression`. See the [API Reference](https://physna.github.io/public-api-guide/api-reference/filter-expressions) for more details.",
+            "in": "query",
+            "name": "filter",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/FilterExpression"
+            }
+          },
+          {
+            "description": "An `OrderExpression`. See the [API Reference](https://physna.github.io/public-api-guide/api-reference/order-expressions) for more details.",
+            "in": "query",
+            "name": "order",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/OrderExpression"
+            }
+          },
+          {
+            "description": "A 1 based page number used in conjunction with `perPage`.",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            },
+            "example": "1"
+          },
+          {
+            "description": "The number of items to return per page.",
+            "in": "query",
+            "name": "perPage",
+            "required": false,
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            },
+            "example": "20"
+          },
+          {
+            "in": "header",
+            "name": "X-PHYSNA-TENANTID",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "post": {
+        "operationId": "CreateMetadataKey",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SingleMetadataKeyResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Metadata"
+        ],
+        "security": [
+          {
+            "okta": [
+              "Administrators",
+              "Authors"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "X-PHYSNA-TENANTID",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostMetadataKeyBody"
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "DeleteMetadataKey",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeletedMetadataKeyResponse"
+                }
+              }
+            }
+          }
+        },
+        "description": "Removes the metadata key and values associated. Note: removing a metadata key will remove the key and value from all models that use the metadata key",
+        "tags": [
+          "Metadata"
+        ],
+        "security": [
+          {
+            "okta": [
+              "Administrators",
+              "Authors"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "X-PHYSNA-TENANTID",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeleteMetadataKeyBody"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/metadata-keys/{id}": {
+      "get": {
+        "operationId": "GetMetadataKey",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SingleMetadataKeyResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Metadata"
+        ],
+        "security": [
+          {
+            "okta": [
+              "Administrators",
+              "Authors"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "format": "double",
+              "type": "number"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-PHYSNA-TENANTID",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/metadata": {
+      "get": {
+        "operationId": "FindMetadata",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MetadataListResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Metadata"
+        ],
+        "security": [
+          {
+            "okta": [
+              "Administrators",
+              "Authors",
+              "Viewers"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "description": "The `modelIds` property has been deprecated. Please use the `filter` property instead.",
+            "in": "query",
+            "name": "modelIds",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "deprecated": true
+          },
+          {
+            "description": "A [`FilterExpression`](#model-FilterExpression). See the [API Reference](https://physna.github.io/public-api-guide/api-reference/filter-expressions) for more details.",
+            "in": "query",
+            "name": "filter",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/FilterExpression"
+            }
+          },
+          {
+            "description": "An [`OrderExpression`](#model-OrderExpression). See the [API Reference](https://physna.github.io/public-api-guide/api-reference/order-expressions) for more details.",
+            "in": "query",
+            "name": "order",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/OrderExpression"
+            }
+          },
+          {
+            "description": "A 1 based page number used in conjunction with `perPage`.",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            },
+            "example": "1"
+          },
+          {
+            "description": "The number of items to return per page.",
+            "in": "query",
+            "name": "perPage",
+            "required": false,
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            },
+            "example": "20"
+          },
+          {
+            "in": "header",
+            "name": "X-PHYSNA-TENANTID",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/images": {
+      "post": {
+        "operationId": "GetSignedUploadUrlForImage",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UploadImageResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "description": "Creates signed upload information that can be used to upload the image.\nThis is meant for uploading images for image search via `/images/{id}/model-matches`.\n\nThe response will include the appropriate headers and upload URL that can be used to upload the image.\n\n```json\n{\n \"image\": {\n  \"id\": \"<imageId>\",\n  \"uploadUrl\": \"<upload-url>\",\n  \"headers\": {\n    \"<header1-name>\": \"<header1-value>\",\n    \"<header2-name>\": \"<header2-value>\",\n  }\n }\n}\n```\n\nThe image can be uploaded via a `PUT` request to the <upload url> including the file and the supplied headers.\n\nExample using curl command:\n\n```\ncurl -X PUT --upload-file file.png -H '<header1-name>: <header1-value>' -H '<header2-name>: <header2-value>' <upload-url>\n```\n\nImage files can be a max of 10 MB in size.",
+        "tags": [
+          "Image Search"
+        ],
+        "security": [
+          {
+            "okta": [
+              "Administrators",
+              "Authors",
+              "Viewers"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "X-PHYSNA-TENANTID",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "filename": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "filename"
+                ],
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/images/model-matches": {
+      "get": {
+        "operationId": "GetImageMatches",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetImageMatchesResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "description": "\nWe are continually improving image recognition capabilities. At current state, the following properties are advisable for good performance:\n- Images with the object by itself.\n- Images with a plain background.\n- The color of the object usually does not affect detection outcomes.\n\n**Examples of Images that Perform Well**\n\n![Images that perform well](assets/good_images.png)\n- plain background\n- object isolated on its own\n\n**Examples of Images to Avoid**\n\n![Images to avoid](assets/bad_images.png)\n- multiple objects\n- cluttered or busy background",
+        "tags": [
+          "Image Search"
+        ],
+        "security": [
+          {
+            "okta": [
+              "Administrators",
+              "Authors",
+              "Viewers"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "description": "The path that gets returned from POST `/images` route; if more than one id is provided, the results will be combined into a single search",
+            "in": "query",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "description": "A general string used to search and filter on all matched models.",
+            "in": "query",
+            "name": "search",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "A [`FilterExpression`](#model-FilterExpression). See the [API Reference](https://physna.github.io/public-api-guide/api-reference/filter-expressions) for more details.",
+            "in": "query",
+            "name": "filter",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/FilterExpression"
+            }
+          },
+          {
+            "description": "A 1 based page number used in conjunction with `perPage`.",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "default": 1,
+              "format": "int32",
+              "type": "integer",
+              "minimum": 1
+            },
+            "example": "1"
+          },
+          {
+            "description": "The number of items to return per page.",
+            "in": "query",
+            "name": "perPage",
+            "required": false,
+            "schema": {
+              "default": 20,
+              "format": "int32",
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100
+            },
+            "example": "20"
+          },
+          {
+            "in": "header",
+            "name": "X-PHYSNA-TENANTID",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/folders": {
+      "get": {
+        "operationId": "GetFolders",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FolderListResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Folders"
+        ],
+        "security": [
+          {
+            "okta": [
+              "Administrators",
+              "Authors",
+              "Viewers"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "description": "The `ids` property has been deprecated. Please use the `filter` property instead.",
+            "in": "query",
+            "name": "ids",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "number",
+                "format": "double"
+              }
+            },
+            "deprecated": true
+          },
+          {
+            "description": "A [`FilterExpression`](#model-FilterExpression). See the [API Reference](https://physna.github.io/public-api-guide/api-reference/filter-expressions) for more details.",
+            "in": "query",
+            "name": "filter",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/FilterExpression"
+            }
+          },
+          {
+            "description": "An [`OrderExpression`](#model-OrderExpression). See the [API Reference](https://physna.github.io/public-api-guide/api-reference/order-expressions) for more details.",
+            "in": "query",
+            "name": "order",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/OrderExpression"
+            }
+          },
+          {
+            "description": "A 1 based page number used in conjunction with `perPage`.",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            },
+            "example": "1"
+          },
+          {
+            "description": "The number of items to return per page.",
+            "in": "query",
+            "name": "perPage",
+            "required": false,
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            },
+            "example": "20"
+          },
+          {
+            "in": "header",
+            "name": "X-PHYSNA-TENANTID",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "post": {
+        "operationId": "PostFolder",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FolderCreateResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Folders"
+        ],
+        "security": [
+          {
+            "okta": [
+              "Administrators",
+              "Authors"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "description": "The name of the Folder you wish to create.\n- **Restrictions:**\n- The name must not contain any of following characters: newline (`\\n`), carriage return (`\\r`), `\"`, `#`, `*`, `/`, `:`, `<`, `>`, `?`, `[`, `\\`, `]`, `|`\n- The name must be unique (case-insensitive).\n- The name must not be equal to any of the following: `'.well-known/acme-challenge/'`, `'.'`, `'..'`\n- The name must be less than 100 characters in length.",
+            "in": "query",
+            "name": "name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "(Optional) The description of the Folder you wish to create.",
+            "in": "query",
+            "name": "description",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "(Optional) The id of a Parent Folder to properly nest the Folder you wish to create. If not provided, a folder will be created at the root level. Feature is currently UNAVAILABLE.",
+            "in": "query",
+            "name": "parentFolderId",
+            "required": false,
+            "schema": {
+              "format": "double",
+              "type": "number"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-PHYSNA-TENANTID",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "DeleteFolders",
+        "responses": {
+          "204": {
+            "description": "No content"
+          }
+        },
+        "description": "Bulk delete Folders. Folders must not have any models.\nBulk delete is permanent and cannot be undone.",
+        "tags": [
+          "Folders"
+        ],
+        "security": [
+          {
+            "okta": [
+              "Administrators",
+              "Authors"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "description": "A list of the folderIds that you would like deleted",
+            "in": "query",
+            "name": "ids",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "number",
+                "format": "double"
+              }
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-PHYSNA-TENANTID",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/folders/{id}": {
+      "get": {
+        "operationId": "GetFolder",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FolderResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Folders"
+        ],
+        "security": [
+          {
+            "okta": [
+              "Administrators",
+              "Authors",
+              "Viewers"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "format": "double",
+              "type": "number"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-PHYSNA-TENANTID",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "patch": {
+        "operationId": "PatchFolder",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FolderUpdateResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Folders"
+        ],
+        "security": [
+          {
+            "okta": [
+              "Administrators",
+              "Authors"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "description": "The Id of the folder that you would like updated",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "format": "double",
+              "type": "number"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-PHYSNA-TENANTID",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "A partial of the Folder object. The values that you would like applied to the matching folder.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "description": {
+                    "type": "string"
+                  }
+                },
+                "type": "object",
+                "description": "A partial of the Folder object. The values that you would like applied to the matching folder."
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "DeleteFolder",
+        "responses": {
+          "204": {
+            "description": "No content"
+          }
+        },
+        "description": "Folder must not have any models. Delete is permanent and cannot be undone.",
+        "tags": [
+          "Folders"
+        ],
+        "security": [
+          {
+            "okta": [
+              "Administrators",
+              "Authors"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "format": "double",
+              "type": "number"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-PHYSNA-TENANTID",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/folders/{id}/contents": {
+      "get": {
+        "operationId": "GetFolderContents",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FolderContentResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Folders"
+        ],
+        "security": [
+          {
+            "okta": [
+              "Administrators",
+              "Authors",
+              "Viewers"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "description": "The Id of the folder that you would like to get the contents of; includes folders and models.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "format": "double",
+              "type": "number"
+            }
+          },
+          {
+            "description": "A 1 based page number used in conjunction with `perPage`.",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            },
+            "example": "1"
+          },
+          {
+            "description": "The number of items to return per page.",
+            "in": "query",
+            "name": "perPage",
+            "required": false,
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            },
+            "example": "20"
+          },
+          {
+            "description": "An [`OrderExpression`](#model-OrderExpression). See the [API Reference](https://physna.github.io/public-api-guide/api-reference/order-expressions) for more details.",
+            "in": "query",
+            "name": "folderOrder",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/OrderExpression"
+            }
+          },
+          {
+            "description": "An [`OrderExpression`](#model-OrderExpression). See the [API Reference](https://physna.github.io/public-api-guide/api-reference/order-expressions) for more details.",
+            "in": "query",
+            "name": "modelOrder",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/OrderExpression"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-PHYSNA-TENANTID",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/collections": {
+      "post": {
+        "operationId": "CreateCollection",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateCollectionResponseBody"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "message"
+                  ],
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "description": "Create a new collection with the given name and content based on the provided filter.\n\nA collection is a group of models and/or assets that can be treated as a single entity.\nHowever, it is a virtual grouping and does not affect the actual models or assets.",
+        "summary": "IN DEVELOPMENT",
+        "tags": [
+          "Collections"
+        ],
+        "security": [
+          {
+            "okta": [
+              "Administrators",
+              "Authors",
+              "Viewers"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "description": "The filter to apply to the models and assets to add to the collection.",
+            "in": "query",
+            "name": "filter",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/FilterExpression"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-PHYSNA-TENANTID",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "name"
+                ],
+                "type": "object"
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "BulkDeleteCollection",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteCollectionsResponseBody"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "message"
+                  ],
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "description": "Delete many collections at once based on the provided collection IDs.",
+        "summary": "IN DEVELOPMENT",
+        "tags": [
+          "Collections"
+        ],
+        "security": [
+          {
+            "okta": [
+              "Administrators",
+              "Authors",
+              "Viewers"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "description": "The IDs of the collections to delete.",
+            "in": "query",
+            "name": "ids",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-PHYSNA-TENANTID",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "get": {
+        "operationId": "GetCollectionsList",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetCollectionsListResponseBody"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "message"
+                  ],
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "description": "Get the list of collections.\nThe list is paginated and the default number of items per page is 20.",
+        "summary": "IN DEVELOPMENT",
+        "tags": [
+          "Collections"
+        ],
+        "security": [
+          {
+            "okta": [
+              "Administrators",
+              "Authors",
+              "Viewers"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "description": "The number of items per page.",
+            "in": "query",
+            "name": "perPage",
+            "required": false,
+            "schema": {
+              "default": 20,
+              "format": "double",
+              "type": "number"
+            }
+          },
+          {
+            "description": "The page number.",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "default": 1,
+              "format": "double",
+              "type": "number"
+            }
+          },
+          {
+            "description": "The field to sort by - can be 'name' or 'createdAt'. Defaults to 'createdAt'.",
+            "in": "query",
+            "name": "sortField",
+            "required": false,
+            "schema": {
+              "default": "createdAt",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The direction to sort by - can be 'asc' or 'desc'. Defaults to 'desc'.",
+            "in": "query",
+            "name": "sortDirection",
+            "required": false,
+            "schema": {
+              "default": "desc",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "tag",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-PHYSNA-TENANTID",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/collections/create": {
+      "post": {
+        "operationId": "BulkCreateCollection",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BulkCreateCollectionResponseBody"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "message"
+                  ],
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "description": "Create many collections at once based on the provided folder IDs.\nThe name of each collection will be the same as the name of the folder.",
+        "summary": "IN DEVELOPMENT",
+        "tags": [
+          "Collections"
+        ],
+        "security": [
+          {
+            "okta": [
+              "Administrators",
+              "Authors",
+              "Viewers"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "X-PHYSNA-TENANTID",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "folderIds": {
+                    "items": {
+                      "type": "number",
+                      "format": "double"
+                    },
+                    "type": "array"
+                  }
+                },
+                "required": [
+                  "folderIds"
+                ],
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/collections/collection/{name}": {
+      "get": {
+        "operationId": "GetCollectionByName",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetCollectionResponseBody"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "message"
+                  ],
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "description": "Get collection by Name.\nThe model/asset content is not included in the response.",
+        "summary": "IN DEVELOPMENT",
+        "tags": [
+          "Collections"
+        ],
+        "security": [
+          {
+            "okta": [
+              "Administrators",
+              "Authors",
+              "Viewers"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "description": "The Name of the collection to get.",
+            "in": "path",
+            "name": "name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-PHYSNA-TENANTID",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/collections/tags": {
+      "get": {
+        "operationId": "GetCollectionTags",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetCollectionTagsResponseBody"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "message"
+                  ],
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "description": "Get the list of collection tags.",
+        "summary": "IN DEVELOPMENT",
+        "tags": [
+          "Collections"
+        ],
+        "security": [
+          {
+            "okta": [
+              "Administrators",
+              "Authors",
+              "Viewers"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "X-PHYSNA-TENANTID",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/collections/{id}/add": {
+      "post": {
+        "operationId": "AddToCollection",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AddToCollectionResponseBody"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "message"
+                  ],
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "description": "Add to an existing collection the content based on the provided filter.",
+        "summary": "IN DEVELOPMENT",
+        "tags": [
+          "Collections"
+        ],
+        "security": [
+          {
+            "okta": [
+              "Administrators",
+              "Authors",
+              "Viewers"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "description": "The ID of the collection to add to.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The filter to apply to the models and assets to add to the collection.",
+            "in": "query",
+            "name": "filter",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/FilterExpression"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-PHYSNA-TENANTID",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/collections/{id}/remove": {
+      "post": {
+        "operationId": "RemoveFromCollection",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RemoveFromCollectionResponseBody"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "message"
+                  ],
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "description": "Remove from an existing collection the content based on the provided filter.",
+        "summary": "IN DEVELOPMENT",
+        "tags": [
+          "Collections"
+        ],
+        "security": [
+          {
+            "okta": [
+              "Administrators",
+              "Authors",
+              "Viewers"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "description": "The ID of the collection to remove from.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The filter to apply to the models and assets to remove from the collection.",
+            "in": "query",
+            "name": "filter",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/FilterExpression"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-PHYSNA-TENANTID",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/collections/{id}/content": {
+      "get": {
+        "operationId": "GetCollectionContent",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetCollectionContentResponseBody"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "message"
+                  ],
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "description": "Get collection model/asset content by ID.\nThe content is paginated and the default number of items per page is 20.",
+        "summary": "IN DEVELOPMENT",
+        "tags": [
+          "Collections"
+        ],
+        "security": [
+          {
+            "okta": [
+              "Administrators",
+              "Authors",
+              "Viewers"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "description": "The ID of the collection to get the content of.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The number of items per page.",
+            "in": "query",
+            "name": "perPage",
+            "required": false,
+            "schema": {
+              "default": 20,
+              "format": "double",
+              "type": "number"
+            }
+          },
+          {
+            "description": "The page number.",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "default": 1,
+              "format": "double",
+              "type": "number"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-PHYSNA-TENANTID",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/collections/{id}/reprocess": {
+      "post": {
+        "operationId": "ReprocessCollection",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReprocessCollectionResponseBody"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "message"
+                  ],
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "description": "Reprocess the content of a collection.",
+        "summary": "IN DEVELOPMENT",
+        "tags": [
+          "Collections"
+        ],
+        "security": [
+          {
+            "okta": [
+              "Administrators",
+              "Authors",
+              "Viewers"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "description": "The ID of the collection to reprocess.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-PHYSNA-TENANTID",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/collections/{id}/name": {
+      "patch": {
+        "operationId": "UpdateCollectionName",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateCollectionNameResponseBody"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "message"
+                  ],
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "description": "Update the name of a collection.",
+        "summary": "IN DEVELOPMENT",
+        "tags": [
+          "Collections"
+        ],
+        "security": [
+          {
+            "okta": [
+              "Administrators",
+              "Authors",
+              "Viewers"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "description": "The ID of the collection to update.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-PHYSNA-TENANTID",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The new name for the collection.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateCollectionNameRequestBody",
+                "description": "The new name for the collection."
+              }
+            }
+          }
+        }
+      }
+    },
+    "/collections/{id}/tag": {
+      "patch": {
+        "operationId": "UpdateCollectionTag",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateCollectionTagResponseBody"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "message"
+                  ],
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "description": "Update the tag of a collection.",
+        "summary": "IN DEVELOPMENT",
+        "tags": [
+          "Collections"
+        ],
+        "security": [
+          {
+            "okta": [
+              "Administrators",
+              "Authors",
+              "Viewers"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "description": "The ID of the collection to update.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-PHYSNA-TENANTID",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The new tag for the collection.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateCollectionTagRequestBody",
+                "description": "The new tag for the collection."
+              }
+            }
+          }
+        }
+      }
+    },
+    "/collections/{id}/matches": {
+      "get": {
+        "operationId": "GetCollectionMatches",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetCollectionMatchesResponseBody"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "message"
+                  ],
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Collections"
+        ],
+        "security": [
+          {
+            "okta": [
+              "Administrators",
+              "Authors",
+              "Viewers"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "perPage",
+            "required": false,
+            "schema": {
+              "default": 20,
+              "format": "double",
+              "type": "number"
+            }
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "default": 1,
+              "format": "double",
+              "type": "number"
+            }
+          },
+          {
+            "in": "query",
+            "name": "filter",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/FilterExpression"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-PHYSNA-TENANTID",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/collections/{id}": {
+      "get": {
+        "operationId": "GetCollections",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetCollectionResponseBody"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "message"
+                  ],
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "description": "Get collection by ID.\nThe model/asset content is not included in the response.",
+        "summary": "IN DEVELOPMENT",
+        "tags": [
+          "Collections"
+        ],
+        "security": [
+          {
+            "okta": [
+              "Administrators",
+              "Authors",
+              "Viewers"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "description": "The ID of the collection to get.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-PHYSNA-TENANTID",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "DeleteCollections",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteCollectionsResponseBody"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "message"
+                  ],
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "description": "Delete collection by ID.\nThe model/asset content is not deleted.",
+        "summary": "IN DEVELOPMENT",
+        "tags": [
+          "Collections"
+        ],
+        "security": [
+          {
+            "okta": [
+              "Administrators",
+              "Authors",
+              "Viewers"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "description": "The ID of the collection to delete.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-PHYSNA-TENANTID",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/collections/{id}/metadata/{metadataKeyId}": {
+      "put": {
+        "operationId": "UpsertCollectionMetadata",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SingleMetadataResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Collections",
+          "Metadata"
+        ],
+        "security": [
+          {
+            "okta": [
+              "Administrators",
+              "Authors"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "metadataKeyId",
+            "required": true,
+            "schema": {
+              "format": "double",
+              "type": "number"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-PHYSNA-TENANTID",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "value": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "value"
+                ],
+                "type": "object"
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "DeleteCollectionMetadata",
+        "responses": {
+          "204": {
+            "description": "No content"
+          }
+        },
+        "tags": [
+          "Metadata"
+        ],
+        "security": [
+          {
+            "okta": [
+              "Administrators",
+              "Authors"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "metadataKeyId",
+            "required": true,
+            "schema": {
+              "format": "double",
+              "type": "number"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-PHYSNA-TENANTID",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/client-credentials": {
+      "post": {
+        "operationId": "CreateClientCredentials",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SingleClientCredentialsResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "description": "Create Client Credentials. These are used for programmatic access (service-to-service communication) to the API.",
+        "tags": [
+          "ClientCredentials"
+        ],
+        "security": [
+          {
+            "okta": [
+              "Administrators",
+              "Authors",
+              "Viewers"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "X-PHYSNA-TENANTID",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "get": {
+        "operationId": "GetClientCredentials",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SingleClientCredentialsIDResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "description": "Get Client Credentials.",
+        "tags": [
+          "ClientCredentials"
+        ],
+        "security": [
+          {
+            "okta": [
+              "Administrators",
+              "Authors",
+              "Viewers"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "X-PHYSNA-TENANTID",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/client-credentials/{clientId}": {
+      "delete": {
+        "operationId": "DeleteClientCredentials",
+        "responses": {
+          "204": {
+            "description": "No content"
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "description": "Delete Client Credentials.",
+        "tags": [
+          "ClientCredentials"
+        ],
+        "security": [
+          {
+            "okta": [
+              "Administrators",
+              "Authors",
+              "Viewers"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "clientId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-PHYSNA-TENANTID",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "/v2"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Models"
+    },
+    {
+      "name": "Collections"
+    },
+    {
+      "name": "Metadata"
+    },
+    {
+      "name": "Folders"
+    },
+    {
+      "name": "Image Search"
+    },
+    {
+      "name": "Users"
+    },
+    {
+      "name": "ClientCredentials"
+    },
+    {
+      "name": "Deprecated"
+    }
+  ],
+  "externalDocs": {
+    "description": "Public Api Guide",
+    "url": "https://physna.github.io/public-api-guide/"
+  }
+}

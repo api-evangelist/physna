@@ -1,0 +1,51 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/physna-openapi-original.json
+docs: https://physna.github.io/public-api-guide/
+authentication:
+  style: oauth2-bearer
+  detail: >-
+    OAuth 2.0 access token (Okta) sent as `Authorization: Bearer <token>`.
+    Machine-to-machine uses the client_credentials grant. See
+    authentication/physna-authentication.yml.
+tenancy:
+  header: X-PHYSNA-TENANTID
+  detail: >-
+    Requests are scoped to a tenant; several operations accept an
+    `X-PHYSNA-TENANTID` header to select the tenant context.
+pagination:
+  style: page-number
+  params:
+  - page   # 1-based page number
+  - perPage
+  response_fields:
+  - PageData
+  detail: >-
+    List endpoints (e.g. GET /models) page with 1-based `page` and `perPage`
+    query params; responses carry a PageData block.
+filtering:
+  params:
+  - search
+  - filter   # FilterExpression
+  - order    # OrderExpression
+  detail: >-
+    List endpoints accept a free-text `search`, a structured `filter`
+    (FilterExpression), and an `order` (OrderExpression).
+idempotency:
+  supported: false
+  detail: No Idempotency-Key header or documented idempotency contract.
+versioning:
+  style: uri-path
+  detail: Version pinned in the path (/v2). See lifecycle/physna-lifecycle.yml.
+error_envelope:
+  schema: ErrorResponse
+  content_type: application/json
+  detail: See errors/physna-problem-types.yml. Not RFC 9457.
+rate_limiting:
+  signaled: false
+  detail: No rate-limit headers or documented quota found in the spec or guide.
+async_processing:
+  detail: >-
+    Model ingest is asynchronous — a model is uploaded then processed; match
+    and file endpoints may return 503 while processing is in progress. Poll
+    model state (GetModel / GetModelStateReport) until ready.

@@ -1,0 +1,35 @@
+generated: '2026-07-20'
+method: searched
+source: openapi/physna-openapi-original.json
+docs: https://physna.github.io/public-api-guide/api-reference/authentication.html
+summary:
+  types:
+  - oauth2
+  oauth2_flows:
+  - authorizationCode
+  - clientCredentials
+notes: >-
+  The OpenAPI declares a single oauth2 scheme named "okta" using the
+  authorizationCode flow against Physna's Okta authorization server. The public
+  API guide documents machine-to-machine access via the OAuth 2.0
+  client_credentials grant: POST to the Okta token endpoint with HTTP Basic
+  auth (CLIENT_ID:CLIENT_SECRET) and body
+  `grant_type=client_credentials&scope=tenantApp roles`. The returned Bearer
+  access_token is valid for 36000 seconds (10 hours) and is sent as
+  `Authorization: Bearer <token>`. Requests are tenant-scoped and several
+  operations additionally carry an `X-PHYSNA-TENANTID` header. Client
+  credentials are provisioned via the /client-credentials endpoints.
+schemes:
+- name: okta
+  type: oauth2
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://physna.okta.com/oauth2/default/v1/authorize
+    tokenUrl: https://physna.okta.com/oauth2/default/v1/token
+    scopes: 3
+  - flow: clientCredentials
+    tokenUrl: https://physna.okta.com/oauth2/default/v1/token
+    documented_scope: tenantApp roles
+  sources:
+  - openapi/physna-openapi-original.json
+  - https://physna.github.io/public-api-guide/api-reference/authentication.html

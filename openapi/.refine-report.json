@@ -1,0 +1,28 @@
+{
+  "provider": "physna",
+  "sources": [
+    "physna-clientcredentials-api-openapi.yml",
+    "physna-collections-api-openapi.yml",
+    "physna-deprecated-api-openapi.yml",
+    "physna-folders-api-openapi.yml",
+    "physna-image-search-api-openapi.yml",
+    "physna-metadata-api-openapi.yml",
+    "physna-models-api-openapi.yml",
+    "physna-users-api-openapi.yml"
+  ],
+  "outputs": [
+    "physna-clientcredentials-api-openapi.yml",
+    "physna-collections-api-openapi.yml",
+    "physna-deprecated-api-openapi.yml",
+    "physna-folders-api-openapi.yml",
+    "physna-image-search-api-openapi.yml",
+    "physna-metadata-api-openapi.yml",
+    "physna-models-api-openapi.yml",
+    "physna-users-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

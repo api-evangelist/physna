@@ -1,0 +1,43 @@
+generated: '2026-07-20'
+method: searched
+notes: >-
+  Probed the API host (api.physna.com) and the marketing host
+  (www.physna.com). The API host returns real 404s for all well-known paths.
+  The marketing host is a Next.js catch-all SPA that returns HTTP 200 with the
+  application HTML shell for ANY path, so its 200 responses are NOT genuine
+  well-known documents and were treated as absent (no file saved).
+hosts:
+- host: https://api.physna.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+- host: https://www.physna.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    genuine: false
+    note: SPA HTML shell, not a security.txt
+  - path: /.well-known/openid-configuration
+    status: 200
+    genuine: false
+    note: SPA HTML shell, not OIDC discovery
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    genuine: false
+    note: SPA HTML shell, not RFC 8414 metadata
+  - path: /.well-known/api-catalog
+    status: 200
+    genuine: false
+    note: SPA HTML shell, not an API catalog
+  - path: /.well-known/ai-plugin.json
+    status: 200
+    genuine: false
+    note: SPA HTML shell, not an ai-plugin manifest

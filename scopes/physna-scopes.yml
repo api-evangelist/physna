@@ -1,0 +1,42 @@
+generated: '2026-07-20'
+method: searched
+source: openapi/physna-openapi-original.json
+docs: https://physna.github.io/public-api-guide/api-reference/authentication.html
+notes: >-
+  Scopes declared on the okta authorizationCode flow are openid, tenant, and
+  roles. The public API guide's client_credentials example additionally
+  requests the composite scope string `tenantApp roles`. Administrators,
+  Authors, and Viewers are role values surfaced through the roles scope, not
+  standalone OAuth scopes.
+schemes:
+- name: okta
+  source: openapi/physna-openapi-original.json
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://physna.okta.com/oauth2/default/v1/authorize
+    tokenUrl: https://physna.okta.com/oauth2/default/v1/token
+scopes:
+- scope: Administrators
+  sources:
+  - openapi/physna-openapi-original.json
+- scope: Authors
+  sources:
+  - openapi/physna-openapi-original.json
+- scope: Viewers
+  sources:
+  - openapi/physna-openapi-original.json
+- scope: openid
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/physna-openapi-original.json
+- scope: roles
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/physna-openapi-original.json
+- scope: tenant
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/physna-openapi-original.json

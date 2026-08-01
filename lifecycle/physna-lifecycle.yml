@@ -1,0 +1,33 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/physna-openapi-original.json
+versioning:
+  scheme: uri-path
+  current: v2
+  version_string: 2.0.1
+  base_url: https://api.physna.com/v2
+  docs: https://physna.github.io/public-api-guide/
+deprecation:
+  policy_url: null
+  sunset_header: false
+  note: >-
+    No written deprecation/sunset policy or RFC 8594 Sunset header support was
+    found. Deprecation is communicated in-spec: the OpenAPI marks 11 operations
+    deprecated and groups the retired property endpoints under a "Deprecated"
+    tag. No StatusPage pointer is emitted (status.physna.com does not resolve
+    and no third-party status page was found).
+sla:
+  url: null
+status_page: null
+deprecated_operations:
+- openapi/physna-openapi-original.json#GetProperties
+- openapi/physna-openapi-original.json#CreateProperty
+- openapi/physna-openapi-original.json#DeleteProperty
+- openapi/physna-openapi-original.json#GetProperty
+- openapi/physna-openapi-original.json#GetPartToPartMatches
+- openapi/physna-openapi-original.json#GetPartInPartMatches
+- openapi/physna-openapi-original.json#GetGeoRelatedMatches
+- openapi/physna-openapi-original.json#ModelProperties
+- openapi/physna-openapi-original.json#UpsertModelProperty
+- openapi/physna-openapi-original.json#DeleteModelProperty
+- openapi/physna-openapi-original.json#ModelPropertiesList

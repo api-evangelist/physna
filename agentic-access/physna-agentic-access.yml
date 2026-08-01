@@ -1,0 +1,1201 @@
+generated: '2026-07-20'
+method: generated
+source: openapi/physna-openapi-original.json
+description: Recommended x-agentic-access execution contracts, classified heuristically from
+  the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
+  audience per deployment. See research/curity/agentic-governance/.
+summary:
+  operations: 72
+  by_action_class:
+    connected: 37
+    acting: 35
+  by_consequence:
+    read: 37
+    write: 35
+  human_in_the_loop_required: 0
+operations:
+- path: /users/me
+  method: get
+  operationId: GetMe
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - Administrators
+    - Authors
+    - Viewers
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /users/me/accept-eula
+  method: patch
+  operationId: AcceptLicenseAgreement
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - Administrators
+    - Authors
+    - Viewers
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /users
+  method: get
+  operationId: ListUsers
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - Administrators
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /users
+  method: post
+  operationId: CreateUser
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - Administrators
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /users/{id}
+  method: get
+  operationId: GetUserById
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - Administrators
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /users/{id}
+  method: delete
+  operationId: DeleteUserById
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - Administrators
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /users/{id}
+  method: patch
+  operationId: UpdateUserById
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - Administrators
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /properties
+  method: get
+  operationId: GetProperties
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - Administrators
+    - Authors
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /properties
+  method: post
+  operationId: CreateProperty
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - Administrators
+    - Authors
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /properties
+  method: delete
+  operationId: DeleteProperty
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - Administrators
+    - Authors
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /properties/{id}
+  method: get
+  operationId: GetProperty
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - Administrators
+    - Authors
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /models
+  method: get
+  operationId: GetModels
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - Administrators
+    - Authors
+    - Viewers
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /models
+  method: delete
+  operationId: DeleteModels
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - Administrators
+    - Authors
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /models
+  method: post
+  operationId: CreateModels
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - Administrators
+    - Authors
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /models/match-report
+  method: get
+  operationId: GetMatchReport
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - Administrators
+    - Authors
+    - Viewers
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /models/grouped-match-report
+  method: get
+  operationId: GetGroupedMatchReport
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - Administrators
+    - Authors
+    - Viewers
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /models/state-report
+  method: get
+  operationId: GetModelStateReport
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - Administrators
+    - Authors
+    - Viewers
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /models/reprocess
+  method: post
+  operationId: ReprocessModels
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - Administrators
+    - Authors
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /models/{id}/reprocess
+  method: post
+  operationId: ReprocessModel
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - Administrators
+    - Authors
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /models/{id}
+  method: get
+  operationId: GetModel
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - Administrators
+    - Authors
+    - Viewers
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /models/{id}
+  method: delete
+  operationId: DeleteModel
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - Administrators
+    - Authors
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /models/{id}/matches
+  method: get
+  operationId: GetModelMatches
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - Administrators
+    - Authors
+    - Viewers
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /models/{id}/part-to-part-matches
+  method: get
+  operationId: GetPartToPartMatches
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - Administrators
+    - Authors
+    - Viewers
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /models/{id}/part-matches
+  method: get
+  operationId: GetPartMatches
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - Administrators
+    - Authors
+    - Viewers
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /models/{id}/part-in-part-matches
+  method: get
+  operationId: GetPartInPartMatches
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - Administrators
+    - Authors
+    - Viewers
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /models/{id}/scan-matches
+  method: get
+  operationId: GetScanMatches
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - Administrators
+    - Authors
+    - Viewers
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /models/{id}/visual-matches
+  method: get
+  operationId: GetVisualMatches
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - Administrators
+    - Authors
+    - Viewers
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /models/{id}/geo-related-matches
+  method: get
+  operationId: GetGeoRelatedMatches
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - Administrators
+    - Authors
+    - Viewers
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /models/{id}/source-file
+  method: get
+  operationId: GetSourceFile
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - Administrators
+    - Authors
+    - Viewers
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /models/{id}/viewer-file
+  method: get
+  operationId: GetViewerFile
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - Administrators
+    - Authors
+    - Viewers
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /models/{id}/properties
+  method: get
+  operationId: ModelProperties
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - Administrators
+    - Authors
+    - Viewers
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /models/{id}/properties/{propertyId}
+  method: put
+  operationId: UpsertModelProperty
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - Administrators
+    - Authors
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /models/{id}/properties/{propertyId}
+  method: delete
+  operationId: DeleteModelProperty
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - Administrators
+    - Authors
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /models/{id}/metadata
+  method: get
+  operationId: GetMetadata
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - Administrators
+    - Authors
+    - Viewers
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /models/{id}/metadata/{metadataKeyId}
+  method: put
+  operationId: UpsertMetadata
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - Administrators
+    - Authors
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /models/{id}/metadata/{metadataKeyId}
+  method: delete
+  operationId: DeleteMetadata
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - Administrators
+    - Authors
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /models/{id}/assembly-tree
+  method: get
+  operationId: GetAssemblyTreeForModel
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - Administrators
+    - Authors
+    - Viewers
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /model-properties
+  method: get
+  operationId: ModelPropertiesList
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - Administrators
+    - Authors
+    - Viewers
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /metadata-keys
+  method: get
+  operationId: GetMetadataKeys
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - Administrators
+    - Authors
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /metadata-keys
+  method: post
+  operationId: CreateMetadataKey
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - Administrators
+    - Authors
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /metadata-keys
+  method: delete
+  operationId: DeleteMetadataKey
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - Administrators
+    - Authors
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /metadata-keys/{id}
+  method: get
+  operationId: GetMetadataKey
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - Administrators
+    - Authors
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /metadata
+  method: get
+  operationId: FindMetadata
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - Administrators
+    - Authors
+    - Viewers
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /images
+  method: post
+  operationId: GetSignedUploadUrlForImage
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - Administrators
+    - Authors
+    - Viewers
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /images/model-matches
+  method: get
+  operationId: GetImageMatches
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - Administrators
+    - Authors
+    - Viewers
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /folders
+  method: get
+  operationId: GetFolders
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - Administrators
+    - Authors
+    - Viewers
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /folders
+  method: post
+  operationId: PostFolder
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - Administrators
+    - Authors
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /folders
+  method: delete
+  operationId: DeleteFolders
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - Administrators
+    - Authors
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /folders/{id}
+  method: get
+  operationId: GetFolder
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - Administrators
+    - Authors
+    - Viewers
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /folders/{id}
+  method: patch
+  operationId: PatchFolder
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - Administrators
+    - Authors
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /folders/{id}
+  method: delete
+  operationId: DeleteFolder
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - Administrators
+    - Authors
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /folders/{id}/contents
+  method: get
+  operationId: GetFolderContents
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - Administrators
+    - Authors
+    - Viewers
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /collections
+  method: post
+  operationId: CreateCollection
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - Administrators
+    - Authors
+    - Viewers
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /collections
+  method: delete
+  operationId: BulkDeleteCollection
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - Administrators
+    - Authors
+    - Viewers
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /collections
+  method: get
+  operationId: GetCollectionsList
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - Administrators
+    - Authors
+    - Viewers
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /collections/create
+  method: post
+  operationId: BulkCreateCollection
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - Administrators
+    - Authors
+    - Viewers
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /collections/collection/{name}
+  method: get
+  operationId: GetCollectionByName
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - Administrators
+    - Authors
+    - Viewers
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /collections/tags
+  method: get
+  operationId: GetCollectionTags
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - Administrators
+    - Authors
+    - Viewers
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /collections/{id}/add
+  method: post
+  operationId: AddToCollection
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - Administrators
+    - Authors
+    - Viewers
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /collections/{id}/remove
+  method: post
+  operationId: RemoveFromCollection
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - Administrators
+    - Authors
+    - Viewers
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /collections/{id}/content
+  method: get
+  operationId: GetCollectionContent
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - Administrators
+    - Authors
+    - Viewers
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /collections/{id}/reprocess
+  method: post
+  operationId: ReprocessCollection
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - Administrators
+    - Authors
+    - Viewers
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /collections/{id}/name
+  method: patch
+  operationId: UpdateCollectionName
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - Administrators
+    - Authors
+    - Viewers
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /collections/{id}/tag
+  method: patch
+  operationId: UpdateCollectionTag
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - Administrators
+    - Authors
+    - Viewers
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /collections/{id}/matches
+  method: get
+  operationId: GetCollectionMatches
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - Administrators
+    - Authors
+    - Viewers
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /collections/{id}
+  method: get
+  operationId: GetCollections
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - Administrators
+    - Authors
+    - Viewers
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /collections/{id}
+  method: delete
+  operationId: DeleteCollections
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - Administrators
+    - Authors
+    - Viewers
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /collections/{id}/metadata/{metadataKeyId}
+  method: put
+  operationId: UpsertCollectionMetadata
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - Administrators
+    - Authors
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /collections/{id}/metadata/{metadataKeyId}
+  method: delete
+  operationId: DeleteCollectionMetadata
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - Administrators
+    - Authors
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /client-credentials
+  method: post
+  operationId: CreateClientCredentials
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - Administrators
+    - Authors
+    - Viewers
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /client-credentials
+  method: get
+  operationId: GetClientCredentials
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - Administrators
+    - Authors
+    - Viewers
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /client-credentials/{clientId}
+  method: delete
+  operationId: DeleteClientCredentials
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - Administrators
+    - Authors
+    - Viewers
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required

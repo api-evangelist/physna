@@ -1,0 +1,76 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/physna-openapi-original.json
+notes: >-
+  Entity-relationship graph derived from the v2 OpenAPI schema set and
+  id-reference fields. IDs are UUID-style; no documented id-prefix scheme.
+entities:
+- name: Model
+  description: An ingested 3D model/part and its processing state and geometry.
+  schema: Model
+  operations: [GetModels, GetModel, CreateModels, DeleteModel, ReprocessModel]
+- name: Collection
+  description: A named grouping of models used for search and organization.
+  schema: CollectionWithMetadata
+  operations: [GetCollectionsList, CreateCollection, AddToCollection, RemoveFromCollection, GetCollectionContent]
+- name: Folder
+  description: A hierarchical container for models.
+  schema: Folder
+  operations: [GetFolders, PostFolder, GetFolder, GetFolderContents]
+- name: MetadataKey
+  description: A defined metadata field that can be attached to models/collections.
+  schema: MetadataKey
+  operations: [GetMetadataKeys, CreateMetadataKey, GetMetadataKey]
+- name: Metadata
+  description: A key/value metadata entry on a model or collection.
+  schema: Metadata
+  operations: [GetMetadata, UpsertMetadata, FindMetadata]
+- name: AssemblyTree
+  description: The assembly/BOM hierarchy of parts within a model.
+  schema: AssemblyTree
+  operations: [GetAssemblyTreeForModel]
+- name: Match
+  description: A geometric/visual/scan/image similarity result referencing another model.
+  schema: ModelMatch
+  operations: [GetModelMatches, GetPartMatches, GetScanMatches, GetVisualMatches, GetImageMatches]
+- name: User
+  description: A tenant user with a role and status.
+  schema: User
+  operations: [ListUsers, GetUserById, CreateUser, UpdateUserById]
+- name: ClientCredentials
+  description: OAuth 2.0 client credentials provisioned for API access.
+  schema: ClientCredentials
+  operations: [GetClientCredentials, CreateClientCredentials, DeleteClientCredentials]
+relationships:
+- from: Model
+  to: Folder
+  type: belongs_to
+  via: folderIds
+- from: Model
+  to: Metadata
+  type: has_many
+  via: metadataKeyId
+- from: Model
+  to: AssemblyTree
+  type: has_one
+  via: model id
+- from: Collection
+  to: Model
+  type: has_many
+  via: collection membership
+- from: Collection
+  to: Metadata
+  type: has_many
+  via: metadataKeyId
+- from: Folder
+  to: Model
+  type: has_many
+  via: folder contents
+- from: Metadata
+  to: MetadataKey
+  type: belongs_to
+  via: metadataKeyId
+- from: Match
+  to: Model
+  type: belongs_to
+  via: matched model id

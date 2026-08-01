@@ -1,0 +1,19 @@
+generated: '2026-07-20'
+method: generated
+source: openapi/physna-openapi-original.json
+notes: >-
+  Generated Agent Skills grounded in real v2 operationIds (verified against the
+  OpenAPI). No provider-published skills/AGENTS.md were found.
+skills:
+- file: physna-ingest-and-search.md
+  name: Ingest a 3D model and find geometric matches
+  api: openapi/physna-openapi-original.json
+  operations: [CreateModels, GetModel, GetModelStateReport, GetPartMatches, GetModelMatches]
+- file: physna-image-to-3d-search.md
+  name: Find 3D models from a 2D image
+  api: openapi/physna-openapi-original.json
+  operations: [GetSignedUploadUrlForImage, GetImageMatches]
+- file: physna-organize-collections.md
+  name: Organize models into collections and search within them
+  api: openapi/physna-openapi-original.json
+  operations: [CreateCollection, AddToCollection, GetCollectionContent, GetCollectionMatches]

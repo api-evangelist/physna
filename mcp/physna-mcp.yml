@@ -1,0 +1,53 @@
+generated: '2026-07-20'
+method: derived
+status: candidate
+source: openapi/physna-openapi-original.json
+notes: >-
+  No official hosted or remote Physna MCP server was found (no npm
+  @modelcontextprotocol/physna package, no entry in public MCP registries, no
+  MCP reference in the public API guide as of 2026-07). This is a DERIVED
+  candidate tool surface mapped one-to-one from the v2 OpenAPI operations that
+  make sense as agent tools (geometric/visual/image search, model ingest,
+  collections, metadata). Auth is OAuth 2.0 client credentials via Physna's
+  Okta authorization server.
+server:
+  name: physna
+  transport: http
+  url: null
+tools:
+- name: search_geometric_part_matches
+  description: Find parts geometrically similar to a given model (part-to-part).
+  source_operation: openapi/physna-openapi-original.json#GetPartMatches
+- name: search_part_in_part_matches
+  description: Find models that geometrically contain a given part.
+  source_operation: openapi/physna-openapi-original.json#GetModelMatches
+- name: search_visual_matches
+  description: Find visually similar models to a given model.
+  source_operation: openapi/physna-openapi-original.json#GetVisualMatches
+- name: search_scan_matches
+  description: Match a scanned model against the model library.
+  source_operation: openapi/physna-openapi-original.json#GetScanMatches
+- name: search_image_matches
+  description: Find 3D models that match an uploaded 2D image.
+  source_operation: openapi/physna-openapi-original.json#GetImageMatches
+- name: list_models
+  description: List and filter 3D models in the tenant.
+  source_operation: openapi/physna-openapi-original.json#GetModels
+- name: get_model
+  description: Retrieve a single model by id.
+  source_operation: openapi/physna-openapi-original.json#GetModel
+- name: create_models
+  description: Ingest one or more 3D models for processing.
+  source_operation: openapi/physna-openapi-original.json#CreateModels
+- name: get_match_report
+  description: Retrieve a duplicate/similarity match report across models.
+  source_operation: openapi/physna-openapi-original.json#GetMatchReport
+- name: get_assembly_tree
+  description: Retrieve the assembly (BOM) tree for a model.
+  source_operation: openapi/physna-openapi-original.json#GetAssemblyTreeForModel
+- name: list_collections
+  description: List collections of models.
+  source_operation: openapi/physna-openapi-original.json#GetCollectionsList
+- name: find_metadata
+  description: Search model metadata across the tenant.
+  source_operation: openapi/physna-openapi-original.json#FindMetadata

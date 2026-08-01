@@ -1,26 +1,218 @@
 aid: physna
 name: Physna
-description: 'Physna is a company surfaced as a portfolio company of gv and added to the API Evangelist
-  network as a stub for enrichment. Sector: ai. This profile is a lead awaiting the enrichment pipeline.'
+description: >-
+  Physna is a geometric search and 3D deep-learning platform that lets you
+  search, compare, analyze, and organize 3D models and physical parts by their
+  actual geometry rather than by filename or metadata. Its public REST API (v2,
+  OpenAPI 3.0) exposes model ingestion and reprocessing, geometric search
+  (part-to-part, part-in-part, part, scan, visual, and geo-related matches),
+  image-based search, collections and folders, model/collection metadata and
+  metadata keys, assembly-tree traversal, match reports, user management, and
+  client-credential provisioning. The API is JSON over HTTPS, is authenticated
+  with OAuth 2.0 through Physna's Okta authorization server, and is used to
+  detect duplicate designs, discover alternative components, and organize design
+  inventory across manufacturing, engineering, and AI training use cases.
 url: https://raw.githubusercontent.com/api-evangelist/physna/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - gv
-x-tier: stub
-x-tier-reason: portfolio-lead
+x-tier: profiled
+x-tier-reason: api-surface-enriched
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://physna.com/assets/vectors/logo-p.svg
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-20'
 tags:
 - Company
 - Ai
-apis: []
+- 3D
+- Geometric Search
+- Manufacturing
+- Engineering
+- Machine Learning
+- Search
+- Computer Vision
+- Product Development
+apis:
+- aid: physna:physna-clientcredentials-api
+  name: Physna ClientCredentials API
+  description: The ClientCredentials API from Physna — 2 operation(s) for clientcredentials.
+  humanURL: https://physna.github.io/public-api-guide/
+  baseURL: https://api.physna.com/v2
+  tags:
+  - ClientCredentials
+  properties:
+  - type: OpenAPI
+    url: openapi/physna-clientcredentials-api-openapi.yml
+  - type: APIReference
+    url: https://api.physna.com/v2/docs
+  - type: Documentation
+    url: https://physna.github.io/public-api-guide/
+- aid: physna:physna-collections-api
+  name: Physna Collections API
+  description: The Collections API from Physna — 13 operation(s) for collections.
+  humanURL: https://physna.github.io/public-api-guide/
+  baseURL: https://api.physna.com/v2
+  tags:
+  - Collections
+  properties:
+  - type: OpenAPI
+    url: openapi/physna-collections-api-openapi.yml
+  - type: APIReference
+    url: https://api.physna.com/v2/docs
+  - type: Documentation
+    url: https://physna.github.io/public-api-guide/
+- aid: physna:physna-deprecated-api
+  name: Physna Deprecated API
+  description: The Deprecated API from Physna — 8 operation(s) for deprecated.
+  humanURL: https://physna.github.io/public-api-guide/
+  baseURL: https://api.physna.com/v2
+  tags:
+  - Deprecated
+  properties:
+  - type: OpenAPI
+    url: openapi/physna-deprecated-api-openapi.yml
+  - type: APIReference
+    url: https://api.physna.com/v2/docs
+  - type: Documentation
+    url: https://physna.github.io/public-api-guide/
+- aid: physna:physna-folders-api
+  name: Physna Folders API
+  description: The Folders API from Physna — 3 operation(s) for folders.
+  humanURL: https://physna.github.io/public-api-guide/
+  baseURL: https://api.physna.com/v2
+  tags:
+  - Folders
+  properties:
+  - type: OpenAPI
+    url: openapi/physna-folders-api-openapi.yml
+  - type: APIReference
+    url: https://api.physna.com/v2/docs
+  - type: Documentation
+    url: https://physna.github.io/public-api-guide/
+- aid: physna:physna-image-search-api
+  name: Physna Image Search API
+  description: The Image Search API from Physna — 2 operation(s) for image search.
+  humanURL: https://physna.github.io/public-api-guide/
+  baseURL: https://api.physna.com/v2
+  tags:
+  - Image Search
+  properties:
+  - type: OpenAPI
+    url: openapi/physna-image-search-api-openapi.yml
+  - type: APIReference
+    url: https://api.physna.com/v2/docs
+  - type: Documentation
+    url: https://physna.github.io/public-api-guide/
+- aid: physna:physna-metadata-api
+  name: Physna Metadata API
+  description: The Metadata API from Physna — 6 operation(s) for metadata.
+  humanURL: https://physna.github.io/public-api-guide/
+  baseURL: https://api.physna.com/v2
+  tags:
+  - Metadata
+  properties:
+  - type: OpenAPI
+    url: openapi/physna-metadata-api-openapi.yml
+  - type: APIReference
+    url: https://api.physna.com/v2/docs
+  - type: Documentation
+    url: https://physna.github.io/public-api-guide/
+- aid: physna:physna-models-api
+  name: Physna Models API
+  description: The Models API from Physna — 16 operation(s) for models.
+  humanURL: https://physna.github.io/public-api-guide/
+  baseURL: https://api.physna.com/v2
+  tags:
+  - Models
+  properties:
+  - type: OpenAPI
+    url: openapi/physna-models-api-openapi.yml
+  - type: APIReference
+    url: https://api.physna.com/v2/docs
+  - type: Documentation
+    url: https://physna.github.io/public-api-guide/
+- aid: physna:physna-users-api
+  name: Physna Users API
+  description: The Users API from Physna — 4 operation(s) for users.
+  humanURL: https://physna.github.io/public-api-guide/
+  baseURL: https://api.physna.com/v2
+  tags:
+  - Users
+  properties:
+  - type: OpenAPI
+    url: openapi/physna-users-api-openapi.yml
+  - type: APIReference
+    url: https://api.physna.com/v2/docs
+  - type: Documentation
+    url: https://physna.github.io/public-api-guide/
+x-enrichment:
+  date: '2026-07-20'
+  status: enriched
+  artifacts_added: 18
+  pass: local-v1
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: MCPServer
+  url: mcp/physna-mcp.yml
+- type: LLMsTxt
+  url: llms/physna-llms.txt
+- type: Overlay
+  url: overlays/physna-openapi-overlay.yaml
+- type: Conformance
+  url: conformance/physna-conformance.yml
+- type: ErrorCatalog
+  url: errors/physna-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/physna-lifecycle.yml
+- type: Conventions
+  url: conventions/physna-conventions.yml
+- type: DataModel
+  url: data-model/physna-data-model.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: DomainSecurity
+  url: security/physna-domain-security.yml
+- type: AgenticAccess
+  url: agentic-access/physna-agentic-access.yml
+- type: OAuthScopes
+  url: scopes/physna-scopes.yml
+- type: Authentication
+  url: authentication/physna-authentication.yml
 - type: Website
-  url: http://physna.com
+  url: https://www.physna.com
+- type: DeveloperPortal
+  url: https://physna.github.io/public-api-guide/
+- type: Documentation
+  url: https://physna.github.io/public-api-guide/
+- type: APIReference
+  url: https://api.physna.com/v2/docs
+- type: GettingStarted
+  url: https://physna.github.io/public-api-guide/guides/
+- type: GitHubOrganization
+  url: https://github.com/physna
+- type: Blog
+  url: https://physna.com/blog
+- type: Support
+  url: https://physna.com/contact-us
+- type: SignUp
+  url: https://physna.com/request-trial
+- type: PrivacyPolicy
+  url: https://physna.com/privacy-policy

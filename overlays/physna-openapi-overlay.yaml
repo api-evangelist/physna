@@ -1,0 +1,23 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Physna Public API
+  version: 1.0.0
+extends: openapi/physna-openapi-original.json
+actions:
+- target: $.info
+  update:
+    x-apievangelist-provider: physna
+    x-apievangelist-rating-notes: >-
+      OAuth 2.0 (Okta) secured 3D geometric-search API; 72 operations, 11
+      deprecated. No published rate-limit headers, status page, or webhooks
+      observed at enrichment time.
+    x-api-search-category: 3D Geometric Search
+- target: $.servers
+  update:
+  - url: https://api.physna.com/v2
+    description: Physna Public API v2 production (absolute form of the spec's /v2 server)
+- target: $.tags[?(@.name=='Deprecated')]
+  update:
+    description: >-
+      Operations retained for backward compatibility and slated for removal;
+      prefer the Models/Metadata equivalents. See lifecycle/physna-lifecycle.yml.

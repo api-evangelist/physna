@@ -1,0 +1,41 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/physna-openapi-original.json
+format: json
+envelope:
+  schema: ErrorResponse
+  content_type: application/json
+  note: >-
+    Errors are returned as the ErrorResponse schema over application/json; this
+    API does not use RFC 9457 application/problem+json.
+problems:
+- status: 400
+  title: Bad Request
+  description: Malformed request, invalid parameters, or an invalid filter/order expression.
+  occurrences: 6
+- status: 401
+  title: Unauthorized
+  description: Missing, expired, or invalid OAuth 2.0 Bearer access token.
+  note: Derived from the okta oauth2 security requirement applied to operations.
+- status: 403
+  title: Forbidden
+  description: The authenticated principal lacks the role/tenant scope for the operation.
+- status: 404
+  title: Not Found
+  description: The requested model, collection, folder, metadata key, or user does not exist.
+  occurrences: 14
+- status: 409
+  title: Conflict
+  description: The request conflicts with existing state (e.g. duplicate resource).
+  occurrences: 1
+- status: 500
+  title: Internal Server Error
+  description: Unexpected server-side error.
+  occurrences: 1
+- status: 503
+  title: Service Unavailable
+  description: >-
+    The resource is temporarily unavailable, typically while a model or
+    collection is still being processed/ingested. Retry after processing
+    completes.
+  occurrences: 15
