@@ -1,0 +1,108 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Physna Public ClientCredentials Image Search API",
+    "version": "2.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Image Search",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GetSignedUploadUrlForImage",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/v2/images",
+            "headers": [
+              {
+                "name": "X-PHYSNA-TENANTID",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://physna.okta.com/oauth2/default/v1/authorize",
+              "accessTokenUrl": "https://physna.okta.com/oauth2/default/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Creates signed upload information that can be used to upload the image.\nThis is meant for uploading images for image search via `/images/{id}/model-matches`.\n\nThe response will include the appropriate headers and upload URL that can be used to upload the image.\n\n```json\n{\n \"image\": {\n  \"id\": \"<imageId>\",\n  \"uploadUrl\": \"<upload-url>\",\n  \"headers\": {\n    \"<header1-name>\": \"<header1-value>\",\n    \"<header2-name>\": \"<header2-value>\",\n  }\n }\n}\n```\n\nThe image can be uploaded via a `PUT` request to the"
+        },
+        {
+          "info": {
+            "name": "GetImageMatches",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v2/images/model-matches",
+            "headers": [
+              {
+                "name": "X-PHYSNA-TENANTID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "The path that gets returned from POST `/images` route; if more than one id is provided, the results will be combined into a single search"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "A general string used to search and filter on all matched models."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "A [`FilterExpression`](#model-FilterExpression). See the [API Reference](https://physna.github.io/public-api-guide/api-reference/filter-expressions) for more details."
+              },
+              {
+                "name": "page",
+                "value": "1",
+                "type": "query",
+                "description": "A 1 based page number used in conjunction with `perPage`."
+              },
+              {
+                "name": "perPage",
+                "value": "20",
+                "type": "query",
+                "description": "The number of items to return per page."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://physna.okta.com/oauth2/default/v1/authorize",
+              "accessTokenUrl": "https://physna.okta.com/oauth2/default/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "\nWe are continually improving image recognition capabilities. At current state, the following properties are advisable for good performance:\n- Images with the object by itself.\n- Images with a plain background.\n- The color of the object usually does not affect detection outcomes.\n\n**Examples of Images that Perform Well**\n\n![Images that perform well](assets/good_images.png)\n- plain background\n- object isolated on its own\n\n**Examples of Images to Avoid**\n\n![Images to avoid](assets/bad_images.png)\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

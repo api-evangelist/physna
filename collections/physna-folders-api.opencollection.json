@@ -1,0 +1,320 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Physna Public ClientCredentials Folders API",
+    "version": "2.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Folders",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GetFolders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v2/folders",
+            "headers": [
+              {
+                "name": "X-PHYSNA-TENANTID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "The `ids` property has been deprecated. Please use the `filter` property instead."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "A [`FilterExpression`](#model-FilterExpression). See the [API Reference](https://physna.github.io/public-api-guide/api-reference/filter-expressions) for more details."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "An [`OrderExpression`](#model-OrderExpression). See the [API Reference](https://physna.github.io/public-api-guide/api-reference/order-expressions) for more details."
+              },
+              {
+                "name": "page",
+                "value": "1",
+                "type": "query",
+                "description": "A 1 based page number used in conjunction with `perPage`."
+              },
+              {
+                "name": "perPage",
+                "value": "20",
+                "type": "query",
+                "description": "The number of items to return per page."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://physna.okta.com/oauth2/default/v1/authorize",
+              "accessTokenUrl": "https://physna.okta.com/oauth2/default/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "PostFolder",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/v2/folders",
+            "headers": [
+              {
+                "name": "X-PHYSNA-TENANTID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "The name of the Folder you wish to create.\n- **Restrictions:**\n- The name must not contain any of following characters: newline (`\\n`), carriage return (`\\r`), `\"`, `#`, `*`, `/`, `:`, `<`, `>`, `?`, `[`, `\\`, `]`, `|`\n- The name must be unique (case-insensitive).\n- The name must not be equal to any of the following: `'.well-known/acme-challenge/'`, `'.'`, `'..'`\n- The name must be less than 100 characters in length."
+              },
+              {
+                "name": "description",
+                "value": "",
+                "type": "query",
+                "description": "(Optional) The description of the Folder you wish to create."
+              },
+              {
+                "name": "parentFolderId",
+                "value": "",
+                "type": "query",
+                "description": "(Optional) The id of a Parent Folder to properly nest the Folder you wish to create. If not provided, a folder will be created at the root level. Feature is currently UNAVAILABLE."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://physna.okta.com/oauth2/default/v1/authorize",
+              "accessTokenUrl": "https://physna.okta.com/oauth2/default/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "DeleteFolders",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/v2/folders",
+            "headers": [
+              {
+                "name": "X-PHYSNA-TENANTID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "A list of the folderIds that you would like deleted"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://physna.okta.com/oauth2/default/v1/authorize",
+              "accessTokenUrl": "https://physna.okta.com/oauth2/default/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Bulk delete Folders. Folders must not have any models.\nBulk delete is permanent and cannot be undone."
+        },
+        {
+          "info": {
+            "name": "GetFolder",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v2/folders/:id",
+            "headers": [
+              {
+                "name": "X-PHYSNA-TENANTID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://physna.okta.com/oauth2/default/v1/authorize",
+              "accessTokenUrl": "https://physna.okta.com/oauth2/default/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "PatchFolder",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/v2/folders/:id",
+            "headers": [
+              {
+                "name": "X-PHYSNA-TENANTID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The Id of the folder that you would like updated"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://physna.okta.com/oauth2/default/v1/authorize",
+              "accessTokenUrl": "https://physna.okta.com/oauth2/default/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "DeleteFolder",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/v2/folders/:id",
+            "headers": [
+              {
+                "name": "X-PHYSNA-TENANTID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://physna.okta.com/oauth2/default/v1/authorize",
+              "accessTokenUrl": "https://physna.okta.com/oauth2/default/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Folder must not have any models. Delete is permanent and cannot be undone."
+        },
+        {
+          "info": {
+            "name": "GetFolderContents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v2/folders/:id/contents",
+            "headers": [
+              {
+                "name": "X-PHYSNA-TENANTID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The Id of the folder that you would like to get the contents of; includes folders and models."
+              },
+              {
+                "name": "page",
+                "value": "1",
+                "type": "query",
+                "description": "A 1 based page number used in conjunction with `perPage`."
+              },
+              {
+                "name": "perPage",
+                "value": "20",
+                "type": "query",
+                "description": "The number of items to return per page."
+              },
+              {
+                "name": "folderOrder",
+                "value": "",
+                "type": "query",
+                "description": "An [`OrderExpression`](#model-OrderExpression). See the [API Reference](https://physna.github.io/public-api-guide/api-reference/order-expressions) for more details."
+              },
+              {
+                "name": "modelOrder",
+                "value": "",
+                "type": "query",
+                "description": "An [`OrderExpression`](#model-OrderExpression). See the [API Reference](https://physna.github.io/public-api-guide/api-reference/order-expressions) for more details."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://physna.okta.com/oauth2/default/v1/authorize",
+              "accessTokenUrl": "https://physna.okta.com/oauth2/default/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

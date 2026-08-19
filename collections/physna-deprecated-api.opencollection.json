@@ -1,0 +1,453 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Physna Public ClientCredentials Deprecated API",
+    "version": "2.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Deprecated",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GetProperties",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v2/properties",
+            "headers": [
+              {
+                "name": "X-PHYSNA-TENANTID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://physna.okta.com/oauth2/default/v1/authorize",
+              "accessTokenUrl": "https://physna.okta.com/oauth2/default/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "CreateProperty",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/v2/properties",
+            "headers": [
+              {
+                "name": "X-PHYSNA-TENANTID",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://physna.okta.com/oauth2/default/v1/authorize",
+              "accessTokenUrl": "https://physna.okta.com/oauth2/default/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "DeleteProperty",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/v2/properties",
+            "headers": [
+              {
+                "name": "X-PHYSNA-TENANTID",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://physna.okta.com/oauth2/default/v1/authorize",
+              "accessTokenUrl": "https://physna.okta.com/oauth2/default/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "GetProperty",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v2/properties/:id",
+            "headers": [
+              {
+                "name": "X-PHYSNA-TENANTID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://physna.okta.com/oauth2/default/v1/authorize",
+              "accessTokenUrl": "https://physna.okta.com/oauth2/default/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "GetPartToPartMatches",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v2/models/:id/part-to-part-matches",
+            "headers": [
+              {
+                "name": "X-PHYSNA-TENANTID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "threshold",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filters",
+                "value": "folderId:12 AND metadata.id:100 AND metadata.value:'Brass'",
+                "type": "query",
+                "description": "A lucene query that describes the filter. Available fields to filter include folderId, metadata.id, and metadata.value"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://physna.okta.com/oauth2/default/v1/authorize",
+              "accessTokenUrl": "https://physna.okta.com/oauth2/default/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "GetPartInPartMatches",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v2/models/:id/part-in-part-matches",
+            "headers": [
+              {
+                "name": "X-PHYSNA-TENANTID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "threshold",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filters",
+                "value": "folderId:12 AND metadata.id:100 AND metadata.value:'Brass'",
+                "type": "query",
+                "description": "A lucene query that describes the filter. Available fields to filter include folderId, metadata.id, and metadata.value"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://physna.okta.com/oauth2/default/v1/authorize",
+              "accessTokenUrl": "https://physna.okta.com/oauth2/default/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "IN DEVELOPMENT",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v2/models/:id/geo-related-matches",
+            "headers": [
+              {
+                "name": "X-PHYSNA-TENANTID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "threshold",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filters",
+                "value": "folderId:12 AND metadata.id:100 AND metadata.value:'Brass'",
+                "type": "query",
+                "description": "A lucene query that describes the filter. Available fields to filter include folderId, metadata.id, and metadata.value"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://physna.okta.com/oauth2/default/v1/authorize",
+              "accessTokenUrl": "https://physna.okta.com/oauth2/default/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "IN DEVELOPMENT"
+        },
+        {
+          "info": {
+            "name": "ModelProperties",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v2/models/:id/properties",
+            "headers": [
+              {
+                "name": "X-PHYSNA-TENANTID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://physna.okta.com/oauth2/default/v1/authorize",
+              "accessTokenUrl": "https://physna.okta.com/oauth2/default/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "UpsertModelProperty",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/v2/models/:id/properties/:propertyId",
+            "headers": [
+              {
+                "name": "X-PHYSNA-TENANTID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "propertyId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://physna.okta.com/oauth2/default/v1/authorize",
+              "accessTokenUrl": "https://physna.okta.com/oauth2/default/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "DeleteModelProperty",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/v2/models/:id/properties/:propertyId",
+            "headers": [
+              {
+                "name": "X-PHYSNA-TENANTID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "propertyId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://physna.okta.com/oauth2/default/v1/authorize",
+              "accessTokenUrl": "https://physna.okta.com/oauth2/default/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "ModelPropertiesList",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v2/model-properties",
+            "headers": [
+              {
+                "name": "X-PHYSNA-TENANTID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://physna.okta.com/oauth2/default/v1/authorize",
+              "accessTokenUrl": "https://physna.okta.com/oauth2/default/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

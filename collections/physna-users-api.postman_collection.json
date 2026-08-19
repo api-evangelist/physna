@@ -1,0 +1,1154 @@
+{
+  "item": [
+    {
+      "id": "df77a367-0949-4068-9854-34c37b79d9e5",
+      "name": "Users",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "cebdc723-2403-402d-92a5-83a7fa886d5b",
+          "name": "Get Me",
+          "request": {
+            "name": "Get Me",
+            "description": {},
+            "url": {
+              "path": [
+                "users",
+                "me"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "X-PHYSNA-TENANTID",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "openid tenant roles"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "ab7cb28f-43d9-48f4-a06a-7c4b230d94d9",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    "me"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-PHYSNA-TENANTID",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"externalId\": \"string\",\n  \"email\": \"string\",\n  \"department\": \"string\",\n  \"acceptedLicenseAgreement\": true,\n  \"status\": \"Active\",\n  \"roles\": [\n    \"Viewers\",\n    \"Viewers\"\n  ],\n  \"tenants\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9c26d674-119b-4ce0-ac35-fb61c44b9fd4",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    "me"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-PHYSNA-TENANTID",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6dda9d64-be9f-432c-a7e1-f5d1fa02de7b",
+          "name": "Accept License Agreement",
+          "request": {
+            "name": "Accept License Agreement",
+            "description": {},
+            "url": {
+              "path": [
+                "users",
+                "me",
+                "accept-eula"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "X-PHYSNA-TENANTID",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "openid tenant roles"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "afe14a21-4225-4142-abed-259e2979f15d",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    "me",
+                    "accept-eula"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-PHYSNA-TENANTID",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"externalId\": \"string\",\n  \"email\": \"string\",\n  \"department\": \"string\",\n  \"acceptedLicenseAgreement\": false,\n  \"status\": \"Suspended\",\n  \"roles\": [\n    \"Administrators\",\n    \"SA\"\n  ],\n  \"tenants\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0b2f37fe-6193-4c40-9766-5e97709d808f",
+          "name": "List Users",
+          "request": {
+            "name": "List Users",
+            "description": {},
+            "url": {
+              "path": [
+                "users"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "X-PHYSNA-TENANTID",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "openid tenant roles"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "eea1dbf8-c3bb-4aa6-affb-cca9a6ab75e8",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-PHYSNA-TENANTID",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"users\": [\n    {\n      \"id\": \"string\",\n      \"externalId\": \"string\",\n      \"email\": \"string\",\n      \"department\": \"string\",\n      \"acceptedLicenseAgreement\": false,\n      \"status\": \"Active\",\n      \"roles\": [\n        \"Authors\",\n        \"Viewers\"\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"externalId\": \"string\",\n      \"email\": \"string\",\n      \"department\": \"string\",\n      \"acceptedLicenseAgreement\": false,\n      \"status\": \"Active\",\n      \"roles\": [\n        \"Administrators\",\n        \"Administrators\"\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "144c0782-e0b9-4835-a105-c93261ee03a0",
+          "name": "Create User",
+          "request": {
+            "name": "Create User",
+            "description": {},
+            "url": {
+              "path": [
+                "users"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "X-PHYSNA-TENANTID",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "openid tenant roles"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"roles\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"email\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e90bff12-2d04-4749-8261-03faaa4905d0",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-PHYSNA-TENANTID",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"roles\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"email\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"user\": {\n    \"id\": \"string\",\n    \"externalId\": \"string\",\n    \"email\": \"string\",\n    \"department\": \"string\",\n    \"acceptedLicenseAgreement\": true,\n    \"status\": \"Active\",\n    \"roles\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d9f7a8bc-50b1-4931-b4ec-bf5a06b3a13e",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-PHYSNA-TENANTID",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"roles\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"email\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "315bd177-83ed-48f7-834e-a6cfeeb71988",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-PHYSNA-TENANTID",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"roles\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"email\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b69a10be-ac09-4ae2-86c3-76a24b9d484e",
+          "name": "Get User By Id",
+          "request": {
+            "name": "Get User By Id",
+            "description": {},
+            "url": {
+              "path": [
+                "users",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "X-PHYSNA-TENANTID",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "openid tenant roles"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b8f882b2-1ddb-4b52-856b-3a072f6ce4bd",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-PHYSNA-TENANTID",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"user\": {\n    \"id\": \"string\",\n    \"externalId\": \"string\",\n    \"email\": \"string\",\n    \"department\": \"string\",\n    \"acceptedLicenseAgreement\": true,\n    \"status\": \"Active\",\n    \"roles\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9c1af629-d21d-42c6-820d-9e259e450d81",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-PHYSNA-TENANTID",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "baf56c1b-c8cd-41b0-8679-7e22d8ea7631",
+          "name": "Delete User By Id",
+          "request": {
+            "name": "Delete User By Id",
+            "description": {},
+            "url": {
+              "path": [
+                "users",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "X-PHYSNA-TENANTID",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "openid tenant roles"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "66f9d475-719f-4533-bc98-8ff00d0698fa",
+              "name": "No content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-PHYSNA-TENANTID",
+                    "value": "<string>",
+                    "description": ""
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b1a49677-bfb4-4956-876b-83d3d112d748",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-PHYSNA-TENANTID",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3ced2f91-99d1-4161-849c-67d1fd93c59a",
+          "name": "Update User By Id",
+          "request": {
+            "name": "Update User By Id",
+            "description": {},
+            "url": {
+              "path": [
+                "users",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "X-PHYSNA-TENANTID",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "openid tenant roles"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"roles\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"status\": \"<string>\",\n  \"email\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a36a3b81-6a48-4626-b880-e61731226660",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-PHYSNA-TENANTID",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"roles\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"status\": \"<string>\",\n  \"email\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"user\": {\n    \"id\": \"string\",\n    \"externalId\": \"string\",\n    \"email\": \"string\",\n    \"department\": \"string\",\n    \"acceptedLicenseAgreement\": true,\n    \"status\": \"Active\",\n    \"roles\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "3a20b82f-a566-410b-861d-f4339f10585f",
+    "name": "Physna Public ClientCredentials Users API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Contact Support:\n Name: Support\n Email: support@physna.com",
+      "type": "text/plain"
+    }
+  }
+}

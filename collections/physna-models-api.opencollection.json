@@ -1,0 +1,854 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Physna Public ClientCredentials Models API",
+    "version": "2.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Models",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GetModels",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v2/models",
+            "headers": [
+              {
+                "name": "X-PHYSNA-TENANTID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "A general string used to search and filter on all available models."
+              },
+              {
+                "name": "folderIds",
+                "value": "",
+                "type": "query",
+                "description": "The `folderIds` property has been deprecated. Please use the `filter` property instead."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "A [`FilterExpression`](#model-FilterExpression). See the [API Reference](https://physna.github.io/public-api-guide/api-reference/filter-expressions) for more details."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "An [`OrderExpression`](#model-OrderExpression). See the [API Reference](https://physna.github.io/public-api-guide/api-reference/order-expressions) for more details. If no order is provided the results are returned in order of relevancy."
+              },
+              {
+                "name": "perPage",
+                "value": "20",
+                "type": "query",
+                "description": "The number of items to return per page."
+              },
+              {
+                "name": "page",
+                "value": "1",
+                "type": "query",
+                "description": "A 1 based page number used in conjunction with `perPage`."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://physna.okta.com/oauth2/default/v1/authorize",
+              "accessTokenUrl": "https://physna.okta.com/oauth2/default/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "CreateModels",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/v2/models",
+            "headers": [
+              {
+                "name": "X-PHYSNA-TENANTID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "createMissingFolders",
+                "value": "",
+                "type": "query",
+                "description": "If set to true, any folders that do not exist will be created. If set to false, any folders that do not exist will cause an error."
+              },
+              {
+                "name": "collection",
+                "value": "",
+                "type": "query",
+                "description": "Optional name of a collection the uploaded models will be added to. If the collection does not exist, it will be created."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://physna.okta.com/oauth2/default/v1/authorize",
+              "accessTokenUrl": "https://physna.okta.com/oauth2/default/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Create Records for models and receive the needed signed uploadUrl to upload the model files and initiate ingestion.\n\nCurrent Limitations:\n-  Filetypes Supported: '.3ds', '.asm', '.catpart', '.catproduct', '.glb', '.iges', '.igs', '.obj', '.par', '.prt', '.sldasm', '.sldprt', '.stl', '.step', '.stp', '.x_b', '.x_t',\n-  Versioned Creo files are also supported. For example `part.prt.1` or `assembly.asm.2`.\n-  Maximum 100 Models can be created at once.\n-  The `folderName` used in the `filePath` must"
+        },
+        {
+          "info": {
+            "name": "DeleteModels",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/v2/models",
+            "headers": [
+              {
+                "name": "X-PHYSNA-TENANTID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "A list of modelIds to be deleted"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://physna.okta.com/oauth2/default/v1/authorize",
+              "accessTokenUrl": "https://physna.okta.com/oauth2/default/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Bulk delete models. Bulk delete is permanent and cannot be undone."
+        },
+        {
+          "info": {
+            "name": "IN DEVELOPMENT",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v2/models/match-report",
+            "headers": [
+              {
+                "name": "X-PHYSNA-TENANTID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "threshold",
+                "value": "",
+                "type": "query",
+                "description": "A float number that is the minimum percentage a match must be to be returned as a counted match."
+              },
+              {
+                "name": "folderIds",
+                "value": "",
+                "type": "query",
+                "description": "A list of folder ids to filter the matches and counts by."
+              },
+              {
+                "name": "page",
+                "value": "1",
+                "type": "query",
+                "description": "A 1 based page number used in conjunction with `perPage`."
+              },
+              {
+                "name": "perPage",
+                "value": "20",
+                "type": "query",
+                "description": "The number of items to return per page."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://physna.okta.com/oauth2/default/v1/authorize",
+              "accessTokenUrl": "https://physna.okta.com/oauth2/default/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "IN DEVELOPMENT"
+        },
+        {
+          "info": {
+            "name": "IN DEVELOPMENT",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v2/models/grouped-match-report",
+            "headers": [
+              {
+                "name": "X-PHYSNA-TENANTID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "threshold",
+                "value": "",
+                "type": "query",
+                "description": "A float number that is the minimum percentage a match must be to be returned as a counted match."
+              },
+              {
+                "name": "folderIds",
+                "value": "",
+                "type": "query",
+                "description": "A list of folder ids to filter the matches and counts by."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://physna.okta.com/oauth2/default/v1/authorize",
+              "accessTokenUrl": "https://physna.okta.com/oauth2/default/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "IN DEVELOPMENT"
+        },
+        {
+          "info": {
+            "name": "GetModelStateReport",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v2/models/state-report",
+            "headers": [
+              {
+                "name": "X-PHYSNA-TENANTID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "folderIds",
+                "value": "",
+                "type": "query",
+                "description": "An optional list of folder ids to filter the model states to."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://physna.okta.com/oauth2/default/v1/authorize",
+              "accessTokenUrl": "https://physna.okta.com/oauth2/default/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "ReprocessModels",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/v2/models/reprocess",
+            "headers": [
+              {
+                "name": "X-PHYSNA-TENANTID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "A [`FilterExpression`](#model-FilterExpression). See the [API Reference](https://physna.github.io/public-api-guide/api-reference/filter-expressions) for more details."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://physna.okta.com/oauth2/default/v1/authorize",
+              "accessTokenUrl": "https://physna.okta.com/oauth2/default/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Bulk reprocess models."
+        },
+        {
+          "info": {
+            "name": "ReprocessModel",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/v2/models/:id/reprocess",
+            "headers": [
+              {
+                "name": "X-PHYSNA-TENANTID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://physna.okta.com/oauth2/default/v1/authorize",
+              "accessTokenUrl": "https://physna.okta.com/oauth2/default/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Reprocess model."
+        },
+        {
+          "info": {
+            "name": "GetModel",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v2/models/:id",
+            "headers": [
+              {
+                "name": "X-PHYSNA-TENANTID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://physna.okta.com/oauth2/default/v1/authorize",
+              "accessTokenUrl": "https://physna.okta.com/oauth2/default/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "DeleteModel",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/v2/models/:id",
+            "headers": [
+              {
+                "name": "X-PHYSNA-TENANTID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://physna.okta.com/oauth2/default/v1/authorize",
+              "accessTokenUrl": "https://physna.okta.com/oauth2/default/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Delete a model. Deleting a model is permanent and cannot be undone."
+        },
+        {
+          "info": {
+            "name": "GetModelMatches",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v2/models/:id/matches",
+            "headers": [
+              {
+                "name": "X-PHYSNA-TENANTID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "threshold",
+                "value": "",
+                "type": "query",
+                "description": "A float number (0-1) that is the minimum percentage a match must be to be returned."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "A [`FilterExpression`](#model-FilterExpression). See the [API Reference](https://physna.github.io/public-api-guide/api-reference/filter-expressions) for more details."
+              },
+              {
+                "name": "page",
+                "value": "1",
+                "type": "query",
+                "description": "A 1 based page number used in conjunction with `perPage`."
+              },
+              {
+                "name": "perPage",
+                "value": "20",
+                "type": "query",
+                "description": "The number of items to return per page."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://physna.okta.com/oauth2/default/v1/authorize",
+              "accessTokenUrl": "https://physna.okta.com/oauth2/default/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "GetPartMatches",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v2/models/:id/part-matches",
+            "headers": [
+              {
+                "name": "X-PHYSNA-TENANTID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "threshold",
+                "value": "",
+                "type": "query",
+                "description": "A float number (0-1) that is the minimum percentage a match must be to be returned."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "A [`FilterExpression`](#model-FilterExpression). See the [API Reference](https://physna.github.io/public-api-guide/api-reference/filter-expressions) for more details."
+              },
+              {
+                "name": "page",
+                "value": "1",
+                "type": "query",
+                "description": "A 1 based page number used in conjunction with `perPage`."
+              },
+              {
+                "name": "perPage",
+                "value": "20",
+                "type": "query",
+                "description": "The number of items to return per page."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://physna.okta.com/oauth2/default/v1/authorize",
+              "accessTokenUrl": "https://physna.okta.com/oauth2/default/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "GetScanMatches",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v2/models/:id/scan-matches",
+            "headers": [
+              {
+                "name": "X-PHYSNA-TENANTID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "threshold",
+                "value": "",
+                "type": "query",
+                "description": "A float number (0-1) that is the minimum percentage a match must be to be returned."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "A [`FilterExpression`](#model-FilterExpression). See the [API Reference](https://physna.github.io/public-api-guide/api-reference/filter-expressions) for more details."
+              },
+              {
+                "name": "page",
+                "value": "1",
+                "type": "query",
+                "description": "A 1 based page number used in conjunction with `perPage`."
+              },
+              {
+                "name": "perPage",
+                "value": "20",
+                "type": "query",
+                "description": "The number of items to return per page."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://physna.okta.com/oauth2/default/v1/authorize",
+              "accessTokenUrl": "https://physna.okta.com/oauth2/default/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "GetVisualMatches",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v2/models/:id/visual-matches",
+            "headers": [
+              {
+                "name": "X-PHYSNA-TENANTID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "threshold",
+                "value": "",
+                "type": "query",
+                "description": "A float number (0-1) that is the minimum percentage a match must be to be returned."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "A [`FilterExpression`](#model-FilterExpression). See the [API Reference](https://physna.github.io/public-api-guide/api-reference/filter-expressions) for more details."
+              },
+              {
+                "name": "page",
+                "value": "1",
+                "type": "query",
+                "description": "A 1 based page number used in conjunction with `perPage`."
+              },
+              {
+                "name": "perPage",
+                "value": "20",
+                "type": "query",
+                "description": "The number of items to return per page."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://physna.okta.com/oauth2/default/v1/authorize",
+              "accessTokenUrl": "https://physna.okta.com/oauth2/default/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "GetSourceFile",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v2/models/:id/source-file",
+            "headers": [
+              {
+                "name": "X-PHYSNA-TENANTID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "A processed model id"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://physna.okta.com/oauth2/default/v1/authorize",
+              "accessTokenUrl": "https://physna.okta.com/oauth2/default/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "GetViewerFile",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v2/models/:id/viewer-file",
+            "headers": [
+              {
+                "name": "X-PHYSNA-TENANTID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "A processed model id"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://physna.okta.com/oauth2/default/v1/authorize",
+              "accessTokenUrl": "https://physna.okta.com/oauth2/default/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "GetMetadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v2/models/:id/metadata",
+            "headers": [
+              {
+                "name": "X-PHYSNA-TENANTID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "A [`FilterExpression`](#model-FilterExpression). See the [API Reference](https://physna.github.io/public-api-guide/api-reference/filter-expressions) for more details."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "An [`OrderExpression`](#model-OrderExpression). See the [API Reference](https://physna.github.io/public-api-guide/api-reference/order-expressions) for more details."
+              },
+              {
+                "name": "page",
+                "value": "1",
+                "type": "query",
+                "description": "A 1 based page number used in conjunction with `perPage`."
+              },
+              {
+                "name": "perPage",
+                "value": "20",
+                "type": "query",
+                "description": "The number of items to return per page."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://physna.okta.com/oauth2/default/v1/authorize",
+              "accessTokenUrl": "https://physna.okta.com/oauth2/default/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "UpsertMetadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/v2/models/:id/metadata/:metadataKeyId",
+            "headers": [
+              {
+                "name": "X-PHYSNA-TENANTID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "metadataKeyId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://physna.okta.com/oauth2/default/v1/authorize",
+              "accessTokenUrl": "https://physna.okta.com/oauth2/default/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "GetAssemblyTreeForModel",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v2/models/:id/assembly-tree",
+            "headers": [
+              {
+                "name": "X-PHYSNA-TENANTID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://physna.okta.com/oauth2/default/v1/authorize",
+              "accessTokenUrl": "https://physna.okta.com/oauth2/default/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

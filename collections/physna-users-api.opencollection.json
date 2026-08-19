@@ -1,0 +1,229 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Physna Public ClientCredentials Users API",
+    "version": "2.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GetMe",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v2/users/me",
+            "headers": [
+              {
+                "name": "X-PHYSNA-TENANTID",
+                "value": ""
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://physna.okta.com/oauth2/default/v1/authorize",
+              "accessTokenUrl": "https://physna.okta.com/oauth2/default/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "AcceptLicenseAgreement",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/v2/users/me/accept-eula",
+            "headers": [
+              {
+                "name": "X-PHYSNA-TENANTID",
+                "value": ""
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://physna.okta.com/oauth2/default/v1/authorize",
+              "accessTokenUrl": "https://physna.okta.com/oauth2/default/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "ListUsers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v2/users",
+            "headers": [
+              {
+                "name": "X-PHYSNA-TENANTID",
+                "value": ""
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://physna.okta.com/oauth2/default/v1/authorize",
+              "accessTokenUrl": "https://physna.okta.com/oauth2/default/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "CreateUser",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/v2/users",
+            "headers": [
+              {
+                "name": "X-PHYSNA-TENANTID",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://physna.okta.com/oauth2/default/v1/authorize",
+              "accessTokenUrl": "https://physna.okta.com/oauth2/default/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "GetUserById",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v2/users/:id",
+            "headers": [
+              {
+                "name": "X-PHYSNA-TENANTID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://physna.okta.com/oauth2/default/v1/authorize",
+              "accessTokenUrl": "https://physna.okta.com/oauth2/default/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "UpdateUserById",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/v2/users/:id",
+            "headers": [
+              {
+                "name": "X-PHYSNA-TENANTID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://physna.okta.com/oauth2/default/v1/authorize",
+              "accessTokenUrl": "https://physna.okta.com/oauth2/default/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "DeleteUserById",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/v2/users/:id",
+            "headers": [
+              {
+                "name": "X-PHYSNA-TENANTID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://physna.okta.com/oauth2/default/v1/authorize",
+              "accessTokenUrl": "https://physna.okta.com/oauth2/default/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,645 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Physna Public ClientCredentials Collections API",
+    "version": "2.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Collections",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "IN DEVELOPMENT",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v2/collections",
+            "headers": [
+              {
+                "name": "X-PHYSNA-TENANTID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query",
+                "description": "The number of items per page."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page number."
+              },
+              {
+                "name": "sortField",
+                "value": "",
+                "type": "query",
+                "description": "The field to sort by - can be 'name' or 'createdAt'. Defaults to 'createdAt'."
+              },
+              {
+                "name": "sortDirection",
+                "value": "",
+                "type": "query",
+                "description": "The direction to sort by - can be 'asc' or 'desc'. Defaults to 'desc'."
+              },
+              {
+                "name": "tag",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://physna.okta.com/oauth2/default/v1/authorize",
+              "accessTokenUrl": "https://physna.okta.com/oauth2/default/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get the list of collections.\nThe list is paginated and the default number of items per page is 20."
+        },
+        {
+          "info": {
+            "name": "IN DEVELOPMENT",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/v2/collections",
+            "headers": [
+              {
+                "name": "X-PHYSNA-TENANTID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "The filter to apply to the models and assets to add to the collection."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://physna.okta.com/oauth2/default/v1/authorize",
+              "accessTokenUrl": "https://physna.okta.com/oauth2/default/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Create a new collection with the given name and content based on the provided filter.\n\nA collection is a group of models and/or assets that can be treated as a single entity.\nHowever, it is a virtual grouping and does not affect the actual models or assets."
+        },
+        {
+          "info": {
+            "name": "IN DEVELOPMENT",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/v2/collections",
+            "headers": [
+              {
+                "name": "X-PHYSNA-TENANTID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "The IDs of the collections to delete."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://physna.okta.com/oauth2/default/v1/authorize",
+              "accessTokenUrl": "https://physna.okta.com/oauth2/default/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Delete many collections at once based on the provided collection IDs."
+        },
+        {
+          "info": {
+            "name": "IN DEVELOPMENT",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/v2/collections/create",
+            "headers": [
+              {
+                "name": "X-PHYSNA-TENANTID",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://physna.okta.com/oauth2/default/v1/authorize",
+              "accessTokenUrl": "https://physna.okta.com/oauth2/default/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Create many collections at once based on the provided folder IDs.\nThe name of each collection will be the same as the name of the folder."
+        },
+        {
+          "info": {
+            "name": "IN DEVELOPMENT",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v2/collections/collection/:name",
+            "headers": [
+              {
+                "name": "X-PHYSNA-TENANTID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The Name of the collection to get."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://physna.okta.com/oauth2/default/v1/authorize",
+              "accessTokenUrl": "https://physna.okta.com/oauth2/default/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get collection by Name.\nThe model/asset content is not included in the response."
+        },
+        {
+          "info": {
+            "name": "IN DEVELOPMENT",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v2/collections/tags",
+            "headers": [
+              {
+                "name": "X-PHYSNA-TENANTID",
+                "value": ""
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://physna.okta.com/oauth2/default/v1/authorize",
+              "accessTokenUrl": "https://physna.okta.com/oauth2/default/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get the list of collection tags."
+        },
+        {
+          "info": {
+            "name": "IN DEVELOPMENT",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/v2/collections/:id/add",
+            "headers": [
+              {
+                "name": "X-PHYSNA-TENANTID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the collection to add to."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "The filter to apply to the models and assets to add to the collection."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://physna.okta.com/oauth2/default/v1/authorize",
+              "accessTokenUrl": "https://physna.okta.com/oauth2/default/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Add to an existing collection the content based on the provided filter."
+        },
+        {
+          "info": {
+            "name": "IN DEVELOPMENT",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/v2/collections/:id/remove",
+            "headers": [
+              {
+                "name": "X-PHYSNA-TENANTID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the collection to remove from."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "The filter to apply to the models and assets to remove from the collection."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://physna.okta.com/oauth2/default/v1/authorize",
+              "accessTokenUrl": "https://physna.okta.com/oauth2/default/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Remove from an existing collection the content based on the provided filter."
+        },
+        {
+          "info": {
+            "name": "IN DEVELOPMENT",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v2/collections/:id/content",
+            "headers": [
+              {
+                "name": "X-PHYSNA-TENANTID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the collection to get the content of."
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query",
+                "description": "The number of items per page."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page number."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://physna.okta.com/oauth2/default/v1/authorize",
+              "accessTokenUrl": "https://physna.okta.com/oauth2/default/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get collection model/asset content by ID.\nThe content is paginated and the default number of items per page is 20."
+        },
+        {
+          "info": {
+            "name": "IN DEVELOPMENT",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/v2/collections/:id/reprocess",
+            "headers": [
+              {
+                "name": "X-PHYSNA-TENANTID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the collection to reprocess."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://physna.okta.com/oauth2/default/v1/authorize",
+              "accessTokenUrl": "https://physna.okta.com/oauth2/default/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Reprocess the content of a collection."
+        },
+        {
+          "info": {
+            "name": "IN DEVELOPMENT",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/v2/collections/:id/name",
+            "headers": [
+              {
+                "name": "X-PHYSNA-TENANTID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the collection to update."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://physna.okta.com/oauth2/default/v1/authorize",
+              "accessTokenUrl": "https://physna.okta.com/oauth2/default/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Update the name of a collection."
+        },
+        {
+          "info": {
+            "name": "IN DEVELOPMENT",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "/v2/collections/:id/tag",
+            "headers": [
+              {
+                "name": "X-PHYSNA-TENANTID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the collection to update."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://physna.okta.com/oauth2/default/v1/authorize",
+              "accessTokenUrl": "https://physna.okta.com/oauth2/default/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Update the tag of a collection."
+        },
+        {
+          "info": {
+            "name": "GetCollectionMatches",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v2/collections/:id/matches",
+            "headers": [
+              {
+                "name": "X-PHYSNA-TENANTID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://physna.okta.com/oauth2/default/v1/authorize",
+              "accessTokenUrl": "https://physna.okta.com/oauth2/default/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "IN DEVELOPMENT",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v2/collections/:id",
+            "headers": [
+              {
+                "name": "X-PHYSNA-TENANTID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the collection to get."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://physna.okta.com/oauth2/default/v1/authorize",
+              "accessTokenUrl": "https://physna.okta.com/oauth2/default/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get collection by ID.\nThe model/asset content is not included in the response."
+        },
+        {
+          "info": {
+            "name": "IN DEVELOPMENT",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/v2/collections/:id",
+            "headers": [
+              {
+                "name": "X-PHYSNA-TENANTID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the collection to delete."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://physna.okta.com/oauth2/default/v1/authorize",
+              "accessTokenUrl": "https://physna.okta.com/oauth2/default/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Delete collection by ID.\nThe model/asset content is not deleted."
+        },
+        {
+          "info": {
+            "name": "UpsertCollectionMetadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/v2/collections/:id/metadata/:metadataKeyId",
+            "headers": [
+              {
+                "name": "X-PHYSNA-TENANTID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "metadataKeyId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://physna.okta.com/oauth2/default/v1/authorize",
+              "accessTokenUrl": "https://physna.okta.com/oauth2/default/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

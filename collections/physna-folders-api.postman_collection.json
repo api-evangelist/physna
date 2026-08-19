@@ -1,0 +1,1024 @@
+{
+  "item": [
+    {
+      "id": "9926f96c-3190-4d68-abdf-01e64e62d96a",
+      "name": "Folders",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6798c628-0b4d-40c0-939e-f9ca7284b13f",
+          "name": "Get Folders",
+          "request": {
+            "name": "Get Folders",
+            "description": {},
+            "url": {
+              "path": [
+                "folders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "ids",
+                  "value": "<double>",
+                  "description": "The `ids` property has been deprecated. Please use the `filter` property instead."
+                },
+                {
+                  "disabled": false,
+                  "key": "ids",
+                  "value": "<double>",
+                  "description": "The `ids` property has been deprecated. Please use the `filter` property instead."
+                },
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>",
+                  "description": "A [`FilterExpression`](#model-FilterExpression). See the [API Reference](https://physna.github.io/public-api-guide/api-reference/filter-expressions) for more details."
+                },
+                {
+                  "disabled": false,
+                  "key": "order",
+                  "value": "<string>",
+                  "description": "An [`OrderExpression`](#model-OrderExpression). See the [API Reference](https://physna.github.io/public-api-guide/api-reference/order-expressions) for more details."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "A 1 based page number used in conjunction with `perPage`."
+                },
+                {
+                  "disabled": false,
+                  "key": "perPage",
+                  "value": "<integer>",
+                  "description": "The number of items to return per page."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "X-PHYSNA-TENANTID",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "openid tenant roles"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "37d35a68-2bfb-4481-9302-d321eb42279f",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "folders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ids",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "ids",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "perPage",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-PHYSNA-TENANTID",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"pageData\": {\n    \"total\": 2991,\n    \"perPage\": 3364,\n    \"currentPage\": 9224,\n    \"lastPage\": 2205,\n    \"startIndex\": 6211,\n    \"endIndex\": 5256\n  },\n  \"folders\": [\n    {\n      \"id\": 5913.995885269169,\n      \"createdAt\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"parentFolderId\": 506.33797020143146,\n      \"children\": [\n        3724.024793128522,\n        194.52210825754878\n      ]\n    },\n    {\n      \"id\": 6064.703001225869,\n      \"createdAt\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"parentFolderId\": 4286.213832634878,\n      \"children\": [\n        6531.427881318891,\n        8191.638047123427\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a287f3f6-eee7-4e3e-a662-9767c8e80511",
+          "name": "Post Folder",
+          "request": {
+            "name": "Post Folder",
+            "description": {},
+            "url": {
+              "path": [
+                "folders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "(Required) The name of the Folder you wish to create.\n- **Restrictions:**\n- The name must not contain any of following characters: newline (`\\n`), carriage return (`\\r`), `\"`, `#`, `*`, `/`, `:`, `<`, `>`, `?`, `[`, `\\`, `]`, `|`\n- The name must be unique (case-insensitive).\n- The name must not be equal to any of the following: `'.well-known/acme-challenge/'`, `'.'`, `'..'`\n- The name must be less than 100 characters in length."
+                },
+                {
+                  "disabled": false,
+                  "key": "description",
+                  "value": "<string>",
+                  "description": "(Optional) The description of the Folder you wish to create."
+                },
+                {
+                  "disabled": false,
+                  "key": "parentFolderId",
+                  "value": "<double>",
+                  "description": "(Optional) The id of a Parent Folder to properly nest the Folder you wish to create. If not provided, a folder will be created at the root level. Feature is currently UNAVAILABLE."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "X-PHYSNA-TENANTID",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "openid tenant roles"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b00c5da4-49e4-49ab-8e0b-371ba844fd26",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "folders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "description",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "parentFolderId",
+                      "value": "<double>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-PHYSNA-TENANTID",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"folder\": {\n    \"id\": 7606.011305037592,\n    \"createdAt\": \"string\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"parentFolderId\": 4038.2565110130586,\n    \"children\": [\n      893.423860887952,\n      4263.644372609624\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "95b3e003-955e-457b-86ef-4321801f22ad",
+          "name": "Delete Folders",
+          "request": {
+            "name": "Delete Folders",
+            "description": {
+              "content": "Bulk delete Folders. Folders must not have any models.\nBulk delete is permanent and cannot be undone.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "folders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "ids",
+                  "value": "<double>",
+                  "description": "(Required) A list of the folderIds that you would like deleted"
+                },
+                {
+                  "disabled": false,
+                  "key": "ids",
+                  "value": "<double>",
+                  "description": "(Required) A list of the folderIds that you would like deleted"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "X-PHYSNA-TENANTID",
+                "value": "<string>",
+                "description": ""
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "openid tenant roles"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "97c063b5-c96e-4736-bbcf-182a365ed215",
+              "name": "No content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "folders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ids",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "ids",
+                      "value": "<double>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-PHYSNA-TENANTID",
+                    "value": "<string>",
+                    "description": ""
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d0249e0f-e698-4b55-8da8-610b44b84974",
+          "name": "Get Folder",
+          "request": {
+            "name": "Get Folder",
+            "description": {},
+            "url": {
+              "path": [
+                "folders",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<double>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "X-PHYSNA-TENANTID",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "openid tenant roles"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "be809638-7732-4b0c-833a-a9b671d6747f",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "folders",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<double>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-PHYSNA-TENANTID",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"folder\": {\n    \"id\": 7606.011305037592,\n    \"createdAt\": \"string\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"parentFolderId\": 4038.2565110130586,\n    \"children\": [\n      893.423860887952,\n      4263.644372609624\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e92c4689-a135-4019-8467-a5f269fa68d7",
+          "name": "Patch Folder",
+          "request": {
+            "name": "Patch Folder",
+            "description": {},
+            "url": {
+              "path": [
+                "folders",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<double>",
+                  "key": "id",
+                  "description": "(Required) The Id of the folder that you would like updated"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "X-PHYSNA-TENANTID",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "openid tenant roles"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"description\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c23bd7ee-302d-4926-82b4-a808afd81e8a",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "folders",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<double>",
+                      "key": "id",
+                      "description": "(Required) The Id of the folder that you would like updated"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-PHYSNA-TENANTID",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"affected\": 6123.671296628174\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c5e203af-1abb-46fb-9b76-195ade8b850f",
+          "name": "Delete Folder",
+          "request": {
+            "name": "Delete Folder",
+            "description": {
+              "content": "Folder must not have any models. Delete is permanent and cannot be undone.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "folders",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<double>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "X-PHYSNA-TENANTID",
+                "value": "<string>",
+                "description": ""
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "openid tenant roles"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "69f0ae6c-41a0-403f-a561-2874ac14c8da",
+              "name": "No content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "folders",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<double>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-PHYSNA-TENANTID",
+                    "value": "<string>",
+                    "description": ""
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0b6d84d6-fb04-41d7-96b0-7e5c5b4bd795",
+          "name": "Get Folder Contents",
+          "request": {
+            "name": "Get Folder Contents",
+            "description": {},
+            "url": {
+              "path": [
+                "folders",
+                ":id",
+                "contents"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "A 1 based page number used in conjunction with `perPage`."
+                },
+                {
+                  "disabled": false,
+                  "key": "perPage",
+                  "value": "<integer>",
+                  "description": "The number of items to return per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "folderOrder",
+                  "value": "<string>",
+                  "description": "An [`OrderExpression`](#model-OrderExpression). See the [API Reference](https://physna.github.io/public-api-guide/api-reference/order-expressions) for more details."
+                },
+                {
+                  "disabled": false,
+                  "key": "modelOrder",
+                  "value": "<string>",
+                  "description": "An [`OrderExpression`](#model-OrderExpression). See the [API Reference](https://physna.github.io/public-api-guide/api-reference/order-expressions) for more details."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<double>",
+                  "key": "id",
+                  "description": "(Required) The Id of the folder that you would like to get the contents of; includes folders and models."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "X-PHYSNA-TENANTID",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "openid tenant roles"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "bdfe1b8e-1438-4085-bb9e-93143831254e",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "folders",
+                    ":id",
+                    "contents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "perPage",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "folderOrder",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "modelOrder",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<double>",
+                      "key": "id",
+                      "description": "(Required) The Id of the folder that you would like to get the contents of; includes folders and models."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-PHYSNA-TENANTID",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"createdAt\": \"string\",\n      \"id\": 4990.070790834186,\n      \"name\": \"string\",\n      \"type\": \"folder\",\n      \"description\": \"string\",\n      \"parentFolderId\": 8189.829319591735,\n      \"children\": [\n        9547.497565579477,\n        3798.597393396896\n      ]\n    },\n    {\n      \"createdAt\": \"string\",\n      \"id\": 4559.874254173186,\n      \"name\": \"string\",\n      \"type\": \"folder\",\n      \"description\": \"string\",\n      \"parentFolderId\": 272.39884073829825,\n      \"children\": [\n        6029.723798822883,\n        3591.1590093223845\n      ]\n    }\n  ],\n  \"page\": 841.7523492905732,\n  \"perPage\": 4900.150930314391,\n  \"total\": 8987.193273907926\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "bc67ad67-9d83-4661-ba09-3caae0c3ec72",
+    "name": "Physna Public ClientCredentials Folders API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Contact Support:\n Name: Support\n Email: support@physna.com",
+      "type": "text/plain"
+    }
+  }
+}

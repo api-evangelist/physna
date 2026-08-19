@@ -1,0 +1,445 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Physna Public ClientCredentials Metadata API",
+    "version": "2.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Metadata",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GetMetadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v2/models/:id/metadata",
+            "headers": [
+              {
+                "name": "X-PHYSNA-TENANTID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "A [`FilterExpression`](#model-FilterExpression). See the [API Reference](https://physna.github.io/public-api-guide/api-reference/filter-expressions) for more details."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "An [`OrderExpression`](#model-OrderExpression). See the [API Reference](https://physna.github.io/public-api-guide/api-reference/order-expressions) for more details."
+              },
+              {
+                "name": "page",
+                "value": "1",
+                "type": "query",
+                "description": "A 1 based page number used in conjunction with `perPage`."
+              },
+              {
+                "name": "perPage",
+                "value": "20",
+                "type": "query",
+                "description": "The number of items to return per page."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://physna.okta.com/oauth2/default/v1/authorize",
+              "accessTokenUrl": "https://physna.okta.com/oauth2/default/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "UpsertMetadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/v2/models/:id/metadata/:metadataKeyId",
+            "headers": [
+              {
+                "name": "X-PHYSNA-TENANTID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "metadataKeyId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://physna.okta.com/oauth2/default/v1/authorize",
+              "accessTokenUrl": "https://physna.okta.com/oauth2/default/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "DeleteMetadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/v2/models/:id/metadata/:metadataKeyId",
+            "headers": [
+              {
+                "name": "X-PHYSNA-TENANTID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "metadataKeyId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://physna.okta.com/oauth2/default/v1/authorize",
+              "accessTokenUrl": "https://physna.okta.com/oauth2/default/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "GetMetadataKeys",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v2/metadata-keys",
+            "headers": [
+              {
+                "name": "X-PHYSNA-TENANTID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "The `ids` property has been deprecated. Please use the `filter` property instead."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "A `FilterExpression`. See the [API Reference](https://physna.github.io/public-api-guide/api-reference/filter-expressions) for more details."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "An `OrderExpression`. See the [API Reference](https://physna.github.io/public-api-guide/api-reference/order-expressions) for more details."
+              },
+              {
+                "name": "page",
+                "value": "1",
+                "type": "query",
+                "description": "A 1 based page number used in conjunction with `perPage`."
+              },
+              {
+                "name": "perPage",
+                "value": "20",
+                "type": "query",
+                "description": "The number of items to return per page."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://physna.okta.com/oauth2/default/v1/authorize",
+              "accessTokenUrl": "https://physna.okta.com/oauth2/default/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "CreateMetadataKey",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/v2/metadata-keys",
+            "headers": [
+              {
+                "name": "X-PHYSNA-TENANTID",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://physna.okta.com/oauth2/default/v1/authorize",
+              "accessTokenUrl": "https://physna.okta.com/oauth2/default/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "DeleteMetadataKey",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/v2/metadata-keys",
+            "headers": [
+              {
+                "name": "X-PHYSNA-TENANTID",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://physna.okta.com/oauth2/default/v1/authorize",
+              "accessTokenUrl": "https://physna.okta.com/oauth2/default/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Removes the metadata key and values associated. Note: removing a metadata key will remove the key and value from all models that use the metadata key"
+        },
+        {
+          "info": {
+            "name": "GetMetadataKey",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v2/metadata-keys/:id",
+            "headers": [
+              {
+                "name": "X-PHYSNA-TENANTID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://physna.okta.com/oauth2/default/v1/authorize",
+              "accessTokenUrl": "https://physna.okta.com/oauth2/default/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "FindMetadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v2/metadata",
+            "headers": [
+              {
+                "name": "X-PHYSNA-TENANTID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "modelIds",
+                "value": "",
+                "type": "query",
+                "description": "The `modelIds` property has been deprecated. Please use the `filter` property instead."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "A [`FilterExpression`](#model-FilterExpression). See the [API Reference](https://physna.github.io/public-api-guide/api-reference/filter-expressions) for more details."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "An [`OrderExpression`](#model-OrderExpression). See the [API Reference](https://physna.github.io/public-api-guide/api-reference/order-expressions) for more details."
+              },
+              {
+                "name": "page",
+                "value": "1",
+                "type": "query",
+                "description": "A 1 based page number used in conjunction with `perPage`."
+              },
+              {
+                "name": "perPage",
+                "value": "20",
+                "type": "query",
+                "description": "The number of items to return per page."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://physna.okta.com/oauth2/default/v1/authorize",
+              "accessTokenUrl": "https://physna.okta.com/oauth2/default/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "UpsertCollectionMetadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/v2/collections/:id/metadata/:metadataKeyId",
+            "headers": [
+              {
+                "name": "X-PHYSNA-TENANTID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "metadataKeyId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://physna.okta.com/oauth2/default/v1/authorize",
+              "accessTokenUrl": "https://physna.okta.com/oauth2/default/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "DeleteCollectionMetadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/v2/collections/:id/metadata/:metadataKeyId",
+            "headers": [
+              {
+                "name": "X-PHYSNA-TENANTID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "metadataKeyId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://physna.okta.com/oauth2/default/v1/authorize",
+              "accessTokenUrl": "https://physna.okta.com/oauth2/default/v1/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

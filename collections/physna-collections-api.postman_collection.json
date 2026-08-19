@@ -1,0 +1,3332 @@
+{
+  "item": [
+    {
+      "id": "9591ae79-1226-41ec-b1fc-86e52bd12461",
+      "name": "Collections",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f7331ef9-a550-4f3e-a135-574c32f29278",
+          "name": "IN DEVELOPMENT",
+          "request": {
+            "name": "IN DEVELOPMENT",
+            "description": {
+              "content": "Create a new collection with the given name and content based on the provided filter.\n\nA collection is a group of models and/or assets that can be treated as a single entity.\nHowever, it is a virtual grouping and does not affect the actual models or assets.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "collections"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>",
+                  "description": "(Required) The filter to apply to the models and assets to add to the collection."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "X-PHYSNA-TENANTID",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "openid tenant roles"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1638cd36-6282-4bf3-a9e9-c89db326d34a",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "collections"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-PHYSNA-TENANTID",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"collectionId\": \"string\",\n  \"affected\": 3583.259214112755\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b5460e2b-48a3-47aa-9cad-b7580992d43c",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "collections"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-PHYSNA-TENANTID",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e1f29738-e03e-4e28-9f8d-23dcb8f1950a",
+          "name": "IN DEVELOPMENT",
+          "request": {
+            "name": "IN DEVELOPMENT",
+            "description": {
+              "content": "Delete many collections at once based on the provided collection IDs.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "collections"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "ids",
+                  "value": "<string>",
+                  "description": "(Required) The IDs of the collections to delete."
+                },
+                {
+                  "disabled": false,
+                  "key": "ids",
+                  "value": "<string>",
+                  "description": "(Required) The IDs of the collections to delete."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "X-PHYSNA-TENANTID",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "openid tenant roles"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "a9e86134-5914-4d89-b67c-6b69b00e08f1",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "collections"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ids",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-PHYSNA-TENANTID",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"affected\": 4224.824077535542\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "98baa92b-8a22-48bb-9f87-c74804b4f592",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "collections"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ids",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-PHYSNA-TENANTID",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "971a6501-e533-4f56-aab3-a783d41a244d",
+          "name": "IN DEVELOPMENT",
+          "request": {
+            "name": "IN DEVELOPMENT",
+            "description": {
+              "content": "Get the list of collections.\nThe list is paginated and the default number of items per page is 20.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "collections"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "perPage",
+                  "value": "20",
+                  "description": "The number of items per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "The page number."
+                },
+                {
+                  "disabled": false,
+                  "key": "sortField",
+                  "value": "createdAt",
+                  "description": "The field to sort by - can be 'name' or 'createdAt'. Defaults to 'createdAt'."
+                },
+                {
+                  "disabled": false,
+                  "key": "sortDirection",
+                  "value": "desc",
+                  "description": "The direction to sort by - can be 'asc' or 'desc'. Defaults to 'desc'."
+                },
+                {
+                  "disabled": false,
+                  "key": "tag",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "X-PHYSNA-TENANTID",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "openid tenant roles"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "fa23b48e-7b7f-40dc-bb47-6626fe1a15d9",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "collections"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "perPage",
+                      "value": "20"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "sortField",
+                      "value": "createdAt"
+                    },
+                    {
+                      "key": "sortDirection",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "tag",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-PHYSNA-TENANTID",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"createdAt\": \"string\",\n      \"thumbnails\": [\n        \"string\",\n        \"string\"\n      ],\n      \"tag\": \"string\",\n      \"metadata\": [\n        {\n          \"metadataKeyId\": 4980.212780261583,\n          \"collectionId\": \"string\",\n          \"name\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"metadataKeyId\": 7458.844877984465,\n          \"collectionId\": \"string\",\n          \"name\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"createdAt\": \"string\",\n      \"thumbnails\": [\n        \"string\",\n        \"string\"\n      ],\n      \"tag\": \"string\",\n      \"metadata\": [\n        {\n          \"metadataKeyId\": 8232.38893531356,\n          \"collectionId\": \"string\",\n          \"name\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"metadataKeyId\": 6441.658938086328,\n          \"collectionId\": \"string\",\n          \"name\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"page\": 418.1123337324022,\n  \"perPage\": 7377.960675241462,\n  \"total\": 1840.756691228479\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d01f76cc-55fe-4d96-8b49-e4925af9429d",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "collections"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "perPage",
+                      "value": "20"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "sortField",
+                      "value": "createdAt"
+                    },
+                    {
+                      "key": "sortDirection",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "tag",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-PHYSNA-TENANTID",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c36d476b-33de-44c9-9222-2c835f202da6",
+          "name": "IN DEVELOPMENT",
+          "request": {
+            "name": "IN DEVELOPMENT",
+            "description": {
+              "content": "Create many collections at once based on the provided folder IDs.\nThe name of each collection will be the same as the name of the folder.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "collections",
+                "create"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "X-PHYSNA-TENANTID",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "openid tenant roles"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"folderIds\": [\n    \"<double>\",\n    \"<double>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6a979656-67ef-4175-b306-b2a9a65d83af",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "collections",
+                    "create"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-PHYSNA-TENANTID",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"folderIds\": [\n    \"<double>\",\n    \"<double>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"affected\": 7972.12751224813\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2d2fc7fc-bff5-4463-8829-bf72124d3e54",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "collections",
+                    "create"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-PHYSNA-TENANTID",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"folderIds\": [\n    \"<double>\",\n    \"<double>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "761c535c-156a-4995-bf24-4fb15e2f3fc3",
+          "name": "IN DEVELOPMENT",
+          "request": {
+            "name": "IN DEVELOPMENT",
+            "description": {
+              "content": "Get collection by Name.\nThe model/asset content is not included in the response.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "collections",
+                "collection",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) The Name of the collection to get."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "X-PHYSNA-TENANTID",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "openid tenant roles"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b9b6030f-06a2-445c-85e3-374438cff093",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "collections",
+                    "collection",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The Name of the collection to get."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-PHYSNA-TENANTID",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"createdAt\": \"string\",\n  \"thumbnails\": [\n    \"string\",\n    \"string\"\n  ],\n  \"tag\": \"string\",\n  \"metadata\": [\n    {\n      \"metadataKeyId\": 4481.576205323753,\n      \"collectionId\": \"string\",\n      \"name\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"metadataKeyId\": 4217.316906047681,\n      \"collectionId\": \"string\",\n      \"name\": \"string\",\n      \"value\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "539fea78-9233-463c-b0bb-831159646b38",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "collections",
+                    "collection",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The Name of the collection to get."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-PHYSNA-TENANTID",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "aa852f48-243a-4ca2-bf83-253fb6c3872a",
+          "name": "IN DEVELOPMENT",
+          "request": {
+            "name": "IN DEVELOPMENT",
+            "description": {
+              "content": "Get the list of collection tags.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "collections",
+                "tags"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "X-PHYSNA-TENANTID",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "openid tenant roles"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "ead685b7-4ec1-4c90-bdf3-5d32f7beb497",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "collections",
+                    "tags"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-PHYSNA-TENANTID",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"tags\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9de9ebee-5c10-48b4-b64a-775dd2ec6b51",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "collections",
+                    "tags"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-PHYSNA-TENANTID",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4353b851-c795-4a00-beda-b4f542556c80",
+          "name": "IN DEVELOPMENT",
+          "request": {
+            "name": "IN DEVELOPMENT",
+            "description": {
+              "content": "Add to an existing collection the content based on the provided filter.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "collections",
+                ":id",
+                "add"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>",
+                  "description": "(Required) The filter to apply to the models and assets to add to the collection."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The ID of the collection to add to."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "X-PHYSNA-TENANTID",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "openid tenant roles"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "036dddff-e1a4-4a3f-b302-942335161a5e",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "collections",
+                    ":id",
+                    "add"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the collection to add to."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-PHYSNA-TENANTID",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"collectionId\": \"string\",\n  \"affected\": 3583.259214112755\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2f2783bb-d351-4828-8cba-9ba9a342db70",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "collections",
+                    ":id",
+                    "add"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the collection to add to."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-PHYSNA-TENANTID",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9112c178-86f6-4f6c-aee1-4a9755b0c670",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "collections",
+                    ":id",
+                    "add"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the collection to add to."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-PHYSNA-TENANTID",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ed5c4d92-dede-4dcc-8996-dfdaf627b447",
+          "name": "IN DEVELOPMENT",
+          "request": {
+            "name": "IN DEVELOPMENT",
+            "description": {
+              "content": "Remove from an existing collection the content based on the provided filter.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "collections",
+                ":id",
+                "remove"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>",
+                  "description": "(Required) The filter to apply to the models and assets to remove from the collection."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The ID of the collection to remove from."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "X-PHYSNA-TENANTID",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "openid tenant roles"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "0d76da34-53e6-4c84-99e1-72c456c25017",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "collections",
+                    ":id",
+                    "remove"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the collection to remove from."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-PHYSNA-TENANTID",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"collectionId\": \"string\",\n  \"affected\": 3583.259214112755\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "723b31d3-83e6-4cd7-841e-63670c85c6d4",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "collections",
+                    ":id",
+                    "remove"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the collection to remove from."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-PHYSNA-TENANTID",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "52af353d-a50f-4249-9863-ed9bb291f8b4",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "collections",
+                    ":id",
+                    "remove"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the collection to remove from."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-PHYSNA-TENANTID",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4a78ca3d-466c-4949-b2f2-983d55d73793",
+          "name": "IN DEVELOPMENT",
+          "request": {
+            "name": "IN DEVELOPMENT",
+            "description": {
+              "content": "Get collection model/asset content by ID.\nThe content is paginated and the default number of items per page is 20.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "collections",
+                ":id",
+                "content"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "perPage",
+                  "value": "20",
+                  "description": "The number of items per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "The page number."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The ID of the collection to get the content of."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "X-PHYSNA-TENANTID",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "openid tenant roles"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "70de49e3-fd0f-4176-bf1f-a5ddab7a3111",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "collections",
+                    ":id",
+                    "content"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "perPage",
+                      "value": "20"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the collection to get the content of."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-PHYSNA-TENANTID",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"createdAt\": \"string\",\n      \"fileName\": \"string\",\n      \"fileType\": \"string\",\n      \"folderId\": 2333.3408459026396,\n      \"id\": \"string\",\n      \"isAssembly\": true,\n      \"name\": \"string\",\n      \"ownerId\": \"string\",\n      \"state\": \"string\",\n      \"units\": \"string\",\n      \"deletedAt\": \"string\",\n      \"thumbnail\": \"string\",\n      \"collections\": [\n        {\n          \"id\": \"string\",\n          \"name\": \"string\"\n        },\n        {\n          \"id\": \"string\",\n          \"name\": \"string\"\n        }\n      ],\n      \"labels\": [\n        {\n          \"displayName\": \"string\",\n          \"source\": \"string\",\n          \"createdAt\": \"1998-07-11T14:04:15.754Z\",\n          \"rejected\": false\n        },\n        {\n          \"displayName\": \"string\",\n          \"source\": \"string\",\n          \"createdAt\": \"1972-09-10T23:15:43.323Z\",\n          \"rejected\": false\n        }\n      ],\n      \"geometry\": {\n        \"obbMinLength\": 4204.390144031454,\n        \"obbMidLength\": 242.358206321307,\n        \"obbMaxLength\": 8913.481996862545,\n        \"surfaceArea\": 7922.090328577611,\n        \"modelVolume\": 5857.939524447411\n      }\n    },\n    {\n      \"createdAt\": \"string\",\n      \"fileName\": \"string\",\n      \"fileType\": \"string\",\n      \"folderId\": 8356.281885697595,\n      \"id\": \"string\",\n      \"isAssembly\": true,\n      \"name\": \"string\",\n      \"ownerId\": \"string\",\n      \"state\": \"string\",\n      \"units\": \"string\",\n      \"deletedAt\": \"string\",\n      \"thumbnail\": \"string\",\n      \"collections\": [\n        {\n          \"id\": \"string\",\n          \"name\": \"string\"\n        },\n        {\n          \"id\": \"string\",\n          \"name\": \"string\"\n        }\n      ],\n      \"labels\": [\n        {\n          \"displayName\": \"string\",\n          \"source\": \"string\",\n          \"createdAt\": \"2010-11-18T05:01:26.012Z\",\n          \"rejected\": true\n        },\n        {\n          \"displayName\": \"string\",\n          \"source\": \"string\",\n          \"createdAt\": \"1956-08-14T16:41:26.970Z\",\n          \"rejected\": true\n        }\n      ],\n      \"geometry\": {\n        \"obbMinLength\": 2572.636384468996,\n        \"obbMidLength\": 5989.340881883397,\n        \"obbMaxLength\": 4061.1993590577968,\n        \"surfaceArea\": 5101.966312518787,\n        \"modelVolume\": 3029.0885821532056\n      }\n    }\n  ],\n  \"page\": 1067.292806402833,\n  \"perPage\": 2050.7171539289893,\n  \"total\": 9607.117916815669\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "072458d0-7c38-4d97-941e-8e1bb3a82681",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "collections",
+                    ":id",
+                    "content"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "perPage",
+                      "value": "20"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the collection to get the content of."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-PHYSNA-TENANTID",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "49610e56-a2ed-426a-b9a0-f4b6b18fc8e5",
+          "name": "IN DEVELOPMENT",
+          "request": {
+            "name": "IN DEVELOPMENT",
+            "description": {
+              "content": "Reprocess the content of a collection.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "collections",
+                ":id",
+                "reprocess"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The ID of the collection to reprocess."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "X-PHYSNA-TENANTID",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "openid tenant roles"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "1956d307-419c-46a7-9be4-2fee20189a5c",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "collections",
+                    ":id",
+                    "reprocess"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the collection to reprocess."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-PHYSNA-TENANTID",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"affected\": 4224.824077535542\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cbb9fe6a-12b9-4238-8b04-5e6129b18c45",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "collections",
+                    ":id",
+                    "reprocess"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the collection to reprocess."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-PHYSNA-TENANTID",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "91be0544-eacc-451c-8e6d-da6c89dc3174",
+          "name": "IN DEVELOPMENT",
+          "request": {
+            "name": "IN DEVELOPMENT",
+            "description": {
+              "content": "Update the name of a collection.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "collections",
+                ":id",
+                "name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The ID of the collection to update."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "X-PHYSNA-TENANTID",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "openid tenant roles"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"newName\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "57f11021-9a0b-4140-b98d-deab2b4e60c0",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "collections",
+                    ":id",
+                    "name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the collection to update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-PHYSNA-TENANTID",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"newName\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"affected\": 4224.824077535542\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dbd9a9de-e25f-4295-89b3-04305e73b81a",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "collections",
+                    ":id",
+                    "name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the collection to update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-PHYSNA-TENANTID",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"newName\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "45426840-671d-4177-b9d1-ef1fd301eef6",
+          "name": "IN DEVELOPMENT",
+          "request": {
+            "name": "IN DEVELOPMENT",
+            "description": {
+              "content": "Update the tag of a collection.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "collections",
+                ":id",
+                "tag"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The ID of the collection to update."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "X-PHYSNA-TENANTID",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "openid tenant roles"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"newTag\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fb322d42-d8cc-409e-988b-4a82cb65b7bf",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "collections",
+                    ":id",
+                    "tag"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the collection to update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-PHYSNA-TENANTID",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"newTag\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"affected\": 4224.824077535542\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4af1cdba-df22-42ea-8580-24bb9871c17d",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "collections",
+                    ":id",
+                    "tag"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the collection to update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-PHYSNA-TENANTID",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"newTag\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4d868e3c-5d51-4e5f-b4f9-71abb17e5701",
+          "name": "Get Collection Matches",
+          "request": {
+            "name": "Get Collection Matches",
+            "description": {},
+            "url": {
+              "path": [
+                "collections",
+                ":id",
+                "matches"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "perPage",
+                  "value": "20"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "X-PHYSNA-TENANTID",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "openid tenant roles"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "e5bf5fed-44b0-439b-b477-9fc6d746655b",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "collections",
+                    ":id",
+                    "matches"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "perPage",
+                      "value": "20"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-PHYSNA-TENANTID",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"matches\": [\n    {\n      \"matchedCollection\": {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"createdAt\": \"string\",\n        \"thumbnails\": [\n          \"string\",\n          \"string\"\n        ],\n        \"tag\": \"string\",\n        \"metadata\": [\n          {\n            \"metadataKeyId\": 3272.5412566646996,\n            \"collectionId\": \"string\",\n            \"name\": \"string\",\n            \"value\": \"string\"\n          },\n          {\n            \"metadataKeyId\": 2175.1832012494897,\n            \"collectionId\": \"string\",\n            \"name\": \"string\",\n            \"value\": \"string\"\n          }\n        ]\n      },\n      \"matchScore\": 9099.770914895655\n    },\n    {\n      \"matchedCollection\": {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"createdAt\": \"string\",\n        \"thumbnails\": [\n          \"string\",\n          \"string\"\n        ],\n        \"tag\": \"string\",\n        \"metadata\": [\n          {\n            \"metadataKeyId\": 2807.5909369078568,\n            \"collectionId\": \"string\",\n            \"name\": \"string\",\n            \"value\": \"string\"\n          },\n          {\n            \"metadataKeyId\": 5289.778668813796,\n            \"collectionId\": \"string\",\n            \"name\": \"string\",\n            \"value\": \"string\"\n          }\n        ]\n      },\n      \"matchScore\": 8283.563857315063\n    }\n  ],\n  \"filterData\": {\n    \"collections\": {\n      \"names\": [\n        \"string\",\n        \"string\"\n      ],\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"metadata\": [\n        {\n          \"metadataKeyId\": 7740.907005778687,\n          \"name\": \"string\",\n          \"values\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"metadataKeyId\": 9181.08623506795,\n          \"name\": \"string\",\n          \"values\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ]\n    }\n  },\n  \"page\": 4333.152146027172,\n  \"perPage\": 710.4862056105532,\n  \"total\": 3400.168423218993\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "75d13433-dd48-4547-bac7-88249622efec",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "collections",
+                    ":id",
+                    "matches"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "perPage",
+                      "value": "20"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-PHYSNA-TENANTID",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5db66ee9-8aef-44f3-993b-8ed8d8598f8a",
+          "name": "IN DEVELOPMENT",
+          "request": {
+            "name": "IN DEVELOPMENT",
+            "description": {
+              "content": "Get collection by ID.\nThe model/asset content is not included in the response.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "collections",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The ID of the collection to get."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "X-PHYSNA-TENANTID",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "openid tenant roles"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "cee88548-cb09-4a7b-ae6f-132c8eeefb00",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "collections",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the collection to get."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-PHYSNA-TENANTID",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"createdAt\": \"string\",\n  \"thumbnails\": [\n    \"string\",\n    \"string\"\n  ],\n  \"tag\": \"string\",\n  \"metadata\": [\n    {\n      \"metadataKeyId\": 4481.576205323753,\n      \"collectionId\": \"string\",\n      \"name\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"metadataKeyId\": 4217.316906047681,\n      \"collectionId\": \"string\",\n      \"name\": \"string\",\n      \"value\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dfa5e97a-29f4-4d5e-aff8-e67b71177f47",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "collections",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the collection to get."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-PHYSNA-TENANTID",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "aa1c2301-fe2c-4cb4-8502-e28c29443b85",
+          "name": "IN DEVELOPMENT",
+          "request": {
+            "name": "IN DEVELOPMENT",
+            "description": {
+              "content": "Delete collection by ID.\nThe model/asset content is not deleted.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "collections",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The ID of the collection to delete."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "X-PHYSNA-TENANTID",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "openid tenant roles"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "2e63086e-4e21-4e33-bbec-c1f0ca8a711f",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "collections",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the collection to delete."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-PHYSNA-TENANTID",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"affected\": 4224.824077535542\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f5029dc6-bb70-4724-a194-cf27984b9e15",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "collections",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the collection to delete."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-PHYSNA-TENANTID",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6f78a861-2f21-45d1-9a01-6b17633a9a48",
+          "name": "Upsert Collection Metadata",
+          "request": {
+            "name": "Upsert Collection Metadata",
+            "description": {},
+            "url": {
+              "path": [
+                "collections",
+                ":id",
+                "metadata",
+                ":metadataKeyId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<double>",
+                  "key": "metadataKeyId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "X-PHYSNA-TENANTID",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "openid tenant roles"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"value\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f26e4e0c-76a4-4664-a63a-fc7828f286ef",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "collections",
+                    ":id",
+                    "metadata",
+                    ":metadataKeyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<double>",
+                      "key": "metadataKeyId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-PHYSNA-TENANTID",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"value\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"metadata\": {\n    \"modelId\": \"string\",\n    \"metadataKeyId\": 6042.620149073737,\n    \"name\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "0f220a12-6f4e-4697-afb0-33fb62f4a6ab",
+    "name": "Physna Public ClientCredentials Collections API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Contact Support:\n Name: Support\n Email: support@physna.com",
+      "type": "text/plain"
+    }
+  }
+}

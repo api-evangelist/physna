@@ -1,0 +1,3164 @@
+{
+  "item": [
+    {
+      "id": "9da171c4-ee96-4a5c-8a38-5614b4a8328d",
+      "name": "Models",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "53de1841-a846-4cfb-9330-c26361279fda",
+          "name": "Get Models",
+          "request": {
+            "name": "Get Models",
+            "description": {},
+            "url": {
+              "path": [
+                "models"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "",
+                  "description": "A general string used to search and filter on all available models."
+                },
+                {
+                  "disabled": false,
+                  "key": "folderIds",
+                  "value": "<double>",
+                  "description": "The `folderIds` property has been deprecated. Please use the `filter` property instead."
+                },
+                {
+                  "disabled": false,
+                  "key": "folderIds",
+                  "value": "<double>",
+                  "description": "The `folderIds` property has been deprecated. Please use the `filter` property instead."
+                },
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>",
+                  "description": "A [`FilterExpression`](#model-FilterExpression). See the [API Reference](https://physna.github.io/public-api-guide/api-reference/filter-expressions) for more details."
+                },
+                {
+                  "disabled": false,
+                  "key": "order",
+                  "value": "<string>",
+                  "description": "An [`OrderExpression`](#model-OrderExpression). See the [API Reference](https://physna.github.io/public-api-guide/api-reference/order-expressions) for more details. If no order is provided the results are returned in order of relevancy."
+                },
+                {
+                  "disabled": false,
+                  "key": "perPage",
+                  "value": "20",
+                  "description": "The number of items to return per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "A 1 based page number used in conjunction with `perPage`."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "X-PHYSNA-TENANTID",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "openid tenant roles"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "cc5739dd-1afe-449e-ae61-d8a473769a18",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "models"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "search",
+                      "value": ""
+                    },
+                    {
+                      "key": "folderIds",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "folderIds",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "perPage",
+                      "value": "20"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-PHYSNA-TENANTID",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"models\": [\n    {\n      \"createdAt\": \"string\",\n      \"fileName\": \"string\",\n      \"fileType\": \"string\",\n      \"folderId\": 9059.290740211185,\n      \"id\": \"string\",\n      \"isAssembly\": true,\n      \"name\": \"string\",\n      \"ownerId\": \"string\",\n      \"state\": \"string\",\n      \"units\": \"string\",\n      \"metadata\": [\n        {\n          \"modelId\": \"string\",\n          \"metadataKeyId\": 7393.663057347552,\n          \"name\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"modelId\": \"string\",\n          \"metadataKeyId\": 8860.212109952388,\n          \"name\": \"string\",\n          \"value\": \"string\"\n        }\n      ],\n      \"deletedAt\": \"string\",\n      \"thumbnail\": \"string\",\n      \"collections\": [\n        {\n          \"id\": \"string\",\n          \"name\": \"string\"\n        },\n        {\n          \"id\": \"string\",\n          \"name\": \"string\"\n        }\n      ],\n      \"labels\": [\n        {\n          \"displayName\": \"string\",\n          \"source\": \"string\",\n          \"createdAt\": \"2017-02-22T04:09:37.336Z\",\n          \"rejected\": true\n        },\n        {\n          \"displayName\": \"string\",\n          \"source\": \"string\",\n          \"createdAt\": \"2007-03-17T17:45:35.413Z\",\n          \"rejected\": false\n        }\n      ],\n      \"geometry\": {\n        \"obbMinLength\": 1908.704042615561,\n        \"obbMidLength\": 8161.826876531663,\n        \"obbMaxLength\": 5916.914029997926,\n        \"surfaceArea\": 1826.4868983840843,\n        \"modelVolume\": 1508.4754259762967\n      }\n    },\n    {\n      \"createdAt\": \"string\",\n      \"fileName\": \"string\",\n      \"fileType\": \"string\",\n      \"folderId\": 8353.944195905326,\n      \"id\": \"string\",\n      \"isAssembly\": true,\n      \"name\": \"string\",\n      \"ownerId\": \"string\",\n      \"state\": \"string\",\n      \"units\": \"string\",\n      \"metadata\": [\n        {\n          \"modelId\": \"string\",\n          \"metadataKeyId\": 753.298524374374,\n          \"name\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"modelId\": \"string\",\n          \"metadataKeyId\": 558.233260241372,\n          \"name\": \"string\",\n          \"value\": \"string\"\n        }\n      ],\n      \"deletedAt\": \"string\",\n      \"thumbnail\": \"string\",\n      \"collections\": [\n        {\n          \"id\": \"string\",\n          \"name\": \"string\"\n        },\n        {\n          \"id\": \"string\",\n          \"name\": \"string\"\n        }\n      ],\n      \"labels\": [\n        {\n          \"displayName\": \"string\",\n          \"source\": \"string\",\n          \"createdAt\": \"1964-05-27T07:20:11.126Z\",\n          \"rejected\": true\n        },\n        {\n          \"displayName\": \"string\",\n          \"source\": \"string\",\n          \"createdAt\": \"1961-06-29T21:51:03.744Z\",\n          \"rejected\": false\n        }\n      ],\n      \"geometry\": {\n        \"obbMinLength\": 6810.587876538137,\n        \"obbMidLength\": 4293.197165011739,\n        \"obbMaxLength\": 7819.608331787525,\n        \"surfaceArea\": 993.7398694449984,\n        \"modelVolume\": 6218.698976805908\n      }\n    }\n  ],\n  \"pageData\": {\n    \"total\": 7696,\n    \"perPage\": 1050,\n    \"currentPage\": 1056,\n    \"lastPage\": 5922,\n    \"startIndex\": 6267,\n    \"endIndex\": 6204\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dce31f75-3e3c-4003-a5bc-469c31275814",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "models"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "search",
+                      "value": ""
+                    },
+                    {
+                      "key": "folderIds",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "folderIds",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "perPage",
+                      "value": "20"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-PHYSNA-TENANTID",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fd2361ce-759a-4ef9-bc4d-abddc5f7a7a1",
+          "name": "Delete Models",
+          "request": {
+            "name": "Delete Models",
+            "description": {
+              "content": "Bulk delete models. Bulk delete is permanent and cannot be undone.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "models"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "ids",
+                  "value": "<string>",
+                  "description": "(Required) A list of modelIds to be deleted"
+                },
+                {
+                  "disabled": false,
+                  "key": "ids",
+                  "value": "<string>",
+                  "description": "(Required) A list of modelIds to be deleted"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "X-PHYSNA-TENANTID",
+                "value": "<string>",
+                "description": ""
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "openid tenant roles"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "9954f507-2819-421b-b93c-f408e54b31d6",
+              "name": "No content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "models"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ids",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-PHYSNA-TENANTID",
+                    "value": "<string>",
+                    "description": ""
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "da1141a7-ffee-43e6-ae02-5cac6870da42",
+          "name": "Create Models",
+          "request": {
+            "name": "Create Models",
+            "description": {
+              "content": "Create Records for models and receive the needed signed uploadUrl to upload the model files and initiate ingestion.\n\nCurrent Limitations:\n-  Filetypes Supported: '.3ds', '.asm', '.catpart', '.catproduct', '.glb', '.iges', '.igs', '.obj', '.par', '.prt', '.sldasm', '.sldprt', '.stl', '.step', '.stp', '.x_b', '.x_t',\n-  Versioned Creo files are also supported. For example `part.prt.1` or `assembly.asm.2`.\n-  Maximum 100 Models can be created at once.\n-  The `folderName` used in the `filePath` must be the `name` of a `Folder` that already exists.\n-  Each `filePath` must be unique for each model.\n-  `filePath` can not exceed 1024 bytes (this is roughly 1024 characters, unless unicode characters are included, which consume more bytes)\n-  `filePath` can not contain any of the following characters: `['\\n', '\\r', '*', ':', '\"', '<', '>', '|', '#', '[', ']', '?', '\\\\'];\n-  No duplicates of a model can be created within the same folder.\n\nAssemblies can be created just like any other supported file, but all required subparts must be uploaded to the same folder (preferably beforehand to avoid unnecessary automatic reprocessing).\n\nThe model file can be uploaded via a `PUT` request to the <upload url> including the file and the supplied headers.\n\nExample using `curl` command:\n\n```\ncurl -X PUT --upload-file file.stl -H '<header1-name>: <header1-value>' -H '<header2-name>: <header2-value>' <upload-url>\n```\n\nAfter completing the upload, the model will be processed behind the scenes and be ready to match once it is in the `finished` state.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "models"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "createMissingFolders",
+                  "value": "false",
+                  "description": "If set to true, any folders that do not exist will be created. If set to false, any folders that do not exist will cause an error."
+                },
+                {
+                  "disabled": false,
+                  "key": "collection",
+                  "value": "<string>",
+                  "description": "Optional name of a collection the uploaded models will be added to. If the collection does not exist, it will be created."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "X-PHYSNA-TENANTID",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "openid tenant roles"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"models\": [\n    {\n      \"filePath\": \"<string>\",\n      \"name\": \"<string>\",\n      \"metadata\": [\n        {\n          \"metadataKeyId\": \"<double>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"metadataKeyId\": \"<double>\",\n          \"value\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"filePath\": \"<string>\",\n      \"name\": \"<string>\",\n      \"metadata\": [\n        {\n          \"metadataKeyId\": \"<double>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"metadataKeyId\": \"<double>\",\n          \"value\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b8175eeb-a657-45aa-9192-0697b3fdcbc3",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "models"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "createMissingFolders",
+                      "value": "false"
+                    },
+                    {
+                      "key": "collection",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-PHYSNA-TENANTID",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"models\": [\n    {\n      \"filePath\": \"<string>\",\n      \"name\": \"<string>\",\n      \"metadata\": [\n        {\n          \"metadataKeyId\": \"<double>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"metadataKeyId\": \"<double>\",\n          \"value\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"filePath\": \"<string>\",\n      \"name\": \"<string>\",\n      \"metadata\": [\n        {\n          \"metadataKeyId\": \"<double>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"metadataKeyId\": \"<double>\",\n          \"value\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"models\": [\n    {\n      \"uploadInfo\": {\n        \"uploadUrl\": \"string\",\n        \"headers\": {\n          \"key_0\": \"string\"\n        },\n        \"fileSizeRequirements\": {\n          \"maxSizeInBytes\": 2049.0010369069923,\n          \"minSizeInBytes\": 2908.247369088771\n        }\n      },\n      \"model\": {\n        \"createdAt\": \"string\",\n        \"fileName\": \"string\",\n        \"fileType\": \"string\",\n        \"folderId\": 4797.368546906638,\n        \"id\": \"string\",\n        \"isAssembly\": true,\n        \"name\": \"string\",\n        \"ownerId\": \"string\",\n        \"state\": \"string\",\n        \"units\": \"string\",\n        \"metadata\": [\n          {\n            \"modelId\": \"string\",\n            \"metadataKeyId\": 1478.163244725823,\n            \"name\": \"string\",\n            \"value\": \"string\"\n          },\n          {\n            \"modelId\": \"string\",\n            \"metadataKeyId\": 3308.9307059872663,\n            \"name\": \"string\",\n            \"value\": \"string\"\n          }\n        ],\n        \"deletedAt\": \"string\",\n        \"thumbnail\": \"string\",\n        \"collections\": [\n          {\n            \"id\": \"string\",\n            \"name\": \"string\"\n          },\n          {\n            \"id\": \"string\",\n            \"name\": \"string\"\n          }\n        ],\n        \"labels\": [\n          {\n            \"displayName\": \"string\",\n            \"source\": \"string\",\n            \"createdAt\": \"1999-01-12T05:40:51.997Z\",\n            \"rejected\": false\n          },\n          {\n            \"displayName\": \"string\",\n            \"source\": \"string\",\n            \"createdAt\": \"1966-10-03T20:43:09.604Z\",\n            \"rejected\": false\n          }\n        ],\n        \"geometry\": {\n          \"obbMinLength\": 605.8133336566262,\n          \"obbMidLength\": 7690.114200074011,\n          \"obbMaxLength\": 9496.50083382887,\n          \"surfaceArea\": 6359.578547733425,\n          \"modelVolume\": 6738.021299003948\n        }\n      }\n    },\n    {\n      \"uploadInfo\": {\n        \"uploadUrl\": \"string\",\n        \"headers\": {\n          \"key_0\": \"string\"\n        },\n        \"fileSizeRequirements\": {\n          \"maxSizeInBytes\": 2900.433000392082,\n          \"minSizeInBytes\": 5616.743590209149\n        }\n      },\n      \"model\": {\n        \"createdAt\": \"string\",\n        \"fileName\": \"string\",\n        \"fileType\": \"string\",\n        \"folderId\": 2312.5580135572045,\n        \"id\": \"string\",\n        \"isAssembly\": true,\n        \"name\": \"string\",\n        \"ownerId\": \"string\",\n        \"state\": \"string\",\n        \"units\": \"string\",\n        \"metadata\": [\n          {\n            \"modelId\": \"string\",\n            \"metadataKeyId\": 347.6418661822855,\n            \"name\": \"string\",\n            \"value\": \"string\"\n          },\n          {\n            \"modelId\": \"string\",\n            \"metadataKeyId\": 5825.598687693433,\n            \"name\": \"string\",\n            \"value\": \"string\"\n          }\n        ],\n        \"deletedAt\": \"string\",\n        \"thumbnail\": \"string\",\n        \"collections\": [\n          {\n            \"id\": \"string\",\n            \"name\": \"string\"\n          },\n          {\n            \"id\": \"string\",\n            \"name\": \"string\"\n          }\n        ],\n        \"labels\": [\n          {\n            \"displayName\": \"string\",\n            \"source\": \"string\",\n            \"createdAt\": \"1976-11-24T10:37:27.337Z\",\n            \"rejected\": false\n          },\n          {\n            \"displayName\": \"string\",\n            \"source\": \"string\",\n            \"createdAt\": \"1979-12-18T16:58:56.164Z\",\n            \"rejected\": true\n          }\n        ],\n        \"geometry\": {\n          \"obbMinLength\": 6744.557431980528,\n          \"obbMidLength\": 4281.410095312767,\n          \"obbMaxLength\": 8646.115116471774,\n          \"surfaceArea\": 2139.850579141722,\n          \"modelVolume\": 5584.58470819364\n        }\n      }\n    }\n  ],\n  \"collection\": {\n    \"collectionId\": \"string\",\n    \"affected\": 5775.993314741482\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ab70c27f-8062-4710-b77e-b1d3b0fa131e",
+          "name": "IN DEVELOPMENT",
+          "request": {
+            "name": "IN DEVELOPMENT",
+            "description": {},
+            "url": {
+              "path": [
+                "models",
+                "match-report"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "threshold",
+                  "value": "<number>",
+                  "description": "(Required) A float number that is the minimum percentage a match must be to be returned as a counted match."
+                },
+                {
+                  "disabled": false,
+                  "key": "folderIds",
+                  "value": "<double>",
+                  "description": "A list of folder ids to filter the matches and counts by."
+                },
+                {
+                  "disabled": false,
+                  "key": "folderIds",
+                  "value": "<double>",
+                  "description": "A list of folder ids to filter the matches and counts by."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "A 1 based page number used in conjunction with `perPage`."
+                },
+                {
+                  "disabled": false,
+                  "key": "perPage",
+                  "value": "<integer>",
+                  "description": "The number of items to return per page."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "X-PHYSNA-TENANTID",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "openid tenant roles"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "df695122-5eda-488e-8ed7-e3c469b42c21",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "models",
+                    "match-report"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "threshold",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "folderIds",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "folderIds",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "perPage",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-PHYSNA-TENANTID",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"model\": {\n        \"createdAt\": \"string\",\n        \"fileName\": \"string\",\n        \"fileType\": \"string\",\n        \"folderId\": 5657.230254134968,\n        \"id\": \"string\",\n        \"isAssembly\": true,\n        \"name\": \"string\",\n        \"ownerId\": \"string\",\n        \"state\": \"string\",\n        \"units\": \"string\",\n        \"metadata\": [\n          {\n            \"modelId\": \"string\",\n            \"metadataKeyId\": 885.1550398689234,\n            \"name\": \"string\",\n            \"value\": \"string\"\n          },\n          {\n            \"modelId\": \"string\",\n            \"metadataKeyId\": 4175.435387963269,\n            \"name\": \"string\",\n            \"value\": \"string\"\n          }\n        ],\n        \"deletedAt\": \"string\",\n        \"thumbnail\": \"string\",\n        \"collections\": [\n          {\n            \"id\": \"string\",\n            \"name\": \"string\"\n          },\n          {\n            \"id\": \"string\",\n            \"name\": \"string\"\n          }\n        ],\n        \"labels\": [\n          {\n            \"displayName\": \"string\",\n            \"source\": \"string\",\n            \"createdAt\": \"1974-12-16T04:29:37.313Z\",\n            \"rejected\": false\n          },\n          {\n            \"displayName\": \"string\",\n            \"source\": \"string\",\n            \"createdAt\": \"1954-08-05T03:41:11.006Z\",\n            \"rejected\": false\n          }\n        ],\n        \"geometry\": {\n          \"obbMinLength\": 7235.331651728587,\n          \"obbMidLength\": 1492.4698891117262,\n          \"obbMaxLength\": 7449.594251105861,\n          \"surfaceArea\": 4589.384856804335,\n          \"modelVolume\": 2675.8692617054635\n        }\n      },\n      \"matchCount\": 9825.855641148537\n    },\n    {\n      \"model\": {\n        \"createdAt\": \"string\",\n        \"fileName\": \"string\",\n        \"fileType\": \"string\",\n        \"folderId\": 2655.399385221631,\n        \"id\": \"string\",\n        \"isAssembly\": false,\n        \"name\": \"string\",\n        \"ownerId\": \"string\",\n        \"state\": \"string\",\n        \"units\": \"string\",\n        \"metadata\": [\n          {\n            \"modelId\": \"string\",\n            \"metadataKeyId\": 1083.3634445405726,\n            \"name\": \"string\",\n            \"value\": \"string\"\n          },\n          {\n            \"modelId\": \"string\",\n            \"metadataKeyId\": 3634.8400248020876,\n            \"name\": \"string\",\n            \"value\": \"string\"\n          }\n        ],\n        \"deletedAt\": \"string\",\n        \"thumbnail\": \"string\",\n        \"collections\": [\n          {\n            \"id\": \"string\",\n            \"name\": \"string\"\n          },\n          {\n            \"id\": \"string\",\n            \"name\": \"string\"\n          }\n        ],\n        \"labels\": [\n          {\n            \"displayName\": \"string\",\n            \"source\": \"string\",\n            \"createdAt\": \"1954-07-06T12:00:03.450Z\",\n            \"rejected\": true\n          },\n          {\n            \"displayName\": \"string\",\n            \"source\": \"string\",\n            \"createdAt\": \"1977-04-14T12:36:18.817Z\",\n            \"rejected\": false\n          }\n        ],\n        \"geometry\": {\n          \"obbMinLength\": 424.56058979433607,\n          \"obbMidLength\": 3226.5773748234583,\n          \"obbMaxLength\": 8297.157888302825,\n          \"surfaceArea\": 3401.277219233273,\n          \"modelVolume\": 1873.2568047571808\n        }\n      },\n      \"matchCount\": 9404.683541014449\n    }\n  ],\n  \"total\": 1646.5986352725824\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "063b0db8-a08d-4519-b4ed-a839b1f05bb1",
+          "name": "IN DEVELOPMENT",
+          "request": {
+            "name": "IN DEVELOPMENT",
+            "description": {},
+            "url": {
+              "path": [
+                "models",
+                "grouped-match-report"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "threshold",
+                  "value": "<number>",
+                  "description": "(Required) A float number that is the minimum percentage a match must be to be returned as a counted match."
+                },
+                {
+                  "disabled": false,
+                  "key": "folderIds",
+                  "value": "<double>",
+                  "description": "A list of folder ids to filter the matches and counts by."
+                },
+                {
+                  "disabled": false,
+                  "key": "folderIds",
+                  "value": "<double>",
+                  "description": "A list of folder ids to filter the matches and counts by."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "X-PHYSNA-TENANTID",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "openid tenant roles"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "2c7d5cf0-e0fa-45e1-931a-73f50ee74597",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "models",
+                    "grouped-match-report"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "threshold",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "folderIds",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "folderIds",
+                      "value": "<double>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-PHYSNA-TENANTID",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"groups\": [\n    {\n      \"modelIds\": [\n        \"string\",\n        \"string\"\n      ],\n      \"exampleModels\": [\n        {\n          \"createdAt\": \"string\",\n          \"fileName\": \"string\",\n          \"fileType\": \"string\",\n          \"folderId\": 4781.049419414371,\n          \"id\": \"string\",\n          \"isAssembly\": false,\n          \"name\": \"string\",\n          \"ownerId\": \"string\",\n          \"state\": \"string\",\n          \"units\": \"string\",\n          \"metadata\": [\n            {\n              \"modelId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metadataKeyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"modelId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metadataKeyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"deletedAt\": \"string\",\n          \"thumbnail\": \"string\",\n          \"collections\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"labels\": [\n            {\n              \"displayName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"source\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"rejected\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"displayName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"source\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"rejected\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"geometry\": {\n            \"obbMinLength\": 2337.861343124864,\n            \"obbMidLength\": 7604.440822893262,\n            \"obbMaxLength\": 5120.191968078217,\n            \"surfaceArea\": 48.64838718553588,\n            \"modelVolume\": 5248.656226019633\n          }\n        },\n        {\n          \"createdAt\": \"string\",\n          \"fileName\": \"string\",\n          \"fileType\": \"string\",\n          \"folderId\": 5389.501848217449,\n          \"id\": \"string\",\n          \"isAssembly\": true,\n          \"name\": \"string\",\n          \"ownerId\": \"string\",\n          \"state\": \"string\",\n          \"units\": \"string\",\n          \"metadata\": [\n            {\n              \"modelId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metadataKeyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"modelId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metadataKeyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"deletedAt\": \"string\",\n          \"thumbnail\": \"string\",\n          \"collections\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"labels\": [\n            {\n              \"displayName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"source\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"rejected\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"displayName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"source\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"rejected\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"geometry\": {\n            \"obbMinLength\": 8236.302069347725,\n            \"obbMidLength\": 2878.697908499297,\n            \"obbMaxLength\": 5759.2697764604,\n            \"surfaceArea\": 2483.0119090233625,\n            \"modelVolume\": 8388.194109544273\n          }\n        }\n      ]\n    },\n    {\n      \"modelIds\": [\n        \"string\",\n        \"string\"\n      ],\n      \"exampleModels\": [\n        {\n          \"createdAt\": \"string\",\n          \"fileName\": \"string\",\n          \"fileType\": \"string\",\n          \"folderId\": 4825.428240324861,\n          \"id\": \"string\",\n          \"isAssembly\": false,\n          \"name\": \"string\",\n          \"ownerId\": \"string\",\n          \"state\": \"string\",\n          \"units\": \"string\",\n          \"metadata\": [\n            {\n              \"modelId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metadataKeyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"modelId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metadataKeyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"deletedAt\": \"string\",\n          \"thumbnail\": \"string\",\n          \"collections\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"labels\": [\n            {\n              \"displayName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"source\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"rejected\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"displayName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"source\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"rejected\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"geometry\": {\n            \"obbMinLength\": 343.2326244354067,\n            \"obbMidLength\": 945.2550205322152,\n            \"obbMaxLength\": 7038.927472989161,\n            \"surfaceArea\": 1417.1523238203442,\n            \"modelVolume\": 9989.219201950567\n          }\n        },\n        {\n          \"createdAt\": \"string\",\n          \"fileName\": \"string\",\n          \"fileType\": \"string\",\n          \"folderId\": 653.0345378600588,\n          \"id\": \"string\",\n          \"isAssembly\": false,\n          \"name\": \"string\",\n          \"ownerId\": \"string\",\n          \"state\": \"string\",\n          \"units\": \"string\",\n          \"metadata\": [\n            {\n              \"modelId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metadataKeyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"modelId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"metadataKeyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"deletedAt\": \"string\",\n          \"thumbnail\": \"string\",\n          \"collections\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"labels\": [\n            {\n              \"displayName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"source\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"rejected\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"displayName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"source\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"rejected\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"geometry\": {\n            \"obbMinLength\": 6295.078027446053,\n            \"obbMidLength\": 9808.892494223324,\n            \"obbMaxLength\": 7351.383968755331,\n            \"surfaceArea\": 6376.37047994976,\n            \"modelVolume\": 6141.993883364317\n          }\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "84a5d81c-a841-46cf-9502-032d2e59c888",
+          "name": "Get Model State Report",
+          "request": {
+            "name": "Get Model State Report",
+            "description": {},
+            "url": {
+              "path": [
+                "models",
+                "state-report"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "folderIds",
+                  "value": "<double>",
+                  "description": "An optional list of folder ids to filter the model states to."
+                },
+                {
+                  "disabled": false,
+                  "key": "folderIds",
+                  "value": "<double>",
+                  "description": "An optional list of folder ids to filter the model states to."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "X-PHYSNA-TENANTID",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "openid tenant roles"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "35e0ee3b-e5de-46b3-a1c7-c82c38f44dd6",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "models",
+                    "state-report"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "folderIds",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "folderIds",
+                      "value": "<double>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-PHYSNA-TENANTID",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"states\": {\n    \"key_0\": 2258.5353614473893,\n    \"key_1\": 9603.661770548282\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9374f72d-847f-4c26-b626-5db55eb89cb2",
+          "name": "Reprocess Models",
+          "request": {
+            "name": "Reprocess Models",
+            "description": {
+              "content": "Bulk reprocess models.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "models",
+                "reprocess"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>",
+                  "description": "(Required) A [`FilterExpression`](#model-FilterExpression). See the [API Reference](https://physna.github.io/public-api-guide/api-reference/filter-expressions) for more details."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "X-PHYSNA-TENANTID",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "openid tenant roles"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "3d6490de-4a3e-448f-8bb3-165879bef049",
+              "name": "Accepted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "models",
+                    "reprocess"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-PHYSNA-TENANTID",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"affected\": 7875.308442086782\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fb625bd9-05c7-4072-89ec-c423dceca74a",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "models",
+                    "reprocess"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-PHYSNA-TENANTID",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9ded4999-6375-41dc-a83a-21c34f294d05",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "models",
+                    "reprocess"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-PHYSNA-TENANTID",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "51c15b08-6c19-46b6-a973-3e643da106cf",
+          "name": "Reprocess Model",
+          "request": {
+            "name": "Reprocess Model",
+            "description": {
+              "content": "Reprocess model.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "models",
+                ":id",
+                "reprocess"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "X-PHYSNA-TENANTID",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "openid tenant roles"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "5524fd35-104f-470a-adf0-31f78b0f2e62",
+              "name": "Accepted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "models",
+                    ":id",
+                    "reprocess"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-PHYSNA-TENANTID",
+                    "value": "<string>",
+                    "description": ""
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2eafbba6-4adc-47bf-8327-98c9aed0e171",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "models",
+                    ":id",
+                    "reprocess"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-PHYSNA-TENANTID",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ae84b243-b502-4355-ade3-a856487fc062",
+          "name": "Get Model",
+          "request": {
+            "name": "Get Model",
+            "description": {},
+            "url": {
+              "path": [
+                "models",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "X-PHYSNA-TENANTID",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "openid tenant roles"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "2d2f7c54-7c5c-44c7-a878-e5f456ae39ee",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "models",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-PHYSNA-TENANTID",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"model\": {\n    \"createdAt\": \"string\",\n    \"fileName\": \"string\",\n    \"fileType\": \"string\",\n    \"folderId\": 9918.062026846892,\n    \"id\": \"string\",\n    \"isAssembly\": true,\n    \"name\": \"string\",\n    \"ownerId\": \"string\",\n    \"state\": \"string\",\n    \"units\": \"string\",\n    \"metadata\": [\n      {\n        \"modelId\": \"string\",\n        \"metadataKeyId\": 5416.614524003562,\n        \"name\": \"string\",\n        \"value\": \"string\"\n      },\n      {\n        \"modelId\": \"string\",\n        \"metadataKeyId\": 8162.6178962029135,\n        \"name\": \"string\",\n        \"value\": \"string\"\n      }\n    ],\n    \"deletedAt\": \"string\",\n    \"thumbnail\": \"string\",\n    \"collections\": [\n      {\n        \"id\": \"string\",\n        \"name\": \"string\"\n      },\n      {\n        \"id\": \"string\",\n        \"name\": \"string\"\n      }\n    ],\n    \"labels\": [\n      {\n        \"displayName\": \"string\",\n        \"source\": \"string\",\n        \"createdAt\": \"1971-02-27T00:09:43.301Z\",\n        \"rejected\": true\n      },\n      {\n        \"displayName\": \"string\",\n        \"source\": \"string\",\n        \"createdAt\": \"1973-03-01T18:00:49.762Z\",\n        \"rejected\": true\n      }\n    ],\n    \"geometry\": {\n      \"obbMinLength\": 631.5633224307726,\n      \"obbMidLength\": 237.96686817658673,\n      \"obbMaxLength\": 3212.957866481527,\n      \"surfaceArea\": 6509.65057378064,\n      \"modelVolume\": 6182.579407724011\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c81595ab-4618-48f3-9fd8-36161a2f0a0d",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "models",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-PHYSNA-TENANTID",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "24714522-e17d-47b4-adfc-3588b0873f27",
+          "name": "Delete Model",
+          "request": {
+            "name": "Delete Model",
+            "description": {
+              "content": "Delete a model. Deleting a model is permanent and cannot be undone.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "models",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "X-PHYSNA-TENANTID",
+                "value": "<string>",
+                "description": ""
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "openid tenant roles"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "5db68c16-007c-4578-adba-826268da834e",
+              "name": "No content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "models",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-PHYSNA-TENANTID",
+                    "value": "<string>",
+                    "description": ""
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f288de5d-ce1d-4c62-b2a0-f7038212269b",
+          "name": "Get Model Matches",
+          "request": {
+            "name": "Get Model Matches",
+            "description": {},
+            "url": {
+              "path": [
+                "models",
+                ":id",
+                "matches"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "threshold",
+                  "value": "<float>",
+                  "description": "A float number (0-1) that is the minimum percentage a match must be to be returned."
+                },
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>",
+                  "description": "A [`FilterExpression`](#model-FilterExpression). See the [API Reference](https://physna.github.io/public-api-guide/api-reference/filter-expressions) for more details."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "A 1 based page number used in conjunction with `perPage`."
+                },
+                {
+                  "disabled": false,
+                  "key": "perPage",
+                  "value": "<integer>",
+                  "description": "The number of items to return per page."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "X-PHYSNA-TENANTID",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "openid tenant roles"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "791fe922-d9fb-4bf8-9130-53fef7993311",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "models",
+                    ":id",
+                    "matches"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "threshold",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "perPage",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-PHYSNA-TENANTID",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"matches\": [\n    {\n      \"matchPercentage\": 6361.532726117677,\n      \"matchedModel\": {\n        \"createdAt\": \"string\",\n        \"fileName\": \"string\",\n        \"fileType\": \"string\",\n        \"folderId\": 502.0721854910037,\n        \"id\": \"string\",\n        \"isAssembly\": false,\n        \"name\": \"string\",\n        \"ownerId\": \"string\",\n        \"state\": \"string\",\n        \"units\": \"string\",\n        \"metadata\": [\n          {\n            \"modelId\": \"string\",\n            \"metadataKeyId\": 7994.944801022731,\n            \"name\": \"string\",\n            \"value\": \"string\"\n          },\n          {\n            \"modelId\": \"string\",\n            \"metadataKeyId\": 285.4380763137354,\n            \"name\": \"string\",\n            \"value\": \"string\"\n          }\n        ],\n        \"deletedAt\": \"string\",\n        \"thumbnail\": \"string\",\n        \"collections\": [\n          {\n            \"id\": \"string\",\n            \"name\": \"string\"\n          },\n          {\n            \"id\": \"string\",\n            \"name\": \"string\"\n          }\n        ],\n        \"labels\": [\n          {\n            \"displayName\": \"string\",\n            \"source\": \"string\",\n            \"createdAt\": \"1948-07-29T10:13:44.011Z\",\n            \"rejected\": true\n          },\n          {\n            \"displayName\": \"string\",\n            \"source\": \"string\",\n            \"createdAt\": \"2004-11-03T09:44:18.421Z\",\n            \"rejected\": true\n          }\n        ],\n        \"geometry\": {\n          \"obbMinLength\": 8273.12881622021,\n          \"obbMidLength\": 8165.553945138916,\n          \"obbMaxLength\": 7825.9565110051035,\n          \"surfaceArea\": 5982.388016594316,\n          \"modelVolume\": 8787.634317557373\n        }\n      }\n    },\n    {\n      \"matchPercentage\": 7495.300962607804,\n      \"matchedModel\": {\n        \"createdAt\": \"string\",\n        \"fileName\": \"string\",\n        \"fileType\": \"string\",\n        \"folderId\": 5794.5643530398675,\n        \"id\": \"string\",\n        \"isAssembly\": false,\n        \"name\": \"string\",\n        \"ownerId\": \"string\",\n        \"state\": \"string\",\n        \"units\": \"string\",\n        \"metadata\": [\n          {\n            \"modelId\": \"string\",\n            \"metadataKeyId\": 8952.520555733006,\n            \"name\": \"string\",\n            \"value\": \"string\"\n          },\n          {\n            \"modelId\": \"string\",\n            \"metadataKeyId\": 4556.624853060572,\n            \"name\": \"string\",\n            \"value\": \"string\"\n          }\n        ],\n        \"deletedAt\": \"string\",\n        \"thumbnail\": \"string\",\n        \"collections\": [\n          {\n            \"id\": \"string\",\n            \"name\": \"string\"\n          },\n          {\n            \"id\": \"string\",\n            \"name\": \"string\"\n          }\n        ],\n        \"labels\": [\n          {\n            \"displayName\": \"string\",\n            \"source\": \"string\",\n            \"createdAt\": \"1968-05-16T09:16:51.767Z\",\n            \"rejected\": true\n          },\n          {\n            \"displayName\": \"string\",\n            \"source\": \"string\",\n            \"createdAt\": \"1988-03-30T06:45:02.800Z\",\n            \"rejected\": false\n          }\n        ],\n        \"geometry\": {\n          \"obbMinLength\": 3654.8027747359224,\n          \"obbMidLength\": 5458.624104607881,\n          \"obbMaxLength\": 4553.798896592873,\n          \"surfaceArea\": 8675.93775330176,\n          \"modelVolume\": 3505.79677619674\n        }\n      }\n    }\n  ],\n  \"pageData\": {\n    \"total\": 5293,\n    \"perPage\": 1693,\n    \"currentPage\": 3714,\n    \"lastPage\": 7532,\n    \"startIndex\": 3056,\n    \"endIndex\": 9580\n  },\n  \"filterData\": {\n    \"folders\": [\n      {\n        \"id\": 2590.4861901147724,\n        \"name\": \"string\"\n      },\n      {\n        \"id\": 3931.587450752445,\n        \"name\": \"string\"\n      }\n    ],\n    \"metadata\": [\n      {\n        \"metadataKeyId\": 2576.4559070754835,\n        \"name\": \"string\",\n        \"values\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      {\n        \"metadataKeyId\": 2212.1768739372415,\n        \"name\": \"string\",\n        \"values\": [\n          \"string\",\n          \"string\"\n        ]\n      }\n    ],\n    \"createdAt\": [\n      \"string\",\n      \"string\"\n    ],\n    \"isAssembly\": [\n      true,\n      true\n    ],\n    \"fileType\": [\n      \"string\",\n      \"string\"\n    ],\n    \"units\": [\n      \"string\",\n      \"string\"\n    ],\n    \"collections\": {\n      \"names\": [\n        \"string\",\n        \"string\"\n      ],\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"metadata\": [\n        {\n          \"metadataKeyId\": 3175.700293190469,\n          \"name\": \"string\",\n          \"values\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"metadataKeyId\": 2238.839612141742,\n          \"name\": \"string\",\n          \"values\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ]\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1811d736-b136-4f36-92f5-73a2e2b84ae8",
+          "name": "Get Part Matches",
+          "request": {
+            "name": "Get Part Matches",
+            "description": {},
+            "url": {
+              "path": [
+                "models",
+                ":id",
+                "part-matches"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "threshold",
+                  "value": "<float>",
+                  "description": "A float number (0-1) that is the minimum percentage a match must be to be returned."
+                },
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>",
+                  "description": "A [`FilterExpression`](#model-FilterExpression). See the [API Reference](https://physna.github.io/public-api-guide/api-reference/filter-expressions) for more details."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "A 1 based page number used in conjunction with `perPage`."
+                },
+                {
+                  "disabled": false,
+                  "key": "perPage",
+                  "value": "<integer>",
+                  "description": "The number of items to return per page."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "X-PHYSNA-TENANTID",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "openid tenant roles"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "622a40d2-24c7-4fc5-ae60-cac02ed4404b",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "models",
+                    ":id",
+                    "part-matches"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "threshold",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "perPage",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-PHYSNA-TENANTID",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"matches\": [\n    {\n      \"matchedModel\": {\n        \"createdAt\": \"string\",\n        \"fileName\": \"string\",\n        \"fileType\": \"string\",\n        \"folderId\": 1530.3592680981315,\n        \"id\": \"string\",\n        \"isAssembly\": false,\n        \"name\": \"string\",\n        \"ownerId\": \"string\",\n        \"state\": \"string\",\n        \"units\": \"string\",\n        \"metadata\": [\n          {\n            \"modelId\": \"string\",\n            \"metadataKeyId\": 395.0231622235856,\n            \"name\": \"string\",\n            \"value\": \"string\"\n          },\n          {\n            \"modelId\": \"string\",\n            \"metadataKeyId\": 4491.160773066845,\n            \"name\": \"string\",\n            \"value\": \"string\"\n          }\n        ],\n        \"deletedAt\": \"string\",\n        \"thumbnail\": \"string\",\n        \"collections\": [\n          {\n            \"id\": \"string\",\n            \"name\": \"string\"\n          },\n          {\n            \"id\": \"string\",\n            \"name\": \"string\"\n          }\n        ],\n        \"labels\": [\n          {\n            \"displayName\": \"string\",\n            \"source\": \"string\",\n            \"createdAt\": \"2002-02-21T00:59:53.391Z\",\n            \"rejected\": false\n          },\n          {\n            \"displayName\": \"string\",\n            \"source\": \"string\",\n            \"createdAt\": \"1978-06-19T20:18:59.140Z\",\n            \"rejected\": false\n          }\n        ],\n        \"geometry\": {\n          \"obbMinLength\": 7812.847827400234,\n          \"obbMidLength\": 1338.3527729169098,\n          \"obbMaxLength\": 4053.787552021286,\n          \"surfaceArea\": 3928.3287046011797,\n          \"modelVolume\": 5950.63513548776\n        }\n      },\n      \"commonFacetCount\": 170.24556239419897,\n      \"modelFacetCount\": 4716.651455082508,\n      \"matchedModelFacetCount\": 7142.349676998053,\n      \"forwardMatchPercentage\": 5208.4575590062295,\n      \"reverseMatchPercentage\": 6491.269486872109\n    },\n    {\n      \"matchedModel\": {\n        \"createdAt\": \"string\",\n        \"fileName\": \"string\",\n        \"fileType\": \"string\",\n        \"folderId\": 514.6961635842995,\n        \"id\": \"string\",\n        \"isAssembly\": false,\n        \"name\": \"string\",\n        \"ownerId\": \"string\",\n        \"state\": \"string\",\n        \"units\": \"string\",\n        \"metadata\": [\n          {\n            \"modelId\": \"string\",\n            \"metadataKeyId\": 6770.602986763171,\n            \"name\": \"string\",\n            \"value\": \"string\"\n          },\n          {\n            \"modelId\": \"string\",\n            \"metadataKeyId\": 9550.116771161232,\n            \"name\": \"string\",\n            \"value\": \"string\"\n          }\n        ],\n        \"deletedAt\": \"string\",\n        \"thumbnail\": \"string\",\n        \"collections\": [\n          {\n            \"id\": \"string\",\n            \"name\": \"string\"\n          },\n          {\n            \"id\": \"string\",\n            \"name\": \"string\"\n          }\n        ],\n        \"labels\": [\n          {\n            \"displayName\": \"string\",\n            \"source\": \"string\",\n            \"createdAt\": \"1987-08-25T07:23:39.679Z\",\n            \"rejected\": true\n          },\n          {\n            \"displayName\": \"string\",\n            \"source\": \"string\",\n            \"createdAt\": \"2011-07-29T11:26:25.339Z\",\n            \"rejected\": true\n          }\n        ],\n        \"geometry\": {\n          \"obbMinLength\": 8850.852410376821,\n          \"obbMidLength\": 9126.549903801986,\n          \"obbMaxLength\": 2780.058851807965,\n          \"surfaceArea\": 9906.598364294865,\n          \"modelVolume\": 1801.2647699059403\n        }\n      },\n      \"commonFacetCount\": 6748.260106332466,\n      \"modelFacetCount\": 4547.743443127403,\n      \"matchedModelFacetCount\": 9506.607086276983,\n      \"forwardMatchPercentage\": 7831.878949781999,\n      \"reverseMatchPercentage\": 3783.0594602810943\n    }\n  ],\n  \"pageData\": {\n    \"total\": 7717,\n    \"perPage\": 8479,\n    \"currentPage\": 7544,\n    \"lastPage\": 8366,\n    \"startIndex\": 4881,\n    \"endIndex\": 7739\n  },\n  \"filterData\": {\n    \"folders\": [\n      {\n        \"id\": 5329.373899300691,\n        \"name\": \"string\"\n      },\n      {\n        \"id\": 7211.5658928028015,\n        \"name\": \"string\"\n      }\n    ],\n    \"metadata\": [\n      {\n        \"metadataKeyId\": 5825.7271514710255,\n        \"name\": \"string\",\n        \"values\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      {\n        \"metadataKeyId\": 1994.6955227287665,\n        \"name\": \"string\",\n        \"values\": [\n          \"string\",\n          \"string\"\n        ]\n      }\n    ],\n    \"createdAt\": [\n      \"string\",\n      \"string\"\n    ],\n    \"isAssembly\": [\n      false,\n      false\n    ],\n    \"fileType\": [\n      \"string\",\n      \"string\"\n    ],\n    \"units\": [\n      \"string\",\n      \"string\"\n    ],\n    \"collections\": {\n      \"names\": [\n        \"string\",\n        \"string\"\n      ],\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"metadata\": [\n        {\n          \"metadataKeyId\": 637.5370725441476,\n          \"name\": \"string\",\n          \"values\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"metadataKeyId\": 7931.661846770715,\n          \"name\": \"string\",\n          \"values\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ]\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3b19241b-2950-42df-8774-2422a4bfad69",
+          "name": "Get Scan Matches",
+          "request": {
+            "name": "Get Scan Matches",
+            "description": {},
+            "url": {
+              "path": [
+                "models",
+                ":id",
+                "scan-matches"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "threshold",
+                  "value": "<float>",
+                  "description": "A float number (0-1) that is the minimum percentage a match must be to be returned."
+                },
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>",
+                  "description": "A [`FilterExpression`](#model-FilterExpression). See the [API Reference](https://physna.github.io/public-api-guide/api-reference/filter-expressions) for more details."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "A 1 based page number used in conjunction with `perPage`."
+                },
+                {
+                  "disabled": false,
+                  "key": "perPage",
+                  "value": "<integer>",
+                  "description": "The number of items to return per page."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "X-PHYSNA-TENANTID",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "openid tenant roles"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "a582f58f-50be-40a7-b597-015ab7107669",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "models",
+                    ":id",
+                    "scan-matches"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "threshold",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "perPage",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-PHYSNA-TENANTID",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"matches\": [\n    {\n      \"matchedModel\": {\n        \"createdAt\": \"string\",\n        \"fileName\": \"string\",\n        \"fileType\": \"string\",\n        \"folderId\": 7855.734994777873,\n        \"id\": \"string\",\n        \"isAssembly\": false,\n        \"name\": \"string\",\n        \"ownerId\": \"string\",\n        \"state\": \"string\",\n        \"units\": \"string\",\n        \"metadata\": [\n          {\n            \"modelId\": \"string\",\n            \"metadataKeyId\": 2351.927144859274,\n            \"name\": \"string\",\n            \"value\": \"string\"\n          },\n          {\n            \"modelId\": \"string\",\n            \"metadataKeyId\": 4798.051989914004,\n            \"name\": \"string\",\n            \"value\": \"string\"\n          }\n        ],\n        \"deletedAt\": \"string\",\n        \"thumbnail\": \"string\",\n        \"collections\": [\n          {\n            \"id\": \"string\",\n            \"name\": \"string\"\n          },\n          {\n            \"id\": \"string\",\n            \"name\": \"string\"\n          }\n        ],\n        \"labels\": [\n          {\n            \"displayName\": \"string\",\n            \"source\": \"string\",\n            \"createdAt\": \"1999-07-26T08:01:26.930Z\",\n            \"rejected\": true\n          },\n          {\n            \"displayName\": \"string\",\n            \"source\": \"string\",\n            \"createdAt\": \"1991-12-01T04:25:29.357Z\",\n            \"rejected\": false\n          }\n        ],\n        \"geometry\": {\n          \"obbMinLength\": 1079.0547316925424,\n          \"obbMidLength\": 9232.518075905216,\n          \"obbMaxLength\": 4729.769065392575,\n          \"surfaceArea\": 8029.689008227363,\n          \"modelVolume\": 3081.03726528102\n        }\n      },\n      \"matchPercentage\": 6655.593244877612\n    },\n    {\n      \"matchedModel\": {\n        \"createdAt\": \"string\",\n        \"fileName\": \"string\",\n        \"fileType\": \"string\",\n        \"folderId\": 8882.51052865457,\n        \"id\": \"string\",\n        \"isAssembly\": false,\n        \"name\": \"string\",\n        \"ownerId\": \"string\",\n        \"state\": \"string\",\n        \"units\": \"string\",\n        \"metadata\": [\n          {\n            \"modelId\": \"string\",\n            \"metadataKeyId\": 404.02525475169426,\n            \"name\": \"string\",\n            \"value\": \"string\"\n          },\n          {\n            \"modelId\": \"string\",\n            \"metadataKeyId\": 9937.729255061493,\n            \"name\": \"string\",\n            \"value\": \"string\"\n          }\n        ],\n        \"deletedAt\": \"string\",\n        \"thumbnail\": \"string\",\n        \"collections\": [\n          {\n            \"id\": \"string\",\n            \"name\": \"string\"\n          },\n          {\n            \"id\": \"string\",\n            \"name\": \"string\"\n          }\n        ],\n        \"labels\": [\n          {\n            \"displayName\": \"string\",\n            \"source\": \"string\",\n            \"createdAt\": \"2022-09-12T17:34:27.189Z\",\n            \"rejected\": false\n          },\n          {\n            \"displayName\": \"string\",\n            \"source\": \"string\",\n            \"createdAt\": \"1981-09-28T04:02:08.091Z\",\n            \"rejected\": true\n          }\n        ],\n        \"geometry\": {\n          \"obbMinLength\": 1399.114415706757,\n          \"obbMidLength\": 2378.3239095841514,\n          \"obbMaxLength\": 4596.298993104737,\n          \"surfaceArea\": 3451.743304960587,\n          \"modelVolume\": 9379.393766712006\n        }\n      },\n      \"matchPercentage\": 3093.9157352244815\n    }\n  ],\n  \"pageData\": {\n    \"total\": 5470,\n    \"perPage\": 4266,\n    \"currentPage\": 6208,\n    \"lastPage\": 8788,\n    \"startIndex\": 6925,\n    \"endIndex\": 3241\n  },\n  \"filterData\": {\n    \"folders\": [\n      {\n        \"id\": 870.8818899298776,\n        \"name\": \"string\"\n      },\n      {\n        \"id\": 8312.9825604244,\n        \"name\": \"string\"\n      }\n    ],\n    \"metadata\": [\n      {\n        \"metadataKeyId\": 9123.755776730899,\n        \"name\": \"string\",\n        \"values\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      {\n        \"metadataKeyId\": 7292.885067475946,\n        \"name\": \"string\",\n        \"values\": [\n          \"string\",\n          \"string\"\n        ]\n      }\n    ],\n    \"createdAt\": [\n      \"string\",\n      \"string\"\n    ],\n    \"isAssembly\": [\n      false,\n      true\n    ],\n    \"fileType\": [\n      \"string\",\n      \"string\"\n    ],\n    \"units\": [\n      \"string\",\n      \"string\"\n    ],\n    \"collections\": {\n      \"names\": [\n        \"string\",\n        \"string\"\n      ],\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"metadata\": [\n        {\n          \"metadataKeyId\": 5117.459920676445,\n          \"name\": \"string\",\n          \"values\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"metadataKeyId\": 9906.247347716899,\n          \"name\": \"string\",\n          \"values\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ]\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "beb950ee-eef9-4342-8999-52091a5405c4",
+          "name": "Get Visual Matches",
+          "request": {
+            "name": "Get Visual Matches",
+            "description": {},
+            "url": {
+              "path": [
+                "models",
+                ":id",
+                "visual-matches"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "threshold",
+                  "value": "<float>",
+                  "description": "A float number (0-1) that is the minimum percentage a match must be to be returned."
+                },
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>",
+                  "description": "A [`FilterExpression`](#model-FilterExpression). See the [API Reference](https://physna.github.io/public-api-guide/api-reference/filter-expressions) for more details."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "A 1 based page number used in conjunction with `perPage`."
+                },
+                {
+                  "disabled": false,
+                  "key": "perPage",
+                  "value": "<integer>",
+                  "description": "The number of items to return per page."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "X-PHYSNA-TENANTID",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "openid tenant roles"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "5717293f-db1f-4371-a439-99a6e59c26ba",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "models",
+                    ":id",
+                    "visual-matches"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "threshold",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "perPage",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-PHYSNA-TENANTID",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"matches\": [\n    {\n      \"matchedModel\": {\n        \"createdAt\": \"string\",\n        \"fileName\": \"string\",\n        \"fileType\": \"string\",\n        \"folderId\": 8431.700243117208,\n        \"id\": \"string\",\n        \"isAssembly\": false,\n        \"name\": \"string\",\n        \"ownerId\": \"string\",\n        \"state\": \"string\",\n        \"units\": \"string\",\n        \"metadata\": [\n          {\n            \"modelId\": \"string\",\n            \"metadataKeyId\": 7946.507030455253,\n            \"name\": \"string\",\n            \"value\": \"string\"\n          },\n          {\n            \"modelId\": \"string\",\n            \"metadataKeyId\": 8358.293078739649,\n            \"name\": \"string\",\n            \"value\": \"string\"\n          }\n        ],\n        \"deletedAt\": \"string\",\n        \"thumbnail\": \"string\",\n        \"collections\": [\n          {\n            \"id\": \"string\",\n            \"name\": \"string\"\n          },\n          {\n            \"id\": \"string\",\n            \"name\": \"string\"\n          }\n        ],\n        \"labels\": [\n          {\n            \"displayName\": \"string\",\n            \"source\": \"string\",\n            \"createdAt\": \"1965-11-21T09:38:11.871Z\",\n            \"rejected\": true\n          },\n          {\n            \"displayName\": \"string\",\n            \"source\": \"string\",\n            \"createdAt\": \"1988-11-10T11:59:28.563Z\",\n            \"rejected\": true\n          }\n        ],\n        \"geometry\": {\n          \"obbMinLength\": 1814.2808727765714,\n          \"obbMidLength\": 9784.176657316017,\n          \"obbMaxLength\": 7371.994902642876,\n          \"surfaceArea\": 8779.316829055375,\n          \"modelVolume\": 7285.061344970767\n        }\n      }\n    },\n    {\n      \"matchedModel\": {\n        \"createdAt\": \"string\",\n        \"fileName\": \"string\",\n        \"fileType\": \"string\",\n        \"folderId\": 8984.762394775158,\n        \"id\": \"string\",\n        \"isAssembly\": false,\n        \"name\": \"string\",\n        \"ownerId\": \"string\",\n        \"state\": \"string\",\n        \"units\": \"string\",\n        \"metadata\": [\n          {\n            \"modelId\": \"string\",\n            \"metadataKeyId\": 2205.4201702480213,\n            \"name\": \"string\",\n            \"value\": \"string\"\n          },\n          {\n            \"modelId\": \"string\",\n            \"metadataKeyId\": 9373.428907992888,\n            \"name\": \"string\",\n            \"value\": \"string\"\n          }\n        ],\n        \"deletedAt\": \"string\",\n        \"thumbnail\": \"string\",\n        \"collections\": [\n          {\n            \"id\": \"string\",\n            \"name\": \"string\"\n          },\n          {\n            \"id\": \"string\",\n            \"name\": \"string\"\n          }\n        ],\n        \"labels\": [\n          {\n            \"displayName\": \"string\",\n            \"source\": \"string\",\n            \"createdAt\": \"1967-08-24T11:47:34.611Z\",\n            \"rejected\": true\n          },\n          {\n            \"displayName\": \"string\",\n            \"source\": \"string\",\n            \"createdAt\": \"2016-03-09T13:37:52.169Z\",\n            \"rejected\": false\n          }\n        ],\n        \"geometry\": {\n          \"obbMinLength\": 5284.691170122511,\n          \"obbMidLength\": 4834.509839873687,\n          \"obbMaxLength\": 4540.395686077519,\n          \"surfaceArea\": 5314.816689138248,\n          \"modelVolume\": 162.7855043606763\n        }\n      }\n    }\n  ],\n  \"pageData\": {\n    \"total\": 3976,\n    \"perPage\": 3120,\n    \"currentPage\": 9847,\n    \"lastPage\": 2153,\n    \"startIndex\": 4755,\n    \"endIndex\": 6146\n  },\n  \"filterData\": {\n    \"folders\": [\n      {\n        \"id\": 8154.170753723554,\n        \"name\": \"string\"\n      },\n      {\n        \"id\": 1068.498360530533,\n        \"name\": \"string\"\n      }\n    ],\n    \"metadata\": [\n      {\n        \"metadataKeyId\": 7107.978632884559,\n        \"name\": \"string\",\n        \"values\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      {\n        \"metadataKeyId\": 3099.708346957438,\n        \"name\": \"string\",\n        \"values\": [\n          \"string\",\n          \"string\"\n        ]\n      }\n    ],\n    \"createdAt\": [\n      \"string\",\n      \"string\"\n    ],\n    \"isAssembly\": [\n      true,\n      true\n    ],\n    \"fileType\": [\n      \"string\",\n      \"string\"\n    ],\n    \"units\": [\n      \"string\",\n      \"string\"\n    ],\n    \"collections\": {\n      \"names\": [\n        \"string\",\n        \"string\"\n      ],\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"metadata\": [\n        {\n          \"metadataKeyId\": 3547.053720927398,\n          \"name\": \"string\",\n          \"values\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"metadataKeyId\": 9927.542064037894,\n          \"name\": \"string\",\n          \"values\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ]\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2c652368-2c5b-455a-bc0f-bfe35f4e4e5b",
+          "name": "Get Source File",
+          "request": {
+            "name": "Get Source File",
+            "description": {},
+            "url": {
+              "path": [
+                "models",
+                ":id",
+                "source-file"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) A processed model id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "X-PHYSNA-TENANTID",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "openid tenant roles"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b431520e-10b3-4f97-929b-c3102f072532",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "models",
+                    ":id",
+                    "source-file"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) A processed model id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-PHYSNA-TENANTID",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"sourceFile\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6b66b3a1-98f4-4667-a0a5-e06189c4fb7b",
+          "name": "Get Viewer File",
+          "request": {
+            "name": "Get Viewer File",
+            "description": {},
+            "url": {
+              "path": [
+                "models",
+                ":id",
+                "viewer-file"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) A processed model id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "X-PHYSNA-TENANTID",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "openid tenant roles"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "328ce561-7dc1-40b5-9de9-c2ea249f9259",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "models",
+                    ":id",
+                    "viewer-file"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) A processed model id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-PHYSNA-TENANTID",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"viewerFile\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "025d924e-778a-41f4-8ac6-fe6e45783236",
+          "name": "Get Metadata",
+          "request": {
+            "name": "Get Metadata",
+            "description": {},
+            "url": {
+              "path": [
+                "models",
+                ":id",
+                "metadata"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>",
+                  "description": "A [`FilterExpression`](#model-FilterExpression). See the [API Reference](https://physna.github.io/public-api-guide/api-reference/filter-expressions) for more details."
+                },
+                {
+                  "disabled": false,
+                  "key": "order",
+                  "value": "<string>",
+                  "description": "An [`OrderExpression`](#model-OrderExpression). See the [API Reference](https://physna.github.io/public-api-guide/api-reference/order-expressions) for more details."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "A 1 based page number used in conjunction with `perPage`."
+                },
+                {
+                  "disabled": false,
+                  "key": "perPage",
+                  "value": "<integer>",
+                  "description": "The number of items to return per page."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "X-PHYSNA-TENANTID",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "openid tenant roles"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "ecb7b281-59b3-4df5-bab4-e949fc19c8a4",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "models",
+                    ":id",
+                    "metadata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "perPage",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-PHYSNA-TENANTID",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"pageData\": {\n    \"total\": 1590,\n    \"perPage\": 1993,\n    \"currentPage\": 4492,\n    \"lastPage\": 6760,\n    \"startIndex\": 8930,\n    \"endIndex\": 8802\n  },\n  \"metadata\": [\n    {\n      \"modelId\": \"string\",\n      \"metadataKeyId\": 5549.300104681361,\n      \"name\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"modelId\": \"string\",\n      \"metadataKeyId\": 7669.905242173153,\n      \"name\": \"string\",\n      \"value\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "916c0efa-cb34-4b39-9252-c0365b8ceccf",
+          "name": "Upsert Metadata",
+          "request": {
+            "name": "Upsert Metadata",
+            "description": {},
+            "url": {
+              "path": [
+                "models",
+                ":id",
+                "metadata",
+                ":metadataKeyId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<double>",
+                  "key": "metadataKeyId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "X-PHYSNA-TENANTID",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "openid tenant roles"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"value\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "be92632b-d584-4af8-9ed0-2b90670778e4",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "models",
+                    ":id",
+                    "metadata",
+                    ":metadataKeyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<double>",
+                      "key": "metadataKeyId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-PHYSNA-TENANTID",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"value\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"metadata\": {\n    \"modelId\": \"string\",\n    \"metadataKeyId\": 4979.212459499203,\n    \"name\": \"string\",\n    \"value\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "387b182e-1b9b-4407-94af-a249972f8690",
+          "name": "Get Assembly Tree For Model",
+          "request": {
+            "name": "Get Assembly Tree For Model",
+            "description": {},
+            "url": {
+              "path": [
+                "models",
+                ":id",
+                "assembly-tree"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "X-PHYSNA-TENANTID",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "openid tenant roles"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://physna.okta.com/oauth2/default/v1/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b3f43295-ae68-4e50-883b-bc3fbf4b36b2",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "models",
+                    ":id",
+                    "assembly-tree"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-PHYSNA-TENANTID",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"assemblyTree\",\n  \"modelId\": \"string\",\n  \"children\": [\n    {\n      \"type\": \"assemblyPart\",\n      \"modelId\": \"string\",\n      \"occurrences\": 4336.479034570793\n    },\n    {\n      \"type\": \"assemblyPart\",\n      \"modelId\": \"string\",\n      \"occurrences\": 7755.78142901501\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "10717bfd-e8c2-4f15-bd3f-9e91545e5009",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "models",
+                    ":id",
+                    "assembly-tree"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-PHYSNA-TENANTID",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "cc0098a3-ecbb-49fd-94b2-29bc02d055da",
+    "name": "Physna Public ClientCredentials Models API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Contact Support:\n Name: Support\n Email: support@physna.com",
+      "type": "text/plain"
+    }
+  }
+}

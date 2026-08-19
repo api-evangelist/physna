@@ -2,14 +2,11 @@ generated: '2026-07-20'
 method: derived
 status: candidate
 source: openapi/physna-openapi-original.json
-notes: >-
-  No official hosted or remote Physna MCP server was found (no npm
-  @modelcontextprotocol/physna package, no entry in public MCP registries, no
-  MCP reference in the public API guide as of 2026-07). This is a DERIVED
-  candidate tool surface mapped one-to-one from the v2 OpenAPI operations that
-  make sense as agent tools (geometric/visual/image search, model ingest,
-  collections, metadata). Auth is OAuth 2.0 client credentials via Physna's
-  Okta authorization server.
+notes: No official hosted or remote Physna MCP server was found (no npm @modelcontextprotocol/physna package,
+  no entry in public MCP registries, no MCP reference in the public API guide as of 2026-07). This is
+  a DERIVED candidate tool surface mapped one-to-one from the v2 OpenAPI operations that make sense as
+  agent tools (geometric/visual/image search, model ingest, collections, metadata). Auth is OAuth 2.0
+  client credentials via Physna's Okta authorization server.
 server:
   name: physna
   transport: http
@@ -51,3 +48,9 @@ tools:
 - name: find_metadata
   description: Search model metadata across the tenant.
   source_operation: openapi/physna-openapi-original.json#FindMetadata
+deployment:
+  mode: none
+  verified: derived
+  tools: 12
+  checked: '2026-08-12'
+  source: catalog MCP census
