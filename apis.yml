@@ -37,6 +37,17 @@ created: '2026-07-17'
 modified: '2026-07-20'
 tags:
 - Company
+- Artificial Intelligence
+- 3D
+- Geometric Search
+- Manufacturing
+- Engineering
+- Machine-Learning
+- Search
+- Computer-Vision
+- Product Development
+tags_raw:
+- Company
 - Ai
 - 3D
 - Geometric Search
@@ -53,6 +64,8 @@ apis:
   humanURL: https://physna.github.io/public-api-guide/
   baseURL: https://api.physna.com/v2
   tags:
+  - Client Credentials
+  tags_raw:
   - ClientCredentials
   properties:
   - type: OpenAPI
@@ -67,6 +80,8 @@ apis:
   humanURL: https://physna.github.io/public-api-guide/
   baseURL: https://api.physna.com/v2
   tags:
+  - Collection
+  tags_raw:
   - Collections
   properties:
   - type: OpenAPI
@@ -151,6 +166,8 @@ apis:
   humanURL: https://physna.github.io/public-api-guide/
   baseURL: https://api.physna.com/v2
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
