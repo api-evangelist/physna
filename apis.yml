@@ -70,22 +70,6 @@ tags_raw:
 - Computer Vision
 - Product Development
 apis:
-- aid: physna:physna-clientcredentials-api
-  name: Physna ClientCredentials API
-  description: The ClientCredentials API from Physna — 2 operation(s) for clientcredentials.
-  humanURL: https://physna.github.io/public-api-guide/
-  baseURL: https://api.physna.com/v2
-  tags:
-  - Client Credentials
-  tags_raw:
-  - ClientCredentials
-  properties:
-  - type: OpenAPI
-    url: openapi/physna-clientcredentials-api-openapi.yml
-  - type: APIReference
-    url: https://api.physna.com/v2/docs
-  - type: Documentation
-    url: https://physna.github.io/public-api-guide/
 - aid: physna:physna-collections-api
   name: Physna Collections API
   description: The Collections API from Physna — 13 operation(s) for collections.
@@ -184,6 +168,20 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/physna-users-api-openapi.yml
+  - type: APIReference
+    url: https://api.physna.com/v2/docs
+  - type: Documentation
+    url: https://physna.github.io/public-api-guide/
+- aid: physna:physna-client-credentials-api
+  name: Physna Client Credentials API
+  description: The Client Credentials API from Physna — 2 operation(s) for client credentials.
+  humanURL: https://physna.github.io/public-api-guide/
+  baseURL: https://api.physna.com/v2
+  tags:
+  - Client Credentials
+  properties:
+  - type: OpenAPI
+    url: openapi/physna-client-credentials-api-openapi.yml
   - type: APIReference
     url: https://api.physna.com/v2/docs
   - type: Documentation
