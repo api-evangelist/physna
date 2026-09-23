@@ -1,6 +1,6 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Physna Public ClientCredentials Metadata API
+  title: Physna Public Metadata API
   version: 2.0.1
   contact:
     name: Support
@@ -66,6 +66,8 @@ paths:
         required: false
         schema:
           type: string
+      summary: Get metadata
+      x-summary-source: derived
   /models/{id}/metadata/{metadataKeyId}:
     put:
       operationId: UpsertMetadata
@@ -110,6 +112,8 @@ paths:
               required:
               - value
               type: object
+      summary: Upsert metadata
+      x-summary-source: derived
     delete:
       operationId: DeleteMetadata
       responses:
@@ -142,6 +146,8 @@ paths:
         required: false
         schema:
           type: string
+      summary: Delete metadata
+      x-summary-source: derived
   /metadata-keys:
     get:
       operationId: GetMetadataKeys
@@ -202,6 +208,8 @@ paths:
         required: false
         schema:
           type: string
+      summary: Get metadata keys
+      x-summary-source: derived
     post:
       operationId: CreateMetadataKey
       responses:
@@ -229,6 +237,8 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/PostMetadataKeyBody'
+      summary: Create metadata key
+      x-summary-source: derived
     delete:
       operationId: DeleteMetadataKey
       responses:
@@ -257,6 +267,8 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/DeleteMetadataKeyBody'
+      summary: Delete metadata key
+      x-summary-source: derived
   /metadata-keys/{id}:
     get:
       operationId: GetMetadataKey
@@ -291,6 +303,8 @@ paths:
         required: false
         schema:
           type: string
+      summary: Get metadata key
+      x-summary-source: derived
   /metadata:
     get:
       operationId: FindMetadata
@@ -351,6 +365,8 @@ paths:
         required: false
         schema:
           type: string
+      summary: Find metadata
+      x-summary-source: derived
   /collections/{id}/metadata/{metadataKeyId}:
     put:
       operationId: UpsertCollectionMetadata
@@ -395,6 +411,8 @@ paths:
               required:
               - value
               type: object
+      summary: Upsert collection metadata
+      x-summary-source: derived
     delete:
       operationId: DeleteCollectionMetadata
       responses:
@@ -423,48 +441,16 @@ paths:
         required: false
         schema:
           type: string
+      summary: Delete collection metadata
+      x-summary-source: derived
 components:
   schemas:
-    ErrorResponse:
+    SingleMetadataKeyResponse:
       properties:
-        error:
-          properties:
-            message:
-              type: string
-          required:
-          - message
-          type: object
+        metadataKey:
+          $ref: '#/components/schemas/MetadataKey'
       required:
-      - error
-      type: object
-      additionalProperties: false
-    MetadataKey:
-      properties:
-        id:
-          type: number
-          format: double
-        name:
-          type: string
-      required:
-      - id
-      - name
-      type: object
-      additionalProperties: false
-    DeleteMetadataKeyBody:
-      properties:
-        id:
-          type: number
-          format: double
-      required:
-      - id
-      type: object
-      additionalProperties: false
-    DeleteMetadataResponse:
-      properties:
-        deleted:
-          type: boolean
-      required:
-      - deleted
+      - metadataKey
       type: object
       additionalProperties: false
     MetadataResponse:
@@ -478,6 +464,32 @@ components:
       required:
       - pageData
       - metadata
+      type: object
+      additionalProperties: false
+    MetadataListResponse:
+      properties:
+        pageData:
+          $ref: '#/components/schemas/PageData'
+        metadata:
+          items:
+            $ref: '#/components/schemas/Metadata'
+          type: array
+      required:
+      - pageData
+      - metadata
+      type: object
+      additionalProperties: false
+    ErrorResponse:
+      properties:
+        error:
+          properties:
+            message:
+              type: string
+          required:
+          - message
+          type: object
+      required:
+      - error
       type: object
       additionalProperties: false
     PageData:
@@ -509,25 +521,44 @@ components:
       - endIndex
       type: object
       additionalProperties: false
-    MetadataKeyListResponse:
+    DeletedMetadataKeyResponse:
       properties:
-        pageData:
-          $ref: '#/components/schemas/PageData'
-        metadataKeys:
-          items:
-            $ref: '#/components/schemas/MetadataKey'
-          type: array
+        deleted:
+          type: boolean
       required:
-      - pageData
-      - metadataKeys
+      - deleted
       type: object
       additionalProperties: false
-    SingleMetadataKeyResponse:
+    MetadataKey:
       properties:
-        metadataKey:
-          $ref: '#/components/schemas/MetadataKey'
+        id:
+          type: number
+          format: double
+        name:
+          type: string
       required:
-      - metadataKey
+      - id
+      - name
+      type: object
+      additionalProperties: false
+    Metadata:
+      properties:
+        modelId:
+          type: string
+        metadataKeyId:
+          type: number
+          format: double
+        name:
+          type:
+          - string
+          - 'null'
+        value:
+          type: string
+      required:
+      - modelId
+      - metadataKeyId
+      - name
+      - value
       type: object
       additionalProperties: false
     OrderExpression:
@@ -546,31 +577,42 @@ components:
         -id,name
 
         ```'
-    Metadata:
+    DeleteMetadataKeyBody:
       properties:
-        modelId:
-          type: string
-        metadataKeyId:
+        id:
           type: number
           format: double
-        name:
-          type: string
-          nullable: true
-        value:
-          type: string
       required:
-      - modelId
-      - metadataKeyId
-      - name
-      - value
+      - id
       type: object
       additionalProperties: false
-    DeletedMetadataKeyResponse:
+    PostMetadataKeyBody:
+      properties:
+        metadataKeyName:
+          type: string
+      required:
+      - metadataKeyName
+      type: object
+      additionalProperties: false
+    DeleteMetadataResponse:
       properties:
         deleted:
           type: boolean
       required:
       - deleted
+      type: object
+      additionalProperties: false
+    MetadataKeyListResponse:
+      properties:
+        pageData:
+          $ref: '#/components/schemas/PageData'
+        metadataKeys:
+          items:
+            $ref: '#/components/schemas/MetadataKey'
+          type: array
+      required:
+      - pageData
+      - metadataKeys
       type: object
       additionalProperties: false
     FilterExpression:
@@ -588,27 +630,6 @@ components:
         id(between(1,1000)),createdAt(not(lt(''2022-01-01T00:00:00.000Z'')))
 
         ```'
-    MetadataListResponse:
-      properties:
-        pageData:
-          $ref: '#/components/schemas/PageData'
-        metadata:
-          items:
-            $ref: '#/components/schemas/Metadata'
-          type: array
-      required:
-      - pageData
-      - metadata
-      type: object
-      additionalProperties: false
-    PostMetadataKeyBody:
-      properties:
-        metadataKeyName:
-          type: string
-      required:
-      - metadataKeyName
-      type: object
-      additionalProperties: false
     SingleMetadataResponse:
       properties:
         metadata:

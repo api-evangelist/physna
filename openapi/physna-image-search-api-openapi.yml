@@ -1,6 +1,6 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Physna Public ClientCredentials Image Search API
+  title: Physna Public Image Search API
   version: 2.0.1
   contact:
     name: Support
@@ -26,7 +26,53 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-      description: "Creates signed upload information that can be used to upload the image.\nThis is meant for uploading images for image search via `/images/{id}/model-matches`.\n\nThe response will include the appropriate headers and upload URL that can be used to upload the image.\n\n```json\n{\n \"image\": {\n  \"id\": \"<imageId>\",\n  \"uploadUrl\": \"<upload-url>\",\n  \"headers\": {\n    \"<header1-name>\": \"<header1-value>\",\n    \"<header2-name>\": \"<header2-value>\",\n  }\n }\n}\n```\n\nThe image can be uploaded via a `PUT` request to the <upload url> including the file and the supplied headers.\n\nExample using curl command:\n\n```\ncurl -X PUT --upload-file file.png -H '<header1-name>: <header1-value>' -H '<header2-name>: <header2-value>' <upload-url>\n```\n\nImage files can be a max of 10 MB in size."
+      description: 'Creates signed upload information that can be used to upload the image.
+
+        This is meant for uploading images for image search via `/images/{id}/model-matches`.
+
+
+        The response will include the appropriate headers and upload URL that can be used to upload the image.
+
+
+        ```json
+
+        {
+
+        "image": {
+
+        "id": "",
+
+        "uploadUrl": "",
+
+        "headers": {
+
+        "": "",
+
+        "": "",
+
+        }
+
+        }
+
+        }
+
+        ```
+
+
+        The image can be uploaded via a `PUT` request to the including the file and the supplied headers.
+
+
+        Example using curl command:
+
+
+        ```
+
+        curl -X PUT --upload-file file.png -H '': '' -H '': ''
+
+        ```
+
+
+        Image files can be a max of 10 MB in size.'
       tags:
       - Image Search
       security:
@@ -51,6 +97,8 @@ paths:
               required:
               - filename
               type: object
+      summary: Get signed upload url for image
+      x-summary-source: derived
   /images/model-matches:
     get:
       operationId: GetImageMatches
@@ -73,9 +121,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-      description: '
-
-        We are continually improving image recognition capabilities. At current state, the following properties are advisable for good performance:
+      description: 'We are continually improving image recognition capabilities. At current state, the following properties are advisable for good performance:
 
         - Images with the object by itself.
 
@@ -87,7 +133,7 @@ paths:
         **Examples of Images that Perform Well**
 
 
-        ![Images that perform well](assets/good_images.png)
+        !Images that perform well
 
         - plain background
 
@@ -97,7 +143,7 @@ paths:
         **Examples of Images to Avoid**
 
 
-        ![Images to avoid](assets/bad_images.png)
+        !Images to avoid
 
         - multiple objects
 
@@ -156,34 +202,158 @@ paths:
         required: false
         schema:
           type: string
+      summary: Get image matches
+      x-summary-source: derived
 components:
   schemas:
-    ModelGeometry:
-      description: Model geometry of ingested model, including the model's bounding box lengths, it's surface area, and volume.
+    MatchFilterData:
       properties:
-        obbMinLength:
-          type: number
-          format: double
-        obbMidLength:
-          type: number
-          format: double
-        obbMaxLength:
-          type: number
-          format: double
-        surfaceArea:
-          type: number
-          format: double
-        modelVolume:
-          type: number
-          format: double
+        folders:
+          items:
+            $ref: '#/components/schemas/Pick_Folder.id-or-name_'
+          type: array
+        metadata:
+          items:
+            $ref: '#/components/schemas/MetadataFilterData'
+          type: array
+        createdAt:
+          items:
+            type: string
+          type: array
+        isAssembly:
+          items:
+            type: boolean
+          type: array
+        fileType:
+          items:
+            type: string
+          type: array
+        units:
+          items:
+            type: string
+          type: array
+        collections:
+          $ref: '#/components/schemas/CollectionFilterData'
       required:
-      - obbMinLength
-      - obbMidLength
-      - obbMaxLength
-      - surfaceArea
-      - modelVolume
+      - folders
+      - metadata
+      - createdAt
+      - isAssembly
+      - fileType
+      - units
+      - collections
       type: object
       additionalProperties: false
+    Pick_Folder.id-or-name_:
+      properties:
+        id:
+          type: number
+          format: double
+        name:
+          type: string
+      required:
+      - id
+      - name
+      type: object
+      description: From T, pick a set of properties whose keys are in the union K
+    UploadUrlInfo:
+      properties:
+        uploadUrl:
+          type: string
+        headers:
+          properties: {}
+          additionalProperties:
+            type: string
+          type: object
+        fileSizeRequirements:
+          properties:
+            maxSizeInBytes:
+              type: number
+              format: double
+            minSizeInBytes:
+              type: number
+              format: double
+          required:
+          - maxSizeInBytes
+          - minSizeInBytes
+          type: object
+      required:
+      - uploadUrl
+      - headers
+      - fileSizeRequirements
+      type: object
+      additionalProperties: false
+    ErrorResponse:
+      properties:
+        error:
+          properties:
+            message:
+              type: string
+          required:
+          - message
+          type: object
+      required:
+      - error
+      type: object
+      additionalProperties: false
+    PageData:
+      properties:
+        total:
+          type: integer
+          format: int32
+        perPage:
+          type: integer
+          format: int32
+        currentPage:
+          type: integer
+          format: int32
+        lastPage:
+          type: integer
+          format: int32
+        startIndex:
+          type: integer
+          format: int32
+        endIndex:
+          type: integer
+          format: int32
+      required:
+      - total
+      - perPage
+      - currentPage
+      - lastPage
+      - startIndex
+      - endIndex
+      type: object
+      additionalProperties: false
+    CollectionFilterData:
+      properties:
+        names:
+          items:
+            type: string
+          type: array
+        tags:
+          items:
+            type: string
+          type: array
+        metadata:
+          items:
+            $ref: '#/components/schemas/MetadataFilterData'
+          type: array
+      required:
+      - names
+      - tags
+      - metadata
+      type: object
+      additionalProperties: false
+    UploadImageInfo:
+      allOf:
+      - $ref: '#/components/schemas/UploadUrlInfo'
+      - properties:
+          id:
+            type: string
+        required:
+        - id
+        type: object
     MetadataFilterData:
       properties:
         metadataKeyId:
@@ -201,31 +371,6 @@ components:
       - values
       type: object
       additionalProperties: false
-    ErrorResponse:
-      properties:
-        error:
-          properties:
-            message:
-              type: string
-          required:
-          - message
-          type: object
-      required:
-      - error
-      type: object
-      additionalProperties: false
-    Pick_Folder.id-or-name_:
-      properties:
-        id:
-          type: number
-          format: double
-        name:
-          type: string
-      required:
-      - id
-      - name
-      type: object
-      description: From T, pick a set of properties whose keys are in the union K
     ModelWithMetadata:
       properties:
         createdAt:
@@ -281,70 +426,6 @@ components:
       - metadata
       type: object
       additionalProperties: false
-    CollectionFilterData:
-      properties:
-        names:
-          items:
-            type: string
-          type: array
-        tags:
-          items:
-            type: string
-          type: array
-        metadata:
-          items:
-            $ref: '#/components/schemas/MetadataFilterData'
-          type: array
-      required:
-      - names
-      - tags
-      - metadata
-      type: object
-      additionalProperties: false
-    Label:
-      properties:
-        displayName:
-          type: string
-        source:
-          type: string
-        createdAt:
-          type: string
-          format: date-time
-        rejected:
-          type: boolean
-      required:
-      - displayName
-      - source
-      - createdAt
-      type: object
-      additionalProperties: false
-    UploadUrlInfo:
-      properties:
-        uploadUrl:
-          type: string
-        headers:
-          properties: {}
-          additionalProperties:
-            type: string
-          type: object
-        fileSizeRequirements:
-          properties:
-            maxSizeInBytes:
-              type: number
-              format: double
-            minSizeInBytes:
-              type: number
-              format: double
-          required:
-          - maxSizeInBytes
-          - minSizeInBytes
-          type: object
-      required:
-      - uploadUrl
-      - headers
-      - fileSizeRequirements
-      type: object
-      additionalProperties: false
     GetImageMatchesResponse:
       properties:
         matches:
@@ -370,83 +451,6 @@ components:
       - images
       type: object
       additionalProperties: false
-    MatchFilterData:
-      properties:
-        folders:
-          items:
-            $ref: '#/components/schemas/Pick_Folder.id-or-name_'
-          type: array
-        metadata:
-          items:
-            $ref: '#/components/schemas/MetadataFilterData'
-          type: array
-        createdAt:
-          items:
-            type: string
-          type: array
-        isAssembly:
-          items:
-            type: boolean
-          type: array
-        fileType:
-          items:
-            type: string
-          type: array
-        units:
-          items:
-            type: string
-          type: array
-        collections:
-          $ref: '#/components/schemas/CollectionFilterData'
-      required:
-      - folders
-      - metadata
-      - createdAt
-      - isAssembly
-      - fileType
-      - units
-      - collections
-      type: object
-      additionalProperties: false
-    PageData:
-      properties:
-        total:
-          type: integer
-          format: int32
-        perPage:
-          type: integer
-          format: int32
-        currentPage:
-          type: integer
-          format: int32
-        lastPage:
-          type: integer
-          format: int32
-        startIndex:
-          type: integer
-          format: int32
-        endIndex:
-          type: integer
-          format: int32
-      required:
-      - total
-      - perPage
-      - currentPage
-      - lastPage
-      - startIndex
-      - endIndex
-      type: object
-      additionalProperties: false
-    Pick_Collection.id-or-name_:
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-      required:
-      - id
-      type: object
-      description: From T, pick a set of properties whose keys are in the union K
     ImageMatch:
       description: Searching for models that match the given image
       properties:
@@ -464,8 +468,9 @@ components:
           type: number
           format: double
         name:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         value:
           type: string
       required:
@@ -475,21 +480,68 @@ components:
       - value
       type: object
       additionalProperties: false
-    UploadImageInfo:
-      allOf:
-      - $ref: '#/components/schemas/UploadUrlInfo'
-      - properties:
-          id:
-            type: string
-        required:
-        - id
-        type: object
-    UploadImageResponse:
+    Label:
       properties:
-        image:
-          $ref: '#/components/schemas/UploadImageInfo'
+        displayName:
+          type: string
+        source:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        rejected:
+          type: boolean
       required:
-      - image
+      - displayName
+      - source
+      - createdAt
+      type: object
+      additionalProperties: false
+    Pick_Collection.id-or-name_:
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+      required:
+      - id
+      type: object
+      description: From T, pick a set of properties whose keys are in the union K
+    SignedImage:
+      properties:
+        filename:
+          type: string
+        url:
+          type: string
+      required:
+      - filename
+      - url
+      type: object
+      additionalProperties: false
+    ModelGeometry:
+      description: Model geometry of ingested model, including the model's bounding box lengths, it's surface area, and volume.
+      properties:
+        obbMinLength:
+          type: number
+          format: double
+        obbMidLength:
+          type: number
+          format: double
+        obbMaxLength:
+          type: number
+          format: double
+        surfaceArea:
+          type: number
+          format: double
+        modelVolume:
+          type: number
+          format: double
+      required:
+      - obbMinLength
+      - obbMidLength
+      - obbMaxLength
+      - surfaceArea
+      - modelVolume
       type: object
       additionalProperties: false
     FilterExpression:
@@ -507,15 +559,12 @@ components:
         id(between(1,1000)),createdAt(not(lt(''2022-01-01T00:00:00.000Z'')))
 
         ```'
-    SignedImage:
+    UploadImageResponse:
       properties:
-        filename:
-          type: string
-        url:
-          type: string
+        image:
+          $ref: '#/components/schemas/UploadImageInfo'
       required:
-      - filename
-      - url
+      - image
       type: object
       additionalProperties: false
   securitySchemes:

@@ -1,6 +1,6 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Physna Public ClientCredentials Models API
+  title: Physna Public Models API
   version: 2.0.1
   contact:
     name: Support
@@ -87,6 +87,8 @@ paths:
         required: false
         schema:
           type: string
+      summary: Get models
+      x-summary-source: derived
     delete:
       operationId: DeleteModels
       responses:
@@ -113,6 +115,8 @@ paths:
         required: false
         schema:
           type: string
+      summary: Delete models
+      x-summary-source: derived
     post:
       operationId: CreateModels
       responses:
@@ -127,27 +131,27 @@ paths:
 
         Current Limitations:
 
-        -  Filetypes Supported: ''.3ds'', ''.asm'', ''.catpart'', ''.catproduct'', ''.glb'', ''.iges'', ''.igs'', ''.obj'', ''.par'', ''.prt'', ''.sldasm'', ''.sldprt'', ''.stl'', ''.step'', ''.stp'', ''.x_b'', ''.x_t'',
+        - Filetypes Supported: ''.3ds'', ''.asm'', ''.catpart'', ''.catproduct'', ''.glb'', ''.iges'', ''.igs'', ''.obj'', ''.par'', ''.prt'', ''.sldasm'', ''.sldprt'', ''.stl'', ''.step'', ''.stp'', ''.x_b'', ''.x_t'',
 
-        -  Versioned Creo files are also supported. For example `part.prt.1` or `assembly.asm.2`.
+        - Versioned Creo files are also supported. For example `part.prt.1` or `assembly.asm.2`.
 
-        -  Maximum 100 Models can be created at once.
+        - Maximum 100 Models can be created at once.
 
-        -  The `folderName` used in the `filePath` must be the `name` of a `Folder` that already exists.
+        - The `folderName` used in the `filePath` must be the `name` of a `Folder` that already exists.
 
-        -  Each `filePath` must be unique for each model.
+        - Each `filePath` must be unique for each model.
 
-        -  `filePath` can not exceed 1024 bytes (this is roughly 1024 characters, unless unicode characters are included, which consume more bytes)
+        - `filePath` can not exceed 1024 bytes (this is roughly 1024 characters, unless unicode characters are included, which consume more bytes)
 
-        -  `filePath` can not contain any of the following characters: `[''\n'', ''\r'', ''*'', '':'', ''"'', ''<'', ''>'', ''|'', ''#'', ''['', '']'', ''?'', ''\\''];
+        - `filePath` can not contain any of the following characters: `[''\n'', ''\r'', ''*'', '':'', ''"'', '''', ''|'', ''#'', ''['', '']'', ''?'', ''\\''];
 
-        -  No duplicates of a model can be created within the same folder.
+        - No duplicates of a model can be created within the same folder.
 
 
         Assemblies can be created just like any other supported file, but all required subparts must be uploaded to the same folder (preferably beforehand to avoid unnecessary automatic reprocessing).
 
 
-        The model file can be uploaded via a `PUT` request to the <upload url> including the file and the supplied headers.
+        The model file can be uploaded via a `PUT` request to the including the file and the supplied headers.
 
 
         Example using `curl` command:
@@ -155,7 +159,7 @@ paths:
 
         ```
 
-        curl -X PUT --upload-file file.stl -H ''<header1-name>: <header1-value>'' -H ''<header2-name>: <header2-value>'' <upload-url>
+        curl -X PUT --upload-file file.stl -H '': '' -H '': ''
 
         ```
 
@@ -201,6 +205,8 @@ paths:
               - models
               type: object
               description: A list of models to create
+      summary: Create models
+      x-summary-source: derived
   /models/match-report:
     get:
       operationId: GetMatchReport
@@ -329,6 +335,8 @@ paths:
         required: false
         schema:
           type: string
+      summary: Get model state report
+      x-summary-source: derived
   /models/reprocess:
     post:
       operationId: ReprocessModels
@@ -370,6 +378,8 @@ paths:
         required: false
         schema:
           type: string
+      summary: Reprocess models
+      x-summary-source: derived
   /models/{id}/reprocess:
     post:
       operationId: ReprocessModel
@@ -400,6 +410,8 @@ paths:
         required: false
         schema:
           type: string
+      summary: Reprocess model
+      x-summary-source: derived
   /models/{id}:
     get:
       operationId: GetModel
@@ -434,6 +446,8 @@ paths:
         required: false
         schema:
           type: string
+      summary: Get model
+      x-summary-source: derived
     delete:
       operationId: DeleteModel
       responses:
@@ -457,6 +471,8 @@ paths:
         required: false
         schema:
           type: string
+      summary: Delete model
+      x-summary-source: derived
   /models/{id}/matches:
     get:
       operationId: GetModelMatches
@@ -516,6 +532,8 @@ paths:
         required: false
         schema:
           type: string
+      summary: Get model matches
+      x-summary-source: derived
   /models/{id}/part-matches:
     get:
       operationId: GetPartMatches
@@ -575,6 +593,8 @@ paths:
         required: false
         schema:
           type: string
+      summary: Get part matches
+      x-summary-source: derived
   /models/{id}/scan-matches:
     get:
       operationId: GetScanMatches
@@ -634,6 +654,8 @@ paths:
         required: false
         schema:
           type: string
+      summary: Get scan matches
+      x-summary-source: derived
   /models/{id}/visual-matches:
     get:
       operationId: GetVisualMatches
@@ -693,6 +715,8 @@ paths:
         required: false
         schema:
           type: string
+      summary: Get visual matches
+      x-summary-source: derived
   /models/{id}/source-file:
     get:
       operationId: GetSourceFile
@@ -722,6 +746,8 @@ paths:
         required: false
         schema:
           type: string
+      summary: Get source file
+      x-summary-source: derived
   /models/{id}/viewer-file:
     get:
       operationId: GetViewerFile
@@ -751,6 +777,8 @@ paths:
         required: false
         schema:
           type: string
+      summary: Get viewer file
+      x-summary-source: derived
   /models/{id}/metadata:
     get:
       operationId: GetMetadata
@@ -807,6 +835,8 @@ paths:
         required: false
         schema:
           type: string
+      summary: Get metadata
+      x-summary-source: derived
   /models/{id}/metadata/{metadataKeyId}:
     put:
       operationId: UpsertMetadata
@@ -851,6 +881,8 @@ paths:
               required:
               - value
               type: object
+      summary: Upsert metadata
+      x-summary-source: derived
   /models/{id}/assembly-tree:
     get:
       operationId: GetAssemblyTreeForModel
@@ -885,8 +917,99 @@ paths:
         required: false
         schema:
           type: string
+      summary: Get assembly tree for model
+      x-summary-source: derived
 components:
   schemas:
+    Pick_Folder.id-or-name_:
+      properties:
+        id:
+          type: number
+          format: double
+        name:
+          type: string
+      required:
+      - id
+      - name
+      type: object
+      description: From T, pick a set of properties whose keys are in the union K
+    CreateCollectionResponseBody:
+      properties:
+        collectionId:
+          type: string
+        affected:
+          type: number
+          format: double
+      required:
+      - collectionId
+      - affected
+      type: object
+      additionalProperties: false
+    UploadUrlInfo:
+      properties:
+        uploadUrl:
+          type: string
+        headers:
+          properties: {}
+          additionalProperties:
+            type: string
+          type: object
+        fileSizeRequirements:
+          properties:
+            maxSizeInBytes:
+              type: number
+              format: double
+            minSizeInBytes:
+              type: number
+              format: double
+          required:
+          - maxSizeInBytes
+          - minSizeInBytes
+          type: object
+      required:
+      - uploadUrl
+      - headers
+      - fileSizeRequirements
+      type: object
+      additionalProperties: false
+    AssemblyPart:
+      properties:
+        type:
+          type: string
+          enum:
+          - assemblyPart
+        modelId:
+          type: string
+        occurrences:
+          type: number
+          format: double
+      required:
+      - type
+      - modelId
+      - occurrences
+      type: object
+      additionalProperties: false
+    ModelMatch:
+      properties:
+        matchPercentage:
+          type: number
+          format: double
+        matchedModel:
+          $ref: '#/components/schemas/ModelWithMetadata'
+      required:
+      - matchPercentage
+      - matchedModel
+      type: object
+      additionalProperties: false
+    ReprocessModelsResponse:
+      properties:
+        affected:
+          type: number
+          format: double
+      required:
+      - affected
+      type: object
+      additionalProperties: false
     MetadataFilterData:
       properties:
         metadataKeyId:
@@ -904,48 +1027,6 @@ components:
       - values
       type: object
       additionalProperties: false
-    AssemblyPart:
-      properties:
-        type:
-          type: string
-          enum:
-          - assemblyPart
-          nullable: false
-        modelId:
-          type: string
-        occurrences:
-          type: number
-          format: double
-      required:
-      - type
-      - modelId
-      - occurrences
-      type: object
-      additionalProperties: false
-    MatchReportGroups:
-      properties:
-        groups:
-          items:
-            $ref: '#/components/schemas/MatchReportGroup'
-          type: array
-      required:
-      - groups
-      type: object
-      additionalProperties: false
-    Pick_Folder.id-or-name_:
-      properties:
-        id:
-          type: number
-          format: double
-        name:
-          type: string
-      required:
-      - id
-      - name
-      type: object
-      description: From T, pick a set of properties whose keys are in the union K
-    AddToCollectionResponseBody:
-      $ref: '#/components/schemas/CreateCollectionResponseBody'
     Label:
       properties:
         displayName:
@@ -961,156 +1042,6 @@ components:
       - displayName
       - source
       - createdAt
-      type: object
-      additionalProperties: false
-    GetPartMatchesResponse:
-      properties:
-        matches:
-          items:
-            $ref: '#/components/schemas/PartMatch'
-          type: array
-        pageData:
-          $ref: '#/components/schemas/PageData'
-        filterData:
-          $ref: '#/components/schemas/MatchFilterData'
-      required:
-      - matches
-      - pageData
-      - filterData
-      type: object
-      additionalProperties: false
-    GetModelStateReportResponse:
-      properties:
-        states:
-          $ref: '#/components/schemas/ModelStateReport'
-      required:
-      - states
-      type: object
-      additionalProperties: false
-    AssemblyTree:
-      properties:
-        type:
-          type: string
-          enum:
-          - assemblyTree
-          nullable: false
-        modelId:
-          type: string
-        children:
-          items:
-            anyOf:
-            - $ref: '#/components/schemas/AssemblyPart'
-            - $ref: '#/components/schemas/SubAssembly'
-          type: array
-      required:
-      - type
-      - modelId
-      - children
-      type: object
-      additionalProperties: false
-    MetadataResponse:
-      properties:
-        pageData:
-          $ref: '#/components/schemas/PageData'
-        metadata:
-          items:
-            $ref: '#/components/schemas/Metadata'
-          type: array
-      required:
-      - pageData
-      - metadata
-      type: object
-      additionalProperties: false
-    ModelMatch:
-      properties:
-        matchPercentage:
-          type: number
-          format: double
-        matchedModel:
-          $ref: '#/components/schemas/ModelWithMetadata'
-      required:
-      - matchPercentage
-      - matchedModel
-      type: object
-      additionalProperties: false
-    MatchFilterData:
-      properties:
-        folders:
-          items:
-            $ref: '#/components/schemas/Pick_Folder.id-or-name_'
-          type: array
-        metadata:
-          items:
-            $ref: '#/components/schemas/MetadataFilterData'
-          type: array
-        createdAt:
-          items:
-            type: string
-          type: array
-        isAssembly:
-          items:
-            type: boolean
-          type: array
-        fileType:
-          items:
-            type: string
-          type: array
-        units:
-          items:
-            type: string
-          type: array
-        collections:
-          $ref: '#/components/schemas/CollectionFilterData'
-      required:
-      - folders
-      - metadata
-      - createdAt
-      - isAssembly
-      - fileType
-      - units
-      - collections
-      type: object
-      additionalProperties: false
-    OrderExpression:
-      type: string
-      description: 'A string in the form `[-]<OrderProperty>[,OrderProperties]`.
-
-
-        See the [API Reference](https://physna.github.io/public-api-guide/api-reference/order-expressions) for more details.
-
-
-
-        Example:
-
-        ```
-
-        -id,name
-
-        ```'
-    ScanMatch:
-      properties:
-        matchedModel:
-          $ref: '#/components/schemas/ModelWithMetadata'
-        matchPercentage:
-          type: number
-          format: double
-      required:
-      - matchedModel
-      - matchPercentage
-      type: object
-      additionalProperties: false
-    CreateModelRequest:
-      properties:
-        filePath:
-          type: string
-        name:
-          type: string
-        metadata:
-          items:
-            $ref: '#/components/schemas/CreateModelMetadata'
-          type: array
-      required:
-      - filePath
       type: object
       additionalProperties: false
     GetModelMatchesResponse:
@@ -1129,11 +1060,91 @@ components:
       - filterData
       type: object
       additionalProperties: false
-    GetVisualMatchesResponse:
+    SourceFileResponse:
+      properties:
+        sourceFile:
+          type: string
+      required:
+      - sourceFile
+      type: object
+      additionalProperties: false
+    SingleMetadataResponse:
+      properties:
+        metadata:
+          $ref: '#/components/schemas/Metadata'
+      required:
+      - metadata
+      type: object
+      additionalProperties: false
+    CreateModelRequest:
+      properties:
+        filePath:
+          type: string
+        name:
+          type: string
+        metadata:
+          items:
+            $ref: '#/components/schemas/CreateModelMetadata'
+          type: array
+      required:
+      - filePath
+      type: object
+      additionalProperties: false
+    ModelStateReport:
+      properties: {}
+      type: object
+      additionalProperties:
+        type: number
+        format: double
+    SubAssembly:
+      properties:
+        type:
+          type: string
+          enum:
+          - subAssembly
+        modelId:
+          type: string
+        children:
+          items:
+            anyOf:
+            - $ref: '#/components/schemas/AssemblyPart'
+            - $ref: '#/components/schemas/SubAssembly'
+          type: array
+        occurrences:
+          type: number
+          format: double
+      required:
+      - type
+      - modelId
+      - children
+      - occurrences
+      type: object
+      additionalProperties: false
+    CollectionFilterData:
+      properties:
+        names:
+          items:
+            type: string
+          type: array
+        tags:
+          items:
+            type: string
+          type: array
+        metadata:
+          items:
+            $ref: '#/components/schemas/MetadataFilterData'
+          type: array
+      required:
+      - names
+      - tags
+      - metadata
+      type: object
+      additionalProperties: false
+    GetPartMatchesResponse:
       properties:
         matches:
           items:
-            $ref: '#/components/schemas/VisualMatch'
+            $ref: '#/components/schemas/PartMatch'
           type: array
         pageData:
           $ref: '#/components/schemas/PageData'
@@ -1145,75 +1156,80 @@ components:
       - filterData
       type: object
       additionalProperties: false
-    CreateModelMetadata:
+    MatchReportItem:
       properties:
-        metadataKeyId:
+        model:
+          $ref: '#/components/schemas/ModelWithMetadata'
+        matchCount:
           type: number
           format: double
-        value:
-          type: string
       required:
-      - metadataKeyId
-      - value
+      - model
+      - matchCount
       type: object
       additionalProperties: false
-    PartMatch:
+    AssemblyTree:
+      properties:
+        type:
+          type: string
+          enum:
+          - assemblyTree
+        modelId:
+          type: string
+        children:
+          items:
+            anyOf:
+            - $ref: '#/components/schemas/AssemblyPart'
+            - $ref: '#/components/schemas/SubAssembly'
+          type: array
+      required:
+      - type
+      - modelId
+      - children
+      type: object
+      additionalProperties: false
+    AddToCollectionResponseBody:
+      $ref: '#/components/schemas/CreateCollectionResponseBody'
+    MatchReportThreshold:
+      type: number
+      enum:
+      - 0.8
+      - 0.9
+      - 0.95
+      - 0.99
+    MetadataResponse:
+      properties:
+        pageData:
+          $ref: '#/components/schemas/PageData'
+        metadata:
+          items:
+            $ref: '#/components/schemas/Metadata'
+          type: array
+      required:
+      - pageData
+      - metadata
+      type: object
+      additionalProperties: false
+    ScanMatch:
       properties:
         matchedModel:
           $ref: '#/components/schemas/ModelWithMetadata'
-        commonFacetCount:
+        matchPercentage:
           type: number
           format: double
-        modelFacetCount:
-          type: number
-          format: double
-        matchedModelFacetCount:
-          type: number
-          format: double
-        forwardMatchPercentage:
-          type: number
-          format: double
-          description: The amount of the Model that exists inside the MatchedModel
-        reverseMatchPercentage:
-          type: number
-          format: double
-          description: The amount of the MatchedModel that exists inside the Model
       required:
       - matchedModel
-      - commonFacetCount
-      - modelFacetCount
-      - matchedModelFacetCount
-      - forwardMatchPercentage
-      - reverseMatchPercentage
+      - matchPercentage
       type: object
       additionalProperties: false
-    SourceFileResponse:
+    MatchReportGroups:
       properties:
-        sourceFile:
-          type: string
+        groups:
+          items:
+            $ref: '#/components/schemas/MatchReportGroup'
+          type: array
       required:
-      - sourceFile
-      type: object
-      additionalProperties: false
-    ReprocessModelsResponse:
-      properties:
-        affected:
-          type: number
-          format: double
-      required:
-      - affected
-      type: object
-      additionalProperties: false
-    CreateCollectionResponseBody:
-      properties:
-        collectionId:
-          type: string
-        affected:
-          type: number
-          format: double
-      required:
-      - collectionId
-      - affected
+      - groups
       type: object
       additionalProperties: false
     PageData:
@@ -1245,21 +1261,18 @@ components:
       - endIndex
       type: object
       additionalProperties: false
-    SingleModelResponse:
+    CreateModelMetadata:
       properties:
-        model:
-          $ref: '#/components/schemas/ModelWithMetadata'
+        metadataKeyId:
+          type: number
+          format: double
+        value:
+          type: string
       required:
-      - model
+      - metadataKeyId
+      - value
       type: object
       additionalProperties: false
-    MatchReportThreshold:
-      type: number
-      enum:
-      - 0.8
-      - 0.9
-      - 0.95
-      - 0.99
     MatchReportGroup:
       properties:
         modelIds:
@@ -1273,112 +1286,6 @@ components:
       required:
       - modelIds
       - exampleModels
-      type: object
-      additionalProperties: false
-    ModelListResponse:
-      properties:
-        models:
-          items:
-            $ref: '#/components/schemas/ModelWithMetadata'
-          type: array
-        pageData:
-          $ref: '#/components/schemas/PageData'
-      required:
-      - models
-      - pageData
-      type: object
-      additionalProperties: false
-    FilterExpression:
-      type: string
-      description: 'A string in the form `<FilterProperty>(<FilterOperator>(<FilterValue>))[,FilterExpressions]`.
-
-
-        See the [API Reference](https://physna.github.io/public-api-guide/api-reference/filter-expressions) for more details.
-
-
-        Example:
-
-        ```
-
-        id(between(1,1000)),createdAt(not(lt(''2022-01-01T00:00:00.000Z'')))
-
-        ```'
-    MatchReport:
-      properties:
-        results:
-          items:
-            $ref: '#/components/schemas/MatchReportItem'
-          type: array
-        total:
-          type: number
-          format: double
-      required:
-      - results
-      - total
-      type: object
-      additionalProperties: false
-    GetScanMatchesResponse:
-      properties:
-        matches:
-          items:
-            $ref: '#/components/schemas/ScanMatch'
-          type: array
-        pageData:
-          $ref: '#/components/schemas/PageData'
-        filterData:
-          $ref: '#/components/schemas/MatchFilterData'
-      required:
-      - matches
-      - pageData
-      - filterData
-      type: object
-      additionalProperties: false
-    ModelGeometry:
-      description: Model geometry of ingested model, including the model's bounding box lengths, it's surface area, and volume.
-      properties:
-        obbMinLength:
-          type: number
-          format: double
-        obbMidLength:
-          type: number
-          format: double
-        obbMaxLength:
-          type: number
-          format: double
-        surfaceArea:
-          type: number
-          format: double
-        modelVolume:
-          type: number
-          format: double
-      required:
-      - obbMinLength
-      - obbMidLength
-      - obbMaxLength
-      - surfaceArea
-      - modelVolume
-      type: object
-      additionalProperties: false
-    CreateModelsResponse:
-      properties:
-        models:
-          items:
-            properties:
-              uploadInfo:
-                $ref: '#/components/schemas/UploadUrlInfo'
-              model:
-                $ref: '#/components/schemas/ModelWithMetadata'
-            required:
-            - uploadInfo
-            - model
-            type: object
-          type: array
-        collection:
-          anyOf:
-          - $ref: '#/components/schemas/CreateCollectionResponseBody'
-          - $ref: '#/components/schemas/AddToCollectionResponseBody'
-      required:
-      - models
       type: object
       additionalProperties: false
     ModelWithMetadata:
@@ -1436,36 +1343,30 @@ components:
       - metadata
       type: object
       additionalProperties: false
-    CollectionFilterData:
+    Pick_Collection.id-or-name_:
       properties:
-        names:
-          items:
-            type: string
-          type: array
-        tags:
-          items:
-            type: string
-          type: array
-        metadata:
-          items:
-            $ref: '#/components/schemas/MetadataFilterData'
-          type: array
+        id:
+          type: string
+        name:
+          type: string
       required:
-      - names
-      - tags
-      - metadata
+      - id
       type: object
-      additionalProperties: false
-    MatchReportItem:
+      description: From T, pick a set of properties whose keys are in the union K
+    GetVisualMatchesResponse:
       properties:
-        model:
-          $ref: '#/components/schemas/ModelWithMetadata'
-        matchCount:
-          type: number
-          format: double
+        matches:
+          items:
+            $ref: '#/components/schemas/VisualMatch'
+          type: array
+        pageData:
+          $ref: '#/components/schemas/PageData'
+        filterData:
+          $ref: '#/components/schemas/MatchFilterData'
       required:
-      - model
-      - matchCount
+      - matches
+      - pageData
+      - filterData
       type: object
       additionalProperties: false
     VisualMatch:
@@ -1476,37 +1377,95 @@ components:
       - matchedModel
       type: object
       additionalProperties: false
-    SubAssembly:
+    ViewerFileResponse:
       properties:
-        type:
+        viewerFile:
           type: string
-          enum:
-          - subAssembly
-          nullable: false
-        modelId:
-          type: string
-        children:
+      required:
+      - viewerFile
+      type: object
+      additionalProperties: false
+    SingleModelResponse:
+      properties:
+        model:
+          $ref: '#/components/schemas/ModelWithMetadata'
+      required:
+      - model
+      type: object
+      additionalProperties: false
+    FilterExpression:
+      type: string
+      description: 'A string in the form `<FilterProperty>(<FilterOperator>(<FilterValue>))[,FilterExpressions]`.
+
+
+        See the [API Reference](https://physna.github.io/public-api-guide/api-reference/filter-expressions) for more details.
+
+
+        Example:
+
+        ```
+
+        id(between(1,1000)),createdAt(not(lt(''2022-01-01T00:00:00.000Z'')))
+
+        ```'
+    MatchReport:
+      properties:
+        results:
           items:
-            anyOf:
-            - $ref: '#/components/schemas/AssemblyPart'
-            - $ref: '#/components/schemas/SubAssembly'
+            $ref: '#/components/schemas/MatchReportItem'
           type: array
-        occurrences:
+        total:
           type: number
           format: double
       required:
-      - type
-      - modelId
-      - children
-      - occurrences
+      - results
+      - total
       type: object
       additionalProperties: false
-    SingleMetadataResponse:
+    MatchFilterData:
       properties:
+        folders:
+          items:
+            $ref: '#/components/schemas/Pick_Folder.id-or-name_'
+          type: array
         metadata:
-          $ref: '#/components/schemas/Metadata'
+          items:
+            $ref: '#/components/schemas/MetadataFilterData'
+          type: array
+        createdAt:
+          items:
+            type: string
+          type: array
+        isAssembly:
+          items:
+            type: boolean
+          type: array
+        fileType:
+          items:
+            type: string
+          type: array
+        units:
+          items:
+            type: string
+          type: array
+        collections:
+          $ref: '#/components/schemas/CollectionFilterData'
       required:
+      - folders
       - metadata
+      - createdAt
+      - isAssembly
+      - fileType
+      - units
+      - collections
+      type: object
+      additionalProperties: false
+    GetModelStateReportResponse:
+      properties:
+        states:
+          $ref: '#/components/schemas/ModelStateReport'
+      required:
+      - states
       type: object
       additionalProperties: false
     ErrorResponse:
@@ -1522,55 +1481,34 @@ components:
       - error
       type: object
       additionalProperties: false
-    ModelStateReport:
-      properties: {}
-      type: object
-      additionalProperties:
-        type: number
-        format: double
-    UploadUrlInfo:
+    PartMatch:
       properties:
-        uploadUrl:
-          type: string
-        headers:
-          properties: {}
-          additionalProperties:
-            type: string
-          type: object
-        fileSizeRequirements:
-          properties:
-            maxSizeInBytes:
-              type: number
-              format: double
-            minSizeInBytes:
-              type: number
-              format: double
-          required:
-          - maxSizeInBytes
-          - minSizeInBytes
-          type: object
+        matchedModel:
+          $ref: '#/components/schemas/ModelWithMetadata'
+        commonFacetCount:
+          type: number
+          format: double
+        modelFacetCount:
+          type: number
+          format: double
+        matchedModelFacetCount:
+          type: number
+          format: double
+        forwardMatchPercentage:
+          type: number
+          format: double
+          description: The amount of the Model that exists inside the MatchedModel
+        reverseMatchPercentage:
+          type: number
+          format: double
+          description: The amount of the MatchedModel that exists inside the Model
       required:
-      - uploadUrl
-      - headers
-      - fileSizeRequirements
-      type: object
-      additionalProperties: false
-    Pick_Collection.id-or-name_:
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-      required:
-      - id
-      type: object
-      description: From T, pick a set of properties whose keys are in the union K
-    ViewerFileResponse:
-      properties:
-        viewerFile:
-          type: string
-      required:
-      - viewerFile
+      - matchedModel
+      - commonFacetCount
+      - modelFacetCount
+      - matchedModelFacetCount
+      - forwardMatchPercentage
+      - reverseMatchPercentage
       type: object
       additionalProperties: false
     Metadata:
@@ -1581,8 +1519,9 @@ components:
           type: number
           format: double
         name:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         value:
           type: string
       required:
@@ -1590,6 +1529,99 @@ components:
       - metadataKeyId
       - name
       - value
+      type: object
+      additionalProperties: false
+    GetScanMatchesResponse:
+      properties:
+        matches:
+          items:
+            $ref: '#/components/schemas/ScanMatch'
+          type: array
+        pageData:
+          $ref: '#/components/schemas/PageData'
+        filterData:
+          $ref: '#/components/schemas/MatchFilterData'
+      required:
+      - matches
+      - pageData
+      - filterData
+      type: object
+      additionalProperties: false
+    ModelListResponse:
+      properties:
+        models:
+          items:
+            $ref: '#/components/schemas/ModelWithMetadata'
+          type: array
+        pageData:
+          $ref: '#/components/schemas/PageData'
+      required:
+      - models
+      - pageData
+      type: object
+      additionalProperties: false
+    CreateModelsResponse:
+      properties:
+        models:
+          items:
+            properties:
+              uploadInfo:
+                $ref: '#/components/schemas/UploadUrlInfo'
+              model:
+                $ref: '#/components/schemas/ModelWithMetadata'
+            required:
+            - uploadInfo
+            - model
+            type: object
+          type: array
+        collection:
+          anyOf:
+          - $ref: '#/components/schemas/CreateCollectionResponseBody'
+          - $ref: '#/components/schemas/AddToCollectionResponseBody'
+      required:
+      - models
+      type: object
+      additionalProperties: false
+    OrderExpression:
+      type: string
+      description: 'A string in the form `[-]<OrderProperty>[,OrderProperties]`.
+
+
+        See the [API Reference](https://physna.github.io/public-api-guide/api-reference/order-expressions) for more details.
+
+
+
+        Example:
+
+        ```
+
+        -id,name
+
+        ```'
+    ModelGeometry:
+      description: Model geometry of ingested model, including the model's bounding box lengths, it's surface area, and volume.
+      properties:
+        obbMinLength:
+          type: number
+          format: double
+        obbMidLength:
+          type: number
+          format: double
+        obbMaxLength:
+          type: number
+          format: double
+        surfaceArea:
+          type: number
+          format: double
+        modelVolume:
+          type: number
+          format: double
+      required:
+      - obbMinLength
+      - obbMidLength
+      - obbMaxLength
+      - surfaceArea
+      - modelVolume
       type: object
       additionalProperties: false
   securitySchemes:

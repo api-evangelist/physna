@@ -1,14 +1,7 @@
 {
   "provider": "physna",
   "sources": [
-    "physna-clientcredentials-api-openapi.yml",
-    "physna-collections-api-openapi.yml",
-    "physna-deprecated-api-openapi.yml",
-    "physna-folders-api-openapi.yml",
-    "physna-image-search-api-openapi.yml",
-    "physna-metadata-api-openapi.yml",
-    "physna-models-api-openapi.yml",
-    "physna-users-api-openapi.yml"
+    "_original/physna-openapi-original.json"
   ],
   "outputs": [
     "physna-clientcredentials-api-openapi.yml",
@@ -20,9 +13,25 @@
     "physna-models-api-openapi.yml",
     "physna-users-api-openapi.yml"
   ],
-  "archived": [],
+  "archived": [
+    "deleted 1 superseded output(s) from the previous generation"
+  ],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "physna-openapi-original.json: upgraded openapi 3.0.0 -> OpenAPI 3.2.0",
+    "superseded outputs removed: physna-client-credentials-api-openapi.yml",
+    "apis.yml register: written (+1 apis, 8 total)"
+  ],
+  "skipped": [
+    "physna-client-credentials-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "physna-collections-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "physna-deprecated-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "physna-folders-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "physna-image-search-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "physna-metadata-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "physna-models-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "physna-users-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

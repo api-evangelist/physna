@@ -1,6 +1,6 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Physna Public ClientCredentials Users API
+  title: Physna Public Users API
   version: 2.0.1
   contact:
     name: Support
@@ -39,6 +39,8 @@ paths:
         required: false
         schema:
           type: string
+      summary: Get me
+      x-summary-source: derived
   /users/me/accept-eula:
     patch:
       operationId: AcceptLicenseAgreement
@@ -62,6 +64,8 @@ paths:
         required: false
         schema:
           type: string
+      summary: Accept license agreement
+      x-summary-source: derived
   /users:
     get:
       operationId: ListUsers
@@ -83,6 +87,8 @@ paths:
         required: false
         schema:
           type: string
+      summary: List users
+      x-summary-source: derived
     post:
       operationId: CreateUser
       responses:
@@ -131,6 +137,8 @@ paths:
               - roles
               - email
               type: object
+      summary: Create user
+      x-summary-source: derived
   /users/{id}:
     get:
       operationId: GetUserById
@@ -163,6 +171,8 @@ paths:
         required: false
         schema:
           type: string
+      summary: Get user by id
+      x-summary-source: derived
     delete:
       operationId: DeleteUserById
       responses:
@@ -190,6 +200,8 @@ paths:
         required: false
         schema:
           type: string
+      summary: Delete user by id
+      x-summary-source: derived
     patch:
       operationId: UpdateUserById
       responses:
@@ -234,8 +246,43 @@ paths:
               - status
               - email
               type: object
+      summary: Update user by id
+      x-summary-source: derived
 components:
   schemas:
+    ErrorResponse:
+      properties:
+        error:
+          properties:
+            message:
+              type: string
+          required:
+          - message
+          type: object
+      required:
+      - error
+      type: object
+      additionalProperties: false
+    UserStatus:
+      enum:
+      - Suspended
+      - Active
+      type: string
+    Role:
+      enum:
+      - SA
+      - Administrators
+      - Authors
+      - Viewers
+      type: string
+    UserResponse:
+      properties:
+        user:
+          $ref: '#/components/schemas/User'
+      required:
+      - user
+      type: object
+      additionalProperties: false
     User:
       properties:
         id:
@@ -264,49 +311,6 @@ components:
       - roles
       type: object
       additionalProperties: false
-    ErrorResponse:
-      properties:
-        error:
-          properties:
-            message:
-              type: string
-          required:
-          - message
-          type: object
-      required:
-      - error
-      type: object
-      additionalProperties: false
-    UserStatus:
-      enum:
-      - Suspended
-      - Active
-      type: string
-    UserResponse:
-      properties:
-        user:
-          $ref: '#/components/schemas/User'
-      required:
-      - user
-      type: object
-      additionalProperties: false
-    UserListResponse:
-      properties:
-        users:
-          items:
-            $ref: '#/components/schemas/User'
-          type: array
-      required:
-      - users
-      type: object
-      additionalProperties: false
-    Role:
-      enum:
-      - SA
-      - Administrators
-      - Authors
-      - Viewers
-      type: string
     CurrentUserResponse:
       properties:
         id:
@@ -338,6 +342,16 @@ components:
       - status
       - roles
       - tenants
+      type: object
+      additionalProperties: false
+    UserListResponse:
+      properties:
+        users:
+          items:
+            $ref: '#/components/schemas/User'
+          type: array
+      required:
+      - users
       type: object
       additionalProperties: false
   securitySchemes:
