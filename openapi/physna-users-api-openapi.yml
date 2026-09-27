@@ -250,67 +250,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ErrorResponse:
-      properties:
-        error:
-          properties:
-            message:
-              type: string
-          required:
-          - message
-          type: object
-      required:
-      - error
-      type: object
-      additionalProperties: false
-    UserStatus:
-      enum:
-      - Suspended
-      - Active
-      type: string
-    Role:
-      enum:
-      - SA
-      - Administrators
-      - Authors
-      - Viewers
-      type: string
-    UserResponse:
-      properties:
-        user:
-          $ref: '#/components/schemas/User'
-      required:
-      - user
-      type: object
-      additionalProperties: false
-    User:
-      properties:
-        id:
-          type: string
-        externalId:
-          type: string
-        email:
-          type: string
-        department:
-          type: string
-        acceptedLicenseAgreement:
-          type: boolean
-        status:
-          $ref: '#/components/schemas/UserStatus'
-        roles:
-          items:
-            $ref: '#/components/schemas/Role'
-          type: array
-      required:
-      - id
-      - externalId
-      - email
-      - department
-      - acceptedLicenseAgreement
-      - status
-      - roles
-      type: object
-      additionalProperties: false
     CurrentUserResponse:
       properties:
         id:
@@ -344,6 +283,60 @@ components:
       - tenants
       type: object
       additionalProperties: false
+    ErrorResponse:
+      properties:
+        error:
+          properties:
+            message:
+              type: string
+          required:
+          - message
+          type: object
+      required:
+      - error
+      type: object
+      additionalProperties: false
+    UserResponse:
+      properties:
+        user:
+          $ref: '#/components/schemas/User'
+      required:
+      - user
+      type: object
+      additionalProperties: false
+    UserStatus:
+      enum:
+      - Suspended
+      - Active
+      type: string
+    User:
+      properties:
+        id:
+          type: string
+        externalId:
+          type: string
+        email:
+          type: string
+        department:
+          type: string
+        acceptedLicenseAgreement:
+          type: boolean
+        status:
+          $ref: '#/components/schemas/UserStatus'
+        roles:
+          items:
+            $ref: '#/components/schemas/Role'
+          type: array
+      required:
+      - id
+      - externalId
+      - email
+      - department
+      - acceptedLicenseAgreement
+      - status
+      - roles
+      type: object
+      additionalProperties: false
     UserListResponse:
       properties:
         users:
@@ -354,6 +347,13 @@ components:
       - users
       type: object
       additionalProperties: false
+    Role:
+      enum:
+      - SA
+      - Administrators
+      - Authors
+      - Viewers
+      type: string
   securitySchemes:
     okta:
       type: oauth2

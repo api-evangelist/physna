@@ -54,9 +54,9 @@ tags:
 - Geometric Search
 - Manufacturing
 - Engineering
-- Machine-Learning
+- Machine Learning
 - Search
-- Computer-Vision
+- Computer Vision
 - Product Development
 tags_raw:
 - Company
@@ -69,6 +69,8 @@ tags_raw:
 - Search
 - Computer Vision
 - Product Development
+- Machine-Learning
+- Computer-Vision
 apis:
 - aid: physna:physna-collections-api
   name: Physna Collections API

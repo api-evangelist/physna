@@ -820,19 +820,9 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    CreateCollectionResponseBody:
-      properties:
-        collectionId:
-          type: string
-        affected:
-          type: number
-          format: double
-      required:
-      - collectionId
-      - affected
-      type: object
-      additionalProperties: false
-    ReprocessCollectionResponseBody:
+    GetCollectionResponseBody:
+      $ref: '#/components/schemas/CollectionWithMetadata'
+    DeleteCollectionsResponseBody:
       properties:
         affected:
           type: number
@@ -841,57 +831,38 @@ components:
       - affected
       type: object
       additionalProperties: false
-    BulkCreateCollectionResponseBody:
-      properties:
-        affected:
-          type: number
-          format: double
-      required:
-      - affected
-      type: object
-    MetadataFilterData:
+    CollectionMetadata:
       properties:
         metadataKeyId:
           type: number
           format: double
+        collectionId:
+          type: string
         name:
           type: string
-        values:
-          items:
-            type: string
-          type: array
+        value:
+          type: string
       required:
       - metadataKeyId
+      - collectionId
       - name
-      - values
+      - value
       type: object
       additionalProperties: false
-    Label:
+    UpdateCollectionTagRequestBody:
       properties:
-        displayName:
+        newTag:
           type: string
-        source:
-          type: string
-        createdAt:
-          type: string
-          format: date-time
-        rejected:
-          type: boolean
       required:
-      - displayName
-      - source
-      - createdAt
+      - newTag
       type: object
       additionalProperties: false
-    CollectionMatchResult:
+    SingleMetadataResponse:
       properties:
-        matchedCollection:
-          $ref: '#/components/schemas/CollectionWithMetadata'
-        matchScore:
-          type: number
-          format: double
+        metadata:
+          $ref: '#/components/schemas/Metadata'
       required:
-      - matchedCollection
+      - metadata
       type: object
       additionalProperties: false
     GetCollectionContentResponseBody:
@@ -916,14 +887,59 @@ components:
       - total
       type: object
       additionalProperties: false
+    CreateCollectionResponseBody:
+      properties:
+        collectionId:
+          type: string
+        affected:
+          type: number
+          format: double
+      required:
+      - collectionId
+      - affected
+      type: object
+      additionalProperties: false
     RemoveFromCollectionResponseBody:
       $ref: '#/components/schemas/CreateCollectionResponseBody'
-    SingleMetadataResponse:
+    UpdateCollectionNameResponseBody:
       properties:
-        metadata:
-          $ref: '#/components/schemas/Metadata'
+        affected:
+          type: number
+          format: double
       required:
-      - metadata
+      - affected
+      type: object
+      additionalProperties: false
+    AddToCollectionResponseBody:
+      $ref: '#/components/schemas/CreateCollectionResponseBody'
+    CollectionWithMetadata:
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        createdAt:
+          type: string
+        thumbnails:
+          items:
+            type: string
+          type: array
+        tag:
+          type: string
+        metadata:
+          items:
+            $ref: '#/components/schemas/CollectionMetadata'
+          type: array
+      required:
+      - id
+      type: object
+      additionalProperties: false
+    UpdateCollectionNameRequestBody:
+      properties:
+        newName:
+          type: string
+      required:
+      - newName
       type: object
       additionalProperties: false
     GetCollectionsListResponseBody:
@@ -948,14 +964,43 @@ components:
       - total
       type: object
       additionalProperties: false
-    UpdateCollectionNameRequestBody:
+    MetadataFilterData:
       properties:
-        newName:
+        metadataKeyId:
+          type: number
+          format: double
+        name:
           type: string
+        values:
+          items:
+            type: string
+          type: array
       required:
-      - newName
+      - metadataKeyId
+      - name
+      - values
       type: object
       additionalProperties: false
+    GetCollectionTagsResponseBody:
+      properties:
+        tags:
+          items:
+            type: string
+          type: array
+      required:
+      - tags
+      type: object
+      additionalProperties: false
+    Pick_Collection.id-or-name_:
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+      required:
+      - id
+      type: object
+      description: From T, pick a set of properties whose keys are in the union K
     Model:
       properties:
         createdAt:
@@ -1006,6 +1051,41 @@ components:
       - units
       type: object
       additionalProperties: false
+    UpdateCollectionTagResponseBody:
+      properties:
+        affected:
+          type: number
+          format: double
+      required:
+      - affected
+      type: object
+      additionalProperties: false
+    ModelGeometry:
+      description: Model geometry of ingested model, including the model's bounding box lengths, it's surface area, and volume.
+      properties:
+        obbMinLength:
+          type: number
+          format: double
+        obbMidLength:
+          type: number
+          format: double
+        obbMaxLength:
+          type: number
+          format: double
+        surfaceArea:
+          type: number
+          format: double
+        modelVolume:
+          type: number
+          format: double
+      required:
+      - obbMinLength
+      - obbMidLength
+      - obbMaxLength
+      - surfaceArea
+      - modelVolume
+      type: object
+      additionalProperties: false
     CollectionFilterData:
       properties:
         names:
@@ -1026,68 +1106,6 @@ components:
       - metadata
       type: object
       additionalProperties: false
-    GetCollectionResponseBody:
-      $ref: '#/components/schemas/CollectionWithMetadata'
-    CollectionWithMetadata:
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        createdAt:
-          type: string
-        thumbnails:
-          items:
-            type: string
-          type: array
-        tag:
-          type: string
-        metadata:
-          items:
-            $ref: '#/components/schemas/CollectionMetadata'
-          type: array
-      required:
-      - id
-      type: object
-      additionalProperties: false
-    AddToCollectionResponseBody:
-      $ref: '#/components/schemas/CreateCollectionResponseBody'
-    UpdateCollectionNameResponseBody:
-      properties:
-        affected:
-          type: number
-          format: double
-      required:
-      - affected
-      type: object
-      additionalProperties: false
-    Pick_Collection.id-or-name_:
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-      required:
-      - id
-      type: object
-      description: From T, pick a set of properties whose keys are in the union K
-    UpdateCollectionTagRequestBody:
-      properties:
-        newTag:
-          type: string
-      required:
-      - newTag
-      type: object
-      additionalProperties: false
-    DeleteCollectionsResponseBody:
-      properties:
-        affected:
-          type: number
-          format: double
-      required:
-      - affected
-      type: object
-      additionalProperties: false
     FilterExpression:
       type: string
       description: 'A string in the form `<FilterProperty>(<FilterOperator>(<FilterValue>))[,FilterExpressions]`.
@@ -1103,13 +1121,32 @@ components:
         id(between(1,1000)),createdAt(not(lt(''2022-01-01T00:00:00.000Z'')))
 
         ```'
-    UpdateCollectionTagResponseBody:
+    ReprocessCollectionResponseBody:
       properties:
         affected:
           type: number
           format: double
       required:
       - affected
+      type: object
+      additionalProperties: false
+    BulkCreateCollectionResponseBody:
+      properties:
+        affected:
+          type: number
+          format: double
+      required:
+      - affected
+      type: object
+    CollectionMatchResult:
+      properties:
+        matchedCollection:
+          $ref: '#/components/schemas/CollectionWithMetadata'
+        matchScore:
+          type: number
+          format: double
+      required:
+      - matchedCollection
       type: object
       additionalProperties: false
     ErrorResponse:
@@ -1155,6 +1192,23 @@ components:
       - total
       type: object
       additionalProperties: false
+    Label:
+      properties:
+        displayName:
+          type: string
+        source:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        rejected:
+          type: boolean
+      required:
+      - displayName
+      - source
+      - createdAt
+      type: object
+      additionalProperties: false
     Metadata:
       properties:
         modelId:
@@ -1173,60 +1227,6 @@ components:
       - metadataKeyId
       - name
       - value
-      type: object
-      additionalProperties: false
-    CollectionMetadata:
-      properties:
-        metadataKeyId:
-          type: number
-          format: double
-        collectionId:
-          type: string
-        name:
-          type: string
-        value:
-          type: string
-      required:
-      - metadataKeyId
-      - collectionId
-      - name
-      - value
-      type: object
-      additionalProperties: false
-    GetCollectionTagsResponseBody:
-      properties:
-        tags:
-          items:
-            type: string
-          type: array
-      required:
-      - tags
-      type: object
-      additionalProperties: false
-    ModelGeometry:
-      description: Model geometry of ingested model, including the model's bounding box lengths, it's surface area, and volume.
-      properties:
-        obbMinLength:
-          type: number
-          format: double
-        obbMidLength:
-          type: number
-          format: double
-        obbMaxLength:
-          type: number
-          format: double
-        surfaceArea:
-          type: number
-          format: double
-        modelVolume:
-          type: number
-          format: double
-      required:
-      - obbMinLength
-      - obbMidLength
-      - obbMaxLength
-      - surfaceArea
-      - modelVolume
       type: object
       additionalProperties: false
   securitySchemes:
