@@ -820,187 +820,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    GetCollectionResponseBody:
-      $ref: '#/components/schemas/CollectionWithMetadata'
-    DeleteCollectionsResponseBody:
-      properties:
-        affected:
-          type: number
-          format: double
-      required:
-      - affected
-      type: object
-      additionalProperties: false
-    CollectionMetadata:
-      properties:
-        metadataKeyId:
-          type: number
-          format: double
-        collectionId:
-          type: string
-        name:
-          type: string
-        value:
-          type: string
-      required:
-      - metadataKeyId
-      - collectionId
-      - name
-      - value
-      type: object
-      additionalProperties: false
-    UpdateCollectionTagRequestBody:
-      properties:
-        newTag:
-          type: string
-      required:
-      - newTag
-      type: object
-      additionalProperties: false
-    SingleMetadataResponse:
-      properties:
-        metadata:
-          $ref: '#/components/schemas/Metadata'
-      required:
-      - metadata
-      type: object
-      additionalProperties: false
-    GetCollectionContentResponseBody:
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/Model'
-          type: array
-        page:
-          type: number
-          format: double
-        perPage:
-          type: number
-          format: double
-        total:
-          type: number
-          format: double
-      required:
-      - data
-      - page
-      - perPage
-      - total
-      type: object
-      additionalProperties: false
-    CreateCollectionResponseBody:
-      properties:
-        collectionId:
-          type: string
-        affected:
-          type: number
-          format: double
-      required:
-      - collectionId
-      - affected
-      type: object
-      additionalProperties: false
-    RemoveFromCollectionResponseBody:
-      $ref: '#/components/schemas/CreateCollectionResponseBody'
-    UpdateCollectionNameResponseBody:
-      properties:
-        affected:
-          type: number
-          format: double
-      required:
-      - affected
-      type: object
-      additionalProperties: false
-    AddToCollectionResponseBody:
-      $ref: '#/components/schemas/CreateCollectionResponseBody'
-    CollectionWithMetadata:
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        createdAt:
-          type: string
-        thumbnails:
-          items:
-            type: string
-          type: array
-        tag:
-          type: string
-        metadata:
-          items:
-            $ref: '#/components/schemas/CollectionMetadata'
-          type: array
-      required:
-      - id
-      type: object
-      additionalProperties: false
-    UpdateCollectionNameRequestBody:
-      properties:
-        newName:
-          type: string
-      required:
-      - newName
-      type: object
-      additionalProperties: false
-    GetCollectionsListResponseBody:
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/CollectionWithMetadata'
-          type: array
-        page:
-          type: number
-          format: double
-        perPage:
-          type: number
-          format: double
-        total:
-          type: number
-          format: double
-      required:
-      - data
-      - page
-      - perPage
-      - total
-      type: object
-      additionalProperties: false
-    MetadataFilterData:
-      properties:
-        metadataKeyId:
-          type: number
-          format: double
-        name:
-          type: string
-        values:
-          items:
-            type: string
-          type: array
-      required:
-      - metadataKeyId
-      - name
-      - values
-      type: object
-      additionalProperties: false
-    GetCollectionTagsResponseBody:
-      properties:
-        tags:
-          items:
-            type: string
-          type: array
-      required:
-      - tags
-      type: object
-      additionalProperties: false
-    Pick_Collection.id-or-name_:
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-      required:
-      - id
-      type: object
-      description: From T, pick a set of properties whose keys are in the union K
     Model:
       properties:
         createdAt:
@@ -1051,12 +870,263 @@ components:
       - units
       type: object
       additionalProperties: false
+    UpdateCollectionNameRequestBody:
+      properties:
+        newName:
+          type: string
+      required:
+      - newName
+      type: object
+      additionalProperties: false
+    GetCollectionResponseBody:
+      $ref: '#/components/schemas/CollectionWithMetadata'
+    Metadata:
+      properties:
+        modelId:
+          type: string
+        metadataKeyId:
+          type: number
+          format: double
+        name:
+          type:
+          - string
+          - 'null'
+        value:
+          type: string
+      required:
+      - modelId
+      - metadataKeyId
+      - name
+      - value
+      type: object
+      additionalProperties: false
+    Label:
+      properties:
+        displayName:
+          type: string
+        source:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        rejected:
+          type: boolean
+      required:
+      - displayName
+      - source
+      - createdAt
+      type: object
+      additionalProperties: false
+    AddToCollectionResponseBody:
+      $ref: '#/components/schemas/CreateCollectionResponseBody'
+    UpdateCollectionTagRequestBody:
+      properties:
+        newTag:
+          type: string
+      required:
+      - newTag
+      type: object
+      additionalProperties: false
+    DeleteCollectionsResponseBody:
+      properties:
+        affected:
+          type: number
+          format: double
+      required:
+      - affected
+      type: object
+      additionalProperties: false
+    UpdateCollectionNameResponseBody:
+      properties:
+        affected:
+          type: number
+          format: double
+      required:
+      - affected
+      type: object
+      additionalProperties: false
+    GetCollectionsListResponseBody:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/CollectionWithMetadata'
+          type: array
+        page:
+          type: number
+          format: double
+        perPage:
+          type: number
+          format: double
+        total:
+          type: number
+          format: double
+      required:
+      - data
+      - page
+      - perPage
+      - total
+      type: object
+      additionalProperties: false
+    BulkCreateCollectionResponseBody:
+      properties:
+        affected:
+          type: number
+          format: double
+      required:
+      - affected
+      type: object
+    SingleMetadataResponse:
+      properties:
+        metadata:
+          $ref: '#/components/schemas/Metadata'
+      required:
+      - metadata
+      type: object
+      additionalProperties: false
+    ReprocessCollectionResponseBody:
+      properties:
+        affected:
+          type: number
+          format: double
+      required:
+      - affected
+      type: object
+      additionalProperties: false
+    CollectionWithMetadata:
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        createdAt:
+          type: string
+        thumbnails:
+          items:
+            type: string
+          type: array
+        tag:
+          type: string
+        metadata:
+          items:
+            $ref: '#/components/schemas/CollectionMetadata'
+          type: array
+      required:
+      - id
+      type: object
+      additionalProperties: false
+    CollectionMetadata:
+      properties:
+        metadataKeyId:
+          type: number
+          format: double
+        collectionId:
+          type: string
+        name:
+          type: string
+        value:
+          type: string
+      required:
+      - metadataKeyId
+      - collectionId
+      - name
+      - value
+      type: object
+      additionalProperties: false
+    MetadataFilterData:
+      properties:
+        metadataKeyId:
+          type: number
+          format: double
+        name:
+          type: string
+        values:
+          items:
+            type: string
+          type: array
+      required:
+      - metadataKeyId
+      - name
+      - values
+      type: object
+      additionalProperties: false
+    GetCollectionContentResponseBody:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/Model'
+          type: array
+        page:
+          type: number
+          format: double
+        perPage:
+          type: number
+          format: double
+        total:
+          type: number
+          format: double
+      required:
+      - data
+      - page
+      - perPage
+      - total
+      type: object
+      additionalProperties: false
+    RemoveFromCollectionResponseBody:
+      $ref: '#/components/schemas/CreateCollectionResponseBody'
+    Pick_Collection.id-or-name_:
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+      required:
+      - id
+      type: object
+      description: From T, pick a set of properties whose keys are in the union K
     UpdateCollectionTagResponseBody:
       properties:
         affected:
           type: number
           format: double
       required:
+      - affected
+      type: object
+      additionalProperties: false
+    FilterExpression:
+      type: string
+      description: 'A string in the form `<FilterProperty>(<FilterOperator>(<FilterValue>))[,FilterExpressions]`.
+
+
+        See the [API Reference](https://physna.github.io/public-api-guide/api-reference/filter-expressions) for more details.
+
+
+        Example:
+
+        ```
+
+        id(between(1,1000)),createdAt(not(lt(''2022-01-01T00:00:00.000Z'')))
+
+        ```'
+    CollectionMatchResult:
+      properties:
+        matchedCollection:
+          $ref: '#/components/schemas/CollectionWithMetadata'
+        matchScore:
+          type: number
+          format: double
+      required:
+      - matchedCollection
+      type: object
+      additionalProperties: false
+    CreateCollectionResponseBody:
+      properties:
+        collectionId:
+          type: string
+        affected:
+          type: number
+          format: double
+      required:
+      - collectionId
       - affected
       type: object
       additionalProperties: false
@@ -1084,82 +1154,6 @@ components:
       - obbMaxLength
       - surfaceArea
       - modelVolume
-      type: object
-      additionalProperties: false
-    CollectionFilterData:
-      properties:
-        names:
-          items:
-            type: string
-          type: array
-        tags:
-          items:
-            type: string
-          type: array
-        metadata:
-          items:
-            $ref: '#/components/schemas/MetadataFilterData'
-          type: array
-      required:
-      - names
-      - tags
-      - metadata
-      type: object
-      additionalProperties: false
-    FilterExpression:
-      type: string
-      description: 'A string in the form `<FilterProperty>(<FilterOperator>(<FilterValue>))[,FilterExpressions]`.
-
-
-        See the [API Reference](https://physna.github.io/public-api-guide/api-reference/filter-expressions) for more details.
-
-
-        Example:
-
-        ```
-
-        id(between(1,1000)),createdAt(not(lt(''2022-01-01T00:00:00.000Z'')))
-
-        ```'
-    ReprocessCollectionResponseBody:
-      properties:
-        affected:
-          type: number
-          format: double
-      required:
-      - affected
-      type: object
-      additionalProperties: false
-    BulkCreateCollectionResponseBody:
-      properties:
-        affected:
-          type: number
-          format: double
-      required:
-      - affected
-      type: object
-    CollectionMatchResult:
-      properties:
-        matchedCollection:
-          $ref: '#/components/schemas/CollectionWithMetadata'
-        matchScore:
-          type: number
-          format: double
-      required:
-      - matchedCollection
-      type: object
-      additionalProperties: false
-    ErrorResponse:
-      properties:
-        error:
-          properties:
-            message:
-              type: string
-          required:
-          - message
-          type: object
-      required:
-      - error
       type: object
       additionalProperties: false
     GetCollectionMatchesResponseBody:
@@ -1192,41 +1186,47 @@ components:
       - total
       type: object
       additionalProperties: false
-    Label:
+    ErrorResponse:
       properties:
-        displayName:
-          type: string
-        source:
-          type: string
-        createdAt:
-          type: string
-          format: date-time
-        rejected:
-          type: boolean
+        error:
+          properties:
+            message:
+              type: string
+          required:
+          - message
+          type: object
       required:
-      - displayName
-      - source
-      - createdAt
+      - error
       type: object
       additionalProperties: false
-    Metadata:
+    GetCollectionTagsResponseBody:
       properties:
-        modelId:
-          type: string
-        metadataKeyId:
-          type: number
-          format: double
-        name:
-          type:
-          - string
-          - 'null'
-        value:
-          type: string
+        tags:
+          items:
+            type: string
+          type: array
       required:
-      - modelId
-      - metadataKeyId
-      - name
-      - value
+      - tags
+      type: object
+      additionalProperties: false
+    CollectionFilterData:
+      properties:
+        names:
+          items:
+            type: string
+          type: array
+        tags:
+          items:
+            type: string
+          type: array
+        metadata:
+          items:
+            $ref: '#/components/schemas/MetadataFilterData'
+          type: array
+      required:
+      - names
+      - tags
+      - metadata
       type: object
       additionalProperties: false
   securitySchemes:

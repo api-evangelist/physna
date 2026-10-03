@@ -206,13 +206,137 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ImageMatch:
-      description: Searching for models that match the given image
+    Label:
       properties:
-        matchedModel:
-          $ref: '#/components/schemas/ModelWithMetadata'
+        displayName:
+          type: string
+        source:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        rejected:
+          type: boolean
       required:
-      - matchedModel
+      - displayName
+      - source
+      - createdAt
+      type: object
+      additionalProperties: false
+    GetImageMatchesResponse:
+      properties:
+        matches:
+          items:
+            $ref: '#/components/schemas/ImageMatch'
+          type: array
+        pageData:
+          $ref: '#/components/schemas/PageData'
+        filterData:
+          $ref: '#/components/schemas/MatchFilterData'
+        image:
+          $ref: '#/components/schemas/SignedImage'
+          deprecated: true
+        images:
+          items:
+            $ref: '#/components/schemas/SignedImage'
+          type: array
+      required:
+      - matches
+      - pageData
+      - filterData
+      - image
+      - images
+      type: object
+      additionalProperties: false
+    UploadUrlInfo:
+      properties:
+        uploadUrl:
+          type: string
+        headers:
+          properties: {}
+          additionalProperties:
+            type: string
+          type: object
+        fileSizeRequirements:
+          properties:
+            maxSizeInBytes:
+              type: number
+              format: double
+            minSizeInBytes:
+              type: number
+              format: double
+          required:
+          - maxSizeInBytes
+          - minSizeInBytes
+          type: object
+      required:
+      - uploadUrl
+      - headers
+      - fileSizeRequirements
+      type: object
+      additionalProperties: false
+    UploadImageInfo:
+      allOf:
+      - $ref: '#/components/schemas/UploadUrlInfo'
+      - properties:
+          id:
+            type: string
+        required:
+        - id
+        type: object
+    MatchFilterData:
+      properties:
+        folders:
+          items:
+            $ref: '#/components/schemas/Pick_Folder.id-or-name_'
+          type: array
+        metadata:
+          items:
+            $ref: '#/components/schemas/MetadataFilterData'
+          type: array
+        createdAt:
+          items:
+            type: string
+          type: array
+        isAssembly:
+          items:
+            type: boolean
+          type: array
+        fileType:
+          items:
+            type: string
+          type: array
+        units:
+          items:
+            type: string
+          type: array
+        collections:
+          $ref: '#/components/schemas/CollectionFilterData'
+      required:
+      - folders
+      - metadata
+      - createdAt
+      - isAssembly
+      - fileType
+      - units
+      - collections
+      type: object
+      additionalProperties: false
+    MetadataFilterData:
+      properties:
+        metadataKeyId:
+          type: number
+          format: double
+        name:
+          type: string
+        values:
+          items:
+            type: string
+          type: array
+      required:
+      - metadataKeyId
+      - name
+      - values
       type: object
       additionalProperties: false
     ModelGeometry:
@@ -253,105 +377,34 @@ components:
       - name
       type: object
       description: From T, pick a set of properties whose keys are in the union K
-    ErrorResponse:
+    Metadata:
       properties:
-        error:
-          properties:
-            message:
-              type: string
-          required:
-          - message
-          type: object
+        modelId:
+          type: string
+        metadataKeyId:
+          type: number
+          format: double
+        name:
+          type:
+          - string
+          - 'null'
+        value:
+          type: string
       required:
-      - error
+      - modelId
+      - metadataKeyId
+      - name
+      - value
       type: object
       additionalProperties: false
-    CollectionFilterData:
+    UploadImageResponse:
       properties:
-        names:
-          items:
-            type: string
-          type: array
-        tags:
-          items:
-            type: string
-          type: array
-        metadata:
-          items:
-            $ref: '#/components/schemas/MetadataFilterData'
-          type: array
-      required:
-      - names
-      - tags
-      - metadata
-      type: object
-      additionalProperties: false
-    UploadImageInfo:
-      allOf:
-      - $ref: '#/components/schemas/UploadUrlInfo'
-      - properties:
-          id:
-            type: string
-        required:
-        - id
-        type: object
-    GetImageMatchesResponse:
-      properties:
-        matches:
-          items:
-            $ref: '#/components/schemas/ImageMatch'
-          type: array
-        pageData:
-          $ref: '#/components/schemas/PageData'
-        filterData:
-          $ref: '#/components/schemas/MatchFilterData'
         image:
-          $ref: '#/components/schemas/SignedImage'
-          deprecated: true
-        images:
-          items:
-            $ref: '#/components/schemas/SignedImage'
-          type: array
+          $ref: '#/components/schemas/UploadImageInfo'
       required:
-      - matches
-      - pageData
-      - filterData
       - image
-      - images
       type: object
       additionalProperties: false
-    Label:
-      properties:
-        displayName:
-          type: string
-        source:
-          type: string
-        createdAt:
-          type: string
-          format: date-time
-        rejected:
-          type: boolean
-      required:
-      - displayName
-      - source
-      - createdAt
-      type: object
-      additionalProperties: false
-    FilterExpression:
-      type: string
-      description: 'A string in the form `<FilterProperty>(<FilterOperator>(<FilterValue>))[,FilterExpressions]`.
-
-
-        See the [API Reference](https://physna.github.io/public-api-guide/api-reference/filter-expressions) for more details.
-
-
-        Example:
-
-        ```
-
-        id(between(1,1000)),createdAt(not(lt(''2022-01-01T00:00:00.000Z'')))
-
-        ```'
     SignedImage:
       properties:
         filename:
@@ -363,41 +416,16 @@ components:
       - url
       type: object
       additionalProperties: false
-    UploadUrlInfo:
+    Pick_Collection.id-or-name_:
       properties:
-        uploadUrl:
+        id:
           type: string
-        headers:
-          properties: {}
-          additionalProperties:
-            type: string
-          type: object
-        fileSizeRequirements:
-          properties:
-            maxSizeInBytes:
-              type: number
-              format: double
-            minSizeInBytes:
-              type: number
-              format: double
-          required:
-          - maxSizeInBytes
-          - minSizeInBytes
-          type: object
+        name:
+          type: string
       required:
-      - uploadUrl
-      - headers
-      - fileSizeRequirements
+      - id
       type: object
-      additionalProperties: false
-    UploadImageResponse:
-      properties:
-        image:
-          $ref: '#/components/schemas/UploadImageInfo'
-      required:
-      - image
-      type: object
-      additionalProperties: false
+      description: From T, pick a set of properties whose keys are in the union K
     PageData:
       properties:
         total:
@@ -425,81 +453,6 @@ components:
       - lastPage
       - startIndex
       - endIndex
-      type: object
-      additionalProperties: false
-    MetadataFilterData:
-      properties:
-        metadataKeyId:
-          type: number
-          format: double
-        name:
-          type: string
-        values:
-          items:
-            type: string
-          type: array
-      required:
-      - metadataKeyId
-      - name
-      - values
-      type: object
-      additionalProperties: false
-    Metadata:
-      properties:
-        modelId:
-          type: string
-        metadataKeyId:
-          type: number
-          format: double
-        name:
-          type:
-          - string
-          - 'null'
-        value:
-          type: string
-      required:
-      - modelId
-      - metadataKeyId
-      - name
-      - value
-      type: object
-      additionalProperties: false
-    MatchFilterData:
-      properties:
-        folders:
-          items:
-            $ref: '#/components/schemas/Pick_Folder.id-or-name_'
-          type: array
-        metadata:
-          items:
-            $ref: '#/components/schemas/MetadataFilterData'
-          type: array
-        createdAt:
-          items:
-            type: string
-          type: array
-        isAssembly:
-          items:
-            type: boolean
-          type: array
-        fileType:
-          items:
-            type: string
-          type: array
-        units:
-          items:
-            type: string
-          type: array
-        collections:
-          $ref: '#/components/schemas/CollectionFilterData'
-      required:
-      - folders
-      - metadata
-      - createdAt
-      - isAssembly
-      - fileType
-      - units
-      - collections
       type: object
       additionalProperties: false
     ModelWithMetadata:
@@ -557,16 +510,63 @@ components:
       - metadata
       type: object
       additionalProperties: false
-    Pick_Collection.id-or-name_:
+    FilterExpression:
+      type: string
+      description: 'A string in the form `<FilterProperty>(<FilterOperator>(<FilterValue>))[,FilterExpressions]`.
+
+
+        See the [API Reference](https://physna.github.io/public-api-guide/api-reference/filter-expressions) for more details.
+
+
+        Example:
+
+        ```
+
+        id(between(1,1000)),createdAt(not(lt(''2022-01-01T00:00:00.000Z'')))
+
+        ```'
+    ImageMatch:
+      description: Searching for models that match the given image
       properties:
-        id:
-          type: string
-        name:
-          type: string
+        matchedModel:
+          $ref: '#/components/schemas/ModelWithMetadata'
       required:
-      - id
+      - matchedModel
       type: object
-      description: From T, pick a set of properties whose keys are in the union K
+      additionalProperties: false
+    ErrorResponse:
+      properties:
+        error:
+          properties:
+            message:
+              type: string
+          required:
+          - message
+          type: object
+      required:
+      - error
+      type: object
+      additionalProperties: false
+    CollectionFilterData:
+      properties:
+        names:
+          items:
+            type: string
+          type: array
+        tags:
+          items:
+            type: string
+          type: array
+        metadata:
+          items:
+            $ref: '#/components/schemas/MetadataFilterData'
+          type: array
+      required:
+      - names
+      - tags
+      - metadata
+      type: object
+      additionalProperties: false
   securitySchemes:
     okta:
       type: oauth2

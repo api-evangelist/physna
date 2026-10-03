@@ -250,6 +250,51 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    User:
+      properties:
+        id:
+          type: string
+        externalId:
+          type: string
+        email:
+          type: string
+        department:
+          type: string
+        acceptedLicenseAgreement:
+          type: boolean
+        status:
+          $ref: '#/components/schemas/UserStatus'
+        roles:
+          items:
+            $ref: '#/components/schemas/Role'
+          type: array
+      required:
+      - id
+      - externalId
+      - email
+      - department
+      - acceptedLicenseAgreement
+      - status
+      - roles
+      type: object
+      additionalProperties: false
+    Role:
+      enum:
+      - SA
+      - Administrators
+      - Authors
+      - Viewers
+      type: string
+    UserListResponse:
+      properties:
+        users:
+          items:
+            $ref: '#/components/schemas/User'
+          type: array
+      required:
+      - users
+      type: object
+      additionalProperties: false
     CurrentUserResponse:
       properties:
         id:
@@ -283,19 +328,6 @@ components:
       - tenants
       type: object
       additionalProperties: false
-    ErrorResponse:
-      properties:
-        error:
-          properties:
-            message:
-              type: string
-          required:
-          - message
-          type: object
-      required:
-      - error
-      type: object
-      additionalProperties: false
     UserResponse:
       properties:
         user:
@@ -309,51 +341,19 @@ components:
       - Suspended
       - Active
       type: string
-    User:
+    ErrorResponse:
       properties:
-        id:
-          type: string
-        externalId:
-          type: string
-        email:
-          type: string
-        department:
-          type: string
-        acceptedLicenseAgreement:
-          type: boolean
-        status:
-          $ref: '#/components/schemas/UserStatus'
-        roles:
-          items:
-            $ref: '#/components/schemas/Role'
-          type: array
+        error:
+          properties:
+            message:
+              type: string
+          required:
+          - message
+          type: object
       required:
-      - id
-      - externalId
-      - email
-      - department
-      - acceptedLicenseAgreement
-      - status
-      - roles
+      - error
       type: object
       additionalProperties: false
-    UserListResponse:
-      properties:
-        users:
-          items:
-            $ref: '#/components/schemas/User'
-          type: array
-      required:
-      - users
-      type: object
-      additionalProperties: false
-    Role:
-      enum:
-      - SA
-      - Administrators
-      - Authors
-      - Viewers
-      type: string
   securitySchemes:
     okta:
       type: oauth2

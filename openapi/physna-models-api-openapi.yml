@@ -921,182 +921,31 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    MetadataResponse:
+    UploadUrlInfo:
       properties:
-        pageData:
-          $ref: '#/components/schemas/PageData'
-        metadata:
-          items:
-            $ref: '#/components/schemas/Metadata'
-          type: array
-      required:
-      - pageData
-      - metadata
-      type: object
-      additionalProperties: false
-    GetModelMatchesResponse:
-      properties:
-        matches:
-          items:
-            $ref: '#/components/schemas/ModelMatch'
-          type: array
-        pageData:
-          $ref: '#/components/schemas/PageData'
-        filterData:
-          $ref: '#/components/schemas/MatchFilterData'
-      required:
-      - matches
-      - pageData
-      - filterData
-      type: object
-      additionalProperties: false
-    ModelStateReport:
-      properties: {}
-      type: object
-      additionalProperties:
-        type: number
-        format: double
-    PartMatch:
-      properties:
-        matchedModel:
-          $ref: '#/components/schemas/ModelWithMetadata'
-        commonFacetCount:
-          type: number
-          format: double
-        modelFacetCount:
-          type: number
-          format: double
-        matchedModelFacetCount:
-          type: number
-          format: double
-        forwardMatchPercentage:
-          type: number
-          format: double
-          description: The amount of the Model that exists inside the MatchedModel
-        reverseMatchPercentage:
-          type: number
-          format: double
-          description: The amount of the MatchedModel that exists inside the Model
-      required:
-      - matchedModel
-      - commonFacetCount
-      - modelFacetCount
-      - matchedModelFacetCount
-      - forwardMatchPercentage
-      - reverseMatchPercentage
-      type: object
-      additionalProperties: false
-    GetVisualMatchesResponse:
-      properties:
-        matches:
-          items:
-            $ref: '#/components/schemas/VisualMatch'
-          type: array
-        pageData:
-          $ref: '#/components/schemas/PageData'
-        filterData:
-          $ref: '#/components/schemas/MatchFilterData'
-      required:
-      - matches
-      - pageData
-      - filterData
-      type: object
-      additionalProperties: false
-    PageData:
-      properties:
-        total:
-          type: integer
-          format: int32
-        perPage:
-          type: integer
-          format: int32
-        currentPage:
-          type: integer
-          format: int32
-        lastPage:
-          type: integer
-          format: int32
-        startIndex:
-          type: integer
-          format: int32
-        endIndex:
-          type: integer
-          format: int32
-      required:
-      - total
-      - perPage
-      - currentPage
-      - lastPage
-      - startIndex
-      - endIndex
-      type: object
-      additionalProperties: false
-    ScanMatch:
-      properties:
-        matchedModel:
-          $ref: '#/components/schemas/ModelWithMetadata'
-        matchPercentage:
-          type: number
-          format: double
-      required:
-      - matchedModel
-      - matchPercentage
-      type: object
-      additionalProperties: false
-    CreateModelMetadata:
-      properties:
-        metadataKeyId:
-          type: number
-          format: double
-        value:
+        uploadUrl:
           type: string
+        headers:
+          properties: {}
+          additionalProperties:
+            type: string
+          type: object
+        fileSizeRequirements:
+          properties:
+            maxSizeInBytes:
+              type: number
+              format: double
+            minSizeInBytes:
+              type: number
+              format: double
+          required:
+          - maxSizeInBytes
+          - minSizeInBytes
+          type: object
       required:
-      - metadataKeyId
-      - value
-      type: object
-      additionalProperties: false
-    SingleMetadataResponse:
-      properties:
-        metadata:
-          $ref: '#/components/schemas/Metadata'
-      required:
-      - metadata
-      type: object
-      additionalProperties: false
-    CreateModelRequest:
-      properties:
-        filePath:
-          type: string
-        name:
-          type: string
-        metadata:
-          items:
-            $ref: '#/components/schemas/CreateModelMetadata'
-          type: array
-      required:
-      - filePath
-      type: object
-      additionalProperties: false
-    CreateModelsResponse:
-      properties:
-        models:
-          items:
-            properties:
-              uploadInfo:
-                $ref: '#/components/schemas/UploadUrlInfo'
-              model:
-                $ref: '#/components/schemas/ModelWithMetadata'
-            required:
-            - uploadInfo
-            - model
-            type: object
-          type: array
-        collection:
-          anyOf:
-          - $ref: '#/components/schemas/CreateCollectionResponseBody'
-          - $ref: '#/components/schemas/AddToCollectionResponseBody'
-      required:
-      - models
+      - uploadUrl
+      - headers
+      - fileSizeRequirements
       type: object
       additionalProperties: false
     MatchFilterData:
@@ -1137,163 +986,42 @@ components:
       - collections
       type: object
       additionalProperties: false
-    OrderExpression:
-      type: string
-      description: 'A string in the form `[-]<OrderProperty>[,OrderProperties]`.
-
-
-        See the [API Reference](https://physna.github.io/public-api-guide/api-reference/order-expressions) for more details.
-
-
-
-        Example:
-
-        ```
-
-        -id,name
-
-        ```'
+    PartMatch:
+      properties:
+        matchedModel:
+          $ref: '#/components/schemas/ModelWithMetadata'
+        commonFacetCount:
+          type: number
+          format: double
+        modelFacetCount:
+          type: number
+          format: double
+        matchedModelFacetCount:
+          type: number
+          format: double
+        forwardMatchPercentage:
+          type: number
+          format: double
+          description: The amount of the Model that exists inside the MatchedModel
+        reverseMatchPercentage:
+          type: number
+          format: double
+          description: The amount of the MatchedModel that exists inside the Model
+      required:
+      - matchedModel
+      - commonFacetCount
+      - modelFacetCount
+      - matchedModelFacetCount
+      - forwardMatchPercentage
+      - reverseMatchPercentage
+      type: object
+      additionalProperties: false
     SourceFileResponse:
       properties:
         sourceFile:
           type: string
       required:
       - sourceFile
-      type: object
-      additionalProperties: false
-    CreateCollectionResponseBody:
-      properties:
-        collectionId:
-          type: string
-        affected:
-          type: number
-          format: double
-      required:
-      - collectionId
-      - affected
-      type: object
-      additionalProperties: false
-    MatchReportGroups:
-      properties:
-        groups:
-          items:
-            $ref: '#/components/schemas/MatchReportGroup'
-          type: array
-      required:
-      - groups
-      type: object
-      additionalProperties: false
-    ModelListResponse:
-      properties:
-        models:
-          items:
-            $ref: '#/components/schemas/ModelWithMetadata'
-          type: array
-        pageData:
-          $ref: '#/components/schemas/PageData'
-      required:
-      - models
-      - pageData
-      type: object
-      additionalProperties: false
-    AddToCollectionResponseBody:
-      $ref: '#/components/schemas/CreateCollectionResponseBody'
-    GetPartMatchesResponse:
-      properties:
-        matches:
-          items:
-            $ref: '#/components/schemas/PartMatch'
-          type: array
-        pageData:
-          $ref: '#/components/schemas/PageData'
-        filterData:
-          $ref: '#/components/schemas/MatchFilterData'
-      required:
-      - matches
-      - pageData
-      - filterData
-      type: object
-      additionalProperties: false
-    UploadUrlInfo:
-      properties:
-        uploadUrl:
-          type: string
-        headers:
-          properties: {}
-          additionalProperties:
-            type: string
-          type: object
-        fileSizeRequirements:
-          properties:
-            maxSizeInBytes:
-              type: number
-              format: double
-            minSizeInBytes:
-              type: number
-              format: double
-          required:
-          - maxSizeInBytes
-          - minSizeInBytes
-          type: object
-      required:
-      - uploadUrl
-      - headers
-      - fileSizeRequirements
-      type: object
-      additionalProperties: false
-    AssemblyTree:
-      properties:
-        type:
-          type: string
-          enum:
-          - assemblyTree
-        modelId:
-          type: string
-        children:
-          items:
-            anyOf:
-            - $ref: '#/components/schemas/AssemblyPart'
-            - $ref: '#/components/schemas/SubAssembly'
-          type: array
-      required:
-      - type
-      - modelId
-      - children
-      type: object
-      additionalProperties: false
-    MetadataFilterData:
-      properties:
-        metadataKeyId:
-          type: number
-          format: double
-        name:
-          type: string
-        values:
-          items:
-            type: string
-          type: array
-      required:
-      - metadataKeyId
-      - name
-      - values
-      type: object
-      additionalProperties: false
-    Pick_Collection.id-or-name_:
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-      required:
-      - id
-      type: object
-      description: From T, pick a set of properties whose keys are in the union K
-    SingleModelResponse:
-      properties:
-        model:
-          $ref: '#/components/schemas/ModelWithMetadata'
-      required:
-      - model
       type: object
       additionalProperties: false
     ModelWithMetadata:
@@ -1351,154 +1079,68 @@ components:
       - metadata
       type: object
       additionalProperties: false
-    ModelGeometry:
-      description: Model geometry of ingested model, including the model's bounding box lengths, it's surface area, and volume.
-      properties:
-        obbMinLength:
-          type: number
-          format: double
-        obbMidLength:
-          type: number
-          format: double
-        obbMaxLength:
-          type: number
-          format: double
-        surfaceArea:
-          type: number
-          format: double
-        modelVolume:
-          type: number
-          format: double
-      required:
-      - obbMinLength
-      - obbMidLength
-      - obbMaxLength
-      - surfaceArea
-      - modelVolume
-      type: object
-      additionalProperties: false
-    CollectionFilterData:
-      properties:
-        names:
-          items:
-            type: string
-          type: array
-        tags:
-          items:
-            type: string
-          type: array
-        metadata:
-          items:
-            $ref: '#/components/schemas/MetadataFilterData'
-          type: array
-      required:
-      - names
-      - tags
-      - metadata
-      type: object
-      additionalProperties: false
-    Pick_Folder.id-or-name_:
-      properties:
-        id:
-          type: number
-          format: double
-        name:
-          type: string
-      required:
-      - id
-      - name
-      type: object
-      description: From T, pick a set of properties whose keys are in the union K
-    ModelMatch:
-      properties:
-        matchPercentage:
-          type: number
-          format: double
-        matchedModel:
-          $ref: '#/components/schemas/ModelWithMetadata'
-      required:
-      - matchPercentage
-      - matchedModel
-      type: object
-      additionalProperties: false
-    MatchReportGroup:
-      properties:
-        modelIds:
-          items:
-            type: string
-          type: array
-        exampleModels:
-          items:
-            $ref: '#/components/schemas/ModelWithMetadata'
-          type: array
-      required:
-      - modelIds
-      - exampleModels
-      type: object
-      additionalProperties: false
-    GetModelStateReportResponse:
-      properties:
-        states:
-          $ref: '#/components/schemas/ModelStateReport'
-      required:
-      - states
-      type: object
-      additionalProperties: false
-    AssemblyPart:
-      properties:
-        type:
-          type: string
-          enum:
-          - assemblyPart
-        modelId:
-          type: string
-        occurrences:
-          type: number
-          format: double
-      required:
-      - type
-      - modelId
-      - occurrences
-      type: object
-      additionalProperties: false
-    FilterExpression:
+    OrderExpression:
       type: string
-      description: 'A string in the form `<FilterProperty>(<FilterOperator>(<FilterValue>))[,FilterExpressions]`.
+      description: 'A string in the form `[-]<OrderProperty>[,OrderProperties]`.
 
 
-        See the [API Reference](https://physna.github.io/public-api-guide/api-reference/filter-expressions) for more details.
+        See the [API Reference](https://physna.github.io/public-api-guide/api-reference/order-expressions) for more details.
+
 
 
         Example:
 
         ```
 
-        id(between(1,1000)),createdAt(not(lt(''2022-01-01T00:00:00.000Z'')))
+        -id,name
 
         ```'
-    MatchReportItem:
+    GetModelMatchesResponse:
       properties:
-        model:
-          $ref: '#/components/schemas/ModelWithMetadata'
-        matchCount:
-          type: number
-          format: double
+        matches:
+          items:
+            $ref: '#/components/schemas/ModelMatch'
+          type: array
+        pageData:
+          $ref: '#/components/schemas/PageData'
+        filterData:
+          $ref: '#/components/schemas/MatchFilterData'
       required:
-      - model
-      - matchCount
+      - matches
+      - pageData
+      - filterData
       type: object
       additionalProperties: false
-    ErrorResponse:
+    Metadata:
       properties:
-        error:
-          properties:
-            message:
-              type: string
-          required:
-          - message
-          type: object
+        modelId:
+          type: string
+        metadataKeyId:
+          type: number
+          format: double
+        name:
+          type:
+          - string
+          - 'null'
+        value:
+          type: string
       required:
-      - error
+      - modelId
+      - metadataKeyId
+      - name
+      - value
+      type: object
+      additionalProperties: false
+    CreateModelMetadata:
+      properties:
+        metadataKeyId:
+          type: number
+          format: double
+        value:
+          type: string
+      required:
+      - metadataKeyId
+      - value
       type: object
       additionalProperties: false
     Label:
@@ -1518,43 +1160,20 @@ components:
       - createdAt
       type: object
       additionalProperties: false
-    ViewerFileResponse:
+    AddToCollectionResponseBody:
+      $ref: '#/components/schemas/CreateCollectionResponseBody'
+    CreateModelRequest:
       properties:
-        viewerFile:
+        filePath:
           type: string
-      required:
-      - viewerFile
-      type: object
-      additionalProperties: false
-    MatchReportThreshold:
-      type: number
-      enum:
-      - 0.8
-      - 0.9
-      - 0.95
-      - 0.99
-    GetScanMatchesResponse:
-      properties:
-        matches:
+        name:
+          type: string
+        metadata:
           items:
-            $ref: '#/components/schemas/ScanMatch'
+            $ref: '#/components/schemas/CreateModelMetadata'
           type: array
-        pageData:
-          $ref: '#/components/schemas/PageData'
-        filterData:
-          $ref: '#/components/schemas/MatchFilterData'
       required:
-      - matches
-      - pageData
-      - filterData
-      type: object
-      additionalProperties: false
-    VisualMatch:
-      properties:
-        matchedModel:
-          $ref: '#/components/schemas/ModelWithMetadata'
-      required:
-      - matchedModel
+      - filePath
       type: object
       additionalProperties: false
     SubAssembly:
@@ -1581,24 +1200,373 @@ components:
       - occurrences
       type: object
       additionalProperties: false
-    Metadata:
+    ScanMatch:
       properties:
-        modelId:
-          type: string
+        matchedModel:
+          $ref: '#/components/schemas/ModelWithMetadata'
+        matchPercentage:
+          type: number
+          format: double
+      required:
+      - matchedModel
+      - matchPercentage
+      type: object
+      additionalProperties: false
+    MatchReportGroups:
+      properties:
+        groups:
+          items:
+            $ref: '#/components/schemas/MatchReportGroup'
+          type: array
+      required:
+      - groups
+      type: object
+      additionalProperties: false
+    GetPartMatchesResponse:
+      properties:
+        matches:
+          items:
+            $ref: '#/components/schemas/PartMatch'
+          type: array
+        pageData:
+          $ref: '#/components/schemas/PageData'
+        filterData:
+          $ref: '#/components/schemas/MatchFilterData'
+      required:
+      - matches
+      - pageData
+      - filterData
+      type: object
+      additionalProperties: false
+    ModelMatch:
+      properties:
+        matchPercentage:
+          type: number
+          format: double
+        matchedModel:
+          $ref: '#/components/schemas/ModelWithMetadata'
+      required:
+      - matchPercentage
+      - matchedModel
+      type: object
+      additionalProperties: false
+    SingleMetadataResponse:
+      properties:
+        metadata:
+          $ref: '#/components/schemas/Metadata'
+      required:
+      - metadata
+      type: object
+      additionalProperties: false
+    GetVisualMatchesResponse:
+      properties:
+        matches:
+          items:
+            $ref: '#/components/schemas/VisualMatch'
+          type: array
+        pageData:
+          $ref: '#/components/schemas/PageData'
+        filterData:
+          $ref: '#/components/schemas/MatchFilterData'
+      required:
+      - matches
+      - pageData
+      - filterData
+      type: object
+      additionalProperties: false
+    CreateModelsResponse:
+      properties:
+        models:
+          items:
+            properties:
+              uploadInfo:
+                $ref: '#/components/schemas/UploadUrlInfo'
+              model:
+                $ref: '#/components/schemas/ModelWithMetadata'
+            required:
+            - uploadInfo
+            - model
+            type: object
+          type: array
+        collection:
+          anyOf:
+          - $ref: '#/components/schemas/CreateCollectionResponseBody'
+          - $ref: '#/components/schemas/AddToCollectionResponseBody'
+      required:
+      - models
+      type: object
+      additionalProperties: false
+    MetadataFilterData:
+      properties:
         metadataKeyId:
           type: number
           format: double
         name:
-          type:
-          - string
-          - 'null'
-        value:
           type: string
+        values:
+          items:
+            type: string
+          type: array
       required:
-      - modelId
       - metadataKeyId
       - name
-      - value
+      - values
+      type: object
+      additionalProperties: false
+    AssemblyPart:
+      properties:
+        type:
+          type: string
+          enum:
+          - assemblyPart
+        modelId:
+          type: string
+        occurrences:
+          type: number
+          format: double
+      required:
+      - type
+      - modelId
+      - occurrences
+      type: object
+      additionalProperties: false
+    ReprocessModelsResponse:
+      properties:
+        affected:
+          type: number
+          format: double
+      required:
+      - affected
+      type: object
+      additionalProperties: false
+    MatchReportItem:
+      properties:
+        model:
+          $ref: '#/components/schemas/ModelWithMetadata'
+        matchCount:
+          type: number
+          format: double
+      required:
+      - model
+      - matchCount
+      type: object
+      additionalProperties: false
+    Pick_Folder.id-or-name_:
+      properties:
+        id:
+          type: number
+          format: double
+        name:
+          type: string
+      required:
+      - id
+      - name
+      type: object
+      description: From T, pick a set of properties whose keys are in the union K
+    ModelStateReport:
+      properties: {}
+      type: object
+      additionalProperties:
+        type: number
+        format: double
+    MetadataResponse:
+      properties:
+        pageData:
+          $ref: '#/components/schemas/PageData'
+        metadata:
+          items:
+            $ref: '#/components/schemas/Metadata'
+          type: array
+      required:
+      - pageData
+      - metadata
+      type: object
+      additionalProperties: false
+    PageData:
+      properties:
+        total:
+          type: integer
+          format: int32
+        perPage:
+          type: integer
+          format: int32
+        currentPage:
+          type: integer
+          format: int32
+        lastPage:
+          type: integer
+          format: int32
+        startIndex:
+          type: integer
+          format: int32
+        endIndex:
+          type: integer
+          format: int32
+      required:
+      - total
+      - perPage
+      - currentPage
+      - lastPage
+      - startIndex
+      - endIndex
+      type: object
+      additionalProperties: false
+    Pick_Collection.id-or-name_:
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+      required:
+      - id
+      type: object
+      description: From T, pick a set of properties whose keys are in the union K
+    AssemblyTree:
+      properties:
+        type:
+          type: string
+          enum:
+          - assemblyTree
+        modelId:
+          type: string
+        children:
+          items:
+            anyOf:
+            - $ref: '#/components/schemas/AssemblyPart'
+            - $ref: '#/components/schemas/SubAssembly'
+          type: array
+      required:
+      - type
+      - modelId
+      - children
+      type: object
+      additionalProperties: false
+    FilterExpression:
+      type: string
+      description: 'A string in the form `<FilterProperty>(<FilterOperator>(<FilterValue>))[,FilterExpressions]`.
+
+
+        See the [API Reference](https://physna.github.io/public-api-guide/api-reference/filter-expressions) for more details.
+
+
+        Example:
+
+        ```
+
+        id(between(1,1000)),createdAt(not(lt(''2022-01-01T00:00:00.000Z'')))
+
+        ```'
+    MatchReportThreshold:
+      type: number
+      enum:
+      - 0.8
+      - 0.9
+      - 0.95
+      - 0.99
+    ModelListResponse:
+      properties:
+        models:
+          items:
+            $ref: '#/components/schemas/ModelWithMetadata'
+          type: array
+        pageData:
+          $ref: '#/components/schemas/PageData'
+      required:
+      - models
+      - pageData
+      type: object
+      additionalProperties: false
+    CreateCollectionResponseBody:
+      properties:
+        collectionId:
+          type: string
+        affected:
+          type: number
+          format: double
+      required:
+      - collectionId
+      - affected
+      type: object
+      additionalProperties: false
+    MatchReportGroup:
+      properties:
+        modelIds:
+          items:
+            type: string
+          type: array
+        exampleModels:
+          items:
+            $ref: '#/components/schemas/ModelWithMetadata'
+          type: array
+      required:
+      - modelIds
+      - exampleModels
+      type: object
+      additionalProperties: false
+    GetScanMatchesResponse:
+      properties:
+        matches:
+          items:
+            $ref: '#/components/schemas/ScanMatch'
+          type: array
+        pageData:
+          $ref: '#/components/schemas/PageData'
+        filterData:
+          $ref: '#/components/schemas/MatchFilterData'
+      required:
+      - matches
+      - pageData
+      - filterData
+      type: object
+      additionalProperties: false
+    ModelGeometry:
+      description: Model geometry of ingested model, including the model's bounding box lengths, it's surface area, and volume.
+      properties:
+        obbMinLength:
+          type: number
+          format: double
+        obbMidLength:
+          type: number
+          format: double
+        obbMaxLength:
+          type: number
+          format: double
+        surfaceArea:
+          type: number
+          format: double
+        modelVolume:
+          type: number
+          format: double
+      required:
+      - obbMinLength
+      - obbMidLength
+      - obbMaxLength
+      - surfaceArea
+      - modelVolume
+      type: object
+      additionalProperties: false
+    VisualMatch:
+      properties:
+        matchedModel:
+          $ref: '#/components/schemas/ModelWithMetadata'
+      required:
+      - matchedModel
+      type: object
+      additionalProperties: false
+    ViewerFileResponse:
+      properties:
+        viewerFile:
+          type: string
+      required:
+      - viewerFile
+      type: object
+      additionalProperties: false
+    GetModelStateReportResponse:
+      properties:
+        states:
+          $ref: '#/components/schemas/ModelStateReport'
+      required:
+      - states
       type: object
       additionalProperties: false
     MatchReport:
@@ -1615,13 +1583,45 @@ components:
       - total
       type: object
       additionalProperties: false
-    ReprocessModelsResponse:
+    SingleModelResponse:
       properties:
-        affected:
-          type: number
-          format: double
+        model:
+          $ref: '#/components/schemas/ModelWithMetadata'
       required:
-      - affected
+      - model
+      type: object
+      additionalProperties: false
+    ErrorResponse:
+      properties:
+        error:
+          properties:
+            message:
+              type: string
+          required:
+          - message
+          type: object
+      required:
+      - error
+      type: object
+      additionalProperties: false
+    CollectionFilterData:
+      properties:
+        names:
+          items:
+            type: string
+          type: array
+        tags:
+          items:
+            type: string
+          type: array
+        metadata:
+          items:
+            $ref: '#/components/schemas/MetadataFilterData'
+          type: array
+      required:
+      - names
+      - tags
+      - metadata
       type: object
       additionalProperties: false
   securitySchemes:
