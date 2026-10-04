@@ -250,6 +250,27 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    ErrorResponse:
+      properties:
+        error:
+          properties:
+            message:
+              type: string
+          required:
+          - message
+          type: object
+      required:
+      - error
+      type: object
+      additionalProperties: false
+    UserResponse:
+      properties:
+        user:
+          $ref: '#/components/schemas/User'
+      required:
+      - user
+      type: object
+      additionalProperties: false
     User:
       properties:
         id:
@@ -276,23 +297,6 @@ components:
       - acceptedLicenseAgreement
       - status
       - roles
-      type: object
-      additionalProperties: false
-    Role:
-      enum:
-      - SA
-      - Administrators
-      - Authors
-      - Viewers
-      type: string
-    UserListResponse:
-      properties:
-        users:
-          items:
-            $ref: '#/components/schemas/User'
-          type: array
-      required:
-      - users
       type: object
       additionalProperties: false
     CurrentUserResponse:
@@ -328,12 +332,21 @@ components:
       - tenants
       type: object
       additionalProperties: false
-    UserResponse:
+    Role:
+      enum:
+      - SA
+      - Administrators
+      - Authors
+      - Viewers
+      type: string
+    UserListResponse:
       properties:
-        user:
-          $ref: '#/components/schemas/User'
+        users:
+          items:
+            $ref: '#/components/schemas/User'
+          type: array
       required:
-      - user
+      - users
       type: object
       additionalProperties: false
     UserStatus:
@@ -341,19 +354,6 @@ components:
       - Suspended
       - Active
       type: string
-    ErrorResponse:
-      properties:
-        error:
-          properties:
-            message:
-              type: string
-          required:
-          - message
-          type: object
-      required:
-      - error
-      type: object
-      additionalProperties: false
   securitySchemes:
     okta:
       type: oauth2

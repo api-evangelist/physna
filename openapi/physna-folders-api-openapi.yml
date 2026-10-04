@@ -316,97 +316,29 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ModelGeometry:
-      description: Model geometry of ingested model, including the model's bounding box lengths, it's surface area, and volume.
+    Folder:
       properties:
-        obbMinLength:
+        id:
           type: number
           format: double
-        obbMidLength:
-          type: number
-          format: double
-        obbMaxLength:
-          type: number
-          format: double
-        surfaceArea:
-          type: number
-          format: double
-        modelVolume:
-          type: number
-          format: double
-      required:
-      - obbMinLength
-      - obbMidLength
-      - obbMaxLength
-      - surfaceArea
-      - modelVolume
-      type: object
-      additionalProperties: false
-    FolderUpdateResponse:
-      properties:
-        affected:
-          type: number
-          format: double
-      required:
-      - affected
-      type: object
-      additionalProperties: false
-    Model:
-      properties:
         createdAt:
           type: string
-        deletedAt:
-          type: string
-        fileName:
-          type: string
-        fileType:
-          type: string
-        folderId:
-          type: number
-          format: double
-        id:
-          type: string
-        isAssembly:
-          type: boolean
         name:
           type: string
-        ownerId:
+        description:
           type: string
-        state:
-          type: string
-        thumbnail:
-          type: string
-        units:
-          type: string
-        collections:
+        parentFolderId:
+          type: number
+          format: double
+        children:
           items:
-            $ref: '#/components/schemas/Pick_Collection.id-or-name_'
+            type: number
+            format: double
           type: array
-        labels:
-          items:
-            $ref: '#/components/schemas/Label'
-          type: array
-        geometry:
-          $ref: '#/components/schemas/ModelGeometry'
       required:
-      - createdAt
-      - fileName
-      - fileType
-      - folderId
       - id
-      - isAssembly
+      - createdAt
       - name
-      - ownerId
-      - state
-      - units
-      type: object
-      additionalProperties: false
-    FolderCreateResponse:
-      properties:
-        folder:
-          $ref: '#/components/schemas/Folder'
-      required:
-      - folder
       type: object
       additionalProperties: false
     FolderContentResponse:
@@ -473,54 +405,38 @@ components:
       - endIndex
       type: object
       additionalProperties: false
-    Pick_Collection.id-or-name_:
+    ModelGeometry:
+      description: Model geometry of ingested model, including the model's bounding box lengths, it's surface area, and volume.
       properties:
-        id:
-          type: string
-        name:
-          type: string
+        obbMinLength:
+          type: number
+          format: double
+        obbMidLength:
+          type: number
+          format: double
+        obbMaxLength:
+          type: number
+          format: double
+        surfaceArea:
+          type: number
+          format: double
+        modelVolume:
+          type: number
+          format: double
       required:
-      - id
+      - obbMinLength
+      - obbMidLength
+      - obbMaxLength
+      - surfaceArea
+      - modelVolume
       type: object
-      description: From T, pick a set of properties whose keys are in the union K
-    FilterExpression:
-      type: string
-      description: 'A string in the form `<FilterProperty>(<FilterOperator>(<FilterValue>))[,FilterExpressions]`.
-
-
-        See the [API Reference](https://physna.github.io/public-api-guide/api-reference/filter-expressions) for more details.
-
-
-        Example:
-
-        ```
-
-        id(between(1,1000)),createdAt(not(lt(''2022-01-01T00:00:00.000Z'')))
-
-        ```'
-    Folder:
+      additionalProperties: false
+    FolderCreateResponse:
       properties:
-        id:
-          type: number
-          format: double
-        createdAt:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        parentFolderId:
-          type: number
-          format: double
-        children:
-          items:
-            type: number
-            format: double
-          type: array
+        folder:
+          $ref: '#/components/schemas/Folder'
       required:
-      - id
-      - createdAt
-      - name
+      - folder
       type: object
       additionalProperties: false
     OrderExpression:
@@ -539,6 +455,16 @@ components:
         -id,name
 
         ```'
+    Pick_Collection.id-or-name_:
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+      required:
+      - id
+      type: object
+      description: From T, pick a set of properties whose keys are in the union K
     FolderResponse:
       properties:
         folder:
@@ -569,6 +495,80 @@ components:
           required:
           - type
           type: object
+    FolderUpdateResponse:
+      properties:
+        affected:
+          type: number
+          format: double
+      required:
+      - affected
+      type: object
+      additionalProperties: false
+    Model:
+      properties:
+        createdAt:
+          type: string
+        deletedAt:
+          type: string
+        fileName:
+          type: string
+        fileType:
+          type: string
+        folderId:
+          type: number
+          format: double
+        id:
+          type: string
+        isAssembly:
+          type: boolean
+        name:
+          type: string
+        ownerId:
+          type: string
+        state:
+          type: string
+        thumbnail:
+          type: string
+        units:
+          type: string
+        collections:
+          items:
+            $ref: '#/components/schemas/Pick_Collection.id-or-name_'
+          type: array
+        labels:
+          items:
+            $ref: '#/components/schemas/Label'
+          type: array
+        geometry:
+          $ref: '#/components/schemas/ModelGeometry'
+      required:
+      - createdAt
+      - fileName
+      - fileType
+      - folderId
+      - id
+      - isAssembly
+      - name
+      - ownerId
+      - state
+      - units
+      type: object
+      additionalProperties: false
+    FilterExpression:
+      type: string
+      description: 'A string in the form `<FilterProperty>(<FilterOperator>(<FilterValue>))[,FilterExpressions]`.
+
+
+        See the [API Reference](https://physna.github.io/public-api-guide/api-reference/filter-expressions) for more details.
+
+
+        Example:
+
+        ```
+
+        id(between(1,1000)),createdAt(not(lt(''2022-01-01T00:00:00.000Z'')))
+
+        ```'
     Label:
       properties:
         displayName:
