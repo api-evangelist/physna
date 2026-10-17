@@ -493,12 +493,230 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    DeletedPropertyResponse:
+      properties:
+        deleted:
+          type: boolean
+      required:
+      - deleted
+      type: object
+      additionalProperties: false
+    Label:
+      properties:
+        displayName:
+          type: string
+        source:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        rejected:
+          type: boolean
+      required:
+      - displayName
+      - source
+      - createdAt
+      type: object
+      additionalProperties: false
+    PartToPartMatchResponse:
+      properties:
+        matches:
+          items:
+            $ref: '#/components/schemas/PartToPartMatch'
+          type: array
+        pageData:
+          $ref: '#/components/schemas/PageData'
+        filterData:
+          $ref: '#/components/schemas/FilterData'
+      required:
+      - matches
+      - pageData
+      - filterData
+      type: object
+      additionalProperties: false
+    Property:
+      properties:
+        id:
+          type: number
+          format: double
+        name:
+          type: string
+      required:
+      - id
+      - name
+      type: object
+      additionalProperties: false
+    ModelProperty:
+      properties:
+        modelId:
+          type: string
+        propertyId:
+          type: number
+          format: double
+        name:
+          type:
+          - string
+          - 'null'
+        value:
+          type: string
+      required:
+      - modelId
+      - propertyId
+      - name
+      - value
+      type: object
+      additionalProperties: false
+    Pick_Collection.id-or-name_:
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+      required:
+      - id
+      type: object
+      description: From T, pick a set of properties whose keys are in the union K
+    PropertyFilterData:
+      properties:
+        id:
+          type: number
+          format: double
+        name:
+          type: string
+        values:
+          items:
+            type: string
+          type: array
+      required:
+      - id
+      - name
+      - values
+      type: object
+      additionalProperties: false
+    PropertyListResponse:
+      properties:
+        properties:
+          items:
+            $ref: '#/components/schemas/Property'
+          type: array
+      required:
+      - properties
+      type: object
+      additionalProperties: false
+    ModelPropertiesListResponse:
+      properties:
+        modelProperties:
+          items:
+            $ref: '#/components/schemas/ModelProperty'
+          type: array
+      required:
+      - modelProperties
+      type: object
+      additionalProperties: false
+    ErrorResponse:
+      properties:
+        error:
+          properties:
+            message:
+              type: string
+          required:
+          - message
+          type: object
+      required:
+      - error
+      type: object
+      additionalProperties: false
+    ModelPropertiesResponse:
+      properties:
+        modelProperties:
+          items:
+            $ref: '#/components/schemas/ModelProperty'
+          type: array
+      required:
+      - modelProperties
+      type: object
+      additionalProperties: false
     SinglePropertyResponse:
       properties:
         property:
           $ref: '#/components/schemas/Property'
       required:
       - property
+      type: object
+      additionalProperties: false
+    FolderFilterData:
+      properties:
+        id:
+          type: number
+          format: double
+        name:
+          type: string
+      required:
+      - id
+      - name
+      type: object
+      additionalProperties: false
+    PartInPartMatch:
+      description: 'Searching for models that contain the model under search
+
+
+        Model is the model being searched on, and MatchedModel is the result'
+      properties:
+        matchedModel:
+          $ref: '#/components/schemas/Model'
+        commonFacetCount:
+          type: number
+          format: double
+        modelFacetCount:
+          type: number
+          format: double
+        matchedModelFacetCount:
+          type: number
+          format: double
+        forwardMatchPercentage:
+          type: number
+          format: double
+          description: The amount of the Model that exists inside the MatchedModel
+        reverseMatchPercentage:
+          type: number
+          format: double
+          description: The amount of the MatchedModel that exists inside the Model
+      required:
+      - matchedModel
+      - commonFacetCount
+      - modelFacetCount
+      - matchedModelFacetCount
+      - forwardMatchPercentage
+      - reverseMatchPercentage
+      type: object
+      additionalProperties: false
+    GeoRelatedMatch:
+      description: Searching for models that are broadly similar to the model under search
+      properties:
+        matchedModel:
+          $ref: '#/components/schemas/Model'
+        matchPercentage:
+          type: number
+          format: double
+      required:
+      - matchedModel
+      - matchPercentage
+      type: object
+      additionalProperties: false
+    PartInPartMatchResponse:
+      properties:
+        matches:
+          items:
+            $ref: '#/components/schemas/PartInPartMatch'
+          type: array
+        pageData:
+          $ref: '#/components/schemas/PageData'
+        filterData:
+          $ref: '#/components/schemas/FilterData'
+      required:
+      - matches
+      - pageData
+      - filterData
       type: object
       additionalProperties: false
     PageData:
@@ -528,92 +746,6 @@ components:
       - lastPage
       - startIndex
       - endIndex
-      type: object
-      additionalProperties: false
-    PropertyFilterData:
-      properties:
-        id:
-          type: number
-          format: double
-        name:
-          type: string
-        values:
-          items:
-            type: string
-          type: array
-      required:
-      - id
-      - name
-      - values
-      type: object
-      additionalProperties: false
-    ModelPropertiesListResponse:
-      properties:
-        modelProperties:
-          items:
-            $ref: '#/components/schemas/ModelProperty'
-          type: array
-      required:
-      - modelProperties
-      type: object
-      additionalProperties: false
-    Pick_Collection.id-or-name_:
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-      required:
-      - id
-      type: object
-      description: From T, pick a set of properties whose keys are in the union K
-    ModelPropertiesResponse:
-      properties:
-        modelProperties:
-          items:
-            $ref: '#/components/schemas/ModelProperty'
-          type: array
-      required:
-      - modelProperties
-      type: object
-      additionalProperties: false
-    ErrorResponse:
-      properties:
-        error:
-          properties:
-            message:
-              type: string
-          required:
-          - message
-          type: object
-      required:
-      - error
-      type: object
-      additionalProperties: false
-    ModelGeometry:
-      description: Model geometry of ingested model, including the model's bounding box lengths, it's surface area, and volume.
-      properties:
-        obbMinLength:
-          type: number
-          format: double
-        obbMidLength:
-          type: number
-          format: double
-        obbMaxLength:
-          type: number
-          format: double
-        surfaceArea:
-          type: number
-          format: double
-        modelVolume:
-          type: number
-          format: double
-      required:
-      - obbMinLength
-      - obbMidLength
-      - obbMaxLength
-      - surfaceArea
-      - modelVolume
       type: object
       additionalProperties: false
     GeoRelatedMatchResponse:
@@ -695,38 +827,30 @@ components:
       - units
       type: object
       additionalProperties: false
-    PartInPartMatch:
-      description: 'Searching for models that contain the model under search
-
-
-        Model is the model being searched on, and MatchedModel is the result'
+    ModelGeometry:
+      description: Model geometry of ingested model, including the model's bounding box lengths, it's surface area, and volume.
       properties:
-        matchedModel:
-          $ref: '#/components/schemas/Model'
-        commonFacetCount:
+        obbMinLength:
           type: number
           format: double
-        modelFacetCount:
+        obbMidLength:
           type: number
           format: double
-        matchedModelFacetCount:
+        obbMaxLength:
           type: number
           format: double
-        forwardMatchPercentage:
+        surfaceArea:
           type: number
           format: double
-          description: The amount of the Model that exists inside the MatchedModel
-        reverseMatchPercentage:
+        modelVolume:
           type: number
           format: double
-          description: The amount of the MatchedModel that exists inside the Model
       required:
-      - matchedModel
-      - commonFacetCount
-      - modelFacetCount
-      - matchedModelFacetCount
-      - forwardMatchPercentage
-      - reverseMatchPercentage
+      - obbMinLength
+      - obbMidLength
+      - obbMaxLength
+      - surfaceArea
+      - modelVolume
       type: object
       additionalProperties: false
     FilterData:
@@ -745,130 +869,6 @@ components:
       type: object
       additionalProperties: false
       deprecated: true
-    ModelProperty:
-      properties:
-        modelId:
-          type: string
-        propertyId:
-          type: number
-          format: double
-        name:
-          type:
-          - string
-          - 'null'
-        value:
-          type: string
-      required:
-      - modelId
-      - propertyId
-      - name
-      - value
-      type: object
-      additionalProperties: false
-    Property:
-      properties:
-        id:
-          type: number
-          format: double
-        name:
-          type: string
-      required:
-      - id
-      - name
-      type: object
-      additionalProperties: false
-    PropertyListResponse:
-      properties:
-        properties:
-          items:
-            $ref: '#/components/schemas/Property'
-          type: array
-      required:
-      - properties
-      type: object
-      additionalProperties: false
-    FolderFilterData:
-      properties:
-        id:
-          type: number
-          format: double
-        name:
-          type: string
-      required:
-      - id
-      - name
-      type: object
-      additionalProperties: false
-    DeletedPropertyResponse:
-      properties:
-        deleted:
-          type: boolean
-      required:
-      - deleted
-      type: object
-      additionalProperties: false
-    Label:
-      properties:
-        displayName:
-          type: string
-        source:
-          type: string
-        createdAt:
-          type: string
-          format: date-time
-        rejected:
-          type: boolean
-      required:
-      - displayName
-      - source
-      - createdAt
-      type: object
-      additionalProperties: false
-    PartToPartMatchResponse:
-      properties:
-        matches:
-          items:
-            $ref: '#/components/schemas/PartToPartMatch'
-          type: array
-        pageData:
-          $ref: '#/components/schemas/PageData'
-        filterData:
-          $ref: '#/components/schemas/FilterData'
-      required:
-      - matches
-      - pageData
-      - filterData
-      type: object
-      additionalProperties: false
-    GeoRelatedMatch:
-      description: Searching for models that are broadly similar to the model under search
-      properties:
-        matchedModel:
-          $ref: '#/components/schemas/Model'
-        matchPercentage:
-          type: number
-          format: double
-      required:
-      - matchedModel
-      - matchPercentage
-      type: object
-      additionalProperties: false
-    PartInPartMatchResponse:
-      properties:
-        matches:
-          items:
-            $ref: '#/components/schemas/PartInPartMatch'
-          type: array
-        pageData:
-          $ref: '#/components/schemas/PageData'
-        filterData:
-          $ref: '#/components/schemas/FilterData'
-      required:
-      - matches
-      - pageData
-      - filterData
-      type: object
-      additionalProperties: false
   securitySchemes:
     okta:
       type: oauth2

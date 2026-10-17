@@ -250,19 +250,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ErrorResponse:
-      properties:
-        error:
-          properties:
-            message:
-              type: string
-          required:
-          - message
-          type: object
-      required:
-      - error
-      type: object
-      additionalProperties: false
     UserResponse:
       properties:
         user:
@@ -271,6 +258,13 @@ components:
       - user
       type: object
       additionalProperties: false
+    Role:
+      enum:
+      - SA
+      - Administrators
+      - Authors
+      - Viewers
+      type: string
     User:
       properties:
         id:
@@ -297,6 +291,29 @@ components:
       - acceptedLicenseAgreement
       - status
       - roles
+      type: object
+      additionalProperties: false
+    ErrorResponse:
+      properties:
+        error:
+          properties:
+            message:
+              type: string
+          required:
+          - message
+          type: object
+      required:
+      - error
+      type: object
+      additionalProperties: false
+    UserListResponse:
+      properties:
+        users:
+          items:
+            $ref: '#/components/schemas/User'
+          type: array
+      required:
+      - users
       type: object
       additionalProperties: false
     CurrentUserResponse:
@@ -330,23 +347,6 @@ components:
       - status
       - roles
       - tenants
-      type: object
-      additionalProperties: false
-    Role:
-      enum:
-      - SA
-      - Administrators
-      - Authors
-      - Viewers
-      type: string
-    UserListResponse:
-      properties:
-        users:
-          items:
-            $ref: '#/components/schemas/User'
-          type: array
-      required:
-      - users
       type: object
       additionalProperties: false
     UserStatus:
